@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%;
+    font-size:calc(15px * var(--dynamic-font-scale,1));
+    font-family:-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.form-control{
+    height:50px!important;
+    font-size:20px;
+}
+.mat-card-subtitle, .mat-card-content{
+    font-size:20px;
+}
+
+label{
+    font-weight:500;
+}
+.btn{
+    font-size: 20px;
+    margin-top: 15px;
+    padding:0px 25px;
+    line-height:40px;
+
+}
