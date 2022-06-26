@@ -1,0 +1,37 @@
+#bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    /* Preserve aspet ratio */
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.main-div {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url("../../assets/images/backgroundimage.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.card {
+    width: 25%;
+    height: 50%;
+}
+
+.btc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.marten {
+    margin-top: 1.5em !important;
+    margin: 0px 15px ;
+}
