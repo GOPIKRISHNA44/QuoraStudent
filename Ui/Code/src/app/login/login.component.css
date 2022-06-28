@@ -8,6 +8,14 @@
     min-height: 100%;
 }
 
+mat-card {
+    min-width: 25%;
+    margin: 2em auto;
+    text-align: center;
+    max-height: 600px;
+    border-radius: 10px
+}
+
 .main-div {
     height: 100vh;
     display: flex;
@@ -20,18 +28,19 @@
     background-size: cover;
 }
 
-.card {
-    width: 25%;
-    height: 50%;
-}
 
 .btc {
     display: flex;
     justify-content: center;
     align-items: center;
+    
+}
+
+.full-width {
+    width: 95%;
 }
 
 .marten {
     margin-top: 1.5em !important;
-    margin: 0px 15px ;
+    margin: 0px 15px;
 }

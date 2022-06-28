@@ -7,15 +7,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationService } from './services/authentication.service';
 import { HttpClientModule } from '@angular/common/http';
+import { SignupDialogComponent } from './signup-dialog/signup-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    SignupDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -23,6 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [AuthenticationService],
