@@ -16,6 +16,7 @@ export class SignupDialogComponent implements OnInit {
     this.dialogRef.close();
   }
   signUp(){
+    
     this.dialogRef.close();
   }
 }
