@@ -10,7 +10,7 @@
                 <div class="emailInput">
                     <mat-form-field class="full-width" appearance="outline">
                         <mat-label>Email</mat-label>
-                        <input formControlName="email" matInput placeholder="Enter email address" required />
+                        <input formControlName="email" matInput placeholder="Enter email address" required [(ngModel)]=loginDetails.username />
                         <mat-error *ngIf="!loginForm.controls['email'].valid">
                             Email is required
                         </mat-error>
@@ -19,7 +19,7 @@
                 <div >
                     <mat-form-field class=" full-width" appearance="outline">
                         <mat-label>Password</mat-label>
-                        <input formControlName="password" matInput [type]=" hide ? 'password' : 'text'" required />
+                        <input formControlName="password" matInput [type]=" hide ? 'password' : 'text'" required [(ngModel)]=loginDetails..password/>
                         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide Password'"
                             [attr.aria-pressed]="hide">
                             <mat-icon>
@@ -31,13 +31,13 @@
                         </mat-error>
                     </mat-form-field>
                 </div>
-                <div class=" marten btc">
+                <div class=" btc">
                     <button mat-raised-button (click)="login()" color="primary" class="btn">Login</button>
 
                     <!-- <img *ngIf="loading"
                         src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" /> -->
                 </div>
-                &nbsp;
+                <br/>
                 <div class="form-group btc  ">
                     <a (click)=signUp()>Or Sign up with mail</a>
                 </div>
