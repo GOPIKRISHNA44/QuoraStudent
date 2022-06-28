@@ -38,7 +38,7 @@ public class UserService {
 			if (userDetails != null && userDetails.size() > 0) {
 				throw new Exception(ErrorMsgs.USERNAMEFOUND);
 			}
-			userDetails = userRepository.findByEmailid(userDetailsDto.getEmailId());
+			userDetails = userRepository.findByEmailid(userDetailsDto.getEmailid());
 			if (userDetails != null && userDetails.size() > 0) {
 				throw new Exception(ErrorMsgs.EMAILIDFOUND);
 			}

@@ -50,11 +50,11 @@ public class UserDetailsDTO {
 		this.dob = dob;
 	}
 
-	public String getUniversityCode() {
+	public String getUniversitycode() {
 		return universitycode;
 	}
 
-	public void setUniversityCode(String universityCode) {
+	public void setUniversitycode(String universityCode) {
 		this.universitycode = universityCode;
 	}
 
@@ -64,11 +64,11 @@ public class UserDetailsDTO {
 
 	private String emailid;
 
-	public String getEmailId() {
+	public String getEmailid() {
 		return emailid;
 	}
 
-	public void setEmailId(String emailId) {
+	public void setEmailid(String emailId) {
 		this.emailid = emailId;
 	}
 
