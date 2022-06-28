@@ -14,14 +14,16 @@ public class UserDetailsDTO {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long userid;
 
-	public Integer getId() {
-		return id;
+	
+
+	public Long getUserid() {
+		return userid;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setUserid(Long userid) {
+		this.userid = userid;
 	}
 
 	public String getUsername() {
@@ -40,7 +42,6 @@ public class UserDetailsDTO {
 		this.password = password;
 	}
 
-
 	public Date getDob() {
 		return dob;
 	}
@@ -49,30 +50,30 @@ public class UserDetailsDTO {
 		this.dob = dob;
 	}
 
-	public String getUniversity() {
-		return university;
+	public String getUniversityCode() {
+		return universitycode;
 	}
 
-	public void setUniversity(String university) {
-		this.university = university;
+	public void setUniversityCode(String universityCode) {
+		this.universitycode = universityCode;
 	}
 
 	private String username;
 
 	private String password;
 
-	private String emailId;
+	private String emailid;
 
 	public String getEmailId() {
-		return emailId;
+		return emailid;
 	}
 
 	public void setEmailId(String emailId) {
-		this.emailId = emailId;
+		this.emailid = emailId;
 	}
 
 	private Date dob;
 
-	private String university;
+	private String universitycode;
 
 }
