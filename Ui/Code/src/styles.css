@@ -1,24 +1,51 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%;
-    font-size:calc(15px * var(--dynamic-font-scale,1));
-    font-family:-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-.form-control{
-    height:50px!important;
-    font-size:20px;
-}
-.mat-card-subtitle, .mat-card-content{
-    font-size:20px;
+html,
+body {
+    height: 100%;
+    font-size: calc(15px * var(--dynamic-font-scale, 1));
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif
 }
 
-label{
-    font-weight:500;
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-.btn{
+
+.form-control {
+    height: 50px !important;
     font-size: 20px;
-    margin-top: 15px;
-    padding:0px 25px;
-    line-height:40px;
+}
 
+.mat-card-subtitle,
+.mat-card-content,
+.mat-flat-button.mat-primary,
+.mat-raised-button.mat-primary,
+.mat-fab.mat-primary,
+.mat-mini-fab.mat-primary {
+    font-size: 20px;
+}
+.mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary{
+    margin-top: 15px;
+    padding: 5px 25px;
+    line-height: 40px;
+}
+.mat-dialog-container{
+    border-radius: 10px;
+}
+label {
+    font-weight: 500;
+}
+
+
+a {
+    cursor: pointer;
+}
+
+input,
+.mat-tab-label,
+.mat-tab-link,
+.mat-button,
+.mat-simple-snackbar {
+    font-size: 24px;
 }

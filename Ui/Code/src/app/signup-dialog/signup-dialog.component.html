@@ -1,0 +1,41 @@
+<div class="dialog">
+    <div mat-dialog-title>
+        <p class="title">Sign up</p>
+    </div>
+    <div mat-dialog-content class="mat-typography">
+        <form class="xs-form marten">
+            <mat-form-field class="xs-full-width" appearance="outline">
+                <mat-label>Username</mat-label>
+                <input matInput placeholder="Username" name="username" pattern=[a-zA-Z0-9]*>
+            </mat-form-field><br />
+            <mat-form-field class="xs-full-width" appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Email" type="email" name="fame">
+            </mat-form-field><br />
+            <mat-form-field class="xs-full-width" appearance="outline">
+                <mat-label>Date of birth</mat-label>
+                <input matInput [matDatepicker]="picker" placeholder="Date of birth" name="dob">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field><br />
+            <mat-form-field class="xs-full-width" appearance="outline">
+                <mat-label>University</mat-label>
+                <input matInput placeholder="University" name="university">
+            </mat-form-field><br />
+            <mat-form-field class="xs-full-width" appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="Password" name="password">
+            </mat-form-field><br />
+            <mat-form-field class="xs-full-width" appearance="outline">
+                <mat-label>Confirm password</mat-label>
+                <input matInput placeholder="Confirm password" name="cpass">
+            </mat-form-field>
+        </form>
+
+    </div>
+    <div mat-dialog-actions align="center">
+        <button mat-raised-button class="btn" (click)="onNoClick()">Cancel</button>
+        <button mat-raised-button color="primary" (click)="signUp()"  cdkFocusInitial>Sign Up</button>
+    </div>
+</div>
