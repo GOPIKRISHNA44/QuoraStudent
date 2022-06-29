@@ -18,9 +18,9 @@ export class HomeComponent implements OnInit {
     this.authenticationService.logout().subscribe(res => {
       if (res.success) {
         localStorage.removeItem('token');
-        this.router.navigate(['/'])
+        this.router.navigate(['/login'])
       } else {
-        alert('Reason:' + res?.reason)
+        alert('Reason:home' + res?.reason)
       }
     },
       error => {

@@ -3,33 +3,36 @@
         <p class="title">Sign up</p>
     </div>
     <div mat-dialog-content class="mat-typography">
-        <form class="xs-form marten">
+        <form class="xs-form marten" name="form" name="signUpForm" [formGroup]="signUpForm" novalidate>
             <mat-form-field class="xs-full-width" appearance="outline">
                 <mat-label>Username</mat-label>
-                <input matInput placeholder="Username" name="username" pattern=[a-zA-Z0-9]*>
+                <input formControlName="username" matInput name="username">
+                <mat-error *ngIf="!signUpForm.controls['username'].valid">
+                    User name not valid.
+                </mat-error>
+                
             </mat-form-field><br />
             <mat-form-field class="xs-full-width" appearance="outline">
                 <mat-label>Email</mat-label>
-                <input matInput placeholder="Email" type="email" name="fame">
+                <input formControlName="email" matInput  type="email" name="fame">
             </mat-form-field><br />
             <mat-form-field class="xs-full-width" appearance="outline">
                 <mat-label>Date of birth</mat-label>
-                <input matInput [matDatepicker]="picker" placeholder="Date of birth" name="dob">
-                <mat-hint>MM/DD/YYYY</mat-hint>
+                <input formControlName="dob" matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY" name="dob">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field><br />
             <mat-form-field class="xs-full-width" appearance="outline">
                 <mat-label>University</mat-label>
-                <input matInput placeholder="University" name="university">
+                <input matInput formControlName="university" name="university">
             </mat-form-field><br />
             <mat-form-field class="xs-full-width" appearance="outline">
                 <mat-label>Password</mat-label>
-                <input matInput placeholder="Password" name="password">
+                <input matInput formControlName="password" type="password" name="password">
             </mat-form-field><br />
             <mat-form-field class="xs-full-width" appearance="outline">
                 <mat-label>Confirm password</mat-label>
-                <input matInput placeholder="Confirm password" name="cpass">
+                <input matInput formControlName="cpassword" type="password" placeholder="Confirm password" name="cpassword">
             </mat-form-field>
         </form>
 
