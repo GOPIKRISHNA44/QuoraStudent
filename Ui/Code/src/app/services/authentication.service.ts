@@ -23,12 +23,12 @@ export class AuthenticationService {
   }
 
   logout(): Observable<any> {     
-    let sessionKey=localStorage.getItem('token')   
-    return this.http.post(this.logoutURL,sessionKey)   
+    let sessionkey=localStorage.getItem('token')   
+    return this.http.post(this.logoutURL,{sessionkey:sessionkey})   
     }    
     isLoggedIn(): Observable<any>{
-      let sessionKey=localStorage.getItem('token')
-      return this.http.post(this.checkSessionURL,{"sessionkey":sessionKey})
+      let sessionKey=localStorage?.getItem('token')||''
+      return this.http.post(this.checkSessionURL,{sessionkey:sessionKey})
     }
     GetToken(){
       return localStorage.getItem('token')||'';

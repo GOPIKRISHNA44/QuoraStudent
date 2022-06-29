@@ -7,20 +7,19 @@
         </mat-card-title>
         <mat-card-content class="marten">
             <form name="form" (ngSubmit)="login()" name="loginForm" [formGroup]="loginForm" novalidate>
-                <div >
+                <div>
                     <mat-form-field class="full-width" appearance="outline">
-                        <mat-label>Username</mat-label>
-                        <input formControlName="username" matInput placeholder="Enter username" required />
+                        <mat-label>Username/Email</mat-label>
+                        <input formControlName="username" matInput required />
                         <mat-error *ngIf="!loginForm.controls['username'].valid">
-                            Username is required
+                            Username/Email is required
                         </mat-error>
                     </mat-form-field>
                 </div>
                 <div>
                     <mat-form-field class=" full-width" appearance="outline">
                         <mat-label>Password</mat-label>
-                        <input formControlName="password" matInput [type]=" hide ? 'password' : 'text'" required
-                            minlength="4"  placeholder="Enter password"/>
+                        <input formControlName="password" matInput [type]=" hide ? 'password' : 'text'" required />
                         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide Password'"
                             [attr.aria-pressed]="hide">
                             <mat-icon>

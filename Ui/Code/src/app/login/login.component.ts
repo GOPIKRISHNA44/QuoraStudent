@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/'])
       }
       else{
-        alert('Reason:'+ res?.reason)
+        alert('Reason:Login'+ res?.reason)
       }
     },
       error => {
