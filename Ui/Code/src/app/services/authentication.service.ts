@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 import { environment } from 'src/environments/environment';
 import { LoginDetails } from '../models/auth.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,6 @@ export class AuthenticationService {
   private loginURL: string = environment.apiEndPoint + environment.user.endPoint + environment.user.login;
   private checkSessionURL = environment.apiEndPoint + environment.user.endPoint + environment.user.checkSession;
   private logoutURL = environment.apiEndPoint + environment.user.endPoint + environment.user.logout;
-
 
 
   constructor(private http: HttpClient) { }
@@ -29,7 +28,7 @@ export class AuthenticationService {
     }    
     isLoggedIn(): Observable<any>{
       let sessionKey=localStorage.getItem('token')
-      return this.http.post(this.checkSessionURL,sessionKey)
+      return this.http.post(this.checkSessionURL,{"sessionkey":sessionKey})
     }
     GetToken(){
       return localStorage.getItem('token')||'';

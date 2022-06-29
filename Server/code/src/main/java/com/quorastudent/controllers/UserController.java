@@ -20,7 +20,7 @@ import com.quorastudent.dto.SessionDetailsDTO;
 import com.quorastudent.dto.UserDetailsDTO;
 import com.quorastudent.services.UserService;
 
-@CrossOrigin
+
 @RestController
 @RequestMapping(value = "user")
 public class UserController {
@@ -65,6 +65,7 @@ public class UserController {
 		return responseDto;
 	}
 
+	
 	@RequestMapping(value = "checksession", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseDTO checkSession(@RequestBody SessionDetailsDTO sessionDetailsDTO) {

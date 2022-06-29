@@ -4,12 +4,12 @@
 
 export const environment = {
   production: false,
-  apiEndPoint: 'localhost:8080',
+  apiEndPoint: 'http://localhost:8080/quoraStudent',
   user:{
     endPoint: '/user',
     login: '/login',
     register: '/register',
-    checkSession: '/checkSession',
+    checkSession: '/checksession',
     logout: '/logout',
   }
   
