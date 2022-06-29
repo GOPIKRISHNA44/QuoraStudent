@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 import { environment } from 'src/environments/environment';
 import { LoginDetails } from '../models/auth.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -17,23 +18,20 @@ export class AuthenticationService {
 
 
 
-  constructor(private http: Http) { }
-  login(loginDetails:LoginDetails):Observable<any> {
-    
-
-    return this.http.post(this.loginURL,loginDetails)
-      .map((response: Response) => {
-        // login successful if there's a jwt token in the response
-        let user = response.json();
-        if (user && user.token) {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify(user));
-        }
-      });
+  constructor(private http: HttpClient) { }
+  login(loginDetails): Observable<any> {
+    return this.http.post<LoginDetails>(this.loginURL, loginDetails)
   }
 
-  logout() {
-    // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
-  }
+  logout(): Observable<any> {     
+    let sessionKey=localStorage.getItem('token')   
+    return this.http.post(this.logoutURL,sessionKey)   
+    }    
+    isLoggedIn(): Observable<any>{
+      let sessionKey=localStorage.getItem('token')
+      return this.http.post(this.checkSessionURL,sessionKey)
+    }
+    GetToken(){
+      return localStorage.getItem('token')||'';
+     }
 }

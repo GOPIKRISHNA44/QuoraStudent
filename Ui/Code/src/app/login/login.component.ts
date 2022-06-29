@@ -14,12 +14,10 @@ import { LoginDetails } from '../models/auth.model';
 })
 export class LoginComponent implements OnInit {
   hide: boolean = true;
-  username: string;
-  password: string;
-  loginDetails: LoginDetails;
+  loginDetails:LoginDetails
   loginForm: FormGroup = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(6)]]
+    username: ['', [Validators.required]],
+    password: ['', [Validators.required]]
   })
   constructor(
     public dialog: MatDialog,
@@ -30,26 +28,39 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
   }
 
   login() {
     if (!this.loginForm.valid) {
       return;
     }
-    console.log(this.loginForm.value);
-    this.authenticationService.login(this.loginDetails).subscribe(res => {
-      console.log(res)
+    const loginDetails: LoginDetails = {
+      username: this.loginDetails?.username,
+      email: this.loginDetails?.email,
+      password:this.loginDetails?.password
+    }
+    if(this.loginForm.value.username.includes('@')){
+      loginDetails.username=null;
+      loginDetails.email=this.loginForm.value.username
+    }
+    else{
+      loginDetails.username=this.loginForm.value.username;
+      loginDetails.email=null;
+    }
+    loginDetails.password=this.loginForm.value.password
+    this.authenticationService.login(loginDetails).subscribe(res => {
+      if(res.success){
+        localStorage.setItem('token',res?.data.sessionkey)
+        this.router.navigate(['/'])
+      }
+      else{
+        alert('Reason:'+ res?.reason)
+      }
     },
       error => {
         alert('Error occured with message ' + error?.message)
       })
-  }
-
-
-  //    
-
-
+  }    
   signUp() {
     const dialogRef = this.dialog.open(SignupDialogComponent, {
       width: '600px',
