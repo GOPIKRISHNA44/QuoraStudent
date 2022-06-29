@@ -11,7 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationService } from './services/authentication.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SignupDialogComponent } from './signup-dialog/signup-dialog.component';
-
+import { AuthGuard } from './guards/auth.guards';
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,7 @@ import { SignupDialogComponent } from './signup-dialog/signup-dialog.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [AuthenticationService],
+  providers: [AuthenticationService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
