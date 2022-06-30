@@ -33,13 +33,23 @@ public class UserService {
 
 	public boolean register(UserDetailsDTO userDetailsDto) throws Exception {
 		try {
-
-			List<UserDetailsDTO> userDetails = userRepository.findByUsername(userDetailsDto.getUsername());
-			if (userDetails != null && userDetails.size() > 0) {
+			if(ObjectUtils.isEmpty(userDetailsDto.getUsername()) && ObjectUtils.isEmpty(userDetailsDto.getEmailid()))
+			{
+				throw new Exception(ErrorMsgs.INVALIDETAILS);
+			}
+			List<UserDetailsDTO> usersList = null;
+			if(!ObjectUtils.isEmpty(userDetailsDto.getUsername()))
+			{
+				
+			usersList	= userRepository.findByUsername(userDetailsDto.getUsername());
+			if(!ObjectUtils.isEmpty(usersList))
+			{
 				throw new Exception(ErrorMsgs.USERNAMEFOUND);
 			}
-			userDetails = userRepository.findByEmailid(userDetailsDto.getEmailid());
-			if (userDetails != null && userDetails.size() > 0) {
+			}
+			else if(!ObjectUtils.isEmpty(userDetailsDto.getUsername()))
+			{
+				usersList	= userRepository.findByEmailid(userDetailsDto.getEmailid());
 				throw new Exception(ErrorMsgs.EMAILIDFOUND);
 			}
 			userDetailsDto.setPassword(utilityService.generateEncodedPassword(userDetailsDto.getPassword()));
