@@ -17,5 +17,7 @@ public interface UserRepository extends JpaRepository<UserDetailsDTO, Integer> {
 	List<UserDetailsDTO> findByEmailidAndPassword(String emailid, String password);
 
 	List<UserDetailsDTO> findByUserid(Long userid);
+	
+	List<UserDetailsDTO> findByUsernameOrEmailid(String username, String emailid);
 
 }

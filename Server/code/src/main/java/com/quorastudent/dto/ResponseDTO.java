@@ -41,7 +41,7 @@ public class ResponseDTO {
 	public ResponseDTO getFailureResponse(String reason) {
 		ResponseDTO responseDto = new ResponseDTO();
 		responseDto.setData(null);
-		responseDto.setSuccess(true);
+		responseDto.setSuccess(false);
 		responseDto.setReason(reason);
 		return responseDto;
 	}
