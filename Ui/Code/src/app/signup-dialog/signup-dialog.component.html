@@ -6,39 +6,67 @@
         <form class="xs-form marten" name="form" name="signUpForm" [formGroup]="signUpForm" novalidate>
             <mat-form-field class="xs-full-width" appearance="outline">
                 <mat-label>Username</mat-label>
-                <input formControlName="username" matInput name="username">
-                <mat-error *ngIf="!signUpForm.controls['username'].valid">
-                    User name not valid.
-                </mat-error>
-                
+                <input formControlName="username" matInput name="username" required>            
+                    <mat-error *ngIf="f.username.errors?.required">
+                        User name is required
+                    </mat-error>
+                    <mat-error *ngIf="f.username.errors?.pattern">
+                        Enter only alphanumeric
+                    </mat-error>              
             </mat-form-field><br />
             <mat-form-field class="xs-full-width" appearance="outline">
                 <mat-label>Email</mat-label>
-                <input formControlName="email" matInput  type="email" name="fame">
+                <input formControlName="emailid" matInput type="email" name="email" required>
+                <mat-error *ngIf="f.emailid.errors?.required">
+                    EmailId is required
+                </mat-error>
             </mat-form-field><br />
             <mat-form-field class="xs-full-width" appearance="outline">
                 <mat-label>Date of birth</mat-label>
-                <input formControlName="dob" matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY" name="dob">
+                <input formControlName="dob" matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY" name="dob" required>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="f.dob.errors?.required">
+                    Date of birth is not valid
+                </mat-error>
             </mat-form-field><br />
             <mat-form-field class="xs-full-width" appearance="outline">
                 <mat-label>University</mat-label>
-                <input matInput formControlName="university" name="university">
+                <input matInput formControlName="universitycode" name="universitycode" required>
+                <mat-error *ngIf="f.universitycode.errors?.required">
+                    University is required
+                </mat-error>
             </mat-form-field><br />
             <mat-form-field class="xs-full-width" appearance="outline">
                 <mat-label>Password</mat-label>
-                <input matInput formControlName="password" type="password" name="password">
+                <input matInput formControlName="password" [type]=" hide ? 'password' : 'text'" name="password" required>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide Password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>
+                        {{hide ? 'visibility_off' : 'visibility'}}
+                    </mat-icon>
+                </button>
+                <mat-error *ngIf="f.password.errors?.required">
+                    Password is required
+                </mat-error>
             </mat-form-field><br />
             <mat-form-field class="xs-full-width" appearance="outline">
                 <mat-label>Confirm password</mat-label>
-                <input matInput formControlName="cpassword" type="password" placeholder="Confirm password" name="cpassword">
+                <input matInput formControlName="confirmPassword" [type]=" hide ? 'password' : 'text'"
+                    placeholder="Confirm password" name="confirmPassword" required>
+                <button mat-icon-button matSuffix (click)="chide = !chide" [attr.aria-label]="'Hide Password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>
+                        {{chide ? 'visibility_off' : 'visibility'}}
+                    </mat-icon>
+                </button>
+                <mat-error *ngIf="f.confirmPassword?.errors?.mustMatch">Password and confirm password does not match</mat-error>
             </mat-form-field>
         </form>
 
     </div>
     <div mat-dialog-actions align="center">
         <button mat-raised-button class="btn" (click)="onNoClick()">Cancel</button>
-        <button mat-raised-button color="primary" (click)="signUp()"  cdkFocusInitial>Sign Up</button>
+        <button mat-raised-button color="primary" (click)="signUp()" [disabled]="!this.signUpForm?.valid" cdkFocusInitial>Sign Up</button>
     </div>
 </div>

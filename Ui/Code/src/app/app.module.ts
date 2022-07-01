@@ -12,6 +12,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SignupDialogComponent } from './signup-dialog/signup-dialog.component';
 import { AuthGuard } from './guards/auth.guards';
+import { DatePipe } from '@angular/common';
  
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { AuthGuard } from './guards/auth.guards';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [AuthenticationService,AuthGuard],
+  providers: [AuthenticationService,AuthGuard,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

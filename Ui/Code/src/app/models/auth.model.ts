@@ -1,15 +1,13 @@
-import { DateSelectionModelChange } from "@angular/material/datepicker";
-
 export interface LoginDetails{
     username:string;
     password:string;
     email:string;
 }
 
-export interface SignUPDetails{
+export interface SignUpDetails{
     username:string;
-    email:string;
-    dob:Date;
-    university:string;
-
+    emailid:string;
+    dob:string;
+    universitycode:string;
+    password:string;
 }

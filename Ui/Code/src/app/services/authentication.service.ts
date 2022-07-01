@@ -3,7 +3,7 @@ import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 import { environment } from 'src/environments/environment';
-import { LoginDetails } from '../models/auth.model';
+import { LoginDetails, SignUpDetails } from '../models/auth.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
@@ -22,15 +22,18 @@ export class AuthenticationService {
     return this.http.post<LoginDetails>(this.loginURL, loginDetails)
   }
 
-  logout(): Observable<any> {     
-    let sessionkey=localStorage.getItem('token')   
-    return this.http.post(this.logoutURL,{sessionkey:sessionkey})   
-    }    
-    isLoggedIn(): Observable<any>{
-      let sessionKey=localStorage?.getItem('token')||''
-      return this.http.post(this.checkSessionURL,{sessionkey:sessionKey})
-    }
-    GetToken(){
-      return localStorage.getItem('token')||'';
-     }
+  logout(): Observable<any> {
+    let sessionkey = localStorage.getItem('token')
+    return this.http.post(this.logoutURL, { sessionkey: sessionkey })
+  }
+  isLoggedIn(): Observable<any> {
+    let sessionKey = localStorage?.getItem('token') || ''
+    return this.http.post(this.checkSessionURL, { sessionkey: sessionKey })
+  }
+  GetToken() {
+    return localStorage.getItem('token') || '';
+  }
+  signUp(signUpDetails):Observable<any> {
+    return this.http.post<SignUpDetails>(this.registrationURL, signUpDetails)
+  }
 }

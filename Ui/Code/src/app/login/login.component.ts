@@ -49,8 +49,8 @@ export class LoginComponent implements OnInit {
     }
     loginDetails.password=this.loginForm.value.password
     this.authenticationService.login(loginDetails).subscribe(res => {
-      if(res.success){
-        localStorage.setItem('token',res?.data.sessionkey)
+      if(res.data){
+        localStorage.setItem('token',res?.data?.sessionkey)
         this.router.navigate(['/'])
       }
       else{
