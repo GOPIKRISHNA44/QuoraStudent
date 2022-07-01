@@ -6,7 +6,7 @@
             <div style="text-align: center;font-size: 25px;">LOGIN</div>
         </mat-card-title>
         <mat-card-content class="marten">
-            <form name="form" (ngSubmit)="login()" name="loginForm" [formGroup]="loginForm" novalidate>
+            <form name="form" name="loginForm" [formGroup]="loginForm" novalidate>
                 <div>
                     <mat-form-field class="full-width" appearance="outline">
                         <mat-label>Username/Email</mat-label>
@@ -32,9 +32,8 @@
                     </mat-form-field>
                 </div>
                 <div class=" btc">
-                    <button mat-raised-button type="submit" color="primary" class="btn">Login</button>
-                    <!-- <img *ngIf="loading"
-                        src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" /> -->
+                    <button mat-raised-button (click)="login()" type="submit" color="primary" class="btn" [disabled]="!this.loginForm?.valid">Login</button>
+                    
                 </div>
                 <br />
                 <div class="form-group btc  ">
