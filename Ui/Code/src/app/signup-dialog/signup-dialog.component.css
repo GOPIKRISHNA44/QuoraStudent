@@ -21,15 +21,9 @@
   margin: 0px 15px;
 }
 
-.dialog {
-  border-radius: 10px;
-  min-height: 660px;
-}
+
 
 .title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: 28px;
   font-weight: 800;
 }

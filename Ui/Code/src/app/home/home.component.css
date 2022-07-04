@@ -1,6 +1,34 @@
-.space{
-    width:100%;
+.space {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.contain {
+    height: calc(100vh - 65px);
+    overflow: auto;
+
+}
+
+.menu-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px
+}
+
+.menu-button mat-icon {
+    margin-right: 8px;
+}
+
+mat-sidenav {
+    width: 250px;
+    border-right: none;
+    text-align: center;
+}
+
+.itemIcon {
+   padding: 10px;
 }

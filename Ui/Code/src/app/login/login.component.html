@@ -1,9 +1,8 @@
-<div class="main-div">
-    <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQArKA9qRrDRK6vg450jwKSFUY5Dcb9jHQfMA&usqp=CAU" id="bg" alt=""/> -->
-    <mat-card class="card">
+<div class="main-div row-center">
+    <mat-card>
         <mat-card-title class="marten" style="text-align: center;">
-            <div style="text-align: center; font-size: 30px; color: red;margin-bottom: 35px;">QUORA STUDENT</div>
-            <div style="text-align: center;font-size: 25px;">LOGIN</div>
+            <div style="text-align: center; font-size: 30px; color: red;margin-bottom: 35px;">{{mainTitle}}</div>
+            <div style="text-align: center;font-size: 25px;">{{loginTitle}}</div>
         </mat-card-title>
         <mat-card-content class="marten">
             <form name="form" name="loginForm" [formGroup]="loginForm" novalidate>
@@ -31,9 +30,10 @@
                         </mat-error>
                     </mat-form-field>
                 </div>
-                <div class=" btc">
-                    <button mat-raised-button (click)="login()" type="submit" color="primary" class="btn" [disabled]="!this.loginForm?.valid">Login</button>
-                    
+                <div class="row-center">
+                    <button mat-raised-button (click)="login()" type="submit" color="primary" class="btn"
+                        [disabled]="!this.loginForm?.valid">Login</button>
+
                 </div>
                 <br />
                 <div class="form-group btc  ">

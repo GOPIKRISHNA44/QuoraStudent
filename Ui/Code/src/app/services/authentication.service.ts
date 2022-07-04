@@ -23,11 +23,11 @@ export class AuthenticationService {
   }
 
   logout(): Observable<any> {
-    let sessionkey = localStorage.getItem('token')
+    let sessionkey = this.GetToken();
     return this.http.post(this.logoutURL, { sessionkey: sessionkey })
   }
   isLoggedIn(): Observable<any> {
-    let sessionKey = localStorage?.getItem('token') || ''
+    let sessionKey = this.GetToken();
     return this.http.post(this.checkSessionURL, { sessionkey: sessionKey })
   }
   GetToken() {
