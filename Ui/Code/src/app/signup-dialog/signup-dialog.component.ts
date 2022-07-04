@@ -5,12 +5,16 @@ import { SignUpDetails } from '../models/auth.model';
 import { AuthenticationService } from '../services/authentication.service';
 import { formatDate, DatePipe } from '@angular/common';
 import { CustomValidators } from '../providers/customvalidators';
+import { Title } from '../constants/title.constants';
+
+
 @Component({
   selector: 'app-signup-dialog',
   templateUrl: './signup-dialog.component.html',
   styleUrls: ['./signup-dialog.component.css']
 })
 export class SignupDialogComponent implements OnInit {
+  title=Title.signUpTitle
   hide: boolean = true;
   chide: boolean = true
   signUpDetails: SignUpDetails;
@@ -28,6 +32,7 @@ export class SignupDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder, private authenticationService: AuthenticationService,) { }
 
   ngOnInit(): void {
+    
   }
   onNoClick() {
     this.dialogRef.close();

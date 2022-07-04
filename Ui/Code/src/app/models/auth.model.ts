@@ -1,7 +1,7 @@
 export interface LoginDetails{
     username:string;
     password:string;
-    email:string;
+    emailid:string;
 }
 
 export interface SignUpDetails{

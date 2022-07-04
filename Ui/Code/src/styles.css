@@ -46,6 +46,16 @@ input,
 .mat-tab-label,
 .mat-tab-link,
 .mat-button,
-.mat-simple-snackbar {
+.mat-simple-snackbar,
+mat-sidenav {
     font-size: 24px;
 }
+.row-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dialog {
+    border-radius: 10px;
+    min-height: 660px;
+  }

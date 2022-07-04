@@ -1,6 +1,34 @@
 <mat-toolbar color="primary">
-    <div class="space" >
-        <div>Home Works</div>
-        <div (click)="logOut()"><button mat-raised-button color="primary">Log Out</button></div>
-    </div>
+    <mat-toolbar-row>
+        <div class="space">
+            <div>
+                <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+                    <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+                    <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+                </button><span style="text-align: center; font-size: 30px;">{{mainTitle}}</span>
+            </div>
+            <div class="row-center">
+                <div class="itemIcon" *ngFor="let toolbarIconsItem of toolbarIconsItems">
+                    <button mat-mini-fab class="row-center" (click)="toolbarIcons()">
+                        <mat-icon>{{toolbarIconsItem.icon}}</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </mat-toolbar-row>
 </mat-toolbar>
+<div>
+    <mat-sidenav-container class="contain">
+        <mat-sidenav #sidenav="matSidenav">
+            <mat-nav-list #sidenav class="menu-item" *ngFor="let sideNavItemsName of sideNavItemsNames">
+                <button mat-button class="menu-button" (click)="sideItemNavigation()">
+                    <mat-icon>{{sideNavItemsName.icon}}</mat-icon>
+                    <span>{{sideNavItemsName.buttonName}}</span>
+                </button>
+            </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            main content
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

@@ -5,14 +5,15 @@ import { SignupDialogComponent } from '../signup-dialog/signup-dialog.component'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../services/authentication.service';
 import { LoginDetails } from '../models/auth.model';
-// import { AuthenticationService } from '../services/authentication.service';
-
+import { Title } from '../constants/title.constants';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  mainTitle=Title.mainTitle
+  loginTitle=Title.loginTitle
   hide: boolean = true;
   loginDetails:LoginDetails
   loginForm: FormGroup = this.fb.group({
@@ -36,16 +37,16 @@ export class LoginComponent implements OnInit {
     }
     const loginDetails: LoginDetails = {
       username: this.loginDetails?.username,
-      email: this.loginDetails?.email,
+      emailid: this.loginDetails?.emailid,
       password:this.loginDetails?.password
     }
     if(this.loginForm.value.username.includes('@')){
       loginDetails.username=null;
-      loginDetails.email=this.loginForm.value.username
+      loginDetails.emailid=this.loginForm.value.username
     }
     else{
       loginDetails.username=this.loginForm.value.username;
-      loginDetails.email=null;
+      loginDetails.emailid=null;
     }
     loginDetails.password=this.loginForm.value.password
     this.authenticationService.login(loginDetails).subscribe(res => {
