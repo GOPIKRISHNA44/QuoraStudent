@@ -18,9 +18,6 @@ mat-card {
 
 .main-div {
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background: url("../../assets/images/backgroundimage.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -29,12 +26,6 @@ mat-card {
 }
 
 
-.btc {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-}
 
 .full-width {
     width: 95%;

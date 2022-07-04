@@ -12,13 +12,16 @@ import { AuthenticationService } from './services/authentication.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SignupDialogComponent } from './signup-dialog/signup-dialog.component';
 import { AuthGuard } from './guards/auth.guards';
+import { DatePipe } from '@angular/common';
+import { InterestsDialogComponent } from './interests-dialog/interests-dialog.component';
  
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    SignupDialogComponent
+    SignupDialogComponent,
+    InterestsDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,7 @@ import { AuthGuard } from './guards/auth.guards';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [AuthenticationService,AuthGuard],
+  providers: [AuthenticationService,AuthGuard,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

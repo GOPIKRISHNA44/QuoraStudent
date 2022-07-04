@@ -3,24 +3,24 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate, Router } from
 import { Observable } from 'rxjs';
 import { AuthenticationService } from '../services/authentication.service';
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-    active:boolean=false
-    constructor(private router: Router, private authenticationService: AuthenticationService) { }
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):boolean {
-         this.authenticationService.isLoggedIn().subscribe(res => {
-            if (res.data.loggedout && res.success) {
-                this.active=true;
-            } else {
-                this.router.navigate(['login']); 
-                alert('Reason:' + res?.reason)
-              }
-            },
-              error => {
-                alert('Error occured with message ' + error?.message)
-              })
-              return this.active
-          }     
-           
-  }    
+  active: boolean = false
+  constructor(private router: Router, private authenticationService: AuthenticationService) { }
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean>  {
+    return this.authenticationService.isLoggedIn().map( res => {
+      if (res.data.valid) {
+        return true;
+      } else {
+
+        this.router.navigate(['login']);
+        return false;
+      }
+    },
+      error => {
+        alert('Error occured with message ' + error?.message)
+      })
+  }
+
+}    
