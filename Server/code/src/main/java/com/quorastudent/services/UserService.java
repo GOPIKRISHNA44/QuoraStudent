@@ -11,11 +11,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+import com.quorastudent.constants.AppConstants;
 import com.quorastudent.constants.ErrorMsgs;
+import com.quorastudent.dto.InterestsDTO;
 import com.quorastudent.dto.LoginDTO;
 import com.quorastudent.dto.SessionDetailsDTO;
+import com.quorastudent.dto.UpdateInterestsDTO;
 import com.quorastudent.dto.UserDetailsDTO;
+import com.quorastudent.dto.UserinterestsDTO;
 import com.quorastudent.repositories.SessionDetailsRepository;
+import com.quorastudent.repositories.UserInterestsRepositoy;
 import com.quorastudent.repositories.UserRepository;
 
 @Service
@@ -29,27 +34,25 @@ public class UserService {
 	private DateUtility dateUtility;
 
 	@Autowired
+	private UserInterestsRepositoy userInterestsRepositoy;
+
+	@Autowired
 	private SessionDetailsRepository sessionDetailsRepository;
 
 	public boolean register(UserDetailsDTO userDetailsDto) throws Exception {
 		try {
-			if(ObjectUtils.isEmpty(userDetailsDto.getUsername()) && ObjectUtils.isEmpty(userDetailsDto.getEmailid()))
-			{
+			if (ObjectUtils.isEmpty(userDetailsDto.getUsername()) && ObjectUtils.isEmpty(userDetailsDto.getEmailid())) {
 				throw new Exception(ErrorMsgs.INVALIDETAILS);
 			}
 			List<UserDetailsDTO> usersList = null;
-			if(!ObjectUtils.isEmpty(userDetailsDto.getUsername()))
-			{
-				
-			usersList	= userRepository.findByUsername(userDetailsDto.getUsername());
-			if(!ObjectUtils.isEmpty(usersList))
-			{
-				throw new Exception(ErrorMsgs.USERNAMEFOUND);
-			}
-			}
-			else if(!ObjectUtils.isEmpty(userDetailsDto.getUsername()))
-			{
-				usersList	= userRepository.findByEmailid(userDetailsDto.getEmailid());
+			if (!ObjectUtils.isEmpty(userDetailsDto.getUsername())) {
+
+				usersList = userRepository.findByUsername(userDetailsDto.getUsername());
+				if (!ObjectUtils.isEmpty(usersList)) {
+					throw new Exception(ErrorMsgs.USERNAMEFOUND);
+				}
+			} else if (!ObjectUtils.isEmpty(userDetailsDto.getUsername())) {
+				usersList = userRepository.findByEmailid(userDetailsDto.getEmailid());
 				throw new Exception(ErrorMsgs.EMAILIDFOUND);
 			}
 			userDetailsDto.setPassword(utilityService.generateEncodedPassword(userDetailsDto.getPassword()));
@@ -125,6 +128,46 @@ public class UserService {
 			throw e;
 		}
 		return true;
+	}
+
+	public boolean updateInterests(UpdateInterestsDTO updateInterestsDTO) throws Exception {
+		try {
+			if (!ObjectUtils.isEmpty(updateInterestsDTO)) {
+
+				List<UserinterestsDTO> userinterestsDTOs = userInterestsRepositoy
+						.findByUserid(updateInterestsDTO.getUserid());
+
+				String userInterests = getUserInterestsStr(updateInterestsDTO);
+				if (ObjectUtils.isEmpty(userinterestsDTOs)) {
+					UserinterestsDTO userinterestsDTO = new UserinterestsDTO();
+					userinterestsDTO.setUserid(updateInterestsDTO.getUserid());
+					userinterestsDTO.setInterests(userInterests);
+					userInterestsRepositoy.save(userinterestsDTO);
+				} else {
+					Long userId = updateInterestsDTO.getUserid();
+					userInterestsRepositoy.updateInterests(userId, userInterests);
+				}
+				return true;
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw e;
+		}
+		return false;
+	}
+
+	private String getUserInterestsStr(UpdateInterestsDTO updateInterestsDTO) {
+
+		String finalString = "";
+		if (!ObjectUtils.isEmpty(updateInterestsDTO) && !ObjectUtils.isEmpty(updateInterestsDTO.getInterests())) {
+			for (InterestsDTO interestsDTO : updateInterestsDTO.getInterests()) {
+				finalString += interestsDTO.getId() + AppConstants.INTERESTSEPERATOR;
+			}
+			return finalString;
+		}
+		return null;
+
 	}
 
 }
