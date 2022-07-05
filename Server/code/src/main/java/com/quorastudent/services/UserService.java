@@ -147,6 +147,9 @@ public class UserService {
 					Long userId = updateInterestsDTO.getUserid();
 					userInterestsRepositoy.updateInterests(userId, userInterests);
 				}
+				if (!ObjectUtils.isEmpty(updateInterestsDTO) && !ObjectUtils.isEmpty(updateInterestsDTO.getUserid())) {
+					userRepository.updateInterestsPopup(updateInterestsDTO.getUserid());
+				}
 				return true;
 			}
 
