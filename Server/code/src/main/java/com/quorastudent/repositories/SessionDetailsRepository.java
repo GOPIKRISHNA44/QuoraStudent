@@ -14,13 +14,16 @@ public interface SessionDetailsRepository extends JpaRepository<SessionDetailsDT
 
 	List<SessionDetailsDTO> findBySessionkey(String sessionKey);
 
-	List<SessionDetailsDTO> findBySessionkeyAndActive(String sessionKey,int active);
+	List<SessionDetailsDTO> findBySessionkeyAndActive(String sessionKey, int active);
 
-	
 	@Transactional
 	@Modifying
 	@Query("update SessionDetailsDTO s set s.active = 0, s.loggedoutat = :loggedoutat where s.sessionkey = :sessionKey")
 	void updateSessionEnd(String sessionKey, Date loggedoutat);
-	
+
+	@Transactional
+	@Modifying
+	@Query("UPDATE SessionDetailsDTO s SET s.active=0 WHERE UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(s.loggedinat) >= :sessionExpityTime")
+	void updateExpiredSession(Long sessionExpityTime);
 
 }
