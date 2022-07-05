@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Title } from '../constants/title.constants';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-interests-dialog',
@@ -10,10 +11,14 @@ import { Title } from '../constants/title.constants';
 export class InterestsDialogComponent implements OnInit {
 
   constructor( public dialogRef: MatDialogRef<InterestsDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any,private authenticationService: AuthenticationService) { }
+    
   title=Title.interestsTitle
+
   ngOnInit(): void {
+
   }
+
   onNoClick() {
     this.dialogRef.close();
   }
