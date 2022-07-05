@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.quorastudent.dto.LoginDTO;
 import com.quorastudent.dto.ResponseDTO;
 import com.quorastudent.dto.SessionDetailsDTO;
+import com.quorastudent.dto.UpdateInterestsDTO;
 import com.quorastudent.dto.UserDetailsDTO;
 import com.quorastudent.services.UserService;
-
 
 @RestController
 @RequestMapping(value = "user")
@@ -64,7 +64,6 @@ public class UserController {
 		return responseDto;
 	}
 
-	
 	@RequestMapping(value = "checksession", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseDTO checkSession(@RequestBody SessionDetailsDTO sessionDetailsDTO) {
@@ -90,6 +89,23 @@ public class UserController {
 			boolean loggedout = userService.logout(sessionDetailsDTO.getSessionkey());
 			Map<String, Boolean> finalMsg = new HashMap<String, Boolean>();
 			finalMsg.put("loggedout", loggedout);
+			responseDto = responseDtoGeneral.getSuccessResponse(finalMsg);
+
+		} catch (Exception e) {
+			responseDto = responseDtoGeneral.getFailureResponse(e.getMessage());
+
+		}
+		return responseDto;
+	}
+
+	@RequestMapping(value = "updateInterests", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseDTO updateInterests(@RequestBody UpdateInterestsDTO updateInterestsDTO) {
+		ResponseDTO responseDto = null;
+		try {
+			boolean status = userService.updateInterests(updateInterestsDTO);
+			Map<String, Boolean> finalMsg = new HashMap<String, Boolean>();
+			finalMsg.put("updated", status);
 			responseDto = responseDtoGeneral.getSuccessResponse(finalMsg);
 
 		} catch (Exception e) {

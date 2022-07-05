@@ -38,4 +38,22 @@ public class InfoController {
 		}
 		return responseDto;
 	}
+	
+	@RequestMapping(value = "getInterests", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseDTO getInterests() {
+
+		ResponseDTO responseDto = null;
+		try {
+
+			Map<String, Object> finalData = infoService.getInterests();
+			responseDto = responseDtoGeneral.getSuccessResponse(finalData);
+
+		} catch (Exception e) {
+
+			responseDto = responseDtoGeneral.getFailureResponse(e.getMessage());
+
+		}
+		return responseDto;
+	}
 }

@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+import com.quorastudent.dto.InterestsDTO;
 import com.quorastudent.dto.UniversityDTO;
+import com.quorastudent.repositories.InterestsRepository;
 import com.quorastudent.repositories.UniversityRepository;
 
 @Service
@@ -16,6 +18,9 @@ public class InfoService {
 
 	@Autowired
 	private UniversityRepository universityRepository;
+
+	@Autowired
+	private InterestsRepository interestsRepository;
 
 	public Map<String, Object> getUniversitiesList() throws Exception {
 
@@ -29,6 +34,26 @@ public class InfoService {
 				Map<String, Object> finalData = new HashMap<String, Object>();
 				finalData.put("univ", univMap);
 				return finalData;
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw e;
+		}
+		return null;
+
+	}
+
+	public Map<String, Object> getInterests() throws Exception {
+
+		try {
+			List<InterestsDTO> unvList = interestsRepository.findAll();
+			if (!ObjectUtils.isEmpty(unvList)) {
+
+				Map<String, Object> finalData = new HashMap<String, Object>();
+				finalData.put("interests", unvList);
+				return finalData;
+
 			}
 
 		} catch (Exception e) {
