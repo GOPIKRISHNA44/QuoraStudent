@@ -18,7 +18,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\r\n    \"username\":\"vamsi\",\r\n    \"password\":\"vamsi\",\r\n    \"emailId\":\"vamsi@gmail.com\",\r\n    \"universityCode\":\"92\",\r\n    \"dob\":\"1997-07-23\"\r\n\r\n\r\n}"
+					"raw": "{\r\n\r\n    \"username\":\"vamsoi\",\r\n    \"password\":\"vamsoi\",\r\n    \"emailId\":\"vamsoi@gmail.com\",\r\n    \"universityCode\":\"92\",\r\n    \"dob\":\"1997-07-23\"\r\n\r\n\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/quoraStudent/user/register",
@@ -62,6 +62,108 @@
 						"quoraStudent",
 						"user",
 						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"emailId\":\"vamsi@gmail.com\",\r\n    \"password\":\"vamsi\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUnvList",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/info/getUnvList",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"info",
+						"getUnvList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getInterests",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/info/getInterests",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"info",
+						"getInterests"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateInterests",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userid\":6,\r\n    \"interests\":[\r\n       {\r\n                \"id\": 1,\r\n                \"name\": \"sports\"\r\n            },\r\n            {\r\n                \"id\": 3,\r\n                \"name\": \"education\"\r\n            }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/user/updateInterests",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"user",
+						"updateInterests"
 					]
 				}
 			},
