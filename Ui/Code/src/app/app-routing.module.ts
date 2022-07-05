@@ -5,11 +5,10 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent,canActivate : [AuthGuard] },
-    { path: 'login', component: LoginComponent },
-    { path: 'test', component: HomeComponent },
-    // otherwise redirect to home
-    { path: '**', redirectTo: '' }
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard], data: { "path": "/home" } },
+  { path: 'login', component: LoginComponent , canActivate: [AuthGuard], data: { "path": "/login" } },
+  // otherwise redirect to home
+  { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({
