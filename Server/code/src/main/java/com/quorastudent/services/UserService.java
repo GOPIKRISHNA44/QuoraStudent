@@ -162,7 +162,7 @@ public class UserService {
 
 	private String getUserInterestsStr(UpdateInterestsDTO updateInterestsDTO) {
 
-		String finalString = "";
+		String finalString =  AppConstants.INTERESTSEPERATOR;;
 		if (!ObjectUtils.isEmpty(updateInterestsDTO) && !ObjectUtils.isEmpty(updateInterestsDTO.getInterests())) {
 			for (InterestsDTO interestsDTO : updateInterestsDTO.getInterests()) {
 				finalString += interestsDTO.getId() + AppConstants.INTERESTSEPERATOR;

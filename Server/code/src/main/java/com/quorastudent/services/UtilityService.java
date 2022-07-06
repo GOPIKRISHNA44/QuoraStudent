@@ -1,5 +1,8 @@
 package com.quorastudent.services;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
@@ -18,7 +21,7 @@ public class UtilityService {
 
 	public String generateEncodedPassword(String password) {
 		if (!ObjectUtils.isEmpty(password)) {
-			return encrypt(encryptionKey,"0001110001110001",	password);
+			return encrypt(encryptionKey, "0001110001110001", password);
 		}
 		return null;
 	}
@@ -38,24 +41,27 @@ public class UtilityService {
 		return plainText;
 
 	}
-	
+
 	public String encrypt(String key, String initVector, String value) {
-        try {
-            IvParameterSpec iv = new IvParameterSpec(initVector.getBytes("UTF-8"));
-            SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
+		try {
+			IvParameterSpec iv = new IvParameterSpec(initVector.getBytes("UTF-8"));
+			SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
 
-            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
-            cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
+			Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
+			cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
 
-            byte[] encrypted = cipher.doFinal(value.getBytes());
-            System.out.println("encrypted string: "
-                    + Base64.encodeBase64String(encrypted));
+			byte[] encrypted = cipher.doFinal(value.getBytes());
+			System.out.println("encrypted string: " + Base64.encodeBase64String(encrypted));
 
-            return Base64.encodeBase64String(encrypted);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+			return Base64.encodeBase64String(encrypted);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 
-        return null;
-    }
+		return null;
+	}
+
+	public String joinListOfIntWithSeperator(List<Integer> ls, String seperator) {
+		return ls.stream().map(String::valueOf).collect(Collectors.joining(seperator));
+	}
 }
