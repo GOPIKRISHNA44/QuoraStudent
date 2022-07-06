@@ -38,7 +38,7 @@ public class UserController {
 
 			boolean status = userService.register(userDetailsDto);
 			Map<String, Boolean> finalMsg = new HashMap<String, Boolean>();
-			finalMsg.put("success", true);
+			finalMsg.put("success", status);
 			responseDto = responseDtoGeneral.getSuccessResponse(finalMsg);
 
 		} catch (Exception e) {
