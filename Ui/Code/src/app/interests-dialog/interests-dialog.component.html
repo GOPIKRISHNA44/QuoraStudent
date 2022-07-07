@@ -2,11 +2,15 @@
     <div mat-dialog-title>
         <p class="title row-center">{{title}}</p>
     </div>
-    <div>
-        <!-- <mat-selection-list  [multiple]="true">
-            <mat-list-option *ngFor="s" [value]="">
-              {{}}
+    <div mat-dialog-content class="mat-typography">
+          <mat-selection-list #interest>
+            <mat-list-option *ngFor="let interest of interests">
+              {{interest.name}}
             </mat-list-option>
-          </mat-selection-list> -->
+          </mat-selection-list>          
     </div>
+</div>
+<div mat-dialog-actions align="center">
+  <button mat-raised-button class="btn" (click)="onNoClick()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="submit()" cdkFocusInitial>Submit</button>
 </div>

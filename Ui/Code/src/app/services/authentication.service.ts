@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map'
+import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { LoginDetails, SignUpDetails } from '../models/auth.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -16,6 +15,8 @@ export class AuthenticationService {
   private checkSessionURL = environment.apiEndPoint + environment.user.endPoint + environment.user.checkSession;
   private logoutURL = environment.apiEndPoint + environment.user.endPoint + environment.user.logout;
 
+  private userDetails$ = new BehaviorSubject<any>([]);
+  currentUserDetails$ = this.userDetails$.asObservable();
 
   constructor(private http: HttpClient) { }
   login(loginDetails): Observable<any> {
@@ -33,7 +34,10 @@ export class AuthenticationService {
   GetToken() {
     return localStorage.getItem('token') || '';
   }
-  signUp(signUpDetails):Observable<any> {
+  signUp(signUpDetails): Observable<any> {
     return this.http.post<SignUpDetails>(this.registrationURL, signUpDetails)
+  }
+  setUserDetails(userDetails) {
+    this.userDetails$.next(userDetails)
   }
 }

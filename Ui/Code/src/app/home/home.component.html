@@ -1,11 +1,12 @@
-<mat-toolbar color="primary">
+<mat-toolbar style="background-color:#f52936;">
     <mat-toolbar-row>
-        <div class="space">
-            <div>
+        <div class="row-center" >
+            <div style="width:100%" class="space">
                 <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
                     <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
                     <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
-                </button><span style="text-align: center; font-size: 30px;">{{mainTitle}}</span>
+                </button>
+                <span class="maintitle" >{{mainTitle}}</span>
             </div>
             <div class="row-center">
                 <div class="itemIcon" *ngFor="let toolbarIconsItem of toolbarIconsItems">
@@ -28,7 +29,7 @@
             </mat-nav-list>
         </mat-sidenav>
         <mat-sidenav-content>
-            main content
+            <app-question-textbox></app-question-textbox>
         </mat-sidenav-content>
     </mat-sidenav-container>
 </div>
