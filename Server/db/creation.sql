@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `sessiondetails` (
   `loggedoutat` datetime DEFAULT NULL,
   `active` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table quorastudent.sessiondetails: ~10 rows (approximately)
 /*!40000 ALTER TABLE `sessiondetails` DISABLE KEYS */;
@@ -93,7 +93,12 @@ INSERT INTO `sessiondetails` (`id`, `userid`, `sessionkey`, `loggedinat`, `logge
 	(13, 6, 'f8QMSwlOcIEFqnTtKnRRXk8xAkCQv7OVMXN050+pkIqYvURvk3TJP3sC0X959qsc', '2022-07-04 06:51:05', NULL, 0),
 	(14, 6, 'Nip98Z0Yz1YUKHlPKcH6OvyP+MLun7ha3yaaR1+KvDjzqzylhA0WgYFGwKwpED4b', '2022-07-04 07:15:46', NULL, 0),
 	(15, 6, '9o92FfL9IIpQxX52JibSUcgmini7aFrDxuBhSNexUbUKNIi536wEsYHArFX3Wy7u', '2022-07-04 07:18:18', NULL, 0),
-	(16, 6, 'WTkpzI+TVwMKJpI0K5cQkqL6Fq19db0yQBnDoOa3xCyL7kozw6jYoNhs7KrGhQB+', '2022-07-04 07:28:24', NULL, 0);
+	(16, 6, 'WTkpzI+TVwMKJpI0K5cQkqL6Fq19db0yQBnDoOa3xCyL7kozw6jYoNhs7KrGhQB+', '2022-07-04 07:28:24', NULL, 0),
+	(17, 6, 'jB8bbldcRqKGoV6v+aBs3maXI1mUwTrV0KX5QYXYPwihOHJ32pJtqIZEef2Fx5gq', '2022-07-06 07:28:23', NULL, 0),
+	(18, 9, 'yxGKhZ7jpn7/n/LKljIE/FrmJ1AJWhu63CckpEjFW9zJ/P6Kcl6oeN40SWtd6aY3', '2022-07-06 07:30:38', NULL, 0),
+	(19, 10, 'orBNszFz/4XFvhj1aqYzZN+aUzw844gzLBvvixUkLhcSnzEFaAFMdox/9CYdCCSt', '2022-07-06 07:33:13', NULL, 0),
+	(20, 11, 'kmMH514ginJdb2Ph92/HQCZ3ZxPLiBwbs0EM2wxxPwITDic8r99r0OLs87ut4rH7', '2022-07-06 07:37:00', NULL, 0),
+	(21, 11, 'fYqE/SnWkbeAb2M3NzeHGs+QF6Kdf/xeUcH5wHPt02KF6xbLORZSbRld55OmXn4W', '2022-07-06 07:37:37', NULL, 0);
 /*!40000 ALTER TABLE `sessiondetails` ENABLE KEYS */;
 
 -- Dumping structure for table quorastudent.universities
@@ -122,17 +127,22 @@ CREATE TABLE IF NOT EXISTS `userdetails` (
   `dob` date DEFAULT NULL,
   `universitycode` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `interestspopup` int DEFAULT '0',
+  `avatarid` int DEFAULT '1',
   PRIMARY KEY (`userid`) USING BTREE,
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `emailId` (`emailid`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table quorastudent.userdetails: ~3 rows (approximately)
 /*!40000 ALTER TABLE `userdetails` DISABLE KEYS */;
-INSERT INTO `userdetails` (`userid`, `username`, `emailid`, `password`, `dob`, `universitycode`, `interestspopup`) VALUES
-	(5, 'goppp', 'aisd@gm.com', 'rYl+saNY1QvRu/HK65BIaQ==', '1997-07-24', '01', NULL),
-	(6, 'vamsi', 'vamsi@gmail.com', 'zEhq/Nf9IuuDN3XWL+o54A==', '1997-07-22', '92', 1),
-	(7, 'vamsoi', NULL, 'T4s7sw3gkHMtN8n4Z5hxOA==', '1997-07-22', NULL, NULL);
+INSERT INTO `userdetails` (`userid`, `username`, `emailid`, `password`, `dob`, `universitycode`, `interestspopup`, `avatarid`) VALUES
+	(5, 'goppp', 'aisd@gm.com', 'rYl+saNY1QvRu/HK65BIaQ==', '1997-07-24', '01', NULL, 1),
+	(6, 'vamsi', 'vamsi@gmail.com', 'zEhq/Nf9IuuDN3XWL+o54A==', '1997-07-22', '92', 1, 1),
+	(7, 'vamsoi', NULL, 'T4s7sw3gkHMtN8n4Z5hxOA==', '1997-07-22', NULL, NULL, 1),
+	(8, 'vamsoir', NULL, '3YX8/ylOxG6rzSnFvJZB+A==', '1997-07-22', NULL, NULL, 1),
+	(9, 'vamsii', NULL, 'Ljx6ulbNnYBul9VBH/CP6Q==', '1997-07-22', NULL, NULL, 1),
+	(10, 'vamsiir', 'vamsoir9r@gmail.com', 'uTeIjsBMrfaJHqwleEwF1Q==', '1997-07-22', NULL, NULL, 1),
+	(11, 'vamsiirr', 'vamsoir9rr@gmail.com', 'kC8y7t0ahpecEzfu7i351w==', '1997-07-22', '92', 0, 1);
 /*!40000 ALTER TABLE `userdetails` ENABLE KEYS */;
 
 -- Dumping structure for table quorastudent.userinterests
