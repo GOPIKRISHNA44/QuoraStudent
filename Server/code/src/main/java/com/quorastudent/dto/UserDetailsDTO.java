@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.quorastudent.constants.AppConstants;
+
 @Entity
 @Table(name = "userdetails")
 public class UserDetailsDTO {
@@ -16,7 +18,7 @@ public class UserDetailsDTO {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long userid;
 
-	private String interestspopup;
+	private int interestspopup;
 
 	public Long getUserid() {
 		return userid;
@@ -72,11 +74,20 @@ public class UserDetailsDTO {
 		this.emailid = emailId;
 	}
 
-	public String getInterestspopup() {
+
+	public int getAvatarid() {
+		return avatarid;
+	}
+
+	public void setAvatarid(int avatarid) {
+		this.avatarid = avatarid;
+	}
+
+	public int getInterestspopup() {
 		return interestspopup;
 	}
 
-	public void setInterestspopup(String interestspopup) {
+	public void setInterestspopup(int interestspopup) {
 		this.interestspopup = interestspopup;
 	}
 
@@ -84,4 +95,7 @@ public class UserDetailsDTO {
 
 	private String universitycode;
 
+	
+	private int avatarid = AppConstants.DEFAULT_AVATAR_ID;
+	
 }

@@ -55,6 +55,7 @@ public class UserService {
 				usersList = userRepository.findByEmailid(userDetailsDto.getEmailid());
 				throw new Exception(ErrorMsgs.EMAILIDFOUND);
 			}
+			userDetailsDto.setInterestspopup(AppConstants.DEFAULT_INTERESTS_POPUP_VALUE);
 			userDetailsDto.setPassword(utilityService.generateEncodedPassword(userDetailsDto.getPassword()));
 			System.out.println(userDetailsDto.toString());
 			userRepository.save(userDetailsDto);
