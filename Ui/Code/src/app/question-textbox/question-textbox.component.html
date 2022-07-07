@@ -1,0 +1,16 @@
+<mat-card class="topbox">
+    <div class="row-center">
+        <mat-icon>account_circle</mat-icon>
+        <div class="mainbox" (click)="openAskQuestion()">
+            <span style="padding: 17px;">
+                <p style="margin: 10px;">What do you want to ask?</p>
+            </span>
+        </div>
+    </div>
+    
+    <div class="row-center">
+        <button mat-button>Events</button>
+        <button mat-button (click)="openAskQuestion()">Ask</button>
+        <button mat-button>Blog</button>
+    </div>
+</mat-card>

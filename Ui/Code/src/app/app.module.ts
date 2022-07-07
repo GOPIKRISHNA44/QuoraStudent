@@ -14,6 +14,10 @@ import { SignupDialogComponent } from './signup-dialog/signup-dialog.component';
 import { AuthGuard } from './guards/auth.guards';
 import { DatePipe } from '@angular/common';
 import { InterestsDialogComponent } from './interests-dialog/interests-dialog.component';
+import { QuestionTextboxComponent } from './question-textbox/question-textbox.component';
+import { AskQuestionDialogComponent } from './ask-question-dialog/ask-question-dialog.component';
+import { QuillModule } from 'ngx-quill';
+import { QuillComponent } from './quill/quill.component';
  
 @NgModule({
   declarations: [
@@ -21,7 +25,10 @@ import { InterestsDialogComponent } from './interests-dialog/interests-dialog.co
     HomeComponent,
     LoginComponent,
     SignupDialogComponent,
-    InterestsDialogComponent
+    InterestsDialogComponent,
+    QuestionTextboxComponent,
+    AskQuestionDialogComponent,
+    QuillComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +37,8 @@ import { InterestsDialogComponent } from './interests-dialog/interests-dialog.co
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    QuillModule.forRoot()
   ],
   providers: [AuthenticationService,AuthGuard,DatePipe],
   bootstrap: [AppComponent]

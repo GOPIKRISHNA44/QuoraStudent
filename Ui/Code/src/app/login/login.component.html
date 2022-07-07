@@ -5,7 +5,7 @@
             <div style="text-align: center;font-size: 25px;">{{loginTitle}}</div>
         </mat-card-title>
         <mat-card-content class="marten">
-            <form name="form" name="loginForm" [formGroup]="loginForm" novalidate>
+            <form name="form" name="loginForm" [formGroup]="loginForm" novalidate (keyup.enter)="handleKeyUp($event)">
                 <div>
                     <mat-form-field class="full-width" appearance="outline">
                         <mat-label>Username/Email</mat-label>
@@ -31,7 +31,7 @@
                     </mat-form-field>
                 </div>
                 <div class="row-center">
-                    <button mat-raised-button (click)="login()" type="submit" color="primary" class="btn"
+                    <button mat-raised-button (click)="login()"  type="submit" color="primary" class="btn"
                         [disabled]="!this.loginForm?.valid">Login</button>
 
                 </div>

@@ -1,0 +1,13 @@
+<div mat-dialog-title >
+    <p class="title row-center">Ask a Question</p>
+</div>
+<div mat-dialog-content class="mat-typography">
+    <quill-editor class="content-editor" [placeholder]="placeholder" [modules]="quillConfiguration"
+        [styles]="{'min-height': '57vh','min-width': '700px'}" [(ngModel)]="editorText">
+    </quill-editor>
+</div>
+
+<div mat-dialog-actions align="center">
+    <button mat-raised-button class="btn" (click)="onNoClick()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="submit()" cdkFocusInitial>Ask</button>
+</div>

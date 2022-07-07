@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-
+@import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.snow.css';
 html,
 body {
     height: 100%;
@@ -42,7 +43,7 @@ a {
     cursor: pointer;
 }
 
-input,
+input,p,
 .mat-tab-label,
 .mat-tab-link,
 .mat-button,
@@ -59,3 +60,4 @@ mat-sidenav {
     border-radius: 10px;
     min-height: 660px;
   }
+

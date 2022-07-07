@@ -52,6 +52,7 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(loginDetails).subscribe(res => {
       if(res.data){
         localStorage.setItem('token',res?.data?.sessionkey)
+        this.authenticationService.setUserDetails(res.data)
         this.router.navigate(['/'])
       }
       else{
@@ -74,4 +75,9 @@ export class LoginComponent implements OnInit {
     });
 
   }
+  handleKeyUp(e){
+    if(e.keyCode === 13){
+       this.login();
+    }
+ }
 }

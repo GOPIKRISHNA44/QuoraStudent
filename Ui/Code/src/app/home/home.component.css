@@ -32,3 +32,8 @@ mat-sidenav {
 .itemIcon {
    padding: 10px;
 }
+.maintitle{
+    text-align: center; 
+    font-size: 30px;
+    color:white
+}
