@@ -9,7 +9,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent , canActivate: [AuthGuard], data: { "path": "/login" } },
   // otherwise redirect to home
   { path: '**', redirectTo: 'home' },
-  { path: 'test', component: HomeComponent}
+  { path: 'test', component: HomeComponent},
+  {path: 'te', component: HomeComponent}
 ];
 
 @NgModule({

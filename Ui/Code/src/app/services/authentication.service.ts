@@ -15,10 +15,12 @@ export class AuthenticationService {
   private checkSessionURL = environment.apiEndPoint + environment.user.endPoint + environment.user.checkSession;
   private logoutURL = environment.apiEndPoint + environment.user.endPoint + environment.user.logout;
 
-  private userDetails$ = new BehaviorSubject<any>([]);
-  currentUserDetails$ = this.userDetails$.asObservable();
-
   constructor(private http: HttpClient) { }
+
+  private _loading = new BehaviorSubject<boolean>(false);
+  public readonly loading$ = this._loading.asObservable();
+
+
   login(loginDetails): Observable<any> {
     return this.http.post<LoginDetails>(this.loginURL, loginDetails)
   }
@@ -37,7 +39,19 @@ export class AuthenticationService {
   signUp(signUpDetails): Observable<any> {
     return this.http.post<SignUpDetails>(this.registrationURL, signUpDetails)
   }
-  setUserDetails(userDetails) {
-    this.userDetails$.next(userDetails)
+
+  GetUserDetails() {
+    return localStorage.getItem('userdetails') ;
   }
+
+  show() {
+    this._loading.next(true);
+  }
+
+  hide() {
+    this._loading.next(false);
+  }
+  // setUserDetails(userDetails) {
+  //   this.userDetails$.next(userDetails)
+  // }
 }

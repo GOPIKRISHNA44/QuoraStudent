@@ -33,6 +33,7 @@ mat-sidenav {
    padding: 10px;
 }
 .maintitle{
+    width:100%;
     text-align: center; 
     font-size: 30px;
     color:white

@@ -33,3 +33,7 @@
   line-height: 40px;
   font-size:20px;
 }
+.dialog {
+  border-radius: 10px;
+  min-height: 660px;
+}

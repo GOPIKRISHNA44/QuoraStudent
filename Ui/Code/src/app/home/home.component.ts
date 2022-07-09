@@ -58,6 +58,7 @@ export class HomeComponent implements OnInit {
     this.authenticationService.logout().subscribe(res => {
       if (res.success) {
         localStorage.removeItem('token');
+        localStorage.removeItem('userdetails');
         this.router.navigate(['/login'])
       } else {
         alert('Reason:home' + res?.reason)
@@ -67,10 +68,23 @@ export class HomeComponent implements OnInit {
         alert('Error occured with message ' + error?.message)
       })
   }
-  sideItemNavigation(){
+  sideItemNavigation(sideNavItemsName){
+    switch(sideNavItemsName){
+      case 'log':
+        return
+
+      default:
+        return
+    }
 
   }
-  toolbarIcons(){
-    
+  toolbarIcons(toolbarIcon){
+    switch(toolbarIcon.icon){
+      case 'account_circle':
+        this.logOut();
+
+      default:
+        return
+    }
   }
 }
