@@ -4,3 +4,25 @@
     line-height: 40px;
     font-size:20px;
   }
+.chip{
+  min-width:200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 45px ;
+}
+.dialog {
+  
+  border-radius: 10px;
+  min-height: 460px;
+  overflow-x: hidden;
+  overflow-y: hidden !important;
+  
+}
+.header{
+  width:100%;
+  text-align: center;
+}
+.title{
+  width:100%
+}

@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(loginDetails).subscribe(res => {
       if(res.data){
         localStorage.setItem('token',res?.data?.sessionkey)
-        this.authenticationService.setUserDetails(res.data)
+        localStorage.setItem('userdetails',JSON.stringify(res?.data?.userdetails))
         this.router.navigate(['/'])
       }
       else{

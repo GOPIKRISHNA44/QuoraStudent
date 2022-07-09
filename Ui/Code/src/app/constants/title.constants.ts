@@ -3,7 +3,8 @@ export const Title = {
     loginTitle: "Login",
     signUpTitle: "Sign Up",
     interestsTitle:"Choose interests",
-    questionPlaceHolder:"Ask a question"
+    questionPlaceHolder:"Ask a Question",
+    questionBox:"What do you want to ask?"
 }
 
 export const sideNavItems = [

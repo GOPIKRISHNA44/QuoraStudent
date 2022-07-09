@@ -14,7 +14,10 @@ export class QuestionService {
   getInterests(): Observable<any> {
     return this.http.get(this.apiEndPoint+"/info/getInterests")
   }
+  postInterests(_interests):Observable<any> {
+    return this.http.post(this.apiEndPoint+"/user/updateInterests",_interests)
+  }
   postQuestion(editorText):Observable<any> {
-    return this.http.get(this.apiEndPoint+"/questions/askAquestion",editorText)
+    return this.http.post(this.apiEndPoint+"/questions/askAquestion",editorText)
   }
 }
