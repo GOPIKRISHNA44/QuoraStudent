@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `interests` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table quorastudent.interests: ~3 rows (approximately)
+-- Dumping data for table quorastudent.interests: ~4 rows (approximately)
 /*!40000 ALTER TABLE `interests` DISABLE KEYS */;
 INSERT INTO `interests` (`id`, `name`) VALUES
 	(1, 'sports'),
@@ -59,14 +59,15 @@ CREATE TABLE IF NOT EXISTS `questions` (
   `active` int DEFAULT NULL,
   `tags` longtext,
   PRIMARY KEY (`eqid`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table quorastudent.questions: ~0 rows (approximately)
+-- Dumping data for table quorastudent.questions: ~4 rows (approximately)
 /*!40000 ALTER TABLE `questions` DISABLE KEYS */;
 INSERT INTO `questions` (`eqid`, `userid`, `question`, `doq`, `updatedat`, `etype`, `active`, `tags`) VALUES
 	(1, 6, 'How do the college manage marks ', '2022-07-06 06:44:18', '2022-07-06 06:44:18', 'q', 1, ';1;2;'),
 	(2, 6, '<h1>How do the college manage marks</h1> ', '2022-07-06 06:44:55', '2022-07-06 06:44:55', 'q', 1, ';1;2;3;'),
-	(3, 6, '<h1>How do the college manage marks</h1> ', '2022-07-06 06:45:51', '2022-07-06 06:45:51', 'q', 1, ';1;2;3;');
+	(3, 6, '<h1>How do the college manage marks</h1> ', '2022-07-06 06:45:51', '2022-07-06 06:45:51', 'q', 1, ';1;2;3;'),
+	(4, 6, '<p>Hello how </p>', '2022-07-09 11:05:58', '2022-07-09 11:05:58', 'q', 1, ';1;2;3;');
 /*!40000 ALTER TABLE `questions` ENABLE KEYS */;
 
 -- Dumping structure for table quorastudent.sessiondetails
@@ -79,9 +80,9 @@ CREATE TABLE IF NOT EXISTS `sessiondetails` (
   `loggedoutat` datetime DEFAULT NULL,
   `active` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table quorastudent.sessiondetails: ~10 rows (approximately)
+-- Dumping data for table quorastudent.sessiondetails: ~20 rows (approximately)
 /*!40000 ALTER TABLE `sessiondetails` DISABLE KEYS */;
 INSERT INTO `sessiondetails` (`id`, `userid`, `sessionkey`, `loggedinat`, `loggedoutat`, `active`) VALUES
 	(7, 5, 'CaewSLVQXk+AB7I634sn7IW/DA4DAoPldw4PmrjKHRftyvbzYzMB/daYaNqENpTW', '2022-06-28 11:46:26', '2022-06-29 12:15:12', 0),
@@ -98,7 +99,12 @@ INSERT INTO `sessiondetails` (`id`, `userid`, `sessionkey`, `loggedinat`, `logge
 	(18, 9, 'yxGKhZ7jpn7/n/LKljIE/FrmJ1AJWhu63CckpEjFW9zJ/P6Kcl6oeN40SWtd6aY3', '2022-07-06 07:30:38', NULL, 0),
 	(19, 10, 'orBNszFz/4XFvhj1aqYzZN+aUzw844gzLBvvixUkLhcSnzEFaAFMdox/9CYdCCSt', '2022-07-06 07:33:13', NULL, 0),
 	(20, 11, 'kmMH514ginJdb2Ph92/HQCZ3ZxPLiBwbs0EM2wxxPwITDic8r99r0OLs87ut4rH7', '2022-07-06 07:37:00', NULL, 0),
-	(21, 11, 'fYqE/SnWkbeAb2M3NzeHGs+QF6Kdf/xeUcH5wHPt02KF6xbLORZSbRld55OmXn4W', '2022-07-06 07:37:37', NULL, 0);
+	(21, 11, 'fYqE/SnWkbeAb2M3NzeHGs+QF6Kdf/xeUcH5wHPt02KF6xbLORZSbRld55OmXn4W', '2022-07-06 07:37:37', NULL, 0),
+	(22, 6, '0AQ1qCQfaqeAO9TpdtU5f0H1sTIVqfuBrmKBIUzJxFxem96KPKeV1I/MotGQTmjg', '2022-07-08 01:22:07', NULL, 0),
+	(23, 6, 't636Bi/D2GQKqI4ZZw83dyyTEjeKvZxwGYuvmHOO58b+xqovBxi1DYuWRLv8VgST', '2022-07-08 04:03:34', NULL, 0),
+	(24, 6, '9Xw6f/dpH6DRAsx7XdKNKE5Ciqx4QlGVCAjr3iPJ+3Qnvynz8nmQlPoGlscjsWRu', '2022-07-08 04:04:00', NULL, 0),
+	(25, 6, 'RolMI9fShMxPeHKOvrOb7ZExa98ZPdM8gNrj4rLN5BGfLWDyqsBOoFnJpzqbT5ZQ', '2022-07-09 11:05:27', NULL, 0),
+	(26, 6, 't3qnIx67/ujUjMxj7jhOTVPuD+y30OOwhtMxpWb0bQY7ZxfkTMgFG9mDhUZoGgdf', '2022-07-09 11:07:59', NULL, 0);
 /*!40000 ALTER TABLE `sessiondetails` ENABLE KEYS */;
 
 -- Dumping structure for table quorastudent.universities
@@ -111,10 +117,13 @@ CREATE TABLE IF NOT EXISTS `universities` (
   PRIMARY KEY (`unvcode`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table quorastudent.universities: ~1 rows (approximately)
+-- Dumping data for table quorastudent.universities: ~4 rows (approximately)
 /*!40000 ALTER TABLE `universities` DISABLE KEYS */;
 INSERT INTO `universities` (`unvcode`, `unvname`, `unvaddress`, `unvmobile`) VALUES
-	('92', 'Abertay University', 'Abertay University', '1234');
+	('89', 'Cardiff University', 'Cardiff University', '7890'),
+	('92', 'Abertay University', 'Abertay University', '1234'),
+	('93', 'Lecis University', 'Lecis University', '3456'),
+	('94', 'University of Kentucky', 'University of Kentucky', '6789');
 /*!40000 ALTER TABLE `universities` ENABLE KEYS */;
 
 -- Dumping structure for table quorastudent.userdetails
@@ -133,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `userdetails` (
   UNIQUE KEY `emailId` (`emailid`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table quorastudent.userdetails: ~3 rows (approximately)
+-- Dumping data for table quorastudent.userdetails: ~7 rows (approximately)
 /*!40000 ALTER TABLE `userdetails` DISABLE KEYS */;
 INSERT INTO `userdetails` (`userid`, `username`, `emailid`, `password`, `dob`, `universitycode`, `interestspopup`, `avatarid`) VALUES
 	(5, 'goppp', 'aisd@gm.com', 'rYl+saNY1QvRu/HK65BIaQ==', '1997-07-24', '01', NULL, 1),
