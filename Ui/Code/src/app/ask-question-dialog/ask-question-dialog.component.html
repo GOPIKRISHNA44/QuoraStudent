@@ -1,22 +1,28 @@
-<div mat-dialog-title >
-    <p class="title row-center">{{placeholder}}</p>
-</div>
-<div mat-dialog-content class="mat-typography">
-    <quill-editor class="content-editor" [placeholder]="placeholder" [modules]="quillConfiguration"
-        [styles]="{'min-height': '50vh','min-width': '600px'}" [(ngModel)]="editorText">
-    </quill-editor>
-</div>
-<div>
-    <mat-form-field appearance="fill">
-        <mat-label>Tags</mat-label>
-        <mat-select [formControl]="tags" multiple>
-          <mat-select-trigger>
-          </mat-select-trigger>
-          <mat-option ></mat-option>
-        </mat-select>
-      </mat-form-field>
-</div>
-<div mat-dialog-actions align="end">
-    <button mat-raised-button class="btn" (click)="onNoClick()">Cancel</button>
-    <button mat-raised-button color="primary" (click)="submit()" cdkFocusInitial>Ask</button>
+<div class="dialog">
+    <div mat-dialog-title class="header">
+        <p class="title row-center">{{placeholder}}</p>
+        <button mat-icon-button style="float:right;bottom:47px" (click)="onNoClick()">
+            <mat-icon>close
+            </mat-icon>
+          </button>
+    </div>
+    <div mat-dialog-content class="mat-typography">
+        <quill-editor class="content-editor" [placeholder]="placeholder" [modules]="quillConfiguration"
+            [styles]="{'min-height': '50vh','min-width': '600px'}" [(ngModel)]="editorText">
+        </quill-editor>
+    </div>
+    <div><br/>
+        <mat-form-field appearance="fill">
+            <mat-label>Tags</mat-label>
+            <mat-select [formControl]="tags" multiple>
+                <mat-select-trigger>
+                </mat-select-trigger>
+                <mat-option></mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions align="end">
+        <button mat-raised-button class="btn" (click)="onNoClick()">Cancel</button>
+        <button mat-raised-button color="primary" (click)="submit()" cdkFocusInitial>Ask</button>
+    </div>
 </div>

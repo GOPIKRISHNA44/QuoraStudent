@@ -6,7 +6,7 @@
       </mat-icon>
     </button>
   </div>
-  <div mat-dialog-content class="mat-typography">
+  <div mat-dialog-content class="mat-typography" >
     <mat-selection-list #interest [(ngModel)]="selectedOptions">
       <mat-list-option *ngFor="let interest of interests" [value]="interest">
         {{interest.name}}

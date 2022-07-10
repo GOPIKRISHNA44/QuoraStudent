@@ -15,8 +15,6 @@
   
   border-radius: 10px;
   min-height: 460px;
-  overflow-x: hidden;
-  overflow-y: hidden !important;
   
 }
 .header{
@@ -25,4 +23,7 @@
 }
 .title{
   width:100%
+}
+.mat-dialog-content{
+  overflow: inherit;
 }

@@ -20,6 +20,9 @@
                 <mat-error *ngIf="f.emailid.errors?.required">
                     EmailId is required
                 </mat-error>
+                <mat-error *ngIf="f.emailid.errors?.email">
+                    EmailId is required
+                </mat-error>
             </mat-form-field><br />
             <mat-form-field class="xs-full-width" appearance="outline">
                 <mat-label>Date of birth</mat-label>
