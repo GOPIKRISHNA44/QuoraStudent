@@ -15,7 +15,7 @@ export class AskQuestionDialogComponent implements OnInit {
   placeholder = Title.questionPlaceHolder
   editorText: string;
   userdetails:UserDetails ;
-  toppings = new FormControl('');
+  tags = new FormControl('');
   
   constructor(public dialogRef: MatDialogRef<AskQuestionDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private questionService: QuestionService, private authenticationService: AuthenticationService,) { }

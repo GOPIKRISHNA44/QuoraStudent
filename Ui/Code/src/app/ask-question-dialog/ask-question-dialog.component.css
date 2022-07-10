@@ -4,3 +4,14 @@
     line-height: 40px;
     font-size:20px;
   }
+
+  .header{
+    width:100%;
+    text-align: center;
+  }
+  .title{
+    width:100%
+  }
+  .dialog{
+    min-height:'82vh';
+  }

@@ -15,7 +15,7 @@ export class QuestionTextboxComponent implements OnInit {
   openAskQuestion() {
     const dialogRef = this.dialog.open(AskQuestionDialogComponent, {
       width: '60%',
-      height: '82vh'
+      
     });
 
     dialogRef.afterClosed().subscribe(result => {
