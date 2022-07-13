@@ -78,7 +78,7 @@ public class UserService {
 					String username = loginDTO.getUsername();
 					userDetailsDTOList = userRepository.findByUsernameAndPassword(username, password);
 				} else {
-					String emailId = loginDTO.getEmailId();
+					String emailId = loginDTO.getEmailid();
 					userDetailsDTOList = userRepository.findByEmailidAndPassword(emailId, password);
 				}
 				if (!ObjectUtils.isEmpty(userDetailsDTOList)) {

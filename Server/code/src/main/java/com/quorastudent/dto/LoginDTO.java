@@ -24,11 +24,11 @@ public class LoginDTO {
 
 	private String emailid;
 
-	public String getEmailId() {
+	public String getEmailid() {
 		return emailid;
 	}
 
-	public void setEmailId(String emailId) {
+	public void setEmailid(String emailId) {
 		this.emailid = emailId;
 	}
 

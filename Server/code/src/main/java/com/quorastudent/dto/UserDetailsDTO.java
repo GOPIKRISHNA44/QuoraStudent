@@ -18,7 +18,7 @@ public class UserDetailsDTO {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long userid;
 
-	private int interestspopup;
+	private int interestspopup = 0;
 
 	public Long getUserid() {
 		return userid;
@@ -74,7 +74,6 @@ public class UserDetailsDTO {
 		this.emailid = emailId;
 	}
 
-
 	public int getAvatarid() {
 		return avatarid;
 	}
@@ -95,7 +94,6 @@ public class UserDetailsDTO {
 
 	private String universitycode;
 
-	
 	private int avatarid = AppConstants.DEFAULT_AVATAR_ID;
-	
+
 }
