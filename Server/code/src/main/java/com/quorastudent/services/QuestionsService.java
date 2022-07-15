@@ -1,6 +1,7 @@
 package com.quorastudent.services;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +10,9 @@ import org.springframework.util.ObjectUtils;
 import com.quorastudent.constants.AppConstants;
 import com.quorastudent.constants.ErrorMsgs;
 import com.quorastudent.dto.AskAquestionDTO;
+import com.quorastudent.dto.LikedislikeDTO;
 import com.quorastudent.dto.QuestionDTO;
+import com.quorastudent.repositories.LikesDislikeRepository;
 import com.quorastudent.repositories.QuestionRepository;
 
 @Service
@@ -23,6 +26,9 @@ public class QuestionsService {
 
 	@Autowired
 	private QuestionRepository questionRepository;
+
+	@Autowired
+	private LikesDislikeRepository likesDislikeRepository;
 
 	public boolean askAquestion(AskAquestionDTO askAquestionDTO) throws Exception {
 		try {
@@ -49,7 +55,7 @@ public class QuestionsService {
 			String question = askAquestionDTO.getText();
 			Date doq = dateUtility.getCurrentDateAndTime();
 			Date updatedAt = doq;
-			String etype = AppConstants.QUESTIONSTR;
+			String ctype = AppConstants.QUESTIONSTR;
 			int active = 1;
 			String tags = AppConstants.INTERESTSEPERATOR + utilityService.joinListOfIntWithSeperator(
 					askAquestionDTO.getTags(), AppConstants.INTERESTSEPERATOR) + AppConstants.INTERESTSEPERATOR;
@@ -58,7 +64,7 @@ public class QuestionsService {
 			questionDTONew.setDoq(doq);
 			questionDTONew.setUpdatedat(updatedAt);
 			questionDTONew.setQuestion(question);
-			questionDTONew.setEtype(etype);
+			questionDTONew.setCtype(ctype);
 			questionDTONew.setUserid(userId);
 			questionDTONew.setTags(tags);
 			return questionDTONew;
@@ -67,6 +73,38 @@ public class QuestionsService {
 			throw e;
 		}
 
+	}
+
+	public boolean updnvt(LikedislikeDTO likedislikeDTO) throws Exception {
+		try {
+			if (!ObjectUtils.isEmpty(likedislikeDTO) && !ObjectUtils.isEmpty(likedislikeDTO.getParentid())
+					&& !ObjectUtils.isEmpty(likedislikeDTO.getCtype())
+					&& !ObjectUtils.isEmpty(likedislikeDTO.getUpdwnvt())
+					&& !ObjectUtils.isEmpty(likedislikeDTO.getUserid())) {
+				Long parentid = likedislikeDTO.getParentid();
+				int updwnvt = likedislikeDTO.getUpdwnvt();
+				Long userid = likedislikeDTO.getUserid();
+				String ctype = likedislikeDTO.getCtype();
+				List<LikedislikeDTO> ls = likesDislikeRepository.findByParentidAndCtypeAndUserid(parentid, ctype,
+						userid);
+				if (ObjectUtils.isEmpty(ls)) {
+					likedislikeDTO.setUpdatedon(dateUtility.getCurrentDateAndTime());
+					likesDislikeRepository.save(likedislikeDTO);
+				} else {
+					likesDislikeRepository.updateLikeDislike(parentid, ctype, userid, updwnvt,
+							dateUtility.getCurrentDateAndTime());
+				}
+
+			} else {
+				throw new Exception(ErrorMsgs.DATAMISSING);
+			}
+
+		} catch (Exception e) {
+
+			throw e;
+		}
+
+		return true;
 	}
 
 }

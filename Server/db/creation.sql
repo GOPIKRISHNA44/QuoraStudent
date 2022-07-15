@@ -18,6 +18,48 @@ DROP DATABASE IF EXISTS `quorastudent`;
 CREATE DATABASE IF NOT EXISTS `quorastudent` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `quorastudent`;
 
+-- Dumping structure for table quorastudent.comments
+DROP TABLE IF EXISTS `comments`;
+CREATE TABLE IF NOT EXISTS `comments` (
+  `cid` bigint NOT NULL AUTO_INCREMENT,
+  `cpid` bigint DEFAULT NULL,
+  `userid` int DEFAULT NULL,
+  `parentid` int NOT NULL DEFAULT '0',
+  `ctype` varchar(50) DEFAULT NULL,
+  `comment` longtext,
+  `doc` datetime DEFAULT NULL,
+  `updatedat` datetime DEFAULT NULL,
+  `active` int DEFAULT NULL,
+  PRIMARY KEY (`cid`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table quorastudent.comments: ~0 rows (approximately)
+DELETE FROM `comments`;
+/*!40000 ALTER TABLE `comments` DISABLE KEYS */;
+INSERT INTO `comments` (`cid`, `cpid`, `userid`, `parentid`, `ctype`, `comment`, `doc`, `updatedat`, `active`) VALUES
+	(3, -1, 11, 2, 'Q', 'through portal !!! ', '2022-07-15 03:19:35', '2022-07-15 03:19:35', 1);
+/*!40000 ALTER TABLE `comments` ENABLE KEYS */;
+
+-- Dumping structure for procedure quorastudent.feed
+DROP PROCEDURE IF EXISTS `feed`;
+DELIMITER //
+CREATE PROCEDURE `feed`(
+	IN `unvcode` INT
+)
+BEGIN
+
+SELECT q.*, u.username,u.avatarid,
+ COALESCE(SUM(ld.updwnvt = 1), 0) AS likes,
+       COALESCE(SUM(ld.updwnvt = 0), 0) AS dislikes
+from questions q 
+INNER JOIN userdetails u ON u.userid=q.userid AND u.universitycode =  @unvcode
+left JOIN likedislike ld ON ld.ctype = 'q' AND ld.parentid = q.eqid
+WHERE q.active=1 AND q.etype = 'q'  GROUP BY q.eqid  ;
+
+
+END//
+DELIMITER ;
+
 -- Dumping structure for table quorastudent.hibernate_sequence
 DROP TABLE IF EXISTS `hibernate_sequence`;
 CREATE TABLE IF NOT EXISTS `hibernate_sequence` (
@@ -25,6 +67,7 @@ CREATE TABLE IF NOT EXISTS `hibernate_sequence` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table quorastudent.hibernate_sequence: ~0 rows (approximately)
+DELETE FROM `hibernate_sequence`;
 /*!40000 ALTER TABLE `hibernate_sequence` DISABLE KEYS */;
 INSERT INTO `hibernate_sequence` (`next_val`) VALUES
 	(7);
@@ -39,6 +82,7 @@ CREATE TABLE IF NOT EXISTS `interests` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table quorastudent.interests: ~4 rows (approximately)
+DELETE FROM `interests`;
 /*!40000 ALTER TABLE `interests` DISABLE KEYS */;
 INSERT INTO `interests` (`id`, `name`) VALUES
 	(1, 'sports'),
@@ -46,6 +90,27 @@ INSERT INTO `interests` (`id`, `name`) VALUES
 	(3, 'education'),
 	(4, 'any');
 /*!40000 ALTER TABLE `interests` ENABLE KEYS */;
+
+-- Dumping structure for table quorastudent.likedislike
+DROP TABLE IF EXISTS `likedislike`;
+CREATE TABLE IF NOT EXISTS `likedislike` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `parentid` int DEFAULT NULL,
+  `updwnvt` int DEFAULT NULL,
+  `userid` int DEFAULT NULL,
+  `ctype` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `updatedon` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table quorastudent.likedislike: ~2 rows (approximately)
+DELETE FROM `likedislike`;
+/*!40000 ALTER TABLE `likedislike` DISABLE KEYS */;
+INSERT INTO `likedislike` (`id`, `parentid`, `updwnvt`, `userid`, `ctype`, `updatedon`) VALUES
+	(1, 3, 1, 6, 'Q', '2022-07-13 06:42:41'),
+	(2, 3, 1, 5, 'Q', '2022-07-15 01:51:43'),
+	(3, 1, 0, 6, 'Q', NULL);
+/*!40000 ALTER TABLE `likedislike` ENABLE KEYS */;
 
 -- Dumping structure for table quorastudent.questions
 DROP TABLE IF EXISTS `questions`;
@@ -55,19 +120,20 @@ CREATE TABLE IF NOT EXISTS `questions` (
   `question` longtext,
   `doq` datetime DEFAULT NULL,
   `updatedat` datetime DEFAULT NULL,
-  `etype` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `ctype` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `active` int DEFAULT NULL,
   `tags` longtext,
   PRIMARY KEY (`eqid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table quorastudent.questions: ~4 rows (approximately)
+DELETE FROM `questions`;
 /*!40000 ALTER TABLE `questions` DISABLE KEYS */;
-INSERT INTO `questions` (`eqid`, `userid`, `question`, `doq`, `updatedat`, `etype`, `active`, `tags`) VALUES
-	(1, 6, 'How do the college manage marks ', '2022-07-06 06:44:18', '2022-07-06 06:44:18', 'q', 1, ';1;2;'),
-	(2, 6, '<h1>How do the college manage marks</h1> ', '2022-07-06 06:44:55', '2022-07-06 06:44:55', 'q', 1, ';1;2;3;'),
-	(3, 6, '<h1>How do the college manage marks</h1> ', '2022-07-06 06:45:51', '2022-07-06 06:45:51', 'q', 1, ';1;2;3;'),
-	(4, 6, '<p>Hello how </p>', '2022-07-09 11:05:58', '2022-07-09 11:05:58', 'q', 1, ';1;2;3;');
+INSERT INTO `questions` (`eqid`, `userid`, `question`, `doq`, `updatedat`, `ctype`, `active`, `tags`) VALUES
+	(1, 6, 'How do the college manage marks ', '2022-07-06 06:44:18', '2022-07-06 06:44:18', 'Q', 1, ';1;2;'),
+	(2, 6, '<h1>How do the college manage marks</h1> ', '2022-07-06 06:44:55', '2022-07-06 06:44:55', 'Q', 1, ';1;2;3;'),
+	(3, 6, '<h1>How do the college manage marks</h1> ', '2022-07-06 06:45:51', '2022-07-06 06:45:51', 'Q', 1, ';1;2;3;'),
+	(4, 6, '<p>Hello how </p>', '2022-07-09 11:05:58', '2022-07-09 11:05:58', 'Q', 1, ';1;2;3;');
 /*!40000 ALTER TABLE `questions` ENABLE KEYS */;
 
 -- Dumping structure for table quorastudent.sessiondetails
@@ -80,9 +146,10 @@ CREATE TABLE IF NOT EXISTS `sessiondetails` (
   `loggedoutat` datetime DEFAULT NULL,
   `active` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table quorastudent.sessiondetails: ~20 rows (approximately)
+-- Dumping data for table quorastudent.sessiondetails: ~21 rows (approximately)
+DELETE FROM `sessiondetails`;
 /*!40000 ALTER TABLE `sessiondetails` DISABLE KEYS */;
 INSERT INTO `sessiondetails` (`id`, `userid`, `sessionkey`, `loggedinat`, `loggedoutat`, `active`) VALUES
 	(7, 5, 'CaewSLVQXk+AB7I634sn7IW/DA4DAoPldw4PmrjKHRftyvbzYzMB/daYaNqENpTW', '2022-06-28 11:46:26', '2022-06-29 12:15:12', 0),
@@ -104,7 +171,9 @@ INSERT INTO `sessiondetails` (`id`, `userid`, `sessionkey`, `loggedinat`, `logge
 	(23, 6, 't636Bi/D2GQKqI4ZZw83dyyTEjeKvZxwGYuvmHOO58b+xqovBxi1DYuWRLv8VgST', '2022-07-08 04:03:34', NULL, 0),
 	(24, 6, '9Xw6f/dpH6DRAsx7XdKNKE5Ciqx4QlGVCAjr3iPJ+3Qnvynz8nmQlPoGlscjsWRu', '2022-07-08 04:04:00', NULL, 0),
 	(25, 6, 'RolMI9fShMxPeHKOvrOb7ZExa98ZPdM8gNrj4rLN5BGfLWDyqsBOoFnJpzqbT5ZQ', '2022-07-09 11:05:27', NULL, 0),
-	(26, 6, 't3qnIx67/ujUjMxj7jhOTVPuD+y30OOwhtMxpWb0bQY7ZxfkTMgFG9mDhUZoGgdf', '2022-07-09 11:07:59', NULL, 0);
+	(26, 6, 't3qnIx67/ujUjMxj7jhOTVPuD+y30OOwhtMxpWb0bQY7ZxfkTMgFG9mDhUZoGgdf', '2022-07-09 11:07:59', NULL, 0),
+	(27, 6, '174Zuhn/uao1fTMiQfDv7636g749dSjb+BAWdHPGwfNctVzNke6pJW/od6wJSKGO', '2022-07-11 00:22:03', NULL, 0),
+	(28, 6, 'ZRSjekOm5X3OlbPP3BW5fL7DSd0xKuWVF0Uiwx1c+Rb/99smWQqyj+ptZNz4yRvZ', '2022-07-11 00:22:03', NULL, 0);
 /*!40000 ALTER TABLE `sessiondetails` ENABLE KEYS */;
 
 -- Dumping structure for table quorastudent.universities
@@ -118,6 +187,7 @@ CREATE TABLE IF NOT EXISTS `universities` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table quorastudent.universities: ~4 rows (approximately)
+DELETE FROM `universities`;
 /*!40000 ALTER TABLE `universities` DISABLE KEYS */;
 INSERT INTO `universities` (`unvcode`, `unvname`, `unvaddress`, `unvmobile`) VALUES
 	('89', 'Cardiff University', 'Cardiff University', '7890'),
@@ -142,15 +212,11 @@ CREATE TABLE IF NOT EXISTS `userdetails` (
   UNIQUE KEY `emailId` (`emailid`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table quorastudent.userdetails: ~7 rows (approximately)
+-- Dumping data for table quorastudent.userdetails: ~2 rows (approximately)
+DELETE FROM `userdetails`;
 /*!40000 ALTER TABLE `userdetails` DISABLE KEYS */;
 INSERT INTO `userdetails` (`userid`, `username`, `emailid`, `password`, `dob`, `universitycode`, `interestspopup`, `avatarid`) VALUES
-	(5, 'goppp', 'aisd@gm.com', 'rYl+saNY1QvRu/HK65BIaQ==', '1997-07-24', '01', NULL, 1),
 	(6, 'vamsi', 'vamsi@gmail.com', 'zEhq/Nf9IuuDN3XWL+o54A==', '1997-07-22', '92', 1, 1),
-	(7, 'vamsoi', NULL, 'T4s7sw3gkHMtN8n4Z5hxOA==', '1997-07-22', NULL, NULL, 1),
-	(8, 'vamsoir', NULL, '3YX8/ylOxG6rzSnFvJZB+A==', '1997-07-22', NULL, NULL, 1),
-	(9, 'vamsii', NULL, 'Ljx6ulbNnYBul9VBH/CP6Q==', '1997-07-22', NULL, NULL, 1),
-	(10, 'vamsiir', 'vamsoir9r@gmail.com', 'uTeIjsBMrfaJHqwleEwF1Q==', '1997-07-22', NULL, NULL, 1),
 	(11, 'vamsiirr', 'vamsoir9rr@gmail.com', 'kC8y7t0ahpecEzfu7i351w==', '1997-07-22', '92', 0, 1);
 /*!40000 ALTER TABLE `userdetails` ENABLE KEYS */;
 
@@ -162,7 +228,8 @@ CREATE TABLE IF NOT EXISTS `userinterests` (
   PRIMARY KEY (`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table quorastudent.userinterests: ~1 rows (approximately)
+-- Dumping data for table quorastudent.userinterests: ~0 rows (approximately)
+DELETE FROM `userinterests`;
 /*!40000 ALTER TABLE `userinterests` DISABLE KEYS */;
 INSERT INTO `userinterests` (`userid`, `interests`) VALUES
 	(6, NULL);

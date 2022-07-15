@@ -18,7 +18,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\r\n    \"username\":\"vamsoi\",\r\n    \"password\":\"vamsoi\",\r\n    \"emailId\":\"vamsoi@gmail.com\",\r\n    \"universityCode\":\"92\",\r\n    \"dob\":\"1997-07-23\"\r\n\r\n\r\n}"
+					"raw": "{\r\n\r\n    \"username\":\"vamsiirr\",\r\n    \"password\":\"vamsiirr\",\r\n    \"emailid\":\"vamsoir9rr@gmail.com\",\r\n    \"universitycode\":\"92\",\r\n    \"dob\":\"1997-07-23\"\r\n\r\n\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/quoraStudent/user/register",
@@ -74,7 +74,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"emailId\":\"vamsi@gmail.com\",\r\n    \"password\":\"vamsi\"\r\n}",
+					"raw": "{\r\n    \r\n    \"username\":\"vamsiirr\",\r\n    \"password\":\"vamsiirr\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -146,7 +146,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"userid\":6,\r\n    \"interests\":[\r\n       {\r\n                \"id\": 1,\r\n                \"name\": \"sports\"\r\n            },\r\n            {\r\n                \"id\": 3,\r\n                \"name\": \"education\"\r\n            }\r\n    ]\r\n}",
+					"raw": "{\r\n    \"userid\":6,\r\n    \"interests\":[\r\n      \r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -164,6 +164,192 @@
 						"quoraStudent",
 						"user",
 						"updateInterests"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "askQuestion",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sessionkey",
+						"value": "fgsu",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userid\":6,\"text\":\"<h1>How do the college manage marks</h1> \",\"tags\":[1,2,3]\r\n    \r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/questions/askAquestion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"questions",
+						"askAquestion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updwnvt",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userid\":6,\r\n    \"parentid\":3,\r\n    \"updwnvt\":0,\r\n    \"ctype\":\"Q\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/questions/updwnvt",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"questions",
+						"updwnvt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getQuestionsFeed",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"unvcode\":92\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/feed/getQuestionsFeed",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"feed",
+						"getQuestionsFeed"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addComment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userid\":11,\r\n    \"parentid\":2,\r\n    \"ctype\":\"Q\",\r\n    \"comment\":\"through portal !!! \"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/comments/addComment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"comments",
+						"addComment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateComment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cid\":2,\r\n    \"comment\":\"thorugh website !!!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/comments/updateComment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"comments",
+						"updateComment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteComment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cid\":2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/comments/deleteComment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"comments",
+						"deleteComment"
 					]
 				}
 			},

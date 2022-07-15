@@ -106,13 +106,7 @@ public class QuestionDTO {
 		this.active = active;
 	}
 
-	public String getEtype() {
-		return etype;
-	}
-
-	public void setEtype(String etype) {
-		this.etype = etype;
-	}
+	
 
 	public String getTags() {
 		return tags;
@@ -124,7 +118,15 @@ public class QuestionDTO {
 
 	private Date updatedat;
 
-	private String etype;
+	private String ctype;
+
+	public String getCtype() {
+		return ctype;
+	}
+
+	public void setCtype(String ctype) {
+		this.ctype = ctype;
+	}
 
 	private int active;
 

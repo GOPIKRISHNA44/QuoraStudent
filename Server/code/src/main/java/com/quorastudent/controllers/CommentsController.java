@@ -11,28 +11,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.quorastudent.dto.AskAquestionDTO;
-import com.quorastudent.dto.LikedislikeDTO;
+import com.quorastudent.dto.CommentsDTO;
 import com.quorastudent.dto.ResponseDTO;
-import com.quorastudent.services.QuestionsService;
+import com.quorastudent.services.CommentsService;
 
 @RestController
-@RequestMapping(value = "questions")
-public class QuestionsController {
+@RequestMapping(value = "comments")
+public class CommentsController {
 
 	ResponseDTO responseDtoGeneral = new ResponseDTO();
 
 	@Autowired
-	private QuestionsService questionsService;
+	private CommentsService commentsService;
 
-	@RequestMapping(value = "askAquestion", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "addComment", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseDTO register(@RequestBody AskAquestionDTO askAquestionDTO) {
+	public ResponseDTO addComment(@RequestBody CommentsDTO commentsDTO) {
 
 		ResponseDTO responseDto = null;
 		try {
 
-			boolean status = questionsService.askAquestion(askAquestionDTO);
+			boolean status = commentsService.addComment(commentsDTO);
 			Map<String, Boolean> finalMsg = new HashMap<String, Boolean>();
 			finalMsg.put("updated", status);
 			responseDto = responseDtoGeneral.getSuccessResponse(finalMsg);
@@ -45,13 +44,14 @@ public class QuestionsController {
 		return responseDto;
 	}
 
-	@RequestMapping(value = "updwnvt", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "updateComment", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseDTO updnvt(@RequestBody LikedislikeDTO likedislikeDTO) {
+	public ResponseDTO updateComment(@RequestBody CommentsDTO commentsDTO) {
+
 		ResponseDTO responseDto = null;
 		try {
 
-			boolean status = questionsService.updnvt(likedislikeDTO);
+			boolean status = commentsService.updateComment(commentsDTO);
 			Map<String, Boolean> finalMsg = new HashMap<String, Boolean>();
 			finalMsg.put("updated", status);
 			responseDto = responseDtoGeneral.getSuccessResponse(finalMsg);
@@ -63,5 +63,24 @@ public class QuestionsController {
 		}
 		return responseDto;
 	}
+	
+	@RequestMapping(value = "deleteComment", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseDTO deleteComment(@RequestBody CommentsDTO commentsDTO) {
 
+		ResponseDTO responseDto = null;
+		try {
+
+			boolean status = commentsService.deleteComment(commentsDTO);
+			Map<String, Boolean> finalMsg = new HashMap<String, Boolean>();
+			finalMsg.put("updated", status);
+			responseDto = responseDtoGeneral.getSuccessResponse(finalMsg);
+
+		} catch (Exception e) {
+
+			responseDto = responseDtoGeneral.getFailureResponse(e.getMessage());
+
+		}
+		return responseDto;
+	}
 }
