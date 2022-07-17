@@ -1,7 +1,7 @@
 <div class="dialog">
     <div mat-dialog-title class="header">
         <p class="title row-center">{{placeholder}}</p>
-        <button mat-icon-button style="float:right;bottom:47px" (click)="onNoClick()">
+        <button mat-icon-button class="close" (click)="onNoClick()">
             <mat-icon>close
             </mat-icon>
           </button>
@@ -17,7 +17,7 @@
             <mat-select [formControl]="tags" multiple>
                 <mat-select-trigger>
                 </mat-select-trigger>
-                <mat-option></mat-option>
+                <mat-option *ngFor="let interest of interests" [value]="interest?.name">{{interest?.name}}</mat-option>
             </mat-select>
         </mat-form-field>
     </div>

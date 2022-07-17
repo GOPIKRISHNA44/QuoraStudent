@@ -18,6 +18,7 @@ import { AskQuestionDialogComponent } from './ask-question-dialog/ask-question-d
 import { QuillModule } from 'ngx-quill';
 import { QuillComponent } from './quill/quill.component';
 import { NetworkInterceptor } from './services/network.interceptor';
+import { NewsfeedComponent } from './newsfeed/newsfeed.component';
  
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { NetworkInterceptor } from './services/network.interceptor';
     InterestsDialogComponent,
     QuestionTextboxComponent,
     AskQuestionDialogComponent,
-    QuillComponent
+    QuillComponent,
+    NewsfeedComponent
   ],
   imports: [
     BrowserModule,
