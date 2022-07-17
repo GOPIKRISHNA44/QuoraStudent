@@ -15,6 +15,7 @@ export class AskQuestionDialogComponent implements OnInit {
   placeholder = Title.questionPlaceHolder
   editorText: string;
   userdetails:UserDetails ;
+  interests = []
   tags = new FormControl('');
   
   constructor(public dialogRef: MatDialogRef<AskQuestionDialogComponent>,
@@ -22,7 +23,11 @@ export class AskQuestionDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.userdetails=JSON.parse(this.authenticationService.GetUserDetails())
-
+    this.questionService.getInterests().subscribe(res => {
+      if (res.success) {
+        this.interests = res.data.interests
+      }
+    })
   }
   submit() {
     let sentText={

@@ -1,0 +1,16 @@
+.topbox{
+    width: 65%;
+    height: 22%;
+    border-radius: 15px;    
+    margin: 15px 30px;
+}
+.title{
+    display: flex;
+    align-items: center;
+}
+.title div{
+    margin-left: 10px;
+}
+.white-color{
+    color:black
+}

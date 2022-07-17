@@ -17,7 +17,11 @@ export class QuestionService {
   postInterests(_interests):Observable<any> {
     return this.http.post(this.apiEndPoint+"/user/updateInterests",_interests)
   }
-  postQuestion(editorText):Observable<any> {
-    return this.http.post(this.apiEndPoint+"/questions/askAquestion",editorText)
+  postQuestion(_editorText):Observable<any> {
+    return this.http.post(this.apiEndPoint+"/questions/askAquestion",_editorText)
+  }
+  getNewsFeed(_unvcode):Observable<any> {
+    
+    return this.http.post(this.apiEndPoint+"/feed/getQuestionsFeed",{unvcode:_unvcode})
   }
 }

@@ -24,6 +24,11 @@
 .title{
   width:100%
 }
+.close{
+  height:15px;
+  float:right;
+  bottom:47px;
+}
 .mat-dialog-content{
   overflow: inherit;
 }

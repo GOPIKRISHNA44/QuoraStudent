@@ -1,0 +1,17 @@
+<div *ngFor="let data of data">
+    <mat-card class="topbox">
+        <mat-card-title class="title">
+            <mat-icon>
+                account_circle
+            </mat-icon>
+            <div><b>{{data?.username}}</b></div>
+        </mat-card-title>
+        <mat-card-content>
+            <div [innerHTML]="data?.question"></div>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-icon-button (click)="likeButton()"><mat-icon><span class="material-icons white-color">thumb_up</span></mat-icon>{{data?.upvotes}}</button>
+            <button mat-icon-button><mat-icon>thumb_down</mat-icon></button>
+          </mat-card-actions>
+    </mat-card>
+</div>
