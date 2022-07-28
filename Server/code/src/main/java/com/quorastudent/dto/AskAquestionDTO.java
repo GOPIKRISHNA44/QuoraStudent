@@ -4,6 +4,9 @@ import java.util.List;
 
 public class AskAquestionDTO {
 
+	private Long eqid = (long) -1;
+	private String ctype = null;
+
 	/**
 	 * @return the userid
 	 */
@@ -44,6 +47,22 @@ public class AskAquestionDTO {
 	 */
 	public void setTags(List<Integer> tags) {
 		this.tags = tags;
+	}
+
+	public Long getEqid() {
+		return eqid;
+	}
+
+	public void setEqid(Long eqid) {
+		this.eqid = eqid;
+	}
+
+	public String getCtype() {
+		return ctype;
+	}
+
+	public void setCtype(String ctype) {
+		this.ctype = ctype;
 	}
 
 	private Long userid;

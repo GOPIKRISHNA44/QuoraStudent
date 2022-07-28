@@ -9,6 +9,8 @@ import com.quorastudent.dto.CommentsDTO;
 
 public interface CommentsRepository extends JpaRepository<CommentsDTO, Long> {
 
+
+
 	@Transactional
 	@Modifying
 	@Query("update CommentsDTO c  SET c.comment= :comment , c.updatedat=NOW() WHERE c.cid= :cid ")

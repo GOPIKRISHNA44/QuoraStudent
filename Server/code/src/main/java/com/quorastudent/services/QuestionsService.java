@@ -64,9 +64,17 @@ public class QuestionsService {
 			questionDTONew.setDoq(doq);
 			questionDTONew.setUpdatedat(updatedAt);
 			questionDTONew.setQuestion(question);
-			questionDTONew.setCtype(ctype);
+			if (ObjectUtils.isEmpty(askAquestionDTO.getCtype())) {
+				questionDTONew.setCtype(ctype);
+			} else {
+				questionDTONew.setCtype(askAquestionDTO.getCtype());
+
+			}
 			questionDTONew.setUserid(userId);
 			questionDTONew.setTags(tags);
+			if (!ObjectUtils.isEmpty(askAquestionDTO.getEqid()) && askAquestionDTO.getEqid() != -1) {
+				questionDTONew.setEqid(askAquestionDTO.getEqid());
+			}
 			return questionDTONew;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -105,6 +113,18 @@ public class QuestionsService {
 		}
 
 		return true;
+	}
+
+	public Long getTotalQuestions() throws Exception {
+		try {
+			return questionRepository.count();
+
+		} catch (
+
+		Exception e) {
+
+			throw e;
+		}
 	}
 
 }
