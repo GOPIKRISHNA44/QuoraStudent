@@ -392,7 +392,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\":null,\r\n    \"title\":\"How to crabs crawl\",\r\n    \"content\":\"e were making a sand castle on the Wonderopolis beach the other day when we saw a group of crabs gathering nearby. The group appeared to consist of an adult crab and several younger crabs. Our curiosity got the best of us, so we decided to eavesdrop to try to hear what they were talking about. Kid Crab: Mrs. Crab? What are we going to learn about in class today?Mrs. Crab: Well, Patty, I'm so glad you asked. Today, we're going to learn why human beings walk frontways.Kid Crab: That's awesome, Mrs. Crab! I've always WONDERed about that. They look so funny when they walk down the beach like that!Apparently, we stumbled upon a class of crabs with their teacher about to learn more about human beings and the way we move. From their perspective, we must look as funny to crabs as they do to us. Let's take a closer look at why crabs move the way they do.If you've ever seen crabs moving along the shoreline, you've probably noticed that they move differently than human beings. Instead of walking forward on two legs, they move quickly sideways in a flurry with their multiple legs.Crabs move sideways for the same reason humans move forward: that's how their bodies were built to move. Human beings have knees that bend forward. Therefore, it's only natural that we would move forward with each step we take.Crabs, on the other hand, have multiple legs and they're located on the sides of their bodies. In addition, their leg joints bend outward. Given this particular design of their bodies, it's most efficient and natural for crabs to move sideways.Not all crabs move sideways, however. There are a few species of crabs that can move forward, because their bodies are shaped in a way that makes them longer than they are wide. Examples of these crabs include raninids, Libinia emarginata, and Mictyris platycheles.In addition, most crabs have a front pair of legs that are mainly used for defense and grasping food. These front legs can be used to move forward, but doing so is not very efficient and doesn't allow the crab to move quickly. Thus, most crabs move sideways since they can move quickly and most efficiently that way.\"\r\n}",
+					"raw": "{\r\n    \"id\":null,\r\n    \"userid\":2,\r\n    \"title\":\"How to crabs crawl\",\r\n    \"content\":\"e were making a sand castle on the Wonderopolis beach the other day when we saw a group of crabs gathering nearby. The group appeared to consist of an adult crab and several younger crabs. Our curiosity got the best of us, so we decided to eavesdrop to try to hear what they were talking about. Kid Crab: Mrs. Crab? What are we going to learn about in class today?Mrs. Crab: Well, Patty, I'm so glad you asked. Today, we're going to learn why human beings walk frontways.Kid Crab: That's awesome, Mrs. Crab! I've always WONDERed about that. They look so funny when they walk down the beach like that!Apparently, we stumbled upon a class of crabs with their teacher about to learn more about human beings and the way we move. From their perspective, we must look as funny to crabs as they do to us. Let's take a closer look at why crabs move the way they do.If you've ever seen crabs moving along the shoreline, you've probably noticed that they move differently than human beings. Instead of walking forward on two legs, they move quickly sideways in a flurry with their multiple legs.Crabs move sideways for the same reason humans move forward: that's how their bodies were built to move. Human beings have knees that bend forward. Therefore, it's only natural that we would move forward with each step we take.Crabs, on the other hand, have multiple legs and they're located on the sides of their bodies. In addition, their leg joints bend outward. Given this particular design of their bodies, it's most efficient and natural for crabs to move sideways.Not all crabs move sideways, however. There are a few species of crabs that can move forward, because their bodies are shaped in a way that makes them longer than they are wide. Examples of these crabs include raninids, Libinia emarginata, and Mictyris platycheles.In addition, most crabs have a front pair of legs that are mainly used for defense and grasping food. These front legs can be used to move forward, but doing so is not very efficient and doesn't allow the crab to move quickly. Thus, most crabs move sideways since they can move quickly and most efficiently that way.\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -410,6 +410,66 @@
 						"quoraStudent",
 						"blog",
 						"saveBlog"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addAnswer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userid\":11,\r\n    \"ctype\":\"Q\",\r\n    \"content\":\"dont know :) how \",\r\n    \"eqid\":2\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/answer/addAnswer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"answer",
+						"addAnswer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getQuestion",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"eqid\":1,\r\n    \"ctype\":\"Q\",\r\n    \"userid\":11\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/questions/getQuestion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"questions",
+						"getQuestion"
 					]
 				}
 			},

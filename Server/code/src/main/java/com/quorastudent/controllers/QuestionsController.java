@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.quorastudent.dto.AskAquestionDTO;
 import com.quorastudent.dto.LikedislikeDTO;
+import com.quorastudent.dto.QuestionDTO;
+import com.quorastudent.dto.QuestionViewDTO;
 import com.quorastudent.dto.ResponseDTO;
 import com.quorastudent.services.QuestionsService;
 
@@ -55,6 +57,24 @@ public class QuestionsController {
 			Map<String, Boolean> finalMsg = new HashMap<String, Boolean>();
 			finalMsg.put("updated", status);
 			responseDto = responseDtoGeneral.getSuccessResponse(finalMsg);
+
+		} catch (Exception e) {
+
+			responseDto = responseDtoGeneral.getFailureResponse(e.getMessage());
+
+		}
+		return responseDto;
+	}
+
+	@RequestMapping(value = "getQuestion", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseDTO register(@RequestBody QuestionDTO questionDTO) {
+
+		ResponseDTO responseDto = null;
+		try {
+
+			QuestionViewDTO questionDTO1 = questionsService.getQuestionOnQuestionID(questionDTO);
+			responseDto = responseDtoGeneral.getSuccessResponse(questionDTO1);
 
 		} catch (Exception e) {
 

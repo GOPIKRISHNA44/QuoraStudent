@@ -25,6 +25,8 @@ public class BlogDTO {
 	private Date updatedat;
 	
 	private int active;
+	
+	private Long userid;
 
 	public Long getBid() {
 		return bid;
@@ -72,6 +74,14 @@ public class BlogDTO {
 
 	public void setActive(int active) {
 		this.active = active;
+	}
+
+	public Long getUserid() {
+		return userid;
+	}
+
+	public void setUserid(Long userid) {
+		this.userid = userid;
 	}
 
 }
