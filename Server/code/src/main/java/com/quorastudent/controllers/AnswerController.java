@@ -34,6 +34,8 @@ public class AnswerController {
 			Map<String, Boolean> finalMsg = new HashMap<String, Boolean>();
 			finalMsg.put("updated", status);
 
+			responseDto = responseDtoGeneral.getSuccessResponse(finalMsg);
+
 		} catch (Exception e) {
 
 			responseDto = responseDtoGeneral.getFailureResponse(e.getMessage());

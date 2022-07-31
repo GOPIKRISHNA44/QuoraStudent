@@ -2,8 +2,10 @@ package com.quorastudent.services;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
@@ -12,6 +14,8 @@ import com.quorastudent.constants.ErrorMsgs;
 import com.quorastudent.dto.AskAquestionDTO;
 import com.quorastudent.dto.LikedislikeDTO;
 import com.quorastudent.dto.QuestionDTO;
+import com.quorastudent.dto.QuestionViewDTO;
+import com.quorastudent.repositories.JdbcQueryService;
 import com.quorastudent.repositories.LikesDislikeRepository;
 import com.quorastudent.repositories.QuestionRepository;
 
@@ -29,6 +33,9 @@ public class QuestionsService {
 
 	@Autowired
 	private LikesDislikeRepository likesDislikeRepository;
+
+	@Autowired
+	private JdbcQueryService jdbcQueryService;
 
 	public boolean askAquestion(AskAquestionDTO askAquestionDTO) throws Exception {
 		try {
@@ -125,6 +132,24 @@ public class QuestionsService {
 
 			throw e;
 		}
+	}
+
+	public QuestionViewDTO getQuestionOnQuestionID(QuestionDTO questionDTO) {
+		try {
+
+			QuestionViewDTO lsQs = jdbcQueryService.findByEqidAndCtype(questionDTO.getEqid(),
+					questionDTO.getCtype(),questionDTO.getUserid());
+			if (!ObjectUtils.isEmpty(lsQs) ) {
+				return lsQs;
+			}
+
+		} catch (
+
+		Exception e) {
+
+			throw e;
+		}
+		return null;
 	}
 
 }

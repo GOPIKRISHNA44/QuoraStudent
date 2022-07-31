@@ -30,11 +30,15 @@ CREATE TABLE IF NOT EXISTS `answers` (
   `active` int DEFAULT NULL,
   `content` longtext,
   PRIMARY KEY (`aid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table quorastudent.answers: ~0 rows (approximately)
+-- Dumping data for table quorastudent.answers: ~2 rows (approximately)
 DELETE FROM `answers`;
 /*!40000 ALTER TABLE `answers` DISABLE KEYS */;
+INSERT INTO `answers` (`aid`, `eqid`, `doa`, `userid`, `ctype`, `updatedat`, `active`, `content`) VALUES
+	(1, 2, '2022-07-27 07:48:16', 6, 'Q', '2022-07-27 07:48:16', 1, 'dont know :) '),
+	(2, 2, '2022-07-27 07:48:50', 6, 'Q', '2022-07-27 07:48:50', 1, 'dont know :) how '),
+	(3, 2, '2022-07-27 07:50:06', 11, 'Q', '2022-07-27 07:50:06', 1, 'dont know :) how ');
 /*!40000 ALTER TABLE `answers` ENABLE KEYS */;
 
 -- Dumping structure for table quorastudent.blog
@@ -46,12 +50,17 @@ CREATE TABLE IF NOT EXISTS `blog` (
   `doblog` datetime DEFAULT NULL,
   `updatedat` datetime DEFAULT NULL,
   `active` int DEFAULT NULL,
+  `userid` bigint DEFAULT NULL,
   PRIMARY KEY (`bid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table quorastudent.blog: ~0 rows (approximately)
+-- Dumping data for table quorastudent.blog: ~1 rows (approximately)
 DELETE FROM `blog`;
 /*!40000 ALTER TABLE `blog` DISABLE KEYS */;
+INSERT INTO `blog` (`bid`, `title`, `content`, `doblog`, `updatedat`, `active`, `userid`) VALUES
+	(1, 'How to crabs crawl', 'e were making a sand castle on the Wonderopolis beach the other day when we saw a group of crabs gathering nearby. The group appeared to consist of an adult crab and several younger crabs. Our curiosity got the best of us, so we decided to eavesdrop to try to hear what they were talking about. Kid Crab: Mrs. Crab? What are we going to learn about in class today?Mrs. Crab: Well, Patty, I\'m so glad you asked. Today, we\'re going to learn why human beings walk frontways.Kid Crab: That\'s awesome, Mrs. Crab! I\'ve always WONDERed about that. They look so funny when they walk down the beach like that!Apparently, we stumbled upon a class of crabs with their teacher about to learn more about human beings and the way we move. From their perspective, we must look as funny to crabs as they do to us. Let\'s take a closer look at why crabs move the way they do.If you\'ve ever seen crabs moving along the shoreline, you\'ve probably noticed that they move differently than human beings. Instead of walking forward on two legs, they move quickly sideways in a flurry with their multiple legs.Crabs move sideways for the same reason humans move forward: that\'s how their bodies were built to move. Human beings have knees that bend forward. Therefore, it\'s only natural that we would move forward with each step we take.Crabs, on the other hand, have multiple legs and they\'re located on the sides of their bodies. In addition, their leg joints bend outward. Given this particular design of their bodies, it\'s most efficient and natural for crabs to move sideways.Not all crabs move sideways, however. There are a few species of crabs that can move forward, because their bodies are shaped in a way that makes them longer than they are wide. Examples of these crabs include raninids, Libinia emarginata, and Mictyris platycheles.In addition, most crabs have a front pair of legs that are mainly used for defense and grasping food. These front legs can be used to move forward, but doing so is not very efficient and doesn\'t allow the crab to move quickly. Thus, most crabs move sideways since they can move quickly and most efficiently that way.', '2022-07-27 07:32:17', '2022-07-27 07:32:17', 1, NULL),
+	(2, 'How to crabs crawl', 'e were making a sand castle on the Wonderopolis beach the other day when we saw a group of crabs gathering nearby. The group appeared to consist of an adult crab and several younger crabs. Our curiosity got the best of us, so we decided to eavesdrop to try to hear what they were talking about. Kid Crab: Mrs. Crab? What are we going to learn about in class today?Mrs. Crab: Well, Patty, I\'m so glad you asked. Today, we\'re going to learn why human beings walk frontways.Kid Crab: That\'s awesome, Mrs. Crab! I\'ve always WONDERed about that. They look so funny when they walk down the beach like that!Apparently, we stumbled upon a class of crabs with their teacher about to learn more about human beings and the way we move. From their perspective, we must look as funny to crabs as they do to us. Let\'s take a closer look at why crabs move the way they do.If you\'ve ever seen crabs moving along the shoreline, you\'ve probably noticed that they move differently than human beings. Instead of walking forward on two legs, they move quickly sideways in a flurry with their multiple legs.Crabs move sideways for the same reason humans move forward: that\'s how their bodies were built to move. Human beings have knees that bend forward. Therefore, it\'s only natural that we would move forward with each step we take.Crabs, on the other hand, have multiple legs and they\'re located on the sides of their bodies. In addition, their leg joints bend outward. Given this particular design of their bodies, it\'s most efficient and natural for crabs to move sideways.Not all crabs move sideways, however. There are a few species of crabs that can move forward, because their bodies are shaped in a way that makes them longer than they are wide. Examples of these crabs include raninids, Libinia emarginata, and Mictyris platycheles.In addition, most crabs have a front pair of legs that are mainly used for defense and grasping food. These front legs can be used to move forward, but doing so is not very efficient and doesn\'t allow the crab to move quickly. Thus, most crabs move sideways since they can move quickly and most efficiently that way.', '2022-07-31 02:33:06', '2022-07-31 02:33:06', 1, NULL),
+	(3, 'How to crabs crawl', 'e were making a sand castle on the Wonderopolis beach the other day when we saw a group of crabs gathering nearby. The group appeared to consist of an adult crab and several younger crabs. Our curiosity got the best of us, so we decided to eavesdrop to try to hear what they were talking about. Kid Crab: Mrs. Crab? What are we going to learn about in class today?Mrs. Crab: Well, Patty, I\'m so glad you asked. Today, we\'re going to learn why human beings walk frontways.Kid Crab: That\'s awesome, Mrs. Crab! I\'ve always WONDERed about that. They look so funny when they walk down the beach like that!Apparently, we stumbled upon a class of crabs with their teacher about to learn more about human beings and the way we move. From their perspective, we must look as funny to crabs as they do to us. Let\'s take a closer look at why crabs move the way they do.If you\'ve ever seen crabs moving along the shoreline, you\'ve probably noticed that they move differently than human beings. Instead of walking forward on two legs, they move quickly sideways in a flurry with their multiple legs.Crabs move sideways for the same reason humans move forward: that\'s how their bodies were built to move. Human beings have knees that bend forward. Therefore, it\'s only natural that we would move forward with each step we take.Crabs, on the other hand, have multiple legs and they\'re located on the sides of their bodies. In addition, their leg joints bend outward. Given this particular design of their bodies, it\'s most efficient and natural for crabs to move sideways.Not all crabs move sideways, however. There are a few species of crabs that can move forward, because their bodies are shaped in a way that makes them longer than they are wide. Examples of these crabs include raninids, Libinia emarginata, and Mictyris platycheles.In addition, most crabs have a front pair of legs that are mainly used for defense and grasping food. These front legs can be used to move forward, but doing so is not very efficient and doesn\'t allow the crab to move quickly. Thus, most crabs move sideways since they can move quickly and most efficiently that way.', '2022-07-31 02:45:35', '2022-07-31 02:45:35', 1, 2);
 /*!40000 ALTER TABLE `blog` ENABLE KEYS */;
 
 -- Dumping structure for table quorastudent.comments
@@ -67,13 +76,15 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `updatedat` datetime DEFAULT NULL,
   `active` int DEFAULT NULL,
   PRIMARY KEY (`cid`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table quorastudent.comments: ~1 rows (approximately)
+-- Dumping data for table quorastudent.comments: ~2 rows (approximately)
 DELETE FROM `comments`;
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
 INSERT INTO `comments` (`cid`, `cpid`, `userid`, `parentid`, `ctype`, `comment`, `doc`, `updatedat`, `active`) VALUES
-	(3, -1, 11, 2, 'Q', 'through portal !!! ', '2022-07-15 03:19:35', '2022-07-15 03:19:35', 1);
+	(3, -1, 11, 2, 'Q', 'through portal !!! ', '2022-07-15 03:19:35', '2022-07-15 03:19:35', 1),
+	(4, -1, 11, 2, 'Q', 'through portal !!! ', '2022-07-15 03:19:35', '2022-07-15 03:19:35', 1),
+	(5, -1, 11, 1, 'Q', 'through portal !!! ', '2022-07-15 03:19:35', '2022-07-15 03:19:35', 1);
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 
 -- Dumping structure for table quorastudent.ctype
@@ -95,8 +106,8 @@ INSERT INTO `ctype` (`id`) VALUES
 -- Dumping structure for table quorastudent.events
 DROP TABLE IF EXISTS `events`;
 CREATE TABLE IF NOT EXISTS `events` (
-  `eid` bigint NOT NULL,
   `id` bigint NOT NULL AUTO_INCREMENT,
+  `eid` bigint NOT NULL,
   `from` datetime DEFAULT NULL,
   `to` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -135,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `interests` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table quorastudent.interests: ~9 rows (approximately)
+-- Dumping data for table quorastudent.interests: ~8 rows (approximately)
 DELETE FROM `interests`;
 /*!40000 ALTER TABLE `interests` DISABLE KEYS */;
 INSERT INTO `interests` (`id`, `name`) VALUES
@@ -168,7 +179,7 @@ DELETE FROM `likedislike`;
 INSERT INTO `likedislike` (`id`, `parentid`, `updwnvt`, `userid`, `ctype`, `updatedon`) VALUES
 	(1, 3, 1, 6, 'Q', '2022-07-13 06:42:41'),
 	(2, 3, 1, 5, 'Q', '2022-07-15 01:51:43'),
-	(3, 1, 0, 6, 'Q', NULL);
+	(3, 1, 0, 11, 'Q', NULL);
 /*!40000 ALTER TABLE `likedislike` ENABLE KEYS */;
 
 -- Dumping structure for table quorastudent.questions
@@ -189,7 +200,7 @@ CREATE TABLE IF NOT EXISTS `questions` (
 DELETE FROM `questions`;
 /*!40000 ALTER TABLE `questions` DISABLE KEYS */;
 INSERT INTO `questions` (`eqid`, `userid`, `question`, `doq`, `updatedat`, `ctype`, `active`, `tags`) VALUES
-	(1, 6, 'How do the college manage marks ', '2022-07-06 06:44:18', '2022-07-06 06:44:18', 'Q', 1, ';1;2;'),
+	(1, 11, 'How do the college manage marks ', '2022-07-06 06:44:18', '2022-07-06 06:44:18', 'Q', 1, ';1;2;'),
 	(2, 6, '<h1>How do the college manage marks</h1> ', '2022-07-06 06:44:55', '2022-07-06 06:44:55', 'Q', 1, ';1;2;3;'),
 	(3, 6, '<h1>How do the college manage marks</h1> ', '2022-07-06 06:45:51', '2022-07-06 06:45:51', 'Q', 1, ';1;2;3;'),
 	(4, 6, '<p>Hello how </p>', '2022-07-09 11:05:58', '2022-07-09 11:05:58', 'Q', 1, ';1;2;3;');
@@ -207,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `sessiondetails` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table quorastudent.sessiondetails: ~25 rows (approximately)
+-- Dumping data for table quorastudent.sessiondetails: ~21 rows (approximately)
 DELETE FROM `sessiondetails`;
 /*!40000 ALTER TABLE `sessiondetails` DISABLE KEYS */;
 INSERT INTO `sessiondetails` (`id`, `userid`, `sessionkey`, `loggedinat`, `loggedoutat`, `active`) VALUES
@@ -290,7 +301,7 @@ CREATE TABLE IF NOT EXISTS `userinterests` (
   PRIMARY KEY (`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table quorastudent.userinterests: ~1 rows (approximately)
+-- Dumping data for table quorastudent.userinterests: ~0 rows (approximately)
 DELETE FROM `userinterests`;
 /*!40000 ALTER TABLE `userinterests` DISABLE KEYS */;
 INSERT INTO `userinterests` (`userid`, `interests`) VALUES
