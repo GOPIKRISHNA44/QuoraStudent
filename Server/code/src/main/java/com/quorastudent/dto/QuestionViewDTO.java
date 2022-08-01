@@ -144,7 +144,6 @@ public class QuestionViewDTO {
 		this.totalNumberOfComments = totalNumberOfComments;
 	}
 
-
 	private int active;
 
 	private String tags;
@@ -177,11 +176,31 @@ public class QuestionViewDTO {
 		this.questionOwnedByTheRequestedUser = questionOwnedByTheRequestedUser;
 	}
 
+	public String getUsernameOfWhoAskedThisQuestion() {
+		return usernameOfWhoAskedThisQuestion;
+	}
+
+	public void setUsernameOfWhoAskedThisQuestion(String usernameOfWhoAskedThisQuestion) {
+		this.usernameOfWhoAskedThisQuestion = usernameOfWhoAskedThisQuestion;
+	}
+
+	public int getAvataridOfWhoAskedThisQuestion() {
+		return avataridOfWhoAskedThisQuestion;
+	}
+
+	public void setAvataridOfWhoAskedThisQuestion(int avataridOfWhoAskedThisQuestion) {
+		this.avataridOfWhoAskedThisQuestion = avataridOfWhoAskedThisQuestion;
+	}
+
 	private Long totalNumberOfComments = (long) 0;
 
 	private boolean likedByTheRequestedUser = false;
 	private boolean disLikedByTheRequestedUser = false;
 
 	private boolean questionOwnedByTheRequestedUser = false;
+
+	private String usernameOfWhoAskedThisQuestion;
+
+	private int avataridOfWhoAskedThisQuestion;
 
 }
