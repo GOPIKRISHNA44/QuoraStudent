@@ -1,37 +1,18 @@
-<div style="position: fixed;width:100%">
-    <mat-toolbar style="background-color:#f52936;">
-        <mat-toolbar-row>
-            <div class="row-center" style="width:100%">
-                <div style="width:100%" class="space">
-                    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
-                        <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
-                        <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
-                    </button>
-                    <span class="maintitle">{{mainTitle}}</span>
-                </div>
-                <div class="row-center">
-                    <div class="itemIcon" *ngFor="let toolbarIconsItem of toolbarIconsItems">
-                        <button mat-mini-fab class="row-center" (click)="toolbarIcons(toolbarIconsItem)" color="warn">
-                            <mat-icon>{{toolbarIconsItem.icon}}</mat-icon>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </mat-toolbar-row>
-    </mat-toolbar>
+
+<div>
+    <app-header [sidenav]=sidenav></app-header>
     <div>
         <mat-sidenav-container class="contain">
             <mat-sidenav #sidenav="matSidenav">
                 <mat-nav-list #sidenav class="menu-item" *ngFor="let sideNavItemsName of sideNavItemsNames">
-                    <button mat-button class="menu-button" (click)="sideItemNavigation(sideNavItemsName)">
+                    <button mat-button class="menu-button" (click)="sideItemNavigation(sideNavItemsName.buttonName)">
                         <mat-icon>{{sideNavItemsName.icon}}</mat-icon>
                         <span>{{sideNavItemsName.buttonName}}</span>
                     </button>
                 </mat-nav-list>
             </mat-sidenav>
             <mat-sidenav-content>
-                <app-question-textbox> </app-question-textbox>
-                <app-newsfeed></app-newsfeed>
+                <router-outlet></router-outlet>
             </mat-sidenav-content>
         </mat-sidenav-container>
     </div>

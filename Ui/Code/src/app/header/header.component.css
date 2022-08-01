@@ -1,0 +1,15 @@
+.itemIcon {
+    padding: 10px;
+ }
+ .space {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.maintitle{
+    width:100%;
+    text-align: center; 
+    font-size: 30px;
+    color:white
+}

@@ -1,3 +1,4 @@
+<app-question-textbox> </app-question-textbox>
 <div *ngFor="let data of data">
     <mat-card class="topbox">
         <mat-card-title class="title">
@@ -7,7 +8,7 @@
             <div><b>{{data?.username}}</b></div>
         </mat-card-title>
         <mat-card-content>
-            <div [innerHTML]="data?.question"></div>
+            <a [innerHTML]="data?.question" (click)="openQuestion()"></a>
         </mat-card-content>
         <mat-card-actions>
             <button mat-icon-button (click)="likeButton()"><mat-icon><span class="material-icons white-color">thumb_up</span></mat-icon>{{data?.upvotes}}</button>

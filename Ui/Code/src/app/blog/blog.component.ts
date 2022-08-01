@@ -1,25 +1,24 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Title, QuillConfiguration } from '../constants/title.constants';
+import { QuillConfiguration, Title } from '../constants/title.constants';
 import { UserDetails } from '../models/auth.model';
 import { AuthenticationService } from '../services/authentication.service';
 import { QuestionService } from '../services/question.service';
+
 @Component({
-  selector: 'app-ask-question-dialog',
-  templateUrl: './ask-question-dialog.component.html',
-  styleUrls: ['./ask-question-dialog.component.css']
+  selector: 'app-blog',
+  templateUrl: './blog.component.html',
+  styleUrls: ['./blog.component.css']
 })
-export class AskQuestionDialogComponent implements OnInit {
+export class BlogComponent implements OnInit {
   quillConfiguration = QuillConfiguration
-  placeholder = Title.questionPlaceholder
+  placeholder = Title.blogPlaceholder
   editorText: string;
   userdetails:UserDetails ;
   interests = []
   tags = new FormControl('');
-  
-  constructor(public dialogRef: MatDialogRef<AskQuestionDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, private questionService: QuestionService, private authenticationService: AuthenticationService,) { }
+  textTitle:string;
+  constructor( private questionService: QuestionService, private authenticationService: AuthenticationService,) { }
 
   ngOnInit(): void {
     this.userdetails=JSON.parse(this.authenticationService.GetUserDetails())
@@ -32,18 +31,15 @@ export class AskQuestionDialogComponent implements OnInit {
   submit() {
     let sentText={
       "userid":this.userdetails?.userid,
-      "text":this.editorText,
-      "tags":[1,2,3]
+      "content":this.editorText,
+      "title":this.textTitle
     } 
-    this.questionService.postQuestion(sentText).subscribe(res => {
+    this.questionService.postBlog(sentText).subscribe(res => {
       if (res.success) {
         console.log(res)
       }
     })
-    this.dialogRef.close();
 
   }
-  onNoClick() {
-    this.dialogRef.close();
-  }
+  
 }

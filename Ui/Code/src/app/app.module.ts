@@ -19,6 +19,9 @@ import { QuillModule } from 'ngx-quill';
 import { QuillComponent } from './quill/quill.component';
 import { NetworkInterceptor } from './services/network.interceptor';
 import { NewsfeedComponent } from './newsfeed/newsfeed.component';
+import { QuestionAnswerComponent } from './question-answer/question-answer.component';
+import { HeaderComponent } from './header/header.component';
+import { BlogComponent } from './blog/blog.component';
  
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import { NewsfeedComponent } from './newsfeed/newsfeed.component';
     QuestionTextboxComponent,
     AskQuestionDialogComponent,
     QuillComponent,
-    NewsfeedComponent
+    NewsfeedComponent,
+    QuestionAnswerComponent,
+    HeaderComponent,
+    BlogComponent
   ],
   imports: [
     BrowserModule,

@@ -20,6 +20,9 @@ export class QuestionService {
   postQuestion(_editorText):Observable<any> {
     return this.http.post(this.apiEndPoint+"/questions/askAquestion",_editorText)
   }
+  postBlog(_blogText):Observable<any> {
+    return this.http.post(this.apiEndPoint+"/blog/saveBlog",_blogText)
+  }
   getNewsFeed(_unvcode):Observable<any> {
     
     return this.http.post(this.apiEndPoint+"/feed/getQuestionsFeed",{unvcode:_unvcode})
