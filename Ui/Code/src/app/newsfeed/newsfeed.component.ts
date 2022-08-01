@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserDetails } from '../models/auth.model';
 import { AuthenticationService } from '../services/authentication.service';
 import { QuestionService } from '../services/question.service';
@@ -11,7 +12,7 @@ import { QuestionService } from '../services/question.service';
 export class NewsfeedComponent implements OnInit {
   userdetails: UserDetails;
   data: any;
-  constructor(private questionService: QuestionService, private authenticationService: AuthenticationService) { }
+  constructor(private router: Router,private questionService: QuestionService, private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.userdetails = JSON.parse(this.authenticationService.GetUserDetails())
@@ -26,5 +27,7 @@ export class NewsfeedComponent implements OnInit {
   likeButton(){
     this.data.upvotes++
   }
-
+  openQuestion(){
+    this.router.navigate(['home/question'])
+  }
 }

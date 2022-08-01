@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
       if(res.data){
         localStorage.setItem('token',res?.data?.sessionkey)
         localStorage.setItem('userdetails',JSON.stringify(res?.data?.userdetails))
-        this.router.navigate(['/'])
+        this.router.navigate(['/home'])
       }
       else{
         alert('Reason:Login'+ res?.reason)

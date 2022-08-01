@@ -1,5 +1,5 @@
 import { Component, OnInit ,ViewChild} from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import {  NavigationEnd, Router } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
@@ -7,6 +7,7 @@ import { delay, filter } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { Title,sideNavItems,toolbarIcons } from '../constants/title.constants';
 import { InterestsDialogComponent } from '../interests-dialog/interests-dialog.component';
+import { AskQuestionDialogComponent } from '../ask-question-dialog/ask-question-dialog.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -16,9 +17,8 @@ export class HomeComponent implements OnInit {
   mainTitle=Title.mainTitle;
   sideNavItemsNames=sideNavItems;
   toolbarIconsItems=toolbarIcons;
-  @ViewChild(MatSidenav)
-  sidenav!: MatSidenav;
-  constructor( public dialog: MatDialog,private route: ActivatedRoute,private observer: BreakpointObserver,
+  @ViewChild(MatSidenav) sidenav!: MatSidenav;
+  constructor( public dialog: MatDialog,private observer: BreakpointObserver,
     private router: Router, private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
@@ -70,12 +70,29 @@ export class HomeComponent implements OnInit {
   }
   sideItemNavigation(sideNavItemsName){
     switch(sideNavItemsName){
-      case 'log':
+      case 'Question':
+        this.openAskQuestion();
+      case 'Blog':
+        this.router.navigate(['home/blog'])
+      case 'Leaderboard':
         return
-
+      case 'Events':
+        return
       default:
         return
     }
+
+  }
+  openAskQuestion() {
+    const dialogRef = this.dialog.open(AskQuestionDialogComponent, {
+      width: '60%',
+      
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+      }
+    });
 
   }
   toolbarIcons(toolbarIcon){

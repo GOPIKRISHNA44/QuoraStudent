@@ -1,0 +1,26 @@
+<div class="blogsize">
+    <div class="mat-typography">
+        <mat-form-field class="titletext" appearance="outline">
+            <mat-label>Title</mat-label>
+            <input matInput type="text" [(ngModel)]="textTitle">
+        </mat-form-field>
+        <!-- <mat-form-field appearance="fill" class="blogsize">
+                <Input formControlName="username" matInput placeholder="Title" />
+            </mat-form-field> -->
+        <quill-editor class="content-editor" [placeholder]="placeholder" [modules]="quillConfiguration"
+            [styles]="{'min-height': '58vh'}" [(ngModel)]="editorText">
+        </quill-editor>
+    </div>
+    <div class="appear">
+
+        <mat-form-field appearance="fill" style="margin-top:15px">
+            <mat-label>Tags</mat-label>
+            <mat-select [formControl]="tags" multiple>
+                <mat-select-trigger>
+                </mat-select-trigger>
+                <mat-option *ngFor="let interest of interests" [value]="interest?.name">{{interest?.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="submit()" style="margin-top:0px!important">Post</button>
+    </div>
+</div>
