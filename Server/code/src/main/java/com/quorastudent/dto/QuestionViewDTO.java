@@ -2,10 +2,6 @@ package com.quorastudent.dto;
 
 import java.util.Date;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 public class QuestionViewDTO {
 
 	private Long eqid;

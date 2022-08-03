@@ -474,6 +474,66 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "getAnswersForQuestionOrEntity",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"eqid\":2,\r\n    \"ctype\":\"Q\",\r\n    \"userid\":6\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/answer/getAnswersForQuestionOrEntity",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"answer",
+						"getAnswersForQuestionOrEntity"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCommentsList",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"requestingUserId\":6,\r\n    \"ctype\":\"Q\",\r\n    \"eqabcid\":2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/comments/getCommentsList",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"comments",
+						"getCommentsList"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

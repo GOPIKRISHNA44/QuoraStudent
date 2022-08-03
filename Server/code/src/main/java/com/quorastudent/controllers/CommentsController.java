@@ -1,6 +1,7 @@
 package com.quorastudent.controllers;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.quorastudent.dto.CommentsDTO;
+import com.quorastudent.dto.CommentsRequestingDTO;
+import com.quorastudent.dto.CommentsResponseListViewDTO;
 import com.quorastudent.dto.ResponseDTO;
 import com.quorastudent.services.CommentsService;
 
@@ -63,7 +66,7 @@ public class CommentsController {
 		}
 		return responseDto;
 	}
-	
+
 	@RequestMapping(value = "deleteComment", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseDTO deleteComment(@RequestBody CommentsDTO commentsDTO) {
@@ -83,4 +86,23 @@ public class CommentsController {
 		}
 		return responseDto;
 	}
+
+	@RequestMapping(value = "getCommentsList", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseDTO getCommentsList(@RequestBody CommentsRequestingDTO commentsRequestingDTO) {
+
+		ResponseDTO responseDto = null;
+		try {
+
+			List<CommentsResponseListViewDTO> ls = commentsService.getCommentsList(commentsRequestingDTO);
+			responseDto = responseDtoGeneral.getSuccessResponse(ls);
+
+		} catch (Exception e) {
+
+			responseDto = responseDtoGeneral.getFailureResponse(e.getMessage());
+
+		}
+		return responseDto;
+	}
+
 }

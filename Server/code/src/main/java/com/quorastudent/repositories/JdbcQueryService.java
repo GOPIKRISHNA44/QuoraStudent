@@ -11,6 +11,8 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.quorastudent.constants.Queries;
+import com.quorastudent.dto.AnswerResponseListViewDTO;
+import com.quorastudent.dto.CommentsResponseListViewDTO;
 import com.quorastudent.dto.QuestionViewDTO;
 import com.quorastudent.dto.QuestionsFeedDto;
 
@@ -39,6 +41,24 @@ public class JdbcQueryService {
 				new BeanPropertyRowMapper<>(QuestionViewDTO.class));
 
 //		return jdbcTemplate.query(Queries.GET_QUESTION_QUERY, new BeanPropertyRowMapper<>(QuestionViewDTO.class), eqid,ctype);
+	}
+
+	public List<AnswerResponseListViewDTO> getAnswersForQuestionOrEntity(Long requestingUserId, String ctype, Long eqid) {
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("eqid", eqid);
+		parameters.put("ctype", ctype);
+		parameters.put("userid", requestingUserId);
+		return namedParameterJdbcTemplate.query(Queries.GET_ANSWERS_FOR_QUESTION_OR_ENTITY, parameters,
+				new BeanPropertyRowMapper<>(AnswerResponseListViewDTO.class));
+	}
+
+	public List<CommentsResponseListViewDTO> getCommentsList(Long requestingUserId, String ctype, Long eqabcid) {
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("eqabcid", eqabcid);
+		parameters.put("ctype", ctype);
+		parameters.put("userid", requestingUserId);
+		return namedParameterJdbcTemplate.query(Queries.GET_COMMENTS_LIST, parameters,
+				new BeanPropertyRowMapper<>(CommentsResponseListViewDTO.class));
 	}
 
 }
