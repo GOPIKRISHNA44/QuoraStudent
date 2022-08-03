@@ -37,8 +37,8 @@ DELETE FROM `answers`;
 /*!40000 ALTER TABLE `answers` DISABLE KEYS */;
 INSERT INTO `answers` (`aid`, `eqid`, `doa`, `userid`, `ctype`, `updatedat`, `active`, `content`) VALUES
 	(1, 2, '2022-07-27 07:48:16', 6, 'Q', '2022-07-27 07:48:16', 1, 'dont know :) '),
-	(2, 2, '2022-07-27 07:48:50', 6, 'Q', '2022-07-27 07:48:50', 1, 'dont know :) how '),
-	(3, 2, '2022-07-27 07:50:06', 11, 'Q', '2022-07-27 07:50:06', 1, 'dont know :) how ');
+	(2, 2, '2022-07-27 07:48:50', 11, 'Q', '2022-07-27 07:48:50', 1, 'dont know :) how '),
+	(3, 3, '2022-07-27 07:50:06', 11, 'Q', '2022-07-27 07:50:06', 1, 'dont know :) how ');
 /*!40000 ALTER TABLE `answers` ENABLE KEYS */;
 
 -- Dumping structure for table quorastudent.blog
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `blog` (
   PRIMARY KEY (`bid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table quorastudent.blog: ~1 rows (approximately)
+-- Dumping data for table quorastudent.blog: ~3 rows (approximately)
 DELETE FROM `blog`;
 /*!40000 ALTER TABLE `blog` DISABLE KEYS */;
 INSERT INTO `blog` (`bid`, `title`, `content`, `doblog`, `updatedat`, `active`, `userid`) VALUES
@@ -78,11 +78,11 @@ CREATE TABLE IF NOT EXISTS `comments` (
   PRIMARY KEY (`cid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table quorastudent.comments: ~2 rows (approximately)
+-- Dumping data for table quorastudent.comments: ~3 rows (approximately)
 DELETE FROM `comments`;
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
 INSERT INTO `comments` (`cid`, `cpid`, `userid`, `parentid`, `ctype`, `comment`, `doc`, `updatedat`, `active`) VALUES
-	(3, -1, 11, 2, 'Q', 'through portal !!! ', '2022-07-15 03:19:35', '2022-07-15 03:19:35', 1),
+	(3, -1, 6, 2, 'Q', 'through portal !!! ', '2022-07-15 03:19:35', '2022-07-15 03:19:35', 1),
 	(4, -1, 11, 2, 'Q', 'through portal !!! ', '2022-07-15 03:19:35', '2022-07-15 03:19:35', 1),
 	(5, -1, 11, 1, 'Q', 'through portal !!! ', '2022-07-15 03:19:35', '2022-07-15 03:19:35', 1);
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
@@ -171,15 +171,17 @@ CREATE TABLE IF NOT EXISTS `likedislike` (
   `ctype` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `updatedon` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='parentid can be of question,answer,blog,comment,entity';
 
--- Dumping data for table quorastudent.likedislike: ~3 rows (approximately)
+-- Dumping data for table quorastudent.likedislike: ~5 rows (approximately)
 DELETE FROM `likedislike`;
 /*!40000 ALTER TABLE `likedislike` DISABLE KEYS */;
 INSERT INTO `likedislike` (`id`, `parentid`, `updwnvt`, `userid`, `ctype`, `updatedon`) VALUES
 	(1, 3, 1, 6, 'Q', '2022-07-13 06:42:41'),
 	(2, 3, 1, 5, 'Q', '2022-07-15 01:51:43'),
-	(3, 1, 0, 11, 'Q', NULL);
+	(3, 1, 0, 11, 'Q', '2022-07-15 01:51:43'),
+	(4, 2, 1, 6, 'A', '2022-07-15 01:51:43'),
+	(5, 3, 1, 6, 'C', '2022-07-15 01:51:43');
 /*!40000 ALTER TABLE `likedislike` ENABLE KEYS */;
 
 -- Dumping structure for table quorastudent.questions
@@ -194,16 +196,17 @@ CREATE TABLE IF NOT EXISTS `questions` (
   `active` int DEFAULT NULL,
   `tags` longtext,
   PRIMARY KEY (`eqid`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table quorastudent.questions: ~4 rows (approximately)
+-- Dumping data for table quorastudent.questions: ~5 rows (approximately)
 DELETE FROM `questions`;
 /*!40000 ALTER TABLE `questions` DISABLE KEYS */;
 INSERT INTO `questions` (`eqid`, `userid`, `question`, `doq`, `updatedat`, `ctype`, `active`, `tags`) VALUES
 	(1, 11, 'How do the college manage marks ', '2022-07-06 06:44:18', '2022-07-06 06:44:18', 'Q', 1, ';1;2;'),
 	(2, 6, '<h1>How do the college manage marks</h1> ', '2022-07-06 06:44:55', '2022-07-06 06:44:55', 'Q', 1, ';1;2;3;'),
 	(3, 6, '<h1>How do the college manage marks</h1> ', '2022-07-06 06:45:51', '2022-07-06 06:45:51', 'Q', 1, ';1;2;3;'),
-	(4, 6, '<p>Hello how </p>', '2022-07-09 11:05:58', '2022-07-09 11:05:58', 'Q', 1, ';1;2;3;');
+	(4, 6, '<p>Hello how </p>', '2022-07-09 11:05:58', '2022-07-09 11:05:58', 'Q', 1, ';1;2;3;'),
+	(5, 6, '<h1>How do the college manage marks</h1> ', '2022-08-01 05:46:32', '2022-08-01 05:46:32', 'Q', 1, ';1;2;3;');
 /*!40000 ALTER TABLE `questions` ENABLE KEYS */;
 
 -- Dumping structure for table quorastudent.sessiondetails

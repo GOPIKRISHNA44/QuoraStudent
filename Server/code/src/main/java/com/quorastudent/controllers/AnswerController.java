@@ -1,6 +1,7 @@
 package com.quorastudent.controllers;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.quorastudent.dto.AnswerDTO;
+import com.quorastudent.dto.AnswerResponseListViewDTO;
+import com.quorastudent.dto.AnswerRequestingDTO;
 import com.quorastudent.dto.ResponseDTO;
 import com.quorastudent.services.AnswerService;
 
@@ -80,4 +83,22 @@ public class AnswerController {
 		}
 		return responseDto;
 	}
+
+	@RequestMapping(value = "getAnswersForQuestionOrEntity", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseDTO getAnswersForQuestionOrEntity(@RequestBody AnswerRequestingDTO answerRequestingDTO) {
+
+		ResponseDTO responseDto = null;
+		try {
+			List<AnswerResponseListViewDTO> ls = answerService.getAnswersForQuestionOrEntity(answerRequestingDTO);
+			responseDto = responseDtoGeneral.getSuccessResponse(ls);
+
+		} catch (Exception e) {
+
+			responseDto = responseDtoGeneral.getFailureResponse(e.getMessage());
+
+		}
+		return responseDto;
+	}
+
 }

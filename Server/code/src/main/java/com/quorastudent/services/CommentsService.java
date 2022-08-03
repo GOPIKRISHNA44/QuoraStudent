@@ -1,13 +1,19 @@
 package com.quorastudent.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 import com.quorastudent.constants.AppConstants;
 import com.quorastudent.constants.ErrorMsgs;
+import com.quorastudent.dto.AnswerResponseListViewDTO;
 import com.quorastudent.dto.CommentsDTO;
+import com.quorastudent.dto.CommentsRequestingDTO;
+import com.quorastudent.dto.CommentsResponseListViewDTO;
 import com.quorastudent.repositories.CommentsRepository;
+import com.quorastudent.repositories.JdbcQueryService;
 
 @Service
 public class CommentsService {
@@ -17,6 +23,9 @@ public class CommentsService {
 
 	@Autowired
 	private DateUtility dateUtility;
+
+	@Autowired
+	private JdbcQueryService jdbcQueryService;
 
 	public boolean addComment(CommentsDTO commentsDTO) throws Exception {
 		try {
@@ -70,6 +79,29 @@ public class CommentsService {
 			throw e;
 		}
 		return true;
+	}
+
+	public List<CommentsResponseListViewDTO> getCommentsList(CommentsRequestingDTO commentsRequestingDTO) throws Exception {
+		try {
+
+			if (!ObjectUtils.isEmpty(commentsRequestingDTO)) {
+				List<CommentsResponseListViewDTO> lsQs = jdbcQueryService.getCommentsList(
+						commentsRequestingDTO.getRequestingUserId(), commentsRequestingDTO.getCtype(),
+						commentsRequestingDTO.getEqabcid());
+				if (!ObjectUtils.isEmpty(lsQs)) {
+					return lsQs;
+				} else {
+					throw new Exception(ErrorMsgs.DATAMISSING);
+				}
+			}
+
+		} catch (
+
+		Exception e) {
+
+			throw e;
+		}
+		return null;
 	}
 
 }
