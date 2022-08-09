@@ -182,7 +182,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"userid\":6,\"text\":\"<h1>How do the college manage marks</h1> \",\"tags\":[1,2,3]\r\n    \r\n}\r\n",
+					"raw": "{\r\n    \"userid\":6,\"text\":\"<h1>How do the college manage marks</h1> \",\"tags\":[1,2,3], \"ctype\":\"Q\"\r\n    \r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -452,7 +452,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"eqid\":1,\r\n    \"ctype\":\"Q\",\r\n    \"userid\":11\r\n}",
+					"raw": "{\r\n    \"eqid\":10,\r\n    \"ctype\":\"E\",\r\n    \"userid\":11\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -482,7 +482,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"eqid\":2,\r\n    \"ctype\":\"Q\",\r\n    \"userid\":6\r\n}",
+					"raw": "{\r\n    \"eqid\":9,\r\n    \"ctype\":\"C\",\r\n    \"userid\":6\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -530,6 +530,156 @@
 						"quoraStudent",
 						"comments",
 						"getCommentsList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addanevent",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"askAquestionDTO\":{  \"userid\":6,\"text\":\"<h1>How do the college manage marks</h1> \",\"tags\":[1,2,3] },\r\n  \"eventDTO\" : {\"from\":\"2020-08-08T00:00:00\",\"to\":\"2020-09-07T00:00:00\"}\r\n    \r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/event/addAnEvent",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"event",
+						"addAnEvent"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateAnEvent",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"askAquestionDTO\":{  \"eqid\":9 ,\"text\":\"<h1>How do the college manage marks</h1> \",\"tags\":[1,2] },\r\n  \"eventDTO\" : {\"eid\":9,\"from\":\"2020-08-07T00:00:00\",\"to\":\"2020-10-07T00:00:00\"}\r\n    \r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/event/updateAnEvent",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"event",
+						"updateAnEvent"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateAQuestion",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \"eqid\":2 ,\"text\":\"<h1>UYUYUTUTU</h1> \",\"tags\":[1], \"ctype\":\"Q\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/questions/updateAQuestion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"questions",
+						"updateAQuestion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteAnEvent",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"askAquestionDTO\":{  \"eqid\":9 }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/event/deleteAnEvent",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"event",
+						"deleteAnEvent"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteQuestion",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"eqid\":2,\r\n    \"ctype\":\"Q\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/questions/deleteQuestion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"questions",
+						"deleteQuestion"
 					]
 				}
 			},
