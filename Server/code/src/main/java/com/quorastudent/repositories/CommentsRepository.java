@@ -21,4 +21,9 @@ public interface CommentsRepository extends JpaRepository<CommentsDTO, Long> {
 	@Query("DELETE  FROM  CommentsDTO c WHERE c.cid= :cid ")
 	void deleteComment(Long cid);
 
+	
+	@Transactional
+	@Modifying
+	@Query("delete  from  CommentsDTO c  where c.parentid = :parentid and c.ctype = :ctype ")
+	void deleteComments(Long parentid, String ctype);
 }

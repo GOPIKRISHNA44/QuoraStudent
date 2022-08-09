@@ -95,7 +95,7 @@ public class AnswerService {
 				List<AnswerResponseListViewDTO> lsQs = jdbcQueryService.getAnswersForQuestionOrEntity(
 						answerRequestingDTO.getRequestingUserId(), answerRequestingDTO.getCtype(),
 						answerRequestingDTO.getEqid());
-				if (!ObjectUtils.isEmpty(lsQs)) {
+				if (lsQs!=null) {
 					return lsQs;
 				} else {
 					throw new Exception(ErrorMsgs.DATAMISSING);
@@ -109,6 +109,19 @@ public class AnswerService {
 			throw e;
 		}
 		return null;
+	}
+
+	public boolean isAnswerExistsForAnQuestionOrEntity(Long eqid, String ctype) {
+		try {
+			List<AnswerDTO> records = answerRepository.findByEqidAndCtypeAndActive(eqid, ctype,
+					AppConstants.DEFAULT_ACTIVE_STATUS);
+			if (!ObjectUtils.isEmpty(records) && records.size() > 0) {
+				return true;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return false;
 	}
 
 }

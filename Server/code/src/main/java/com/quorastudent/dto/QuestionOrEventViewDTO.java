@@ -2,7 +2,7 @@ package com.quorastudent.dto;
 
 import java.util.Date;
 
-public class QuestionViewDTO {
+public class QuestionOrEventViewDTO {
 
 	private Long eqid;
 
@@ -11,6 +11,26 @@ public class QuestionViewDTO {
 	private String question;
 
 	private Date doq;
+	
+	private Date todate;
+	
+	private Date fromdate;
+
+	public Date getTodate() {
+		return todate;
+	}
+
+	public void setTodate(Date todate) {
+		this.todate = todate;
+	}
+
+	public Date getFromdate() {
+		return fromdate;
+	}
+
+	public void setFromdate(Date fromdate) {
+		this.fromdate = fromdate;
+	}
 
 	/**
 	 * @return the eqid
