@@ -18,9 +18,9 @@ public class EventDTO {
 	
 	private Long eid;
 	
-	private Date from;
+	private Date fromdate;
 	
-	private Date to;
+	private Date todate;
 	
 
 
@@ -41,21 +41,23 @@ public class EventDTO {
 	}
 
 	public Date getFrom() {
-		return from;
+		return fromdate;
 	}
 
 	public void setFrom(Date from) {
-		this.from = from;
+		this.fromdate = from;
 	}
 
 	public Date getTo() {
-		return to;
+		return todate;
 	}
 
 	public void setTo(Date to) {
-		this.to = to;
+		this.todate = to;
 	}
 
+	
+	
 	
 	
 }

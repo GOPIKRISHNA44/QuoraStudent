@@ -18,5 +18,10 @@ public interface LikesDislikeRepository extends JpaRepository<LikedislikeDTO, Lo
 	@Modifying
 	@Query("update LikedislikeDTO l set l.updwnvt = :updwnvt, l.updatedon=:updatedon where l.userid = :userid and l.ctype=:ctype and l.parentid =:parentid ")
 	void updateLikeDislike(Long parentid, String ctype, Long userid, int updwnvt, Date updatedon);
+	
+	@Transactional
+	@Modifying
+	@Query("delete  from  LikedislikeDTO l  where l.parentid = :parentid and l.ctype = :ctype ")
+	void deleteLikings(Long parentid, String ctype);
 
 }

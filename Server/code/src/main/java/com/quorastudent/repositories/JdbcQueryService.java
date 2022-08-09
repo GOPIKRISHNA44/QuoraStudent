@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import com.quorastudent.constants.Queries;
 import com.quorastudent.dto.AnswerResponseListViewDTO;
 import com.quorastudent.dto.CommentsResponseListViewDTO;
-import com.quorastudent.dto.QuestionViewDTO;
+import com.quorastudent.dto.QuestionOrEventViewDTO;
 import com.quorastudent.dto.QuestionsFeedDto;
 
 @Service
@@ -31,14 +31,14 @@ public class JdbcQueryService {
 	}
 
 	@SuppressWarnings("unchecked")
-	public QuestionViewDTO findByEqidAndCtype(Long eqid, String ctype, Long userid) {
+	public QuestionOrEventViewDTO findByEqidAndCtype(Long eqid, String ctype, Long userid) {
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("eqid", eqid);
 		parameters.put("ctype", ctype);
 		parameters.put("userid", userid);
-		return (QuestionViewDTO) namedParameterJdbcTemplate.queryForObject(Queries.GET_QUESTION_QUERY, parameters,
-				new BeanPropertyRowMapper<>(QuestionViewDTO.class));
+		return (QuestionOrEventViewDTO) namedParameterJdbcTemplate.queryForObject(Queries.GET_QUESTION_QUERY, parameters,
+				new BeanPropertyRowMapper<>(QuestionOrEventViewDTO.class));
 
 //		return jdbcTemplate.query(Queries.GET_QUESTION_QUERY, new BeanPropertyRowMapper<>(QuestionViewDTO.class), eqid,ctype);
 	}

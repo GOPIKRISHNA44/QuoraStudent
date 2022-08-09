@@ -9,13 +9,13 @@ public final class Queries {
 			+ "left JOIN likedislike ld ON ld.ctype = 'q' AND ld.parentid = q.eqid   "
 			+ "WHERE q.active=1 AND q.ctype = 'q'  GROUP BY q.eqid ";
 
-	public static final String GET_QUESTION_QUERY = "SELECT q.*,u.username as usernameOfWhoAskedThisQuestion, u.avatarid as avataridOfWhoAskedThisQuestion,COALESCE(SUM(ld.updwnvt = 1), 0) AS totalNumberOfLikes,            "
+	public static final String GET_QUESTION_QUERY = "SELECT q.*, e.fromdate,e.todate,u.username as usernameOfWhoAskedThisQuestion, u.avatarid as avataridOfWhoAskedThisQuestion,COALESCE(SUM(ld.updwnvt = 1), 0) AS totalNumberOfLikes,            "
 			+ "COALESCE(SUM(ld.updwnvt = 0), 0) AS totalNumberOfDislikes, COUNT(c.parentid) AS totalNumberOfComments   "
 			+ ",    "
 			+ "case when (SELECT COUNT(1) from likedislike lds WHERE lds.parentid = q.eqid AND lds.ctype=:ctype AND lds.userid = :userid AND lds.updwnvt=1 )  =1 then TRUE ELSE FALSE END AS likedByTheRequestedUser ,   "
 			+ "case when (SELECT COUNT(1) from likedislike lds WHERE lds.parentid = q.eqid AND lds.ctype=:ctype AND lds.userid = :userid AND lds.updwnvt=0 )  =1 then TRUE ELSE FALSE END  AS disLikedByTheRequestedUser,   "
 			+ "case when q.userid = :userid then TRUE ELSE FALSE END AS questionOwnedByTheRequestedUser   "
-			+ " FROM questions q  inner join userdetails  u ON q.userid=u.userid    "
+			+ " FROM questions q  inner join userdetails  u ON q.userid=u.userid  LEFT JOIN `events` e ON e.eid = q.eqid     "
 			+ "left JOIN likedislike ld ON ld.ctype = :ctype AND ld.parentid = q.eqid   "
 			+ "LEFT JOIN comments c ON c.parentid = q.eqid AND q.ctype = :ctype   "
 			+ "WHERE q.active=1 AND q.ctype = :ctype and q.eqid = :eqid  GROUP BY q.eqid   " + "LIMIT 1   " + "   "
@@ -40,6 +40,6 @@ public final class Queries {
 			+ "case when (SELECT COUNT(1) from likedislike lds WHERE lds.parentid = c.cid AND lds.ctype= :ctype AND lds.userid = :userid AND lds.updwnvt=0 )  =1 then TRUE ELSE FALSE END  AS disLikedByTheRequestedUser,  "
 			+ "case when c.userid = :userid then TRUE ELSE FALSE END AS commentOwnedByTheRequestedUser  "
 			+ " FROM comments c   " + " INNER join userdetails u ON u.userid = c.userid AND c.parentid = :eqabcid  "
-			+ "LEFT JOIN likedislike ld ON c.cid = ld.parentid and ld.ctype='C'  " + "WHERE c.parentid = :eqabcid AND c.ctype = :ctype  "
-			+ "GROUP BY c.cid  ";
+			+ "LEFT JOIN likedislike ld ON c.cid = ld.parentid and ld.ctype='C'  "
+			+ "WHERE c.parentid = :eqabcid AND c.ctype = :ctype  " + "GROUP BY c.cid  ";
 }

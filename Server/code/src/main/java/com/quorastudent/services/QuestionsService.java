@@ -12,7 +12,9 @@ import com.quorastudent.constants.ErrorMsgs;
 import com.quorastudent.dto.AskAquestionDTO;
 import com.quorastudent.dto.LikedislikeDTO;
 import com.quorastudent.dto.QuestionDTO;
-import com.quorastudent.dto.QuestionViewDTO;
+import com.quorastudent.dto.QuestionOrEventViewDTO;
+import com.quorastudent.repositories.AnswerRepository;
+import com.quorastudent.repositories.CommentsRepository;
 import com.quorastudent.repositories.JdbcQueryService;
 import com.quorastudent.repositories.LikesDislikeRepository;
 import com.quorastudent.repositories.QuestionRepository;
@@ -34,14 +36,20 @@ public class QuestionsService {
 
 	@Autowired
 	private JdbcQueryService jdbcQueryService;
+	
+	@Autowired
+	private AnswerRepository answerRepository;
+	
+	@Autowired
+	private CommentsRepository commentsRepository;
 
-	public boolean askAquestion(AskAquestionDTO askAquestionDTO) throws Exception {
+	public QuestionDTO askAquestion(AskAquestionDTO askAquestionDTO) throws Exception {
 		try {
 			if (!ObjectUtils.isEmpty(askAquestionDTO) && !ObjectUtils.isEmpty(askAquestionDTO.getText())
 					&& !ObjectUtils.isEmpty(askAquestionDTO.getUserid())) {
 				QuestionDTO qDto = getQuestionDTOonAskAQuestion(askAquestionDTO);
-				questionRepository.save(qDto);
-
+				qDto = questionRepository.save(qDto);
+				return qDto;
 			} else {
 				throw new Exception(ErrorMsgs.DATAMISSING);
 			}
@@ -50,8 +58,38 @@ public class QuestionsService {
 
 			throw e;
 		}
+	}
 
+	public boolean deleteAQuestion(AskAquestionDTO askAquestionDTO) throws Exception {
+		try {
+			if (!ObjectUtils.isEmpty(askAquestionDTO)) {
+				deleteQuestionOrEvent(askAquestionDTO.getEqid(), AppConstants.QUESTIONSTR);
+			} else {
+				throw new Exception(ErrorMsgs.DATAMISSING);
+			}
+
+		} catch (Exception e) {
+
+			throw e;
+		}
 		return true;
+	}
+
+	public boolean updateQuestion(AskAquestionDTO askAquestionDTO) throws Exception {
+		try {
+			if (!ObjectUtils.isEmpty(askAquestionDTO)) {
+				askAquestionDTO.setCtype(AppConstants.QUESTIONSTR);
+				QuestionDTO qDto = getQuestionDTOFromAskAnQuestionDTOforUpdateTransactions(askAquestionDTO);
+				updateAnQuestionOrEvent(qDto);
+				return true;
+			} else {
+				throw new Exception(ErrorMsgs.DATAMISSING);
+			}
+
+		} catch (Exception e) {
+
+			throw e;
+		}
 	}
 
 	public QuestionDTO getQuestionDTOonAskAQuestion(AskAquestionDTO askAquestionDTO) throws Exception {
@@ -132,12 +170,12 @@ public class QuestionsService {
 		}
 	}
 
-	public QuestionViewDTO getQuestionOnQuestionID(QuestionDTO questionDTO) {
+	public QuestionOrEventViewDTO getQuestionOnQuestionID(QuestionDTO questionDTO) {
 		try {
 
-			QuestionViewDTO lsQs = jdbcQueryService.findByEqidAndCtype(questionDTO.getEqid(),
-					questionDTO.getCtype(),questionDTO.getUserid());
-			if (!ObjectUtils.isEmpty(lsQs) ) {
+			QuestionOrEventViewDTO lsQs = jdbcQueryService.findByEqidAndCtype(questionDTO.getEqid(), questionDTO.getCtype(),
+					questionDTO.getUserid());
+			if (!ObjectUtils.isEmpty(lsQs)) {
 				return lsQs;
 			}
 
@@ -150,4 +188,39 @@ public class QuestionsService {
 		return null;
 	}
 
+	public boolean updateAnQuestionOrEvent(QuestionDTO questionDTO) throws Exception {
+		try {
+			questionRepository.updateQuestion(questionDTO.getEqid(), questionDTO.getCtype(), questionDTO.getQuestion(),
+					questionDTO.getTags());
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw e;
+		}
+	}
+
+	public QuestionDTO getQuestionDTOFromAskAnQuestionDTOforUpdateTransactions(AskAquestionDTO askAquestionDTO) {
+		QuestionDTO questionDTO = new QuestionDTO();
+		questionDTO.setEqid(askAquestionDTO.getEqid());
+		questionDTO.setQuestion(askAquestionDTO.getText());
+		questionDTO.setCtype(askAquestionDTO.getCtype());
+		String tags = AppConstants.INTERESTSEPERATOR
+				+ utilityService.joinListOfIntWithSeperator(askAquestionDTO.getTags(), AppConstants.INTERESTSEPERATOR)
+				+ AppConstants.INTERESTSEPERATOR;
+		questionDTO.setTags(tags);
+		return questionDTO;
+	}
+
+	public boolean deleteQuestionOrEvent(Long eqid, String ctype) throws Exception {
+		try {
+			questionRepository.deleteQuestionOrEvent(eqid, ctype);
+			answerRepository.deleteAnswerOrEntityByEqidAndCtype(eqid, ctype); // write a cron job for this answers comments deletion
+			commentsRepository.deleteComments(eqid, ctype);
+			likesDislikeRepository.deleteLikings(eqid, ctype);
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw e;
+		}
+		return true;
+	}
 }
