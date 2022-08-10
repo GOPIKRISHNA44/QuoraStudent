@@ -12,6 +12,7 @@ import { QuestionService } from '../services/question.service';
 export class NewsfeedComponent implements OnInit {
   userdetails: UserDetails;
   data: any;
+
   constructor(private router: Router,private questionService: QuestionService, private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
@@ -27,7 +28,18 @@ export class NewsfeedComponent implements OnInit {
   likeButton(){
     this.data.upvotes++
   }
-  openQuestion(){
-    this.router.navigate(['home/question'])
+  openQuestion(data){
+    let questionDetails={
+      "eqid":data?.eqid,
+      "ctype":data?.ctype,
+      "userid":data?.userid,
+    }
+    this.questionService.getQuestionDetails(questionDetails).subscribe(res => {
+      if (res.success) {
+        this.questionService.updateQuestion(res?.data)
+        this.router.navigate(['home/question/'],{queryParams:{'eqid':data?.eqid,'ctype':data?.ctype}})
+      }
+    })
+    
   }
 }

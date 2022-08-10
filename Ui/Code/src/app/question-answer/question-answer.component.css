@@ -1,0 +1,26 @@
+.topbox {
+    width: 65%;
+    border-radius: 15px;
+    margin: 15px 30px;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+}
+
+.iconlist {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%
+}
+
+.ans {
+    display: flex;
+    align-items: center;
+}
+
+.full-width {
+    width: 100%;
+}

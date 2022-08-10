@@ -1,1 +1,67 @@
-<p>question-answer works!</p>
+<div class="topbox">
+    <mat-card style="margin: 5px 0px 50px 0px;">
+        <mat-card-title class="title">
+            <mat-icon>
+                account_circle
+            </mat-icon>
+            <div><b>{{questionData?.usernameOfWhoAskedThisQuestion}}</b></div>
+        </mat-card-title>
+        <mat-card-content>
+            <div [innerHTML]="questionData?.question"></div>
+            <br />
+            <div class="ans">
+                <button mat-icon-button (click)="openQuestion()">
+                    <mat-icon>edit</mat-icon><span>Answer</span>
+                </button>
+                <div class="iconlist">
+                    <mat-icon (click)="openComments()">comment</mat-icon>
+                    <mat-icon>thumb_up</mat-icon>
+                    <mat-icon>thumb_down</mat-icon>
+                </div>
+            </div>
+            <mat-card *ngIf="showComments">
+                <div class="title">
+                    <mat-form-field class="full-width" appearance="outline">
+                        <input matInput placeholder="Add a comment..." type=text [(ngModel)]="comment" />
+                        <button mat-icon-button matSuffix type="button" (click)="sendComment()">
+                            <mat-icon>send
+                            </mat-icon>
+                        </button>
+                    </mat-form-field>                    
+                </div>
+                <div *ngFor="let data of commentsData?.data">
+                    <div class="title">
+                        <mat-icon>
+                            account_circle
+                        </mat-icon>
+                        <div><b>{{data?.commentedByUsername}}</b></div>
+                    </div>
+
+                    <div>
+                        {{data?.comment}}
+                    </div>
+                    <mat-divider></mat-divider>
+                </div>
+
+
+            </mat-card>
+        </mat-card-content>
+    </mat-card>
+    <div *ngFor="let data of answerData?.data">
+        <mat-card style="margin:15px 0px;">
+            <mat-card-title class="title">
+                <mat-icon>
+                    account_circle
+                </mat-icon>
+                <div><b>{{data?.answeredByUsername}}</b></div>
+            </mat-card-title>
+            <mat-card-content>
+                <div>
+                    {{data?.content}}
+                </div>
+
+
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
