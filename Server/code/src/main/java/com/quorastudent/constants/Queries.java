@@ -31,7 +31,7 @@ public final class Queries {
 			+ "INNER JOIN userdetails u ON  a.userid = u.userid AND a.eqid = :eqid AND a.ctype= :ctype   "
 			+ "left JOIN likedislike ld ON ld.ctype = 'A' AND ld.parentid = a.aid   "
 			+ "LEFT JOIN comments c ON c.parentid = a.aid AND a.ctype = 'A'  "
-			+ "WHERE a.active=1 AND a.ctype=:ctype   GROUP BY a.aid  " + "";
+			+ "WHERE a.active=1 AND a.ctype=:ctype   GROUP BY a.aid  order by a.doa " + "";
 
 	public static final String GET_COMMENTS_LIST = "SELECT c.*,u.username AS commentedByUsername,u.avatarid as commentedByUsernameAvatarid,  "
 			+ "COALESCE(SUM(ld.updwnvt = 1), 0) AS totalNumberOfLikes,           "
@@ -41,7 +41,7 @@ public final class Queries {
 			+ "case when c.userid = :userid then TRUE ELSE FALSE END AS commentOwnedByTheRequestedUser  "
 			+ " FROM comments c   " + " INNER join userdetails u ON u.userid = c.userid AND c.parentid = :eqabcid  "
 			+ "LEFT JOIN likedislike ld ON c.cid = ld.parentid and ld.ctype='C'  "
-			+ "WHERE c.parentid = :eqabcid AND c.ctype = :ctype  " + "GROUP BY c.cid order by c.doc   ";
+			+ "WHERE c.parentid = :eqabcid AND c.ctype = :ctype  " + "GROUP BY c.cid order by c.doc desc  ";
 
 	public static final String GET_QUESTION_UNV_BASED_QUERY = "SELECT q.*, e.fromdate,e.todate,u.username AS usernameOfWhoAskedThisQuestion, u.avatarid AS avataridOfWhoAskedThisQuestion, COALESCE(SUM(ld.updwnvt = 1), 0) AS totalNumberOfLikes, COALESCE(SUM(ld.updwnvt = 0), 0) AS totalNumberOfDislikes, COUNT(c.parentid) AS totalNumberOfComments   "
 			+ "			, CASE WHEN (  " + "SELECT COUNT(1)  " + "FROM likedislike lds  "
