@@ -1,9 +1,11 @@
 package com.quorastudent.controllers;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.quorastudent.dto.AskAquestionDTO;
+import com.quorastudent.dto.FeedRequestDTO;
 import com.quorastudent.dto.LikedislikeDTO;
 import com.quorastudent.dto.QuestionDTO;
 import com.quorastudent.dto.QuestionOrEventViewDTO;
@@ -112,6 +115,25 @@ public class QuestionsController {
 			Map<String, Boolean> finalMsg = new HashMap<String, Boolean>();
 			finalMsg.put("updated", status);
 			responseDto = responseDtoGeneral.getSuccessResponse(finalMsg);
+
+		} catch (Exception e) {
+
+			responseDto = responseDtoGeneral.getFailureResponse(e.getMessage());
+
+		}
+		return responseDto;
+	}
+
+	@RequestMapping(value = "getQuestionsFeed", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseDTO getQuestionsFeed(@RequestBody FeedRequestDTO feedRequestDTO) {
+
+		ResponseDTO responseDto = null;
+		try {
+			Page<List<Map<String, Object>>> pageableResponse = questionsService.getQuestionsFeed(feedRequestDTO);
+			pageableResponse.getContent();
+//			Object a =questionsService.getQuestionsFeed(feedRequestDTO);
+			responseDto = responseDtoGeneral.getSuccessResponse(pageableResponse.getContent());
 
 		} catch (Exception e) {
 

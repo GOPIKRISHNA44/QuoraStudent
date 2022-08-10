@@ -2,14 +2,18 @@ package com.quorastudent.services;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 import com.quorastudent.constants.AppConstants;
 import com.quorastudent.constants.ErrorMsgs;
 import com.quorastudent.dto.AskAquestionDTO;
+import com.quorastudent.dto.FeedRequestDTO;
 import com.quorastudent.dto.LikedislikeDTO;
 import com.quorastudent.dto.QuestionDTO;
 import com.quorastudent.dto.QuestionOrEventViewDTO;
@@ -36,12 +40,15 @@ public class QuestionsService {
 
 	@Autowired
 	private JdbcQueryService jdbcQueryService;
-	
+
 	@Autowired
 	private AnswerRepository answerRepository;
-	
+
 	@Autowired
 	private CommentsRepository commentsRepository;
+
+	@Autowired
+	private PageableService pageableService;
 
 	public QuestionDTO askAquestion(AskAquestionDTO askAquestionDTO) throws Exception {
 		try {
@@ -173,8 +180,8 @@ public class QuestionsService {
 	public QuestionOrEventViewDTO getQuestionOnQuestionID(QuestionDTO questionDTO) {
 		try {
 
-			QuestionOrEventViewDTO lsQs = jdbcQueryService.findByEqidAndCtype(questionDTO.getEqid(), questionDTO.getCtype(),
-					questionDTO.getUserid());
+			QuestionOrEventViewDTO lsQs = jdbcQueryService.findByEqidAndCtype(questionDTO.getEqid(),
+					questionDTO.getCtype(), questionDTO.getUserid());
 			if (!ObjectUtils.isEmpty(lsQs)) {
 				return lsQs;
 			}
@@ -214,7 +221,8 @@ public class QuestionsService {
 	public boolean deleteQuestionOrEvent(Long eqid, String ctype) throws Exception {
 		try {
 			questionRepository.deleteQuestionOrEvent(eqid, ctype);
-			answerRepository.deleteAnswerOrEntityByEqidAndCtype(eqid, ctype); // write a cron job for this answers comments deletion
+			answerRepository.deleteAnswerOrEntityByEqidAndCtype(eqid, ctype); // write a cron job for this answers
+																				// comments deletion
 			commentsRepository.deleteComments(eqid, ctype);
 			likesDislikeRepository.deleteLikings(eqid, ctype);
 		} catch (Exception e) {
@@ -222,5 +230,22 @@ public class QuestionsService {
 			throw e;
 		}
 		return true;
+	}
+
+	public Page<List<Map<String, Object>>> getQuestionsFeed(FeedRequestDTO feedRequestDTO) {
+		try {
+			
+			Pageable pageRef = pageableService.getPageableRef(feedRequestDTO.getPageNumber(),
+					feedRequestDTO.getNumberOfPostsRequired());
+			Page<List<Map<String, Object>>> pageTuts;
+			pageTuts = questionRepository.getQuestionsFeedn(feedRequestDTO.getUserid(), feedRequestDTO.getCtype(),
+					pageRef);
+//			List<Map<String, Object>> o =  questionRepository.getQuestionsFeedTest(feedRequestDTO.getUserid(), feedRequestDTO.getCtype());
+//			return o;
+			return pageTuts;
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw e;
+		}
 	}
 }

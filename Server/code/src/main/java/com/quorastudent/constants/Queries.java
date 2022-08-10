@@ -41,5 +41,18 @@ public final class Queries {
 			+ "case when c.userid = :userid then TRUE ELSE FALSE END AS commentOwnedByTheRequestedUser  "
 			+ " FROM comments c   " + " INNER join userdetails u ON u.userid = c.userid AND c.parentid = :eqabcid  "
 			+ "LEFT JOIN likedislike ld ON c.cid = ld.parentid and ld.ctype='C'  "
-			+ "WHERE c.parentid = :eqabcid AND c.ctype = :ctype  " + "GROUP BY c.cid  ";
+			+ "WHERE c.parentid = :eqabcid AND c.ctype = :ctype  " + "GROUP BY c.cid order by c.doc   ";
+
+	public static final String GET_QUESTION_UNV_BASED_QUERY = "SELECT q.*, e.fromdate,e.todate,u.username AS usernameOfWhoAskedThisQuestion, u.avatarid AS avataridOfWhoAskedThisQuestion, COALESCE(SUM(ld.updwnvt = 1), 0) AS totalNumberOfLikes, COALESCE(SUM(ld.updwnvt = 0), 0) AS totalNumberOfDislikes, COUNT(c.parentid) AS totalNumberOfComments   "
+			+ "			, CASE WHEN (  " + "SELECT COUNT(1)  " + "FROM likedislike lds  "
+			+ "WHERE lds.parentid = q.eqid AND lds.ctype= :ctype  AND lds.userid = :userid AND lds.updwnvt=1) =1 THEN TRUE ELSE FALSE END AS likedByTheRequestedUser, CASE WHEN (  "
+			+ "SELECT COUNT(1)  " + "FROM likedislike lds  "
+			+ "WHERE lds.parentid = q.eqid AND lds.ctype= :ctype  AND lds.userid = :userid AND lds.updwnvt=0) =1 THEN TRUE ELSE FALSE END AS disLikedByTheRequestedUser, CASE WHEN q.userid = :userid THEN TRUE ELSE FALSE END AS questionOwnedByTheRequestedUser  "
+			+ "FROM questions q  "
+			+ "INNER JOIN userdetails u ON q.userid=u.userid AND u.universitycode = (SELECT ud.universitycode FROM userdetails ud WHERE ud.userid = :userid LIMIT 1)  "
+			+ "LEFT JOIN `events` e ON e.eid = q.eqid  "
+			+ "LEFT JOIN likedislike ld ON ld.ctype= :ctype  AND ld.parentid = q.eqid  "
+			+ "LEFT JOIN comments c ON c.parentid = q.eqid AND q.ctype= :ctype   "
+			+ "WHERE q.active=1 AND q.ctype= :ctype  AND q.eqid NOT IN ()  " + "GROUP BY q.eqid  "
+			+ "ORDER BY q.doq DESC, totalNumberOfLikes DESC, totalNumberOfComments DESC, likedByTheRequestedUser ASC, questionOwnedByTheRequestedUser ASC, disLikedByTheRequestedUser ASC";
 }
