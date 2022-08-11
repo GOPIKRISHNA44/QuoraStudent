@@ -1,47 +1,58 @@
 <div class="topbox">
     <mat-card style="margin: 5px 0px 50px 0px;">
         <mat-card-title class="title">
-            <mat-icon>
+            <mat-icon style="font-size: 50px;height: 50px;width:50px">
                 account_circle
             </mat-icon>
-            <div><b>{{questionData?.usernameOfWhoAskedThisQuestion}}</b></div>
+            <div>
+                <div style="font-size:30px"><b>{{questionData?.usernameOfWhoAskedThisQuestion}}</b></div>
+                <div style="font-size:14px;margin:3px">{{date}}</div>
+            </div>
         </mat-card-title>
         <mat-card-content>
             <div [innerHTML]="questionData?.question" style="margin:10px 0px 0px 0px"></div>
             <br />
             <div class="ans">
-                <button mat-raised-button (click)="openQuestion()"color="warn" style="font-size:18px; padding:5px 30px 5px 15px">
+                <button mat-raised-button (click)="openQuestion()" color="warn"
+                    style="font-size:18px; padding:5px 30px 5px 15px">
                     <mat-icon>edit</mat-icon><span>Answer</span>
                 </button>
                 <div class="iconlist">
                     <mat-icon (click)="openComments()" class="icon">comment</mat-icon>
-                    <span class="material-symbols-outlined icon" [ngClass]="{'filled': isliked}">thumb_up</span>
-                    <span class="material-symbols-outlined icon" [ngClass]="{'filled': isliked}">thumb_down</span>
+                    <span class="row-center">
+                        <span class="material-symbols-outlined icon" [ngClass]="{'filled': isliked}">thumb_up</span>
+                        <span class="count">{{likeCount}}</span>
+                    </span>
+
+                    <span class="material-symbols-outlined icon" [ngClass]="{'filled': disliked}">thumb_down</span>
+                    <span class="material-symbols-outlined icon">share</span>
                 </div>
             </div>
             <mat-card *ngIf="showComments" style="margin-top:10px;">
-                 <div class="title">
+                <div class="title">
                     <mat-form-field class="full-width" appearance="outline">
                         <input matInput placeholder="Add a comment..." type=text [(ngModel)]="comment" />
                         <button mat-icon-button matSuffix type="button" (click)="sendComment()">
                             <mat-icon>send
                             </mat-icon>
                         </button>
-                    </mat-form-field>                    
+                    </mat-form-field>
                 </div>
-               <div *ngFor="let data of commentsData?.data let i = index; let first = first ;let last = last;" style="margin-top: 20px;">
-                    <div class="title">
-                        <mat-icon>
-                            account_circle
-                        </mat-icon>
-                        <div class="comment"><b>{{data?.commentedByUsername}}</b></div>
+                <div style="height:300px;overflow: auto;">
+                    <div *ngFor="let data of commentsData?.data let i = index; let first = first ;let last = last;"
+                        style="margin-top: 20px;">
+                        <div class="title">
+                            <mat-icon>
+                                account_circle
+                            </mat-icon>
+                            <div class="comment"><b>{{data?.commentedByUsername}}</b></div>
+                        </div>
+                        <div style="margin:10px 30px;">
+                            {{data?.comment}}
+                        </div>
+                        <mat-divider *ngIf="!last"></mat-divider>
                     </div>
-                    <div style="margin:10px 30px;">
-                        {{data?.comment}}
-                    </div>
-                    <mat-divider *ngIf="!last" ></mat-divider>
                 </div>
-
             </mat-card>
         </mat-card-content>
     </mat-card>
@@ -54,11 +65,8 @@
                 <div><b>{{data?.answeredByUsername}}</b></div>
             </mat-card-title>
             <mat-card-content>
-                <div>
-                    {{data?.content}}
+                <div [innerHTML]="data?.content">
                 </div>
-
-
             </mat-card-content>
         </mat-card>
     </div>

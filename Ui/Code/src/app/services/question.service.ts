@@ -51,5 +51,8 @@ export class QuestionService {
 
     return this.http.post(this.apiEndPoint + "/comments/addComment", _commentDetails)
   }
+  postAnswer(_details): Observable<any>{
+    return this.http.post(this.apiEndPoint + "/answer/addAnswer", _details)
+  }
 
 }

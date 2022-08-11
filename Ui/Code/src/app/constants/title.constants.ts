@@ -5,7 +5,8 @@ export const Title = {
     interestsTitle:"Choose interests",
     questionPlaceholder:"Ask a Question",
     questionBox:"What do you want to ask?",
-    blogPlaceholder:"Write a blog post"
+    blogPlaceholder:"Write a blog post",
+    answerPlaceholder:"Write your answer"
 }
 
 export const sideNavItems = [

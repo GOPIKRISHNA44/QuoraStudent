@@ -1,0 +1,26 @@
+<div class="dialog">
+    <div mat-dialog-title class="header">
+        <button mat-icon-button class="close" (click)="onNoClick()">
+            <mat-icon>close
+            </mat-icon>
+          </button>
+    </div>
+        <div class="acc">
+            <mat-icon>
+                account_circle
+            </mat-icon>
+            <div class="comment"><b>{{details?.username}}</b></div>
+        </div>
+    <div [innerHTML]="question" style="margin:10px 0px 0px 0px"></div>
+    <div mat-dialog-content class="mat-typography">
+        <quill-editor class="content-editor" [placeholder]="placeholder" [modules]="quillConfiguration"
+            [styles]="{'min-height': '50vh','min-width': '600px'}" [(ngModel)]="editorText">
+        </quill-editor>
+    </div>
+    <div>
+    </div>
+    <div mat-dialog-actions align="end">
+        <button mat-raised-button class="btn" (click)="onNoClick()">Cancel</button>
+        <button mat-raised-button color="primary" (click)="submit()" cdkFocusInitial>Post</button>
+    </div>
+</div>
