@@ -8,6 +8,16 @@ public class FeedRequestDTO {
 		return pageNumber;
 	}
 
+	public int getUnvcode() {
+		return unvcode;
+	}
+
+	public void setUnvcode(int unvCode) {
+		this.unvcode = unvCode;
+	}
+
+	private int unvcode;
+
 	public void setPageNumber(int pageNumber) {
 		this.pageNumber = pageNumber;
 	}

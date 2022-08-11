@@ -124,23 +124,6 @@ public class QuestionsController {
 		return responseDto;
 	}
 
-	@RequestMapping(value = "getQuestionsFeed", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public ResponseDTO getQuestionsFeed(@RequestBody FeedRequestDTO feedRequestDTO) {
-
-		ResponseDTO responseDto = null;
-		try {
-			Page<List<Map<String, Object>>> pageableResponse = questionsService.getQuestionsFeed(feedRequestDTO);
-			pageableResponse.getContent();
-//			Object a =questionsService.getQuestionsFeed(feedRequestDTO);
-			responseDto = responseDtoGeneral.getSuccessResponse(pageableResponse.getContent());
-
-		} catch (Exception e) {
-
-			responseDto = responseDtoGeneral.getFailureResponse(e.getMessage());
-
-		}
-		return responseDto;
-	}
+	
 
 }
