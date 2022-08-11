@@ -6,7 +6,9 @@ export const Title = {
     questionPlaceholder:"Ask a Question",
     questionBox:"What do you want to ask?",
     blogPlaceholder:"Write a blog post",
-    answerPlaceholder:"Write your answer"
+    answerPlaceholder:"Write your answer",
+    eventPlaceholder:"Create an event"
+
 }
 
 export const sideNavItems = [
