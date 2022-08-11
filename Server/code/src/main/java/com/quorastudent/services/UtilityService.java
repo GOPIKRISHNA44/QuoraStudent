@@ -64,6 +64,11 @@ public class UtilityService {
 	public String joinListOfIntWithSeperator(List<Integer> ls, String seperator) {
 		return ls.stream().map(String::valueOf).collect(Collectors.joining(seperator));
 	}
-	
-	
+
+	public String getCountQueryOnAnyQuery(String query) {
+		String finalQuery = "SELECT A.* FROM ( " + query + " ) A";
+		return finalQuery;
+
+	}
+
 }

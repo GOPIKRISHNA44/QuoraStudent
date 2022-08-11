@@ -88,11 +88,7 @@ public class CommentsService {
 				List<CommentsResponseListViewDTO> lsQs = jdbcQueryService.getCommentsList(
 						commentsRequestingDTO.getRequestingUserId(), commentsRequestingDTO.getCtype(),
 						commentsRequestingDTO.getEqabcid());
-				if (!ObjectUtils.isEmpty(lsQs)) {
-					return lsQs;
-				} else {
-					throw new Exception(ErrorMsgs.DATAMISSING);
-				}
+				return lsQs;
 			}
 
 		} catch (
