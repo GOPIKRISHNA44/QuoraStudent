@@ -1,11 +1,11 @@
-import { Component, OnInit ,ViewChild} from '@angular/core';
-import {  NavigationEnd, Router } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { delay, filter } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
-import { Title,sideNavItems,toolbarIcons } from '../constants/title.constants';
+import { Title, sideNavItems, toolbarIcons } from '../constants/title.constants';
 import { InterestsDialogComponent } from '../interests-dialog/interests-dialog.component';
 import { AskQuestionDialogComponent } from '../ask-question-dialog/ask-question-dialog.component';
 @Component({
@@ -14,11 +14,11 @@ import { AskQuestionDialogComponent } from '../ask-question-dialog/ask-question-
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  mainTitle=Title.mainTitle;
-  sideNavItemsNames=sideNavItems;
-  toolbarIconsItems=toolbarIcons;
+  mainTitle = Title.mainTitle;
+  sideNavItemsNames = sideNavItems;
+  toolbarIconsItems = toolbarIcons;
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
-  constructor( public dialog: MatDialog,private observer: BreakpointObserver,
+  constructor(public dialog: MatDialog, private observer: BreakpointObserver,
     private router: Router, private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
           this.sidenav.open();
         }
       });
-      this.router.events
+    this.router.events
       .pipe(
         filter((e) => e instanceof NavigationEnd)
       )
@@ -53,7 +53,8 @@ export class HomeComponent implements OnInit {
         if (this.sidenav.mode === 'over') {
           this.sidenav.close();
         }
-      });}
+      });
+  }
   logOut() {
     this.authenticationService.logout().subscribe(res => {
       if (res.success) {
@@ -68,8 +69,8 @@ export class HomeComponent implements OnInit {
         alert('Error occured with message ' + error?.message)
       })
   }
-  sideItemNavigation(sideNavItemsName){
-    switch(sideNavItemsName){
+  sideItemNavigation(sideNavItemsName) {
+    switch (sideNavItemsName) {
       case 'Question':
         this.openAskQuestion();
       case 'Blog':
@@ -86,7 +87,12 @@ export class HomeComponent implements OnInit {
   openAskQuestion() {
     const dialogRef = this.dialog.open(AskQuestionDialogComponent, {
       width: '60%',
-      
+      data: {
+
+        isQuestion: true,
+        isEvent: false
+
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -95,8 +101,8 @@ export class HomeComponent implements OnInit {
     });
 
   }
-  toolbarIcons(toolbarIcon){
-    switch(toolbarIcon.icon){
+  toolbarIcons(toolbarIcon) {
+    switch (toolbarIcon.icon) {
       case 'account_circle':
         this.logOut();
 

@@ -15,13 +15,34 @@ export class QuestionTextboxComponent implements OnInit {
   openAskQuestion() {
     const dialogRef = this.dialog.open(AskQuestionDialogComponent, {
       width: '60%',
+      data: {
+
+        isQuestion: true,
+        isEvent: false
+
+      }
       
     });
-
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
       }
     });
+  }
 
+  openAskAnEvent() {
+    const dialogRef = this.dialog.open(AskQuestionDialogComponent, {
+      width: '60%',
+      data: {
+
+        isQuestion: false,
+        isEvent: true
+
+      }
+      
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+      }
+    });
   }
 }
