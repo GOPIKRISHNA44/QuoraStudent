@@ -27,4 +27,8 @@ export class QuestionService {
     
     return this.http.post(this.apiEndPoint+"/feed/getQuestionsFeed",{unvcode:_unvcode})
   }
+
+  postEvent(_editorText):Observable<any> {
+    return this.http.post(this.apiEndPoint+"/event/addAnEvent",_editorText)
+  }
 }

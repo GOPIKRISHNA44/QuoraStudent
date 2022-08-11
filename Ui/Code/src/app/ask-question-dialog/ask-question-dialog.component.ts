@@ -14,34 +14,73 @@ export class AskQuestionDialogComponent implements OnInit {
   quillConfiguration = QuillConfiguration
   placeholder = Title.questionPlaceholder
   editorText: string;
-  userdetails:UserDetails ;
+  userdetails: UserDetails;
+  eventDTO = { "from": new Date(), "to": null }
   interests = []
   tags = new FormControl('');
-  
+  tagsList: any = []
+
   constructor(public dialogRef: MatDialogRef<AskQuestionDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private questionService: QuestionService, private authenticationService: AuthenticationService,) { }
 
+  isQuestion: boolean = false;
+  isEvent: boolean = false;
   ngOnInit(): void {
-    this.userdetails=JSON.parse(this.authenticationService.GetUserDetails())
+    this.userdetails = JSON.parse(this.authenticationService.GetUserDetails())
     this.questionService.getInterests().subscribe(res => {
       if (res.success) {
         this.interests = res.data.interests
       }
     })
+    console.log("hi " + this.data.isQuestion);
+    this.isQuestion = this.data.isQuestion;
+    this.isEvent = this.data.isEvent;
+    this.loadPlaceHolder();
   }
-  submit() {
-    let sentText={
-      "userid":this.userdetails?.userid,
-      "text":this.editorText,
-      "tags":[1,2,3]
-    } 
-    this.questionService.postQuestion(sentText).subscribe(res => {
-      if (res.success) {
-        console.log(res)
-      }
-    })
-    this.dialogRef.close();
 
+  getValues(event: {
+    isUserInput: any;
+    source: { value: any; selected: any };
+  }) {
+    if (event.isUserInput) {
+      if (event.source.selected === true) {
+        this.tagsList.push(event.source.value);
+      } else {
+        console.log(event.source.value)
+        this.tagsList = this.tagsList.filter(data => data != event.source.value);
+      }
+    }
+  }
+
+  loadPlaceHolder() {
+    this.placeholder = this.isQuestion ? Title.questionPlaceholder : (this.isEvent ? Title.eventPlaceholder : null)
+  }
+  submit(isQ, isEv) {
+    let sentText = {
+      "userid": this.userdetails?.userid,
+      "text": this.editorText,
+      "tags": this.tagsList
+    }
+
+    if (isQ) {
+      this.questionService.postQuestion(sentText).subscribe(res => {
+        if (res.success) {
+          console.log(res)
+        }
+      })
+    }
+    if (isEv) {
+      let payLoad = {
+        "askAquestionDTO": sentText,
+        "eventDTO": this.eventDTO
+      }
+      this.questionService.postEvent(payLoad).subscribe(res => {
+        if (res.success) {
+          console.log(res)
+        }
+      })
+    }
+    this.dialogRef.close();
   }
   onNoClick() {
     this.dialogRef.close();
