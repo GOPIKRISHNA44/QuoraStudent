@@ -22,7 +22,7 @@ import { NewsfeedComponent } from './newsfeed/newsfeed.component';
 import { QuestionAnswerComponent } from './question-answer/question-answer.component';
 import { HeaderComponent } from './header/header.component';
 import { BlogComponent } from './blog/blog.component';
- 
+
 @NgModule({
   declarations: [
     AppComponent,
