@@ -22,6 +22,7 @@ import { NewsfeedComponent } from './newsfeed/newsfeed.component';
 import { QuestionAnswerComponent } from './question-answer/question-answer.component';
 import { HeaderComponent } from './header/header.component';
 import { BlogComponent } from './blog/blog.component';
+import { AnswerDialogComponent } from './answer-dialog/answer-dialog.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { BlogComponent } from './blog/blog.component';
     NewsfeedComponent,
     QuestionAnswerComponent,
     HeaderComponent,
-    BlogComponent
+    BlogComponent,
+    AnswerDialogComponent
   ],
   imports: [
     BrowserModule,
