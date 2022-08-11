@@ -24,7 +24,7 @@ const routes: Routes = [
       },
     ]
   },
-  { path: 'question', component: QuestionAnswerComponent },
+  { path: 'question/:eqid/:ctype', component: QuestionAnswerComponent },
   { path: '**', redirectTo: 'home' },
 ];
 

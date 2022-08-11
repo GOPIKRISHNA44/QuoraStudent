@@ -8,7 +8,7 @@
             <div><b>{{data?.username}}</b></div>
         </mat-card-title>
         <mat-card-content>
-            <a [innerHTML]="data?.question" (click)="openQuestion()"></a>
+            <a [innerHTML]="data?.question" (click)="openQuestion(data)"></a>
         </mat-card-content>
         <mat-card-actions>
             <button mat-icon-button (click)="likeButton()"><mat-icon><span class="material-icons white-color">thumb_up</span></mat-icon>{{data?.upvotes}}</button>

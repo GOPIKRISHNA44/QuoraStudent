@@ -55,7 +55,7 @@
             </mat-form-field><br />
             <mat-form-field class="xs-full-width" appearance="outline">
                 <mat-label>Confirm password</mat-label>
-                <input matInput formControlName="confirmPassword" [type]=" hide ? 'password' : 'text'"
+                <input matInput formControlName="confirmPassword" [type]=" chide ? 'password' : 'text'"
                     placeholder="Confirm password" name="confirmPassword" required>
                 <button mat-icon-button matSuffix (click)="chide = !chide" [attr.aria-label]="'Hide Password'"
                     [attr.aria-pressed]="hide">
