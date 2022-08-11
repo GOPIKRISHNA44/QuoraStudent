@@ -7,20 +7,20 @@
             <div><b>{{questionData?.usernameOfWhoAskedThisQuestion}}</b></div>
         </mat-card-title>
         <mat-card-content>
-            <div [innerHTML]="questionData?.question"></div>
+            <div [innerHTML]="questionData?.question" style="margin:10px 0px 0px 0px"></div>
             <br />
             <div class="ans">
-                <button mat-icon-button (click)="openQuestion()">
+                <button mat-raised-button (click)="openQuestion()"color="warn" style="font-size:18px; padding:5px 30px 5px 15px">
                     <mat-icon>edit</mat-icon><span>Answer</span>
                 </button>
                 <div class="iconlist">
-                    <mat-icon (click)="openComments()">comment</mat-icon>
-                    <mat-icon>thumb_up</mat-icon>
-                    <mat-icon>thumb_down</mat-icon>
+                    <mat-icon (click)="openComments()" class="icon">comment</mat-icon>
+                    <span class="material-symbols-outlined icon" [ngClass]="{'filled': isliked}">thumb_up</span>
+                    <span class="material-symbols-outlined icon" [ngClass]="{'filled': isliked}">thumb_down</span>
                 </div>
             </div>
-            <mat-card *ngIf="showComments">
-                <div class="title">
+            <mat-card *ngIf="showComments" style="margin-top:10px;">
+                 <div class="title">
                     <mat-form-field class="full-width" appearance="outline">
                         <input matInput placeholder="Add a comment..." type=text [(ngModel)]="comment" />
                         <button mat-icon-button matSuffix type="button" (click)="sendComment()">
@@ -29,20 +29,18 @@
                         </button>
                     </mat-form-field>                    
                 </div>
-                <div *ngFor="let data of commentsData?.data">
+               <div *ngFor="let data of commentsData?.data let i = index; let first = first ;let last = last;" style="margin-top: 20px;">
                     <div class="title">
                         <mat-icon>
                             account_circle
                         </mat-icon>
-                        <div><b>{{data?.commentedByUsername}}</b></div>
+                        <div class="comment"><b>{{data?.commentedByUsername}}</b></div>
                     </div>
-
-                    <div>
+                    <div style="margin:10px 30px;">
                         {{data?.comment}}
                     </div>
-                    <mat-divider></mat-divider>
+                    <mat-divider *ngIf="!last" ></mat-divider>
                 </div>
-
 
             </mat-card>
         </mat-card-content>

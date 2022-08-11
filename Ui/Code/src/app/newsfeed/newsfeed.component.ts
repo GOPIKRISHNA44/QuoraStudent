@@ -34,12 +34,8 @@ export class NewsfeedComponent implements OnInit {
       "ctype":data?.ctype,
       "userid":data?.userid,
     }
-    this.questionService.getQuestionDetails(questionDetails).subscribe(res => {
-      if (res.success) {
-        this.questionService.updateQuestion(res?.data)
-        this.router.navigate(['home/question/'],{queryParams:{'eqid':data?.eqid,'ctype':data?.ctype}})
-      }
-    })
+    this.router.navigate(['home/question/'],{queryParams:{'eqid':data?.eqid,'ctype':data?.ctype}})
+   
     
   }
 }

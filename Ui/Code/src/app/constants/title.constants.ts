@@ -24,6 +24,16 @@ export const toolbarIcons = [
         icon: "account_circle"
     }
 ]
+
+export const questionIcons = [
+    {
+        icon: "comment"
+    }, {
+        icon: "search"
+    }, {
+        icon: "account_circle"
+    }
+]
 export const QuillConfiguration = {
     toolbar: [
       ['bold', 'italic', 'underline', 'strike'],
