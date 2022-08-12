@@ -39,7 +39,7 @@ label {
 }
 
 
-a {
+a,.pointer {
     cursor: pointer;
 }
 
