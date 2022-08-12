@@ -20,11 +20,14 @@ export const sideNavItems = [
 
 export const toolbarIcons = [
     {
-        icon: "notifications"
+        icon: "notifications",
+        useManualImg: false 
     }, {
-        icon: "search"
+        icon: "search",
+        useManualImg: false 
     }, {
-        icon: "account_circle"
+        icon: "account_circle",
+        useManualImg: true 
     }
 ]
 
