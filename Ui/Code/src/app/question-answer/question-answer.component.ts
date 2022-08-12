@@ -119,4 +119,46 @@ export class QuestionAnswerComponent implements OnInit {
       }
     })
   }
+  likeButton(isliked){
+     if(!isliked){
+        if(this.disliked){
+          this.disliked=false
+          this.dislikeCount--;
+        }
+        this.isliked=true
+        this.likeCount++
+     }
+     else{
+      this.isliked=false
+      this.likeCount--
+     }
+  this.updateLikeButton({"type":1})
+  }
+  dislikeButton(disliked){
+    if(!disliked){
+       if(this.isliked){
+         this.isliked=false
+         this.likeCount--;
+       }
+       this.disliked=true
+       this.dislikeCount++
+    }
+    else{
+     this.disliked=false
+     this.dislikeCount--
+    }
+    this.updateLikeButton({"type":0})
+ }
+ updateLikeButton(type){
+  let details={
+    "userid":this.userdetails.userid,
+    "parentid":this.eqid,
+    "updwnvt":type.type,
+    "ctype":"Q"
+}
+  this.questionService.updateLikeButton(details).subscribe(response => {
+    if (response) {
+    }
+  })
+ }
 }

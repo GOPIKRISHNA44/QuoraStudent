@@ -18,14 +18,14 @@
                     <mat-icon>edit</mat-icon><span>Answer</span>
                 </button>
                 <div class="iconlist">
-                    <mat-icon (click)="openComments()" class="icon">comment</mat-icon>
+                    <mat-icon (click)="openComments()" class="icon pointer">comment</mat-icon>
                     <span class="row-center">
-                        <span class="material-symbols-outlined icon" [ngClass]="{'filled': isliked}">thumb_up</span>
+                        <span class="material-symbols-outlined icon pointer" [ngClass]="{'filled': isliked}" (click)="likeButton(isliked)">thumb_up</span>
                         <span class="count">{{likeCount}}</span>
                     </span>
 
-                    <span class="material-symbols-outlined icon" [ngClass]="{'filled': disliked}">thumb_down</span>
-                    <span class="material-symbols-outlined icon">share</span>
+                    <span class="material-symbols-outlined icon pointer" [ngClass]="{'filled': disliked}" (click)="dislikeButton(disliked)">thumb_down</span>
+                    <span class="material-symbols-outlined icon pointer">share</span>
                 </div>
             </div>
             <mat-card *ngIf="showComments" style="margin-top:10px;">
