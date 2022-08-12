@@ -11,7 +11,14 @@
             <div class="row-center">
                 <div class="itemIcon" *ngFor="let toolbarIconsItem of toolbarIconsItems">
                     <button mat-mini-fab class="row-center" (click)="toolbarIcons(toolbarIconsItem)" color="warn">
-                        <mat-icon>{{toolbarIconsItem.icon}}</mat-icon>
+                        <mat-icon *ngIf = "!toolbarIconsItem.useManualImg">
+                            
+                            {{toolbarIconsItem.icon}}
+                        
+                        </mat-icon>
+                        <div *ngIf = "toolbarIconsItem.useManualImg">
+                            <img class ="userAvatar" src="../../assets/images/avatars/{{userdetails.avatarid}}.png" />
+                        </div>
                     </button>
                 </div>
             </div>

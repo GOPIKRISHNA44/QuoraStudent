@@ -48,7 +48,7 @@ public class AnswerResponseListViewDTO {
 		this.totalNumberOfComments = totalNumberOfComments;
 	}
 
-	public boolean isLikedByTheRequestedUser() {
+	public boolean getLikedByTheRequestedUser() {
 		return likedByTheRequestedUser;
 	}
 
@@ -56,7 +56,7 @@ public class AnswerResponseListViewDTO {
 		this.likedByTheRequestedUser = likedByTheRequestedUser;
 	}
 
-	public boolean isDisLikedByTheRequestedUser() {
+	public boolean getDisLikedByTheRequestedUser() {
 		return disLikedByTheRequestedUser;
 	}
 
