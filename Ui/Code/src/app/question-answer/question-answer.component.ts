@@ -25,13 +25,13 @@ export class QuestionAnswerComponent implements OnInit {
   date: string;
   likeCount: number;
   dislikeCount: number;
+
   constructor(public dialog: MatDialog, private questionService: QuestionService, private authenticationService: AuthenticationService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.userdetails = JSON.parse(this.authenticationService.GetUserDetails())
     this.eqid = this.route.snapshot.queryParams['eqid']
     this.ctype = this.route.snapshot.queryParams['ctype']
-    this.isliked
 
     let details = {
       "eqid": this.eqid,
@@ -161,4 +161,46 @@ export class QuestionAnswerComponent implements OnInit {
     }
   })
  }
+ answerLikeButton(likeQuestionData){
+  if(!likeQuestionData.likedByTheRequestedUser){
+    if(likeQuestionData.disLikedByTheRequestedUser){
+      likeQuestionData.disLikedByTheRequestedUser=false
+      likeQuestionData.totalNumberOfDislikes--;
+    }
+    likeQuestionData.likedByTheRequestedUser=true
+    likeQuestionData.totalNumberOfLikes++
+ }
+ else{
+  likeQuestionData.likedByTheRequestedUser=false
+  likeQuestionData.totalNumberOfLikes--
+ }
+this.updateAnswerLikeButton({"type":1,"aid":likeQuestionData.aid})
+ }
+ answerDislikeButton(dislikeQuestionData){
+  if(!dislikeQuestionData.disLikedByTheRequestedUser){
+    if(dislikeQuestionData.likedByTheRequestedUser){
+      dislikeQuestionData.likedByTheRequestedUser=false
+      dislikeQuestionData.totalNumberOfLikes--;
+    }
+    dislikeQuestionData.disLikedByTheRequestedUser=true
+    dislikeQuestionData.totalNumberOfDislikes++
+ }
+ else{
+  dislikeQuestionData.likedByTheRequestedUser=false
+  dislikeQuestionData.totalNumberOfLikes--
+ }
+ this.updateAnswerLikeButton({"type":0,"aid":dislikeQuestionData.aid})
+}
+updateAnswerLikeButton(data){
+  let details={
+    "userid":this.userdetails.userid,
+    "parentid":data.aid,
+    "updwnvt":data.type,
+    "ctype":"A"
+}
+  this.questionService.updateLikeButton(details).subscribe(response => {
+    if (response) {
+    }
+  })
+}
 }
