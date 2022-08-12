@@ -1,7 +1,9 @@
 <div class="dialog">
-    <div mat-dialog-title>
-        <p class="title row-center">{{title}}</p>
+    <div mat-dialog-title style="text-align: center">
+        <img src="../../assets/images/title.png" class="titlebg" style="height: 20px">
+        <p class="title row-center" style="padding-top: 10px">{{title}}</p>
     </div>
+    
     <div mat-dialog-content class="mat-typography">
         <form class="xs-form marten" name="form" name="signUpForm" [formGroup]="signUpForm" novalidate>
             <mat-form-field class="xs-full-width" appearance="outline">

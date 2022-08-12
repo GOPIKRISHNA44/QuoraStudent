@@ -13,7 +13,7 @@ mat-card {
     margin: 2em auto;
     text-align: center;
     max-height: 600px;
-    border-radius: 10px
+    /* border-radius: 10px */
 }
 
 .main-div {
@@ -34,4 +34,8 @@ mat-card {
 .marten {
     margin-top: 1.5em !important;
     margin: 0px 15px;
+}
+.titlebg
+{
+    height: 20px;
 }
