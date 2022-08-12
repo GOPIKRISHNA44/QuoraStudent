@@ -67,6 +67,15 @@
             <mat-card-content>
                 <div [innerHTML]="data?.content">
                 </div>
+                <div class="iconlist">
+                    <mat-icon (click)="openAnswerComments()" class="icon pointer">comment</mat-icon>
+                    <span class="row-center">
+                        <span class="material-symbols-outlined icon pointer" [ngClass]="{'filled': data?.likedByTheRequestedUser}" (click)="answerLikeButton(data)">thumb_up</span>
+                        <span class="count">{{data?.totalNumberOfLikes}}</span>
+                    </span>
+
+                    <span class="material-symbols-outlined icon pointer" [ngClass]="{'filled': data?.disLikedByTheRequestedUser}" (click)="answerDislikeButton(data)">thumb_down</span>
+                </div>
             </mat-card-content>
         </mat-card>
     </div>
