@@ -13,12 +13,12 @@ mat-card {
     margin: 2em auto;
     text-align: center;
     max-height: 600px;
-    border-radius: 10px
+    /* border-radius: 10px */
 }
 
 .main-div {
     height: 100vh;
-    background: url("../../assets/images/backgroundimage.jpg") no-repeat center center fixed;
+    background: url("../../assets/images/backgroundimage.png") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -34,4 +34,8 @@ mat-card {
 .marten {
     margin-top: 1.5em !important;
     margin: 0px 15px;
+}
+.titlebg
+{
+    height: 20px;
 }

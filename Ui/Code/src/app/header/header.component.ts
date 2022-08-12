@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
   sideNavItemsNames=sideNavItems;
   toolbarIconsItems=toolbarIcons;
   @Input() sidenav!: MatSidenav;
+  userdetails = JSON.parse(this.authenticationService.GetUserDetails());
   constructor(private observer: BreakpointObserver,
     private router: Router, private authenticationService: AuthenticationService) { }
 
