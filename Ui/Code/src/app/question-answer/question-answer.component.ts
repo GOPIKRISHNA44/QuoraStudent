@@ -15,9 +15,11 @@ export class QuestionAnswerComponent implements OnInit {
   questionData: any
   answerData: any
   commentsData: any
+  answerCommentsData:any
   userdetails: UserDetails;
   showComments = false;
   comment: string = '';
+  answerComment=""
   isliked: boolean;
   disliked: boolean;
   eqid: string;
@@ -25,6 +27,7 @@ export class QuestionAnswerComponent implements OnInit {
   date: string;
   likeCount: number;
   dislikeCount: number;
+  showAnswerComments: boolean=false;
 
   constructor(public dialog: MatDialog, private questionService: QuestionService, private authenticationService: AuthenticationService, private route: ActivatedRoute) { }
 
@@ -61,7 +64,9 @@ export class QuestionAnswerComponent implements OnInit {
     }
     this.questionService.getAnswers(details).subscribe(response => {
       if (response) {
-        this.answerData = response
+        this.answerData = response.data.map(item=>{
+          return {...item, showAnswerComments:false}
+      })
       }
 
     })
@@ -200,6 +205,42 @@ updateAnswerLikeButton(data){
 }
   this.questionService.updateLikeButton(details).subscribe(response => {
     if (response) {
+    }
+  })
+}
+openAnswerComments(aid){
+  let commentDetails = {
+    "requestingUserId": this.userdetails.userid,
+    "ctype": "A",
+    "eqabcid": aid
+  }
+  this.questionService.getComments(commentDetails).subscribe(response => {
+    if (response) {
+      this.answerCommentsData = response
+      this.answerData.map(item=>{
+        if(item.aid==aid){
+          item.showAnswerComments=true
+        }
+        else{
+          item.showAnswerComments=false
+        }
+    })
+      
+    }
+
+  })
+}
+sendAnswerComment(aid){
+  let sendCommentDetails = {
+    "userid": this.userdetails.userid,
+    "parentid": aid,
+    "ctype": "A",
+    "comment": this.answerComment
+  }
+  this.questionService.sendComments(sendCommentDetails).subscribe(response => {
+    if (response) {
+      this.answerComment = ''
+      this.openAnswerComments(aid)
     }
   })
 }

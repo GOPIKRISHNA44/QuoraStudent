@@ -38,7 +38,7 @@
                         </button>
                     </mat-form-field>
                 </div>
-                <div style="height:300px;overflow: auto;">
+                <div style="max-height:300px;overflow: auto;">
                     <div *ngFor="let data of commentsData?.data let i = index; let first = first ;let last = last;"
                         style="margin-top: 20px;">
                         <div class="title">
@@ -56,7 +56,7 @@
             </mat-card>
         </mat-card-content>
     </mat-card>
-    <div *ngFor="let data of answerData?.data">
+    <div *ngFor="let data of answerData">
         <mat-card style="margin:15px 0px;">
             <mat-card-title class="title">
                 <mat-icon>
@@ -68,7 +68,7 @@
                 <div [innerHTML]="data?.content">
                 </div>
                 <div class="iconlist">
-                    <mat-icon (click)="openAnswerComments()" class="icon pointer">comment</mat-icon>
+                    <mat-icon (click)="openAnswerComments(data?.aid)" class="icon pointer">comment</mat-icon>
                     <span class="row-center">
                         <span class="material-symbols-outlined icon pointer" [ngClass]="{'filled': data?.likedByTheRequestedUser}" (click)="answerLikeButton(data)">thumb_up</span>
                         <span class="count">{{data?.totalNumberOfLikes}}</span>
@@ -76,6 +76,32 @@
 
                     <span class="material-symbols-outlined icon pointer" [ngClass]="{'filled': data?.disLikedByTheRequestedUser}" (click)="answerDislikeButton(data)">thumb_down</span>
                 </div>
+                <mat-card *ngIf="data?.showAnswerComments" style="margin-top:10px;">
+                <div class="title">
+                    <mat-form-field class="full-width" appearance="outline">
+                        <input matInput placeholder="Add a comment..." type=text [(ngModel)]="answerComment" />
+                        <button mat-icon-button matSuffix type="button" (click)="sendAnswerComment(data?.aid)">
+                            <mat-icon>send
+                            </mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+                <div style="max-height:300px;overflow: auto;">
+                    <div *ngFor="let data of answerCommentsData?.data let i = index; let first = first ;let last = last;"
+                        style="margin-top: 20px;">
+                        <div class="title">
+                            <mat-icon>
+                                account_circle
+                            </mat-icon>
+                            <div class="comment"><b>{{data?.commentedByUsername}}</b></div>
+                        </div>
+                        <div style="margin:10px 30px;">
+                            {{data?.comment}}
+                        </div>
+                        <mat-divider *ngIf="!last"></mat-divider>
+                    </div>
+                </div>
+            </mat-card>
             </mat-card-content>
         </mat-card>
     </div>
