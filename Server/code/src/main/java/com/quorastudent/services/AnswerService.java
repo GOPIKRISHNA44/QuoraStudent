@@ -93,7 +93,7 @@ public class AnswerService {
 
 			if (!ObjectUtils.isEmpty(answerRequestingDTO)) {
 				List<AnswerResponseListViewDTO> lsQs = jdbcQueryService.getAnswersForQuestionOrEntity(
-						answerRequestingDTO.getRequestingUserId(), answerRequestingDTO.getCtype(),
+						answerRequestingDTO.getUserid(), answerRequestingDTO.getCtype(),
 						answerRequestingDTO.getEqid());
 				if (lsQs!=null) {
 					return lsQs;

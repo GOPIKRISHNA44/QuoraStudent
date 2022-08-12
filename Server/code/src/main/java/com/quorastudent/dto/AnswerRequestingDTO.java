@@ -2,16 +2,16 @@ package com.quorastudent.dto;
 
 public class AnswerRequestingDTO {
 
-	private Long requestingUserId;
+	private Long userid;
 
 	private String ctype;
 
-	public Long getRequestingUserId() {
-		return requestingUserId;
+	public Long getUserid() {
+		return userid;
 	}
 
-	public void setRequestingUserId(Long requestingUserId) {
-		this.requestingUserId = requestingUserId;
+	public void setUserid(Long requestingUserId) {
+		this.userid = requestingUserId;
 	}
 
 	public String getCtype() {
