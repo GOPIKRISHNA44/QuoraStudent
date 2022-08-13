@@ -54,4 +54,11 @@ export class AuthenticationService {
   // setUserDetails(userDetails) {
   //   this.userDetails$.next(userDetails)
   // }
+
+  
+  getUniversityList(url):Observable<any>
+  {
+    return this.http.get(url);
+  }
+
 }

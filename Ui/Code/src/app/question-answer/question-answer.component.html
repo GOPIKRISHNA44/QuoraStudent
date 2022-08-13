@@ -7,7 +7,9 @@
             </mat-icon>
             <div>
                 <div style="font-size:30px"><b>{{questionData?.usernameOfWhoAskedThisQuestion}}</b></div>
-                <div style="font-size:14px;margin:3px">{{questionData?.doq | date: 'MM/dd/yyyy'}}</div>
+                <div style="font-size:14px;margin:3px">{{questionData?.doq | date: 'MM/dd/yyyy'}}
+                </div>
+
             </div>
         </mat-card-title>
         <mat-card-content>
@@ -64,13 +66,15 @@
     <div *ngFor="let data of answerData">
         <mat-card style="margin:15px 0px;">
             <mat-card-title class="title">
+
                 <mat-icon style="font-size: 50px;height: 50px;width:50px">
                     <img class="userAvatar" src="../../assets/images/avatars/{{data.answeredByUsernameAvatarid}}.png" />
+
+                    <div>
+                        <div style="font-size:30px"><b>{{data?.answeredByUsername}}</b></div>
+                        <div style="font-size:14px;margin:3px">{{data?.doa | date: 'MM/dd/yyyy'}}</div>
+                    </div>
                 </mat-icon>
-                <div>
-                    <div style="font-size:30px"><b>{{data?.answeredByUsername}}</b></div>
-                    <div style="font-size:14px;margin:3px">{{data?.doa | date: 'MM/dd/yyyy'}}</div>
-                </div>
             </mat-card-title>
             <mat-card-content>
                 <br />
@@ -118,16 +122,18 @@
                             <div class="title space">
                                 <div style="margin:10px 30px;">
                                     {{data?.comment}}
-                                    
+
                                 </div>
                                 <div>
                                     <span *ngIf="data?.commentOwnedByTheRequestedUser"
-                                        class="material-symbols-outlined filled coloricon" (click)="deleteComment(data?.cid)">
+                                        class="material-symbols-outlined filled coloricon"
+                                        (click)="deleteComment(data?.cid)">
                                         delete
                                     </span>
+
                                 </div>
+                                <mat-divider *ngIf="!last" class="relative"></mat-divider>
                             </div>
-                            <mat-divider *ngIf="!last" class="relative"></mat-divider>
                         </div>
                     </div>
                 </mat-card>

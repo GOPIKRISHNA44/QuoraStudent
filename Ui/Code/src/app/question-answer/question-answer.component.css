@@ -63,6 +63,7 @@
     /* width: 50%; */
     width: 100%;
 }
+
 .commentbox{
    margin-top: 20px;
    
@@ -83,4 +84,14 @@
 .coloricon{
     color:red;
     cursor: pointer;
+}
+
+.answerUserAvatar
+{
+    height: 35px;
+    width: 40px;
+}
+
+.mat-card {
+    border-radius: 0px !important;
 }

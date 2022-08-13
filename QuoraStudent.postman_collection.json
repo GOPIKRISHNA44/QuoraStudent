@@ -52,7 +52,7 @@
 					"raw": "{\r\n    \"sessionkey\":\"UBv4i4Hpq+fgbW9Duzz5HnX1gtMWExUV5wXaaYmNIPfOz7lxUGzguGSd4QvMY7ja\"\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/quoraStudent/user/logout",
+					"raw": "http://localhost:8080/quoraStudent/user/checksession",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -61,7 +61,7 @@
 					"path": [
 						"quoraStudent",
 						"user",
-						"logout"
+						"checksession"
 					]
 				}
 			},
@@ -182,7 +182,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"userid\":6,\"text\":\"<h1>How do the college manage marks</h1> \",\"tags\":[1,2,3], \"ctype\":\"Q\"\r\n    \r\n}\r\n",
+					"raw": "{\r\n    \"userid\":6,\"text\":\"<h1>tHIS SHOULD BE THE FIRST</h1> \",\"tags\":[1,2,3], \"ctype\":\"Q\"\r\n    \r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -242,7 +242,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"unvcode\":92\r\n}",
+					"raw": "{\r\n    \"unvcode\":92,\r\n    \"ctype\":\"Q\",\r\n    \"userid\": 6,\r\n    \"pageNumber\":1,\r\n    \"numberOfPostsRequired\":2\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -250,7 +250,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/quoraStudent/feed/getQuestionsFeed",
+					"raw": "http://localhost:8080/quoraStudent/feed/getQuestionsOrEventFeed",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -259,7 +259,7 @@
 					"path": [
 						"quoraStudent",
 						"feed",
-						"getQuestionsFeed"
+						"getQuestionsOrEventFeed"
 					]
 				}
 			},
@@ -482,7 +482,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"eqid\":9,\r\n    \"ctype\":\"C\",\r\n    \"userid\":6\r\n}",
+					"raw": "{\r\n    \"eqid\":3,\r\n    \"ctype\":\"Q\",\r\n    \"userid\":6\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -512,7 +512,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"requestingUserId\":6,\r\n    \"ctype\":\"Q\",\r\n    \"eqabcid\":2\r\n}",
+					"raw": "{\r\n    \"requestingUserId\":6,\r\n    \"ctype\":\"Q\",\r\n    \"eqabcid\":1\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -680,6 +680,36 @@
 						"quoraStudent",
 						"questions",
 						"deleteQuestion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getQuestionsFeed",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ctype\":\"Q\",\r\n    \"userid\":6,\r\n    \"pageNumber\":1,\r\n    \"numberOfPostsRequired\":2,\r\n    \"visitedEqids\":[-1]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/questions/getQuestionsFeed",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"questions",
+						"getQuestionsFeed"
 					]
 				}
 			},

@@ -5,6 +5,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { delay, filter } from 'rxjs/operators';
 import { NavigationEnd, Router } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -12,15 +13,25 @@ import { AuthenticationService } from '../services/authentication.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  mainTitle=Title.mainTitle;
-  sideNavItemsNames=sideNavItems;
-  toolbarIconsItems=toolbarIcons;
+  mainTitle = Title.mainTitle;
+  sideNavItemsNames = sideNavItems;
+  toolbarIconsItems = toolbarIcons;
   @Input() sidenav!: MatSidenav;
+  unvlistApi: any = environment.apiEndPoint + environment.unvlist;
+  unvTitle : any = "";
   userdetails = JSON.parse(this.authenticationService.GetUserDetails());
   constructor(private observer: BreakpointObserver,
     private router: Router, private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
+
+    this.authenticationService.getUniversityList(this.unvlistApi)
+      .subscribe((data) => {
+        if(data && data.success)
+        {
+          this.unvTitle = data["data"]["univ"][this.userdetails["universitycode"]]["unvname"]
+        }
+      })
   }
   ngAfterViewInit() {
     this.observer
@@ -35,7 +46,7 @@ export class HeaderComponent implements OnInit {
           this.sidenav.open();
         }
       });
-      this.router.events
+    this.router.events
       .pipe(
         filter((e) => e instanceof NavigationEnd)
       )
@@ -43,28 +54,34 @@ export class HeaderComponent implements OnInit {
         if (this.sidenav.mode === 'over') {
           this.sidenav.close();
         }
-      });}
-      toolbarIcons(toolbarIcon){
-        switch(toolbarIcon.icon){
-          case 'account_circle':
-            this.logOut();
-    
-          default:
-            return
-        }
+      });
+  }
+  toolbarIcons(toolbarIcon) {
+    switch (toolbarIcon.icon) {
+      case 'account_circle':
+        this.logOut();
+
+      default:
+        return
+    }
+  }
+  logOut() {
+    this.authenticationService.logout().subscribe(res => {
+      if (res.success) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('userdetails');
+        this.router.navigate(['/login'])
+      } else {
+        alert('Reason:home' + res?.reason)
       }
-      logOut() {
-        this.authenticationService.logout().subscribe(res => {
-          if (res.success) {
-            localStorage.removeItem('token');
-            localStorage.removeItem('userdetails');
-            this.router.navigate(['/login'])
-          } else {
-            alert('Reason:home' + res?.reason)
-          }
-        },
-          error => {
-            alert('Error occured with message ' + error?.message)
-          })
-      }
+    },
+      error => {
+        alert('Error occured with message ' + error?.message)
+      })
+  }
+
+  gotoHome()
+  {
+    this.router.navigate(['/home'])
+  }
 }
