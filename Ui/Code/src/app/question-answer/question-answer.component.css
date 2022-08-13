@@ -63,3 +63,13 @@
     /* width: 50%; */
     width: 100%;
 }
+
+.answerUserAvatar
+{
+    height: 35px;
+    width: 40px;
+}
+
+.mat-card {
+    border-radius: 0px !important;
+}

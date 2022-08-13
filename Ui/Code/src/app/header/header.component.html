@@ -1,4 +1,5 @@
-<mat-toolbar style="background-color:#f52936;">
+<!-- <mat-toolbar style="background-color:#f52936;"> -->
+<mat-toolbar style="">
     <mat-toolbar-row>
         <div class="row-center" style="width:100%">
             <div style="width:100%" class="space">
@@ -6,22 +7,36 @@
                     <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
                     <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
                 </button>
-                <span class="maintitle">{{mainTitle}}</span>
+                <span class="maintitle" (click)="gotoHome()" style="    top: 5px;
+                position: relative;"><span>
+                        <img src="../../assets/images/unvlogos/{{userdetails.universitycode}}.png" style="margin-right: 10px"
+                            class="titlebg"></span>
+                    <span>
+                        <img src="../../assets/images/title.png" class="titlebg">
+                        
+                    </span>
+                    
+
+
+                </span>
+                
             </div>
             <div class="row-center">
                 <div class="itemIcon" *ngFor="let toolbarIconsItem of toolbarIconsItems">
-                    <button mat-mini-fab class="row-center" (click)="toolbarIcons(toolbarIconsItem)" color="warn">
-                        <mat-icon *ngIf = "!toolbarIconsItem.useManualImg">
-                            
+                    <button mat-mini-fab class="row-center" (click)="toolbarIcons(toolbarIconsItem)" color="warn" *ngIf="!toolbarIconsItem.useManualImg">
+                        <mat-icon >
+
                             {{toolbarIconsItem.icon}}
-                        
+
                         </mat-icon>
-                        <div *ngIf = "toolbarIconsItem.useManualImg">
-                            <img class ="userAvatar" src="../../assets/images/avatars/{{userdetails.avatarid}}.png" />
-                        </div>
+                        
                     </button>
+                    <div *ngIf="toolbarIconsItem.useManualImg">
+                        <img class="userAvatar" src="../../assets/images/avatars/{{userdetails.avatarid}}.png" />
+                    </div>
                 </div>
             </div>
+            
         </div>
     </mat-toolbar-row>
 </mat-toolbar>

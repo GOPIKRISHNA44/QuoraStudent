@@ -6,7 +6,7 @@
             </mat-icon>
             <div>
                 <div style="font-size:30px"><b>{{questionData?.usernameOfWhoAskedThisQuestion}}</b></div>
-                <div style="font-size:14px;margin:3px">{{date}}</div>
+                <div style="font-size:14px;margin:10px">{{date}}</div>
             </div>
         </mat-card-title>
         <mat-card-content>
@@ -59,7 +59,7 @@
     <div *ngFor="let data of answerData?.data">
         <mat-card style="margin:15px 0px;">
             <mat-card-title class="title">
-                <mat-icon>
+                <mat-icon class="answerUserAvatar">
                     <img class ="userAvatar" src="../../assets/images/avatars/{{data.answeredByUsernameAvatarid}}.png" />
                 </mat-icon>
                 <div><b>{{data?.answeredByUsername}}</b></div>

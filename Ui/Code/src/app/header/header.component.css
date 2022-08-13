@@ -21,4 +21,13 @@
     margin-right: auto;
     /* width: 50%; */
     width: 100%;
+    /* border-radius: 20px; */
+    height: 56px;
+    width: 56px;
+    border-radius: 57px;
+}
+.titlebg
+{
+    height: 35px;
+    cursor: pointer;
 }
