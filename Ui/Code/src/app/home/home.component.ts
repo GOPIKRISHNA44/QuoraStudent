@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Title, sideNavItems, toolbarIcons } from '../constants/title.constants';
 import { InterestsDialogComponent } from '../interests-dialog/interests-dialog.component';
 import { AskQuestionDialogComponent } from '../ask-question-dialog/ask-question-dialog.component';
+import { UserDetails } from '../models/auth.model';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -18,10 +19,12 @@ export class HomeComponent implements OnInit {
   sideNavItemsNames = sideNavItems;
   toolbarIconsItems = toolbarIcons;
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
+  userdetails: UserDetails;
   constructor(public dialog: MatDialog, private observer: BreakpointObserver,
     private router: Router, private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
+    if(this.userdetails && this.userdetails["interestspopup"]==0){
     const dialogRef = this.dialog.open(InterestsDialogComponent, {
       width: '600px',
     });
@@ -31,6 +34,7 @@ export class HomeComponent implements OnInit {
         console.log(result)
       }
     });
+  }
   }
   ngAfterViewInit() {
     this.observer
