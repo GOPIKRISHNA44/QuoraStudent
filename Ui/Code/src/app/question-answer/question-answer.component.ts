@@ -111,7 +111,7 @@ export class QuestionAnswerComponent implements OnInit {
       }
     })
   }
-  likeButton(isliked){
+  likeButton(isliked,ctype){
      if(!isliked){
         if(this.disliked){
           this.disliked=false
@@ -124,9 +124,9 @@ export class QuestionAnswerComponent implements OnInit {
       this.isliked=false
       this.likeCount--
      }
-  this.updateLikeButton({"type":1})
+  this.updateLikeButton({"type":1},ctype)
   }
-  dislikeButton(disliked){
+  dislikeButton(disliked,ctype){
     if(!disliked){
        if(this.isliked){
          this.isliked=false
@@ -139,14 +139,14 @@ export class QuestionAnswerComponent implements OnInit {
      this.disliked=false
      this.dislikeCount--
     }
-    this.updateLikeButton({"type":0})
+    this.updateLikeButton({"type":0},ctype)
  }
- updateLikeButton(type){
+ updateLikeButton(type,ctype){
   let details={
     "userid":this.userdetails.userid,
     "parentid":this.eqid,
     "updwnvt":type.type,
-    "ctype":"Q"
+    "ctype":ctype
 }
   this.questionService.updateLikeButton(details).subscribe(response => {
     if (response) {
@@ -249,6 +249,7 @@ deleteComment(cid){
 
   this.questionService.sendComments({"cid":cid}).subscribe(response => {
     if (response) {
+
     }
   })
 }
