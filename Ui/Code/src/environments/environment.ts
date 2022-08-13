@@ -11,7 +11,8 @@ export const environment = {
     register: '/register',
     checkSession: '/checksession',
     logout: '/logout',
-  }
+  },
+  unvlist:"/info/getUnvList"
   
 };
 

@@ -75,6 +75,7 @@ public class AnswerController {
 			boolean status = answerService.deleteAnswer(answerDTO);
 			Map<String, Boolean> finalMsg = new HashMap<String, Boolean>();
 			finalMsg.put("updated", status);
+			responseDto = responseDtoGeneral.getSuccessResponse(finalMsg);
 
 		} catch (Exception e) {
 
