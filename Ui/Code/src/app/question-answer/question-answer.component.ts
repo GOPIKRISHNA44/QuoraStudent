@@ -24,7 +24,7 @@ export class QuestionAnswerComponent implements OnInit {
   disliked: boolean;
   eqid: string;
   ctype: string
-  date: string;
+
   likeCount: number;
   dislikeCount: number;
   showAnswerComments: boolean=false;
@@ -44,7 +44,7 @@ export class QuestionAnswerComponent implements OnInit {
     this.questionService.getQuestionDetails(details).subscribe(res => {
       if (res.success) {
         this.questionData = res.data
-        this.date = new Date(this.questionData.doq).toLocaleDateString()
+
         this.disliked = this.questionData.disLikedByTheRequestedUser
         this.isliked = this.questionData.likedByTheRequestedUser
         this.likeCount = this.questionData.totalNumberOfLikes
@@ -96,20 +96,7 @@ export class QuestionAnswerComponent implements OnInit {
       }
     });
   }
-  openComments() {
-    let commentDetails = {
-      "requestingUserId": this.userdetails.userid,
-      "ctype": this.questionData.ctype,
-      "eqabcid": this.questionData.eqid
-    }
-    this.questionService.getComments(commentDetails).subscribe(response => {
-      if (response) {
-        this.commentsData = response
-        this.showComments = true
-      }
-
-    })
-  }
+ 
   sendComment() {
     let sendCommentDetails = {
       "userid": this.userdetails.userid,
@@ -208,6 +195,20 @@ updateAnswerLikeButton(data){
     }
   })
 }
+openComments() {
+  let commentDetails = {
+    "requestingUserId": this.userdetails.userid,
+    "ctype": this.questionData.ctype,
+    "eqabcid": this.questionData.eqid
+  }
+  this.questionService.getComments(commentDetails).subscribe(response => {
+    if (response) {
+      this.commentsData = response
+      this.showComments = true
+    }
+
+  })
+}
 openAnswerComments(aid){
   let commentDetails = {
     "requestingUserId": this.userdetails.userid,
@@ -241,6 +242,13 @@ sendAnswerComment(aid){
     if (response) {
       this.answerComment = ''
       this.openAnswerComments(aid)
+    }
+  })
+}
+deleteComment(cid){
+
+  this.questionService.sendComments({"cid":cid}).subscribe(response => {
+    if (response) {
     }
   })
 }

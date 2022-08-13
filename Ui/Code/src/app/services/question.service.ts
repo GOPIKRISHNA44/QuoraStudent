@@ -63,5 +63,8 @@ export class QuestionService {
   updateLikeButton(_details): Observable<any>{
     return this.http.post(this.apiEndPoint + "/questions/updwnvt", _details)
   }
+  deleteComment(_commentDetails): Observable<any> {
 
+    return this.http.post(this.apiEndPoint + "/comments/deleteComment", _commentDetails)
+  }
 }

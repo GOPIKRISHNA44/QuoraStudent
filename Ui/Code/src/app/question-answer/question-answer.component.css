@@ -63,3 +63,24 @@
     /* width: 50%; */
     width: 100%;
 }
+.commentbox{
+   margin-top: 20px;
+   
+}
+.relative{
+    position: relative !important;   
+}
+.row{
+    display: flex;
+}
+.doc{
+    font-size: 10px;
+    margin:0px 5px
+}
+.space{
+    justify-content: space-between;
+}
+.coloricon{
+    color:red;
+    cursor: pointer;
+}
