@@ -41,7 +41,7 @@ export class QuestionService {
     return this.http.post(this.apiEndPoint+"/event/addAnEvent",_editorText)
   }
 
-  getAnswers(_details){
+  getAnswers(_details):Observable<any>{
     return this.http.post(this.apiEndPoint + "/answer/getAnswersForQuestionOrEntity", _details)
   }
 
@@ -62,6 +62,9 @@ export class QuestionService {
   }
   updateLikeButton(_details): Observable<any>{
     return this.http.post(this.apiEndPoint + "/questions/updwnvt", _details)
+  }
+  deleteComment(_commentDetails): Observable<any> {
+    return this.http.post(this.apiEndPoint + "/comments/deleteComment", _commentDetails)
   }
 
 
