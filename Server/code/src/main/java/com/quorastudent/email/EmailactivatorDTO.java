@@ -18,7 +18,6 @@ public class EmailactivatorDTO {
 	private Long userid;
 	private String emailid;
 	private String emailactivatingtext;
-
 	public Long getUserid() {
 		return userid;
 	}
