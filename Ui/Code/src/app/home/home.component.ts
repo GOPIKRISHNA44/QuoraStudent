@@ -78,7 +78,7 @@ export class HomeComponent implements OnInit {
       case 'Leaderboard':
         return
       case 'Events':
-        return
+        this.openEvents()
       default:
         return
     }
@@ -109,5 +109,18 @@ export class HomeComponent implements OnInit {
       default:
         return
     }
+  }
+  openEvents(){
+    const dialogRef = this.dialog.open(AskQuestionDialogComponent, {
+      width: '60%',
+      data: {
+        isQuestion: false,
+        isEvent: true
+      }     
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+      }
+    });
   }
 }

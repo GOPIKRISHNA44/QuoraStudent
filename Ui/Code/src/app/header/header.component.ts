@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
       .subscribe((data) => {
         if(data && data.success)
         {
-          this.unvTitle = data["data"]["univ"][this.userdetails["universitycode"]]["unvname"]
+       //   this.unvTitle = data["data"]["univ"][this.userdetails["universitycode"]]["unvname"]
         }
       })
   }

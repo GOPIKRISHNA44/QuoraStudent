@@ -66,6 +66,10 @@ export class QuestionService {
   deleteComment(_commentDetails): Observable<any> {
     return this.http.post(this.apiEndPoint + "/comments/deleteComment", _commentDetails)
   }
-
-
+  deleteAnswer(_details): Observable<any>{
+    return this.http.post(this.apiEndPoint + "/answer/deleteAnswer", _details)
+  }
+  deleteQuestion(_details): Observable<any>{
+  return this.http.post(this.apiEndPoint + "questions/deleteQuestion", _details)
+}
 }
