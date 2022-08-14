@@ -41,7 +41,7 @@ public class FeedService {
 			Pageable pageRef = pageableService.getPageableRef(feedRequestDTO.getPageNumber() - 1,
 					feedRequestDTO.getNumberOfPostsRequired());
 			Page<List<Map<String, Object>>> pageTuts;
-			pageTuts = questionRepository.getQuestionsOrEventFeed(feedRequestDTO.getUnvcode(),
+			pageTuts = questionRepository.getQuestionsOrEventFeed(
 					feedRequestDTO.getUserid(), feedRequestDTO.getCtype(),pageRef);
 			return pageTuts;
 		} catch (Exception e) {

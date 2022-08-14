@@ -67,7 +67,7 @@ public interface QuestionRepository extends JpaRepository<QuestionDTO, Long> {
 			+ " disLikedByTheRequestedUser ASC", nativeQuery = true)
 	List<Map<String, Object>> getQuestionsFeedTest(Long userid, String ctype);
 
-	@Query(value = Queries.GET_QUESTION_UNV_BASED_QUERY, countQuery = Queries.GET_QUESTION_UNV_BASED_QUERY_COUNT_QUERY, nativeQuery = true)
-	Page<List<Map<String, Object>>> getQuestionsOrEventFeed(int unvcode, Long userid, String ctype, Pageable pageRef);
+	@Query(value = Queries.GET_QUESTION_OR_ENTITY_UNV_BASED_QUERY, countQuery = Queries.GET_QUESTION_UNV_BASED_QUERY_COUNT_QUERY, nativeQuery = true)
+	Page<List<Map<String, Object>>> getQuestionsOrEventFeed(Long userid, String ctype, Pageable pageRef);
 
 }
