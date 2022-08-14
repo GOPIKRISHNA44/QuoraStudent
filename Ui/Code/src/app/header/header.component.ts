@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
   sideNavItemsNames = sideNavItems;
   toolbarIconsItems = toolbarIcons;
   @Input() sidenav!: MatSidenav;
-  unvlistApi: any = environment.apiEndPoint + environment.unvlist;
+
   unvTitle: any = "";
   userdetails = JSON.parse(this.authenticationService.GetUserDetails());
 
@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.authenticationService.getUniversityList(this.unvlistApi)
+    this.authenticationService.getUniversityList()
       .subscribe((data) => {
         if (data && data.success) {
           this.unvTitle = data["data"]["univ"][this.userdetails["universitycode"]]["unvname"]

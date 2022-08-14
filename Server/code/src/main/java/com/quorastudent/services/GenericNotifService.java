@@ -69,7 +69,7 @@ public class GenericNotifService {
 
 					List<String> notifTexts = new ArrayList<String>();
 					// morph to html question
-					String htmlText = String.format("<span><span> <img src='../../assets/images/avatars/%s.png' style='height: 25px; width: 27px;border-radius: 10px;' class='notifImg' "
+					String htmlText = String.format("<span><span> <img src='../../assets/images/avatars/%s.png' class='notifImg' "
 							+ " /> </span> <span><a href=%s target=_blank >%s has posted a %s ..view</a></span></span> ",
 							String.valueOf(userDetails.getAvatarid()), getViewQuestionOrEntityUrl(eqid, ctype),
 							StringUtils.capitalize(userDetails.getUsername()), ctype == "Q" ? "Question" : "Event");

@@ -28,11 +28,12 @@ export class SignupDialogComponent implements OnInit {
   }, {
     validator: CustomValidators.mustMatch('password', 'confirmPassword')
   })
+  unvList : any = [];
   constructor(public datepipe: DatePipe, public dialogRef: MatDialogRef<SignupDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder, private authenticationService: AuthenticationService,) { }
 
   ngOnInit(): void {
-    
+    this.getUnvList();
   }
   onNoClick() {
     this.dialogRef.close();
@@ -71,4 +72,21 @@ export class SignupDialogComponent implements OnInit {
     return this.signUpForm.controls;
   }
 
+  getUnvList()
+  {
+    this.authenticationService.getUniversityList()
+    .subscribe((data) => {
+      if (data && data.success) {
+        this.unvList = [];
+        const unvMap = new Map(Object.entries(data["data"]["univ"]));
+        for (const value of  unvMap.values()) {
+          this.unvList.push(value)
+        }
+
+        console.log(this.unvList)
+      }
+    })
+  }
+ 
+ 
 }

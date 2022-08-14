@@ -18,6 +18,7 @@ export class AuthenticationService {
   private interestPopupStatusURL = environment.apiEndPoint + environment.user.endPoint + environment.user.getInterestpopupStatus;
   private getNotifApi: any = environment.apiEndPoint + environment.getNotifApi;
   private delNotifApi: any = environment.apiEndPoint + environment.deleteNotifsApi;
+  private unvlistApi: any = environment.apiEndPoint + environment.unvlist;
 
   constructor(private http: HttpClient) { }
 
@@ -60,8 +61,8 @@ export class AuthenticationService {
   // }
 
 
-  getUniversityList(url): Observable<any> {
-    return this.http.get(url);
+  getUniversityList(): Observable<any> {
+    return this.http.get(this.unvlistApi);
   }
 
 
