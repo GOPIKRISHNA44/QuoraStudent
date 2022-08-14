@@ -1,5 +1,5 @@
 <div class="topbox">
-    <mat-card style="margin: 5px 0px 50px 0px;">
+    <mat-card style="margin: 5px 0px 20px 0px;">
         <mat-card-title class="title">
             <mat-icon style="font-size: 50px;height: 50px;width:50px">
                 <img class="userAvatar"
@@ -30,7 +30,17 @@
 
                     <span class="material-symbols-outlined icon pointer" [ngClass]="{'filled': disliked}"
                         (click)="dislikeButton(disliked,questionData?.ctype)">thumb_down</span>
-                    <span class="material-symbols-outlined icon pointer">share</span>
+                    <span class="material-symbols-outlined icon pointer" [matMenuTriggerFor]="menu">share</span>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item>Facebook</button>
+                        <button mat-menu-item>Twitter</button>
+                        <button mat-menu-item (click)="copyUrl()">Copy Link</button>
+                    </mat-menu>
+                    <span *ngIf="questionData?.questionOwnedByTheRequestedUser"
+                        class="material-symbols-outlined filled coloricon"
+                        (click)="deleteQuestion(questionData?.eqid,questionData?.ctype)">
+                        delete
+                    </span>
                 </div>
             </div>
             <mat-card *ngIf="showComments" style="margin-top:10px;">
@@ -54,8 +64,18 @@
                             <div class="comment"><b>{{data?.commentedByUsername}}</b></div>
                             <span class="doc">{{data?.doc| date: 'MM/dd/yyyy'}}</span>
                         </div>
-                        <div style="margin:10px 30px;">
-                            {{data?.comment}}
+                        <div class="title space">
+                            <div style="margin:10px 30px;">
+                                {{data?.comment}}
+                            </div>
+                            <div>
+                                <span *ngIf="data?.commentOwnedByTheRequestedUser"
+                                    class="material-symbols-outlined filled coloricon"
+                                    (click)="deleteQuestionComment(data?.cid)">
+                                    delete
+                                </span>
+
+                            </div>
                         </div>
                         <mat-divider *ngIf="!last" class="relative"></mat-divider>
                     </div>
@@ -63,18 +83,31 @@
             </mat-card>
         </mat-card-content>
     </mat-card>
+    <div class="sort">
+        <p style="margin-right: 5px;">Sort By:</p>
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label></mat-label>
+                <mat-select (selectionChange)="onChange($event)">
+                    <mat-option *ngFor="let sortedValue of sortedValues" [value]="sortedValue.value">
+                        {{sortedValue.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
     <div *ngFor="let data of answerData">
-        <mat-card style="margin:15px 0px;">
+        <mat-card>
             <mat-card-title class="title">
 
                 <mat-icon style="font-size: 50px;height: 50px;width:50px">
                     <img class="userAvatar" src="../../assets/images/avatars/{{data.answeredByUsernameAvatarid}}.png" />
                 </mat-icon>
-                    <div>
-                        <div style="font-size:30px"><b>{{data?.answeredByUsername}}</b></div>
-                        <div style="font-size:14px;margin:3px">{{data?.doa | date: 'MM/dd/yyyy'}}</div>
-                    </div>
-                
+                <div>
+                    <div style="font-size:30px"><b>{{data?.answeredByUsername}}</b></div>
+                    <div style="font-size:14px;margin:3px">{{data?.doa | date: 'MM/dd/yyyy'}}</div>
+                </div>
+
             </mat-card-title>
             <mat-card-content>
                 <br />
@@ -92,10 +125,11 @@
                     <span class="material-symbols-outlined icon pointer"
                         [ngClass]="{'filled': data?.disLikedByTheRequestedUser}"
                         (click)="answerDislikeButton(data)">thumb_down</span>
-                    <span *ngIf="data?.answerOwnedByTheRequestedUser icon" class="material-symbols-outlined filled"
-                        (click)="deleteAnswer(data?.aid)">
+                    <span *ngIf="data?.answerOwnedByTheRequestedUser" class="material-symbols-outlined filled coloricon"
+                        (click)="deleteAnswer(data?.aid)" >
                         delete
                     </span>
+                    
                 </div>
                 <mat-card *ngIf="data?.showAnswerComments" style="margin-top:10px;">
                     <div class="title">
@@ -108,31 +142,31 @@
                         </mat-form-field>
                     </div>
                     <div style="max-height:300px;overflow: auto;">
-                        <div *ngFor="let data of answerCommentsData?.data let i = index; let first = first ;let last = last;"
+                        <div *ngFor="let commentdata of answerCommentsData?.data let i = index; let first = first ;let last = last;"
                             class="commentbox">
 
                             <div class="title">
                                 <mat-icon>
                                     <img class="userAvatar"
-                                        src="../../assets/images/avatars/{{data.commentedByUsernameAvatarid}}.png" />
+                                        src="../../assets/images/avatars/{{commentdata.commentedByUsernameAvatarid}}.png" />
                                 </mat-icon>
-                                <div class="comment"><b>{{data?.commentedByUsername}}</b></div>
-                                <span class="doc">{{data?.doc| date: 'MM/dd/yyyy'}}</span>
+                                <div class="comment"><b>{{commentdata?.commentedByUsername}}</b></div>
+                                <span class="doc">{{commentdata?.doc| date: 'MM/dd/yyyy'}}</span>
                             </div>
                             <div class="title space">
                                 <div style="margin:10px 30px;">
-                                    {{data?.comment}}
+                                    {{commentdata?.comment}}
 
                                 </div>
                                 <div>
-                                    <span *ngIf="data?.commentOwnedByTheRequestedUser"
+                                    <span *ngIf="commentdata?.commentOwnedByTheRequestedUser"
                                         class="material-symbols-outlined filled coloricon"
-                                        (click)="deleteComment(data?.cid)">
+                                        (click)="deleteComment(commentdata?.cid,data?.aid)">
                                         delete
                                     </span>
 
                                 </div>
-                                
+
                             </div>
                             <mat-divider *ngIf="!last" class="relative"></mat-divider>
                         </div>
@@ -140,5 +174,6 @@
                 </mat-card>
             </mat-card-content>
         </mat-card>
+        <br />
     </div>
 </div>

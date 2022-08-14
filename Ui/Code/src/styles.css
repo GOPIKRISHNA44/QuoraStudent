@@ -23,7 +23,8 @@ body {
 .mat-flat-button.mat-primary,
 .mat-raised-button.mat-primary,
 .mat-fab.mat-primary,
-.mat-mini-fab.mat-primary {
+.mat-mini-fab.mat-primary,
+.mat-select-value {
     font-size: 20px;
 }
 .mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary{

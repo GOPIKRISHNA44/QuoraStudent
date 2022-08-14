@@ -95,3 +95,8 @@
 .mat-card {
     border-radius: 0px !important;
 }
+.sort{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
