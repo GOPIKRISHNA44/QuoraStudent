@@ -32,7 +32,7 @@ export class InterestsDialogComponent implements OnInit {
   onNoClick() {
     let objInterest = {
       userid:this.userdetails?.userid,
-      interests:null,
+      interests:[],
     }
     this.questionService.postInterests(objInterest).subscribe(res => {
       if (res.success) {
@@ -42,17 +42,19 @@ export class InterestsDialogComponent implements OnInit {
 
     this.dialogRef.close();
   }
-  submit() {
+  submit() { 
     let objInterest = {
       userid:this.userdetails?.userid,
-      interests:this.selectedOptions,
+      interests:this.selectedOptions
     }
     this.questionService.postInterests(objInterest).subscribe(res => {
       if (res.success) {
-        
+        console.log("")
       }
     })
     this.dialogRef.close();
   }
+  onAreaListControlChanged(list){
 
+}
 }

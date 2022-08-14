@@ -6,6 +6,8 @@ import { delay, filter } from 'rxjs/operators';
 import { NavigationEnd, Router } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
 import { environment } from 'src/environments/environment';
+import { AlertService } from '../services/alert.service';
+import { appConstants } from '../constants/alert.constants';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +23,7 @@ export class HeaderComponent implements OnInit {
   unvTitle : any = "";
   userdetails = JSON.parse(this.authenticationService.GetUserDetails());
   constructor(private observer: BreakpointObserver,
-    private router: Router, private authenticationService: AuthenticationService) { }
+    private router: Router, private authenticationService: AuthenticationService,private alertServc:AlertService) { }
 
   ngOnInit(): void {
 
@@ -74,6 +76,7 @@ export class HeaderComponent implements OnInit {
       } else {
         alert('Reason:home' + res?.reason)
       }
+      this.alertServc.successAlert(appConstants.loggedOut);
     },
       error => {
         alert('Error occured with message ' + error?.message)

@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
@@ -19,6 +20,7 @@ import com.quorastudent.dto.SessionDetailsDTO;
 import com.quorastudent.dto.UpdateInterestsDTO;
 import com.quorastudent.dto.UserDetailsDTO;
 import com.quorastudent.dto.UserinterestsDTO;
+import com.quorastudent.email.EmailService;
 import com.quorastudent.repositories.SessionDetailsRepository;
 import com.quorastudent.repositories.UserInterestsRepositoy;
 import com.quorastudent.repositories.UserRepository;
@@ -39,6 +41,12 @@ public class UserService {
 	@Autowired
 	private SessionDetailsRepository sessionDetailsRepository;
 
+	@Autowired
+	private EmailService emailService;
+
+	@Value("${chechkEmailActivated}")
+	private boolean chechkEmailActivated;
+
 	public boolean register(UserDetailsDTO userDetailsDto) throws Exception {
 		try {
 			if (ObjectUtils.isEmpty(userDetailsDto.getUsername()) && ObjectUtils.isEmpty(userDetailsDto.getEmailid())) {
@@ -58,7 +66,8 @@ public class UserService {
 			userDetailsDto.setInterestspopup(AppConstants.DEFAULT_INTERESTS_POPUP_VALUE);
 			userDetailsDto.setPassword(utilityService.generateEncodedPassword(userDetailsDto.getPassword()));
 			System.out.println(userDetailsDto.toString());
-			userRepository.save(userDetailsDto);
+			UserDetailsDTO udto = userRepository.save(userDetailsDto);
+			emailService.sendActivationEmail(udto.getUserid(), udto.getEmailid());
 
 		} catch (Exception e) {
 
@@ -95,6 +104,8 @@ public class UserService {
 					finalData.put("sessionkey", sessionKey);
 					userDetailsDTOList.get(0).setPassword(null);
 					finalData.put("userdetails", userDetailsDTOList.get(0));
+					// emailService.sendSimpleMessage("bhargav.gandham44@gmail.com", "Test", "test
+					// mail");
 					return finalData;
 
 				} else {
@@ -163,7 +174,8 @@ public class UserService {
 
 	private String getUserInterestsStr(UpdateInterestsDTO updateInterestsDTO) {
 
-		String finalString =  AppConstants.INTERESTSEPERATOR;;
+		String finalString = AppConstants.INTERESTSEPERATOR;
+		;
 		if (!ObjectUtils.isEmpty(updateInterestsDTO) && !ObjectUtils.isEmpty(updateInterestsDTO.getInterests())) {
 			for (InterestsDTO interestsDTO : updateInterestsDTO.getInterests()) {
 				finalString += interestsDTO.getId() + AppConstants.INTERESTSEPERATOR;
@@ -172,6 +184,18 @@ public class UserService {
 		}
 		return null;
 
+	}
+
+	public int getInterestpopupStatus(Long userid) {
+		try {
+			List<UserDetailsDTO> ls = userRepository.findByUserid(userid);
+			if (!ObjectUtils.isEmpty(ls) && ls.size() > 0) {
+				return ls.get(0).getInterestspopup();
+			}
+		} catch (Exception e) {
+			throw e;
+		}
+		return 0;
 	}
 
 }

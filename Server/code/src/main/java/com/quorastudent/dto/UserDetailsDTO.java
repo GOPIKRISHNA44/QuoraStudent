@@ -17,6 +17,8 @@ public class UserDetailsDTO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long userid;
+	
+	private int emailidactivated;
 
 	private int interestspopup = 0;
 
@@ -88,6 +90,14 @@ public class UserDetailsDTO {
 
 	public void setInterestspopup(int interestspopup) {
 		this.interestspopup = interestspopup;
+	}
+
+	public int getEmailidactivated() {
+		return emailidactivated;
+	}
+
+	public void setEmailidactivated(int emailidactivated) {
+		this.emailidactivated = emailidactivated;
 	}
 
 	private Date dob;
