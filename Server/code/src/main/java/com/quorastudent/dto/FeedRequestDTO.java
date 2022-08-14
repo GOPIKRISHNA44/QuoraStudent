@@ -62,6 +62,16 @@ public class FeedRequestDTO {
 		this.visitedEqids = visitedEqids;
 	}
 
+	public String getFilterCondition() {
+		return filterCondition;
+	}
+
+	public void setFilterCondition(String filterCondition) {
+		this.filterCondition = filterCondition;
+	}
+
 	private List<Long> visitedEqids;
+
+	private String filterCondition;
 
 }
