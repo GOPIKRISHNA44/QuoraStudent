@@ -146,7 +146,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"userid\":6,\r\n    \"interests\":[\r\n      \r\n    ]\r\n}",
+					"raw": "{\r\n    \"userid\":6,\r\n    \"interests\":[\r\n      1\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -692,7 +692,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"ctype\":\"Q\",\r\n    \"userid\":6,\r\n    \"pageNumber\":1,\r\n    \"numberOfPostsRequired\":2,\r\n    \"visitedEqids\":[-1]\r\n}",
+					"raw": "{\r\n    \"ctype\":\"E\",\r\n    \"userid\":6,\r\n    \"pageNumber\":1,\r\n    \"numberOfPostsRequired\":3\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -700,7 +700,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/quoraStudent/questions/getQuestionsFeed",
+					"raw": "http://localhost:8080/quoraStudent/feed/getQuestionsOrEventFeed",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -708,8 +708,183 @@
 					"port": "8080",
 					"path": [
 						"quoraStudent",
-						"questions",
-						"getQuestionsFeed"
+						"feed",
+						"getQuestionsOrEventFeed"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteAnswer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"aid\":4\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/answer/deleteAnswer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"answer",
+						"deleteAnswer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "resetPassword",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"emailid\":\"bhargav.gandham44@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/account/resetPassword",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"account",
+						"resetPassword"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "validateResetPassword",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/account/validateResetPassword?e=bhargav.gandham44@gmail.com&q=i3WbdiWTsfaD1Dtc6kgXXLuZL8daRQJVkiuJXWkgiV7gegTweXVEisGegBuKIAieCzQHAggeFegeJOXit3U3e6X1t9LiiBuiGdwwUidOawERgM8Vf6g7WffEdgdTuHXC7iOs7sUI7wfZM4tPQeDeb1KsWKdicKEufUeeAzfe1XMVTeWSXfLSe4tLwbw6cVeYFSe1i2DW",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"account",
+						"validateResetPassword"
+					],
+					"query": [
+						{
+							"key": "e",
+							"value": "bhargav.gandham44@gmail.com"
+						},
+						{
+							"key": "q",
+							"value": "i3WbdiWTsfaD1Dtc6kgXXLuZL8daRQJVkiuJXWkgiV7gegTweXVEisGegBuKIAieCzQHAggeFegeJOXit3U3e6X1t9LiiBuiGdwwUidOawERgM8Vf6g7WffEdgdTuHXC7iOs7sUI7wfZM4tPQeDeb1KsWKdicKEufUeeAzfe1XMVTeWSXfLSe4tLwbw6cVeYFSe1i2DW"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updatePassword",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"emailid\":\"bhargav.gandham44@gmail.com\",\r\n    \"password\":\"test123\",\r\n    \"passwordlink\":\"i3WbdiWTsfaD1Dtc6kgXXLuZL8daRQJVkiuJXWkgiV7gegTweXVEisGegBuKIAieCzQHAggeFegeJOXit3U3e6X1t9LiiBuiGdwwUidOawERgM8Vf6g7WffEdgdTuHXC7iOs7sUI7wfZM4tPQeDeb1KsWKdicKEufUeeAzfe1XMVTeWSXfLSe4tLwbw6cVeYFSe1i2DW\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/account/updatePassword",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"account",
+						"updatePassword"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "activateEmail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/account/activateEmail?q=zA49TwGWu6ugCMiiuewUD5ZAwwefeLuiC3AS4V4guecH4u51Xafe8eGSUiuOfNSgG7kuwgVWV8dER3Z5iFI5EgwYS29GegefM5zdiQecieeVgBciK1T6fItiE7SsW5uFfHMettwXgeTiXbK6eEeiOiZ8ei1FsGR9fg1hhgAhiiRXgSdgkMNTKAWhzVwAgeDiH1iuJaQc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"account",
+						"activateEmail"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "zA49TwGWu6ugCMiiuewUD5ZAwwefeLuiC3AS4V4guecH4u51Xafe8eGSUiuOfNSgG7kuwgVWV8dER3Z5iFI5EgwYS29GegefM5zdiQecieeVgBciK1T6fItiE7SsW5uFfHMettwXgeTiXbK6eEeiOiZ8ei1FsGR9fg1hhgAhiiRXgSdgkMNTKAWhzVwAgeDiH1iuJaQc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getInterestpopupStatus",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/user/getInterestpopupStatus?userid=6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"user",
+						"getInterestpopupStatus"
+					],
+					"query": [
+						{
+							"key": "userid",
+							"value": "6"
+						}
 					]
 				}
 			},

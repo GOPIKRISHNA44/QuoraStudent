@@ -1,5 +1,6 @@
 package com.quorastudent.controllers;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -72,8 +73,10 @@ public class FeedController {
 		try {
 			Page<List<Map<String, Object>>> pageableResponse = feedService.getQuestionsOrEventFeed(feedRequestDTO);
 			pageableResponse.getContent();
-//			Object a =questionsService.getQuestionsFeed(feedRequestDTO);
-			responseDto = responseDtoGeneral.getSuccessResponse(pageableResponse.getContent());
+			Map<String, Object> finalResp = new HashMap<String, Object>();
+			finalResp.put("data", pageableResponse.getContent());
+			finalResp.put("totalPages", pageableResponse.getTotalPages());
+			responseDto = responseDtoGeneral.getSuccessResponse(finalResp);
 
 		} catch (Exception e) {
 
