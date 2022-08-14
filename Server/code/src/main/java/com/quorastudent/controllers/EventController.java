@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.quorastudent.constants.AppConstants;
 import com.quorastudent.dto.AnswerDTO;
 import com.quorastudent.dto.AnswerRequestingDTO;
 import com.quorastudent.dto.AnswerResponseListViewDTO;
@@ -38,6 +39,7 @@ public class EventController {
 
 		ResponseDTO responseDto = null;
 		try {
+			askAnEventDTO.getAskAquestionDTO().setCtype(AppConstants.EVENTSTR);
 			boolean status = eventService.saveEvent(askAnEventDTO);
 			Map<String, Boolean> finalMsg = new HashMap<String, Boolean>();
 			finalMsg.put("updated", status);

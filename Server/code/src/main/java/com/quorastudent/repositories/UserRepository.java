@@ -22,6 +22,8 @@ public interface UserRepository extends JpaRepository<UserDetailsDTO, Integer> {
 	List<UserDetailsDTO> findByUserid(Long userid);
 
 	List<UserDetailsDTO> findByUsernameOrEmailid(String username, String emailid);
+	
+	List<UserDetailsDTO> findByUniversitycode(String unvcode);
 
 	@Transactional
 	@Modifying

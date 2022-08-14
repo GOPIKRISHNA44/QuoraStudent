@@ -14,7 +14,9 @@ export const environment = {
     getInterestpopupStatus : "/getInterestpopupStatus"
 
   },
-  unvlist:"/info/getUnvList"
+  unvlist:"/info/getUnvList",
+  getNotifApi:"/notif/getNotifs",
+  deleteNotifsApi:"/notif/deleteNotifs"
   
 };
 

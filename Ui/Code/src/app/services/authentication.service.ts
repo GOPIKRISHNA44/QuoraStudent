@@ -9,12 +9,15 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthenticationService {
+  
 
   private registrationURL: string = environment.apiEndPoint + environment.user.endPoint + environment.user.register;
   private loginURL: string = environment.apiEndPoint + environment.user.endPoint + environment.user.login;
   private checkSessionURL = environment.apiEndPoint + environment.user.endPoint + environment.user.checkSession;
   private logoutURL = environment.apiEndPoint + environment.user.endPoint + environment.user.logout;
   private interestPopupStatusURL = environment.apiEndPoint + environment.user.endPoint + environment.user.getInterestpopupStatus;
+  private getNotifApi: any = environment.apiEndPoint + environment.getNotifApi;
+  private delNotifApi: any = environment.apiEndPoint + environment.deleteNotifsApi;
 
   constructor(private http: HttpClient) { }
 
@@ -66,5 +69,15 @@ export class AuthenticationService {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("userid", userid);
     return this.http.get(this.interestPopupStatusURL, { params: queryParams });
+  }
+
+  getNotifications(userid: any): Observable<any> {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("userid", userid);
+    return this.http.get(this.getNotifApi, { params: queryParams });
+  }
+
+  deleteNotifications(userid,ids): Observable<any> {
+    return this.http.post(this.delNotifApi, { ids: ids, userid:userid })
   }
 }

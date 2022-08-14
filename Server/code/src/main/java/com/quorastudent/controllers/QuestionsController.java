@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.quorastudent.constants.AppConstants;
 import com.quorastudent.dto.AskAquestionDTO;
 import com.quorastudent.dto.FeedRequestDTO;
 import com.quorastudent.dto.LikedislikeDTO;
@@ -36,6 +37,7 @@ public class QuestionsController {
 	public ResponseDTO register(@RequestBody AskAquestionDTO askAquestionDTO) {
 		ResponseDTO responseDto = null;
 		try {
+			askAquestionDTO.setCtype(AppConstants.QUESTIONSTR);
 			QuestionDTO status = questionsService.askAquestion(askAquestionDTO);
 			Map<String, Boolean> finalMsg = new HashMap<String, Boolean>();
 			if (!ObjectUtils.isEmpty(status))

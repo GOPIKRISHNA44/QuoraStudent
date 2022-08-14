@@ -14,3 +14,7 @@
 .white-color{
     color:black
 }
+.mat-card
+{
+    border-radius: 0 !important;
+}

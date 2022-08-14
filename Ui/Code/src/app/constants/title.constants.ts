@@ -22,10 +22,12 @@ export const toolbarIcons = [
     {
         icon: "notifications",
         useManualImg: false 
-    }, {
-        icon: "search",
-        useManualImg: false 
-    }, {
+    }, 
+    // {
+    //     icon: "search",
+    //     useManualImg: false 
+    // }, 
+    {
         icon: "account_circle",
         useManualImg: true 
     }
