@@ -30,16 +30,17 @@ CREATE TABLE IF NOT EXISTS `answers` (
   `active` int DEFAULT NULL,
   `content` longtext,
   PRIMARY KEY (`aid`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table quorastudent.answers: ~2 rows (approximately)
+-- Dumping data for table quorastudent.answers: ~4 rows (approximately)
 DELETE FROM `answers`;
 /*!40000 ALTER TABLE `answers` DISABLE KEYS */;
 INSERT INTO `answers` (`aid`, `eqid`, `doa`, `userid`, `ctype`, `updatedat`, `active`, `content`) VALUES
 	(3, 3, '2022-07-27 07:50:06', 11, 'Q', '2022-07-27 07:50:06', 1, 'dont know :) how '),
 	(5, 1, '2022-08-12 05:23:58', 11, 'Q', '2022-08-12 05:23:58', 1, '<p>hi</p><p><br></p>'),
 	(6, 2, '2022-08-12 07:34:53', 11, 'Q', '2022-08-12 07:34:53', 1, '<p>They uplaod in the eportal <a href="https://github.com/" target="_blank">https://github.com/</a></p>'),
-	(7, 10, '2022-08-12 08:39:04', 11, 'E', '2022-08-12 08:39:04', 1, '<p>GDRG</p>');
+	(7, 10, '2022-08-12 08:39:04', 11, 'E', '2022-08-12 08:39:04', 1, '<p>GDRG</p>'),
+	(8, 64, '2022-08-14 01:54:38', 21, 'Q', '2022-08-14 01:54:38', 1, '<p><span style="color: rgb(60, 60, 60);">From themain campus to throughout the city, we know that Leicester will offer you a vibrant and unique setting to spend the coming years. This blend of a&nbsp;</span><a href="https://www.theguardian.com/education/ng-interactive/2021/sep/11/the-best-uk-universities-2022-rankings" target="_blank" style="color: rgb(32, 126, 164); background-color: rgb(255, 255, 255);">Top 30 university university</a><span style="color: rgb(60, 60, 60);">&nbsp;campus life and bustling student life in Leicester city itself, makes us one of the best university campuses for growth and change.</span></p>');
 /*!40000 ALTER TABLE `answers` ENABLE KEYS */;
 
 -- Dumping structure for table quorastudent.blog
@@ -79,18 +80,9 @@ CREATE TABLE IF NOT EXISTS `comments` (
   PRIMARY KEY (`cid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table quorastudent.comments: ~1 rows (approximately)
+-- Dumping data for table quorastudent.comments: ~8 rows (approximately)
 DELETE FROM `comments`;
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
-INSERT INTO `comments` (`cid`, `cpid`, `userid`, `parentid`, `ctype`, `comment`, `doc`, `updatedat`, `active`) VALUES
-	(5, -1, 11, 1, 'Q', 'through portal !!! ', '2022-07-15 03:19:35', '2022-07-15 03:19:35', 1),
-	(6, -1, 11, 13, 'Q', 'This is the vamsi comment', '2022-08-12 08:47:09', '2022-08-12 08:47:09', 1),
-	(7, -1, 11, 6, 'A', 'hi', '2022-08-12 08:19:52', '2022-08-12 08:19:52', 1),
-	(8, -1, 11, 6, 'A', 'Hello', '2022-08-12 08:20:01', '2022-08-12 08:20:01', 1),
-	(9, -1, 11, 5, 'A', 'khdfx', '2022-08-12 08:34:43', '2022-08-12 08:34:43', 1),
-	(10, -1, 11, 5, 'A', 'bdf', '2022-08-12 08:34:45', '2022-08-12 08:34:45', 1),
-	(11, -1, 11, 1, 'Q', 'jtfyuj', '2022-08-12 08:37:57', '2022-08-12 08:37:57', 1),
-	(12, -1, 11, 1, 'Q', 'jfgyj', '2022-08-12 08:38:01', '2022-08-12 08:38:01', 1);
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 
 -- Dumping structure for table quorastudent.ctype
@@ -118,11 +110,16 @@ CREATE TABLE IF NOT EXISTS `emailactivator` (
   `createdat` datetime DEFAULT NULL,
   `userid` bigint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table quorastudent.emailactivator: ~0 rows (approximately)
+-- Dumping data for table quorastudent.emailactivator: ~1 rows (approximately)
 DELETE FROM `emailactivator`;
 /*!40000 ALTER TABLE `emailactivator` DISABLE KEYS */;
+INSERT INTO `emailactivator` (`emailid`, `emailactivatingtext`, `id`, `createdat`, `userid`) VALUES
+	('akhill@g.com', 'X2iwT3FeX2XewLN1KBwb79stG28tiQkzeTIuifhWgVgiDFGcfktegKkH3VciLf6iSAhCfhtHugtRwffLXezSLHVKefYSEgTNLgYe6YtuMeggHu67sA7JszNifFetLbXd5eO7iXdheL9i3MHigugwAfUFu6dzgfww6GTfbufgsu431SsdfWLhRfk8LYtd25UeatYdKYUU', 6, '2022-08-14 00:16:00', 19),
+	('liger@test.com', 'HBSgsObdwf5iCACwHg2QeDugfFuKwfiLFFcuiibffbHPBf3gL56KAFSauAG8Qeu8whKewfAZeQtMbTDA4XiIiEWfQVTZ16Oikf638eDIiYhuGwXfuNh5kV9gfQ8WfHCCUELAWPEQ3Fd3kg9e66e7WSuIkiCiiRJtUAeB3fButfaABbkwROisiRwgIBtWNcwzNGgWa6e1', 7, '2022-08-14 01:05:18', 20),
+	('anveshnani40@gmail.com', 'g9O9cuRbf4wicHtEBZU6AaSzLeuiCfUz1u5VK4seia5IGgfcwNGAAHCege3eDIeQW2UegW3e1DzKKiceiMRaViu9BMRZ6fQKAu9uVeeEgf7ieeWVt3SwZLYbfUQs4w43EiG3YIfgeVzJRFgHWJXt95uzfT1ze8S2gTgikNwfs8kiQsSP5ga5ukeYZYVikIw1LgBegCiw', 8, '2022-08-14 01:49:00', 21),
+	('Prerana@gmail.com', 'EMu4KkRQgEuugWwHuuzubDgLw4wiKEDeNgQGkbTKO42aw36Ni45XPGYQICY2Wzw6iei2tgctfVtgVeTtNfkeigd7wZtK6DXBFFCS3VRwdDK2u5gz2IJ7zKJQEYwtCeeFwEQHciW9IHDFRfEfNg7A3Ji9YM8Ed4eeANaR2igRGJH5Xeftg5eB4eC66t6I8RJ9zCYaiZGc', 9, '2022-08-14 01:50:34', 22);
 /*!40000 ALTER TABLE `emailactivator` ENABLE KEYS */;
 
 -- Dumping structure for table quorastudent.events
@@ -133,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `events` (
   `fromdate` datetime DEFAULT NULL,
   `todate` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table quorastudent.events: ~3 rows (approximately)
 DELETE FROM `events`;
@@ -141,7 +138,8 @@ DELETE FROM `events`;
 INSERT INTO `events` (`id`, `eid`, `fromdate`, `todate`) VALUES
 	(2, 10, '2020-08-07 19:00:00', '2020-09-06 19:00:00'),
 	(3, 14, '2022-08-10 20:45:27', '2022-08-17 00:00:00'),
-	(4, 16, '2022-08-10 20:47:53', '2022-08-22 00:00:00');
+	(4, 16, '2022-08-10 20:47:53', '2022-08-22 00:00:00'),
+	(5, 43, '2022-08-14 11:22:04', NULL);
 /*!40000 ALTER TABLE `events` ENABLE KEYS */;
 
 -- Dumping structure for procedure quorastudent.feed
@@ -199,27 +197,26 @@ CREATE TABLE IF NOT EXISTS `likedislike` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='parentid can be of question,answer,blog,comment,entity';
 
--- Dumping data for table quorastudent.likedislike: ~6 rows (approximately)
+-- Dumping data for table quorastudent.likedislike: ~16 rows (approximately)
 DELETE FROM `likedislike`;
 /*!40000 ALTER TABLE `likedislike` DISABLE KEYS */;
-INSERT INTO `likedislike` (`id`, `parentid`, `updwnvt`, `userid`, `ctype`, `updatedon`) VALUES
-	(1, 3, 1, 6, 'Q', '2022-07-13 06:42:41'),
-	(2, 3, 1, 5, 'Q', '2022-07-15 01:51:43'),
-	(3, 1, 0, 11, 'Q', '2022-08-12 08:56:33'),
-	(4, 2, 1, 6, 'A', '2022-07-15 01:51:43'),
-	(5, 3, 1, 6, 'C', '2022-07-15 01:51:43'),
-	(6, 1, 0, 6, 'Q', '2022-08-12 09:24:51'),
-	(7, 13, 1, 11, 'Q', '2022-08-12 09:24:36'),
-	(8, 13, 1, 6, 'Q', '2022-08-12 08:46:13'),
-	(9, 5, 0, 11, 'Q', '2022-08-12 04:47:06'),
-	(10, 2, 1, 6, 'Q', NULL),
-	(15, 2, 1, 11, 'Q', '2022-07-15 01:51:43'),
-	(16, 4, 1, 11, 'A', '2022-08-12 07:30:30'),
-	(17, 5, 1, 11, 'A', '2022-08-12 08:46:14'),
-	(18, 10, 1, 11, 'Q', '2022-08-12 08:39:42'),
-	(19, 5, 1, 6, 'A', '2022-08-12 09:24:54'),
-	(20, 12, 1, 13, 'Q', '2022-08-12 09:25:40');
 /*!40000 ALTER TABLE `likedislike` ENABLE KEYS */;
+
+-- Dumping structure for table quorastudent.notifications
+DROP TABLE IF EXISTS `notifications`;
+CREATE TABLE IF NOT EXISTS `notifications` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `notifhtmltext` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `userid` bigint DEFAULT NULL,
+  `createdat` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table quorastudent.notifications: ~0 rows (approximately)
+DELETE FROM `notifications`;
+/*!40000 ALTER TABLE `notifications` DISABLE KEYS */;
+/*!40000 ALTER TABLE `notifications` ENABLE KEYS */;
 
 -- Dumping structure for table quorastudent.passwordreset
 DROP TABLE IF EXISTS `passwordreset`;
@@ -232,7 +229,7 @@ CREATE TABLE IF NOT EXISTS `passwordreset` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table quorastudent.passwordreset: ~0 rows (approximately)
+-- Dumping data for table quorastudent.passwordreset: ~1 rows (approximately)
 DELETE FROM `passwordreset`;
 /*!40000 ALTER TABLE `passwordreset` DISABLE KEYS */;
 INSERT INTO `passwordreset` (`id`, `emailid`, `passwordresetlink`, `createdat`, `active`) VALUES
@@ -251,23 +248,13 @@ CREATE TABLE IF NOT EXISTS `questions` (
   `active` int DEFAULT NULL,
   `tags` longtext,
   PRIMARY KEY (`eqid`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table quorastudent.questions: ~11 rows (approximately)
 DELETE FROM `questions`;
 /*!40000 ALTER TABLE `questions` DISABLE KEYS */;
 INSERT INTO `questions` (`eqid`, `userid`, `question`, `doq`, `updatedat`, `ctype`, `active`, `tags`) VALUES
-	(1, 11, 'How do the college manage marks ', '2022-07-06 06:44:18', '2022-07-06 06:44:18', 'Q', 1, ';1;2;'),
-	(2, 6, '<h1>How do the college manage marks</h1> ', '2022-08-01 05:46:32', '2022-08-01 05:46:32', 'Q', 1, ';1;2;3;'),
-	(4, 6, '<p>Hello how </p>', '2022-07-09 11:05:58', '2022-07-09 11:05:58', 'Q', 1, ';1;2;3;'),
-	(6, 6, '<h1>How do the college manage marks</h1> ', '2022-08-08 01:33:14', '2022-08-08 01:33:14', 'Q', 1, ';1;2;3;'),
-	(10, 6, '<h1>eVENT TEST</h1> ', '2022-08-08 01:42:23', '2022-08-08 01:42:23', 'E', 1, ';1;2;3;'),
-	(11, 6, '<h1>How do the college manage marks</h1> ', '2022-08-08 03:54:43', '2022-08-08 03:54:43', 'Q', 1, ';1;2;3;'),
-	(12, 12, '<p>Hello this is a test case for 89 unv</p>', '2022-08-09 00:28:21', '2022-08-09 00:28:21', 'Q', 1, ';1;2;3;'),
-	(13, 6, '<h1>tHIS SHOULD BE THE FIRST</h1> ', '2022-08-10 07:27:20', '2022-08-10 07:27:20', 'Q', 1, ';1;2;3;'),
-	(14, 6, '<p>bff</p>', '2022-08-10 08:46:21', '2022-08-10 08:46:21', 'E', 1, ';6;4;5;3;'),
-	(15, 6, '<p>fwe</p>', '2022-08-10 08:47:47', '2022-08-10 08:47:47', 'Q', 1, ';;'),
-	(16, 6, '<p>uyru</p>', '2022-08-10 08:48:24', '2022-08-10 08:48:24', 'E', 1, ';;');
+	(64, 22, '<p>What is the campus culture and environment at <a href="https://le.ac.uk/" target="_blank">University of Leicester</a>?</p><p><br></p>', '2022-08-14 01:52:01', '2022-08-14 01:52:01', 'Q', 1, ';;');
 /*!40000 ALTER TABLE `questions` ENABLE KEYS */;
 
 -- Dumping structure for table quorastudent.sessiondetails
@@ -280,48 +267,18 @@ CREATE TABLE IF NOT EXISTS `sessiondetails` (
   `loggedoutat` datetime DEFAULT NULL,
   `active` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=133 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table quorastudent.sessiondetails: ~2 rows (approximately)
+-- Dumping data for table quorastudent.sessiondetails: ~36 rows (approximately)
 DELETE FROM `sessiondetails`;
 /*!40000 ALTER TABLE `sessiondetails` DISABLE KEYS */;
 INSERT INTO `sessiondetails` (`id`, `userid`, `sessionkey`, `loggedinat`, `loggedoutat`, `active`) VALUES
-	(76, 6, 'D5geDjA9tH/1Kf34gBwQhqiOZfKE0DcXbBY3E/aUg2urOiza65d9B4z0DiibpeHl', '2022-08-10 09:19:43', '2022-08-10 09:39:19', 0),
-	(77, 6, '20NN9xwGPcl/qP6wVdNsiudYg9QY3gvLtajPjc16yOoO/8lwORat3FKUbsbvzoBu', '2022-08-12 08:43:01', '2022-08-12 08:44:47', 0),
-	(78, 11, 'Yuj3nZvqFVbF+3xzjphnTOiyexTvzR0LJ6hQmSXGGAUMIQXYYAIDrhSIISPlc/AE', '2022-08-12 08:45:01', '2022-08-12 08:45:51', 0),
-	(79, 6, 'lbcT8OhrLfYM11pyE5oOLQx1MjV6l1yhx95uY5pfaz3tZ41ojtdlN+w7G54TK77m', '2022-08-12 08:45:54', '2022-08-12 08:46:25', 0),
-	(80, 11, 'aQxwntujFG0wHdZSwtXz1gH14sAK9owsDR1dWAuxvWU4mmZ9zUq2C7zIpHxbxPxi', '2022-08-12 08:46:29', '2022-08-12 08:46:54', 0),
-	(81, 11, 'rEbOdMuHulolk0dDIEkDcsIjScFC3KPpOr4Agz1KzeOBAit6D/b+DsPgHfJ4s6sV', '2022-08-12 08:46:56', '2022-08-12 08:47:25', 0),
-	(82, 6, 'h6QW3KA0PhkVVAirTmvxmOFt5Er3BkDCzqs48vw8awlxqV2ECKYaaGQVfcKLhPXx', '2022-08-12 08:47:28', '2022-08-12 08:47:32', 0),
-	(83, 11, 'j5ZKQE2seUDfrIib5WVmSYEY/50LA+Ogi0IxbNing0WpV8B+9E46ezEbwPJ46c/D', '2022-08-12 08:47:36', '2022-08-12 06:09:52', 0),
-	(84, 11, 'Ej/uXnoqX5qWfTaWEmpqIw+4GMrATtRCkND+iO4m2v2IZViptKYfu5J2Bn/EG/81', '2022-08-12 06:10:21', '2022-08-12 06:13:00', 0),
-	(85, 11, 'OsrkjFfLafSXtujnVHM9OXaVaZ6NRSwWV/77IAAymXzBi3Y8+dMdc3rS5001URoZ', '2022-08-12 06:28:44', NULL, 1),
-	(86, 11, '/tNMwr5WNLVaB5RepwHNJ4UpnqoqwAWNHhU9GW9W0nsKlOXmqOynFk3yj50S+0fs', '2022-08-12 06:29:45', '2022-08-12 06:55:36', 0),
-	(87, 11, '3o45OsKKxkxeThh+LrHP2ol5O5igVKiL60GR9gfGpsziqK3WPNJYwIJEggO00UQ9', '2022-08-12 06:55:37', '2022-08-12 06:55:56', 0),
-	(88, 11, 'AQrAQO5it4Z4bL77fkoc01VaKpAZ22/2wD3c2VzSS9FqSDiVrh6GedVapQGi7FtE', '2022-08-12 06:56:01', '2022-08-12 06:56:20', 0),
-	(89, 11, 'UNyMRYMn13Uzr9k2gAWRNTNHDbLK3NnCE2S/a0jhELlr5iEOSj+YZ1N3MUAUyhnE', '2022-08-12 06:56:22', '2022-08-12 08:58:25', 0),
-	(90, 11, 'wc9WpNaGmSYCidW1nqzlvhbIMRPxQdSl04RfoO/NkSEnhJjZKgtTzzOlj8UjaI/M', '2022-08-12 08:59:10', '2022-08-12 09:24:18', 0),
-	(91, 11, 'kh39iF8Kp53f/gXN9eJk52vFPdCJc4+Qf5hfSE0poBpbHOln7I0Mzx/zdgwZO/YB', '2022-08-12 09:24:20', '2022-08-12 09:24:39', 0),
-	(92, 6, 'U967CFpO/xYJmZEmCk1z94tkYCOf+suspdHnDUbqEFWNHZDzl2bNQnM1RlW/OIsb', '2022-08-12 09:24:43', '2022-08-12 09:24:57', 0),
-	(93, 13, 'SI4NKT8dWhzUPN9waNimKUv78h7pbFeXSPhCq8iguwERczBQ2Yo7cBm1XiR2YtaV', '2022-08-12 09:25:29', '2022-08-12 09:28:27', 0),
-	(94, 13, '8WhMJgqcbFNDmRpaE8RJJvHfQwAde7Bn8C8C3AL8p3/5L3A+qV9jcRJ2hrA1YaUH', '2022-08-12 09:28:28', '2022-08-12 11:43:16', 0),
-	(95, 13, 'rGoggcJu2fwxsGRF9yauCjRjEB7nwZe0aeXB25JnnJgCn7NzGqJYO1a+daCKoNXh', '2022-08-12 11:43:28', '2022-08-12 11:43:37', 0),
-	(96, 13, 'zZTOo5BYwPKrhz/XWi0ritKafchsfu3u8s8Fcc/bTxUVYd1gMAgFL8GsOAZY+OSD', '2022-08-12 11:44:48', '2022-08-12 11:44:51', 0),
-	(97, 13, 'kM9FKCY+//bGM9jqwD/zY+VqLJSw2IVhlLa93ErbFWnsiGRy6TyQtmA+zSLd3PNI', '2022-08-12 11:46:31', '2022-08-12 11:46:34', 0),
-	(98, 13, '2vDN4/rPxAfsHf8ImgEEjD9qb8qVl+oclQoPGAOlaxNtjr41Xv6WdcHXvPzJDUQN', '2022-08-12 11:48:19', '2022-08-12 11:48:22', 0),
-	(99, 13, 'kQv4LmWhNS+MYagKh1B2PRGFHLSO2oKJZJTKIwRNtbxLqvrwr6BVME8RyREBTZhu', '2022-08-12 11:49:30', '2022-08-12 11:49:32', 0),
-	(100, 13, 'f2UqEnZoC3DUb5MoO+HKwi8co9YzEh/R1CpsjIUwV8WptQpXit+c5ZP1kquUBJom', '2022-08-12 11:49:38', '2022-08-13 00:15:33', 0),
-	(101, 13, 'o++QbrvxMznthNV0HsVX1/RdTzMthhBmbxWYSq/eHJqX7JO4RB/hA/xmVicLAdLz', '2022-08-13 00:15:37', NULL, 1),
-	(102, 13, 'WhJ5rm1Bn+Se1BuDx3FIGjyQMTHVMNKTZaYwUOi7LzVgkIQc+8aOg+Z2EYBWNUMk', '2022-08-13 00:18:24', NULL, 1),
-	(103, 13, 'Y9oJd+aYxgLQ9mkgbzTa/7CryDftnW67r4d37fjrDKMo9NQ1Bkzu82uG9v/kBphD', '2022-08-13 00:26:57', '2022-08-13 00:29:45', 0),
-	(104, 13, 'PXXDmAv+2AVAMg0nbrgEsH3PMNUfImXuiI3YfQL/lk+DgWwg+kqAcJrAm091HHm5', '2022-08-13 00:29:48', '2022-08-13 00:30:27', 0),
-	(105, 13, 'NveNbaN82aDAMc6/fuIfQyNA/JH9a54Gzp+yOeHT8dsetYe0r5M91Kb8GCVD8Rrd', '2022-08-13 00:30:30', '2022-08-13 00:32:46', 0),
-	(106, 13, 'lq43EV+4ZHVj455iPzZYY6JKrHAbxIRc+FWTLI9fz1FWpsj7Puhg6Pa/pjInUYMt', '2022-08-13 00:32:49', '2022-08-13 00:34:48', 0),
-	(107, 13, 'ZsQS0q5YGrEcDjlR6ij7PFWk/dt4Z5jbsTX0uEc6JXRP4GVW9NzxbK19N1t3wNPh', '2022-08-13 00:34:50', '2022-08-13 01:15:32', 0),
-	(108, 15, 'A2yjC3XThD3STZ8HnyzVz1ux16/Eu2ClIL9KNct27Klz4rTffePNB+8omRfibNA8', '2022-08-13 08:48:10', '2022-08-13 10:09:26', 0),
-	(109, 18, '83cEeQKCiC8gqhpJ9P0VoPrvKjXQFFRos/vAaKplTQj9QNoYu8eUa134Yzehqi+U', '2022-08-13 11:22:50', '2022-08-13 11:24:22', 0),
-	(110, 18, 'shFG6DHwta4O17vvYBUDR2s2e3ECZzLxk7BbdQSLUgVVXG7Jqpop/rbOM4f0uDN6', '2022-08-13 11:24:30', '2022-08-13 00:09:32', 0),
-	(111, 18, '1v62PlSi7lk4pHBeS9w52a4RlHPw3uhsXP4p7bkdtB2hiY9+yqWy12FW+SOK/kBJ', '2022-08-13 00:09:41', NULL, 1);
+	(127, 19, 'pXu59qe8UMc8RdwsX6T9IjJG+sb9e/TcpFq5enyU30Yb+R4xwR1JMLcSjR+Hj2qo', '2022-08-14 00:03:03', '2022-08-14 00:24:58', 0),
+	(128, 20, '1devcqOIV0msCc+WOjB4sCzogpqRX51cHEEEDm/ZpFRhkgfrf2HTwEIw3kuRmRrr', '2022-08-14 01:05:41', '2022-08-14 01:05:53', 0),
+	(129, 20, 'N2uuRFo209gkiTyKY5ETcTWtBCqhID02ramK0+j1gok0NA7r3eMdLFUYlASaxLu7', '2022-08-14 01:21:03', '2022-08-14 01:21:05', 0),
+	(130, 20, 'zjDt88sxjgq3Ac6eMa98FO/KCr63drK9AOtH7q7/HuaMISh1q8TH8/5HWDYleAy3', '2022-08-14 01:43:02', '2022-08-14 01:48:20', 0),
+	(131, 21, 'k3lP7jAZMEAAGQLA8NkcQvbL/y9zff0xfbKdnqhC1uGsN3zBro0mxqFkXhaymwM8', '2022-08-14 01:49:10', NULL, 1),
+	(132, 22, 'r3CAc8zTL1v5e/Am9oNWG2jhr9uWRSSMCHOUs/DmbSW2+VDpxG5e6VqtT3+PHzrJ', '2022-08-14 01:50:38', NULL, 1);
 /*!40000 ALTER TABLE `sessiondetails` ENABLE KEYS */;
 
 -- Dumping structure for table quorastudent.universities
@@ -330,7 +287,7 @@ CREATE TABLE IF NOT EXISTS `universities` (
   `unvcode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '00',
   `unvname` varchar(200) DEFAULT NULL,
   `unvaddress` varchar(1000) DEFAULT NULL,
-  `unvmobile` varchar(15) DEFAULT NULL,
+  `unvmobile` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`unvcode`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -338,10 +295,27 @@ CREATE TABLE IF NOT EXISTS `universities` (
 DELETE FROM `universities`;
 /*!40000 ALTER TABLE `universities` DISABLE KEYS */;
 INSERT INTO `universities` (`unvcode`, `unvname`, `unvaddress`, `unvmobile`) VALUES
-	('1', 'Abertay University', 'Abertay University', '1234'),
-	('2', 'Cardiff University', 'Cardiff University', '7890'),
-	('3', 'Lecis University', 'Lecis University', '3456'),
-	('4', 'University of Kentucky', 'University of Kentucky', '6789');
+	('1', 'University of Oxford', 'Oxford OX1 2JD, United Kingdom', '+44 1865 270000\r\n'),
+	('10', 'Liverpool John Moores University', '70 Mount Pleasant, Merseyside L3 5UX, United Kingdom', '+44 151 231 2121\r\n'),
+	('11', 'University of Hull', 'Cottingham Rd, Hull HU6 7RX, United Kingdom', '+44 1482 346311\r\n'),
+	('12', 'University of the West of England', 'UWE Bristol - Frenchay Campus, Coldharbour Ln, Bristol BS16 1QY, United Kingdom', '+44 117 965 6261\r\n'),
+	('13', 'Edge Hill University', ' St Helens Rd, Ormskirk L39 4QP, United Kingdom', '+44 1695 575171\r\n'),
+	('14', 'University Of Sheffield', 'Sheffield S10 2TN, United Kingdom', '+44 114 222 2000\r\n'),
+	('15', 'University of Essex', 'Wivenhoe Park, Colchester CO4 3SQ, United Kingdom', ' +44 1206 873333\r\n'),
+	('16', 'Aston University', 'Aston St, Birmingham B4 7ET, United Kingdom', '+44 121 204 3000\r\n'),
+	('17', 'De Montfort University', 'Gateway House, Leicester LE1 9BH, United Kingdom', '+44 116 255 1551\r\n'),
+	('18', 'University of Kent', 'Giles Ln, Canterbury CT2 7NZ, United Kingdom', '+44 1227 764000\r\n'),
+	('19', 'University of York', 'Heslington, York YO10 5DD, United Kingdom', '+44 1904 320000\r\n'),
+	('2', 'University of Cambridge', 'The Old Schools, Trinity Ln, Cambridge CB2 1TN, United Kingdom', '+44 1223 337733\r\n'),
+	('20', 'University of Edinburgh', 'Old College, South Bridge, Edinburgh EH8 9YL, United Kingdom', '+44 131 650 1000\r\n'),
+	('21', 'University of Leicester', 'University Rd, Leicester LE1 7RH, United Kingdom', ' +44 116 252 2522'),
+	('3', 'University of Birmingham', 'Birmingham, United Kingdom', '+44 121 414 3344\r\n'),
+	('4', 'University of Bristol', 'Bristol BS8 1TH, United Kingdom', '+44 120 414 3344\r\n'),
+	('5', 'Imperial College London', 'Exhibition Rd, South Kensington, London SW7 2BX, United Kingdom', '+44 20 7589 5111\r\n'),
+	('6', 'University of Manchester', 'Oxford Rd, Manchester M13 9PL, United Kingdom', '+44 161 306 6000\r\n'),
+	('7', 'University of Bristol', 'Bristol BS8 1TH, United Kingdom', '+44 117 928 9000\r\n'),
+	('8', 'Durham University', 'Durham, United Kingdom', '+44 191 334 2000\r\n'),
+	('9', 'University of Leeds', 'Woodhouse, Leeds LS2 9JT, United Kingdom', '+44 113 243 1751\r\n');
 /*!40000 ALTER TABLE `universities` ENABLE KEYS */;
 
 -- Dumping structure for table quorastudent.userdetails
@@ -359,17 +333,21 @@ CREATE TABLE IF NOT EXISTS `userdetails` (
   PRIMARY KEY (`userid`) USING BTREE,
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `emailId` (`emailid`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table quorastudent.userdetails: ~3 rows (approximately)
+-- Dumping data for table quorastudent.userdetails: ~5 rows (approximately)
 DELETE FROM `userdetails`;
 /*!40000 ALTER TABLE `userdetails` DISABLE KEYS */;
 INSERT INTO `userdetails` (`userid`, `username`, `emailid`, `password`, `dob`, `universitycode`, `interestspopup`, `avatarid`, `emailidactivated`) VALUES
 	(6, 'vamsi', 'vamsi@gmail.com', 'zEhq/Nf9IuuDN3XWL+o54A==', '1997-07-22', '2', 1, 1, 0),
 	(11, 'gopik', 'vamsoir9rr@gmail.com', 'zEhq/Nf9IuuDN3XWL+o54A==', '1997-07-22', '2', 1, 5, 0),
 	(12, 'Gopikrishna', 'gopi@gmail.com', '1HLV5GltQFw8y2Gj3So4aA==', '2022-08-08', '1', 1, 1, 0),
-	(13, 'test', 'test@gmail.com', '3zqM0lfh/hQPAsCX6L4M4w==', '2022-08-17', '1', 0, 1, 0),
-	(18, 'bhargav', 'bhargav.gandham44@gmail.com', '3zqM0lfh/hQPAsCX6L4M4w==', '2022-08-11', '1', 1, 1, 0);
+	(13, 'test', 'test@gmail.com', '3zqM0lfh/hQPAsCX6L4M4w==', '2022-08-17', '2', 1, 1, 0),
+	(18, 'bhargav', 'bhargav.gandham44@gmail.com', '3zqM0lfh/hQPAsCX6L4M4w==', '2022-08-11', '2', 1, 1, 0),
+	(19, 'akhil', 'akhill@g.com', '3zqM0lfh/hQPAsCX6L4M4w==', '2022-08-09', '2', 1, 1, 0),
+	(20, 'liger', 'liger@test.com', '3zqM0lfh/hQPAsCX6L4M4w==', '2022-08-24', '4', 1, 1, 0),
+	(21, 'anvesh', 'anveshnani40@gmail.com', '3zqM0lfh/hQPAsCX6L4M4w==', '2022-08-07', '21', 1, 1, 0),
+	(22, 'Prerana', 'Prerana@gmail.com', '3zqM0lfh/hQPAsCX6L4M4w==', '2022-08-02', '21', 1, 1, 0);
 /*!40000 ALTER TABLE `userdetails` ENABLE KEYS */;
 
 -- Dumping structure for table quorastudent.userinterests
@@ -380,14 +358,19 @@ CREATE TABLE IF NOT EXISTS `userinterests` (
   PRIMARY KEY (`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table quorastudent.userinterests: ~1 rows (approximately)
+-- Dumping data for table quorastudent.userinterests: ~4 rows (approximately)
 DELETE FROM `userinterests`;
 /*!40000 ALTER TABLE `userinterests` DISABLE KEYS */;
 INSERT INTO `userinterests` (`userid`, `interests`) VALUES
 	(6, NULL),
 	(11, NULL),
 	(12, NULL),
-	(18, ';3;5;');
+	(13, NULL),
+	(18, ';3;5;'),
+	(19, NULL),
+	(20, NULL),
+	(21, NULL),
+	(22, NULL);
 /*!40000 ALTER TABLE `userinterests` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
