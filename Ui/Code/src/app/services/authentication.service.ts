@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { LoginDetails, SignUpDetails } from '../models/auth.model';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +14,7 @@ export class AuthenticationService {
   private loginURL: string = environment.apiEndPoint + environment.user.endPoint + environment.user.login;
   private checkSessionURL = environment.apiEndPoint + environment.user.endPoint + environment.user.checkSession;
   private logoutURL = environment.apiEndPoint + environment.user.endPoint + environment.user.logout;
+  private interestPopupStatusURL = environment.apiEndPoint + environment.user.endPoint + environment.user.getInterestpopupStatus;
 
   constructor(private http: HttpClient) { }
 
@@ -41,7 +42,7 @@ export class AuthenticationService {
   }
 
   GetUserDetails() {
-    return localStorage.getItem('userdetails') ;
+    return localStorage.getItem('userdetails');
   }
 
   show() {
@@ -55,10 +56,15 @@ export class AuthenticationService {
   //   this.userDetails$.next(userDetails)
   // }
 
-  
-  getUniversityList(url):Observable<any>
-  {
+
+  getUniversityList(url): Observable<any> {
     return this.http.get(url);
   }
 
+
+  getInterestPopupStatus(userid: any): Observable<any> {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("userid", userid);
+    return this.http.get(this.interestPopupStatusURL, { params: queryParams });
+  }
 }

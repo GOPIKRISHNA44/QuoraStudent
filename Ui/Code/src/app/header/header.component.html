@@ -32,7 +32,7 @@
                         
                     </button>
                     <div *ngIf="toolbarIconsItem.useManualImg">
-                        <img class="userAvatar" src="../../assets/images/avatars/{{userdetails.avatarid}}.png" />
+                        <img class="userAvatar" src="../../assets/images/avatars/{{userdetails.avatarid}}.png" style="cursor: pointer"  (click)="logOut()"/>
                     </div>
                 </div>
             </div>
