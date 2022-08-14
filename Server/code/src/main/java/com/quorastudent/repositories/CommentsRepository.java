@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.quorastudent.dto.CommentsDTO;
+import com.quorastudent.dto.QuestionDTO;
 
 public interface CommentsRepository extends JpaRepository<CommentsDTO, Long> {
 
@@ -26,4 +27,6 @@ public interface CommentsRepository extends JpaRepository<CommentsDTO, Long> {
 	@Modifying
 	@Query("delete  from  CommentsDTO c  where c.parentid = :parentid and c.ctype = :ctype ")
 	void deleteComments(Long parentid, String ctype);
+
+	CommentsDTO findByParentidAndCtype(Long parentid, String ctype);
 }

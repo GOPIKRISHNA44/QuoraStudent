@@ -9,34 +9,53 @@
                 </button>
                 <span class="maintitle" (click)="gotoHome()" style="    top: 5px;
                 position: relative;"><span>
-                        <img src="../../assets/images/unvlogos/{{userdetails.universitycode}}.png" style="margin-right: 10px"
-                            class="titlebg"></span>
+                        <img src="../../assets/images/unvlogos/{{userdetails.universitycode}}.png"
+                            style="margin-right: 10px" class="titlebg"></span>
                     <span>
                         <img src="../../assets/images/title.png" class="titlebg">
-                        
+                       
                     </span>
-                    
+                    <span>
+                        <span style="
+                           font-size: 15px;
+    color: rgb(185, 43, 39);
+    font-style: italic;
+    /* width: 10px; */
+    margin-left: 6px;
+    position: relative;
+    bottom: -3px;
+                    ">@{{unvTitle}}</span>
+                    </span>
+
 
 
                 </span>
-                
+
             </div>
             <div class="row-center">
                 <div class="itemIcon" *ngFor="let toolbarIconsItem of toolbarIconsItems">
-                    <button mat-mini-fab class="row-center" (click)="toolbarIcons(toolbarIconsItem)" color="warn" *ngIf="!toolbarIconsItem.useManualImg">
-                        <mat-icon >
+                    <button mat-mini-fab class="row-center" (click)="toolbarIcons(toolbarIconsItem)" color="warn"
+                        *ngIf="!toolbarIconsItem.useManualImg">
+                        <mat-icon matBadge="{{notifViewCount}}" [matMenuTriggerFor]="belowMenu" (click)="notificationsSeen()" approxItemHeight="152px" [itemHeight]="itemHeightFn">
 
                             {{toolbarIconsItem.icon}}
 
+                            <mat-menu #belowMenu="matMenu" yPosition="below">
+                              <div mat-menu-item *ngFor="let obj of notificationsList"><div class="notifImgDiv" [innerHTML]="obj.notifHTMLText"></div></div>
+                              
+                            </mat-menu>
+                            
                         </mat-icon>
+                        
                         
                     </button>
                     <div *ngIf="toolbarIconsItem.useManualImg">
-                        <img class="userAvatar" src="../../assets/images/avatars/{{userdetails.avatarid}}.png" style="cursor: pointer"  (click)="logOut()"/>
+                        <img class="userAvatar" src="../../assets/images/avatars/{{userdetails.avatarid}}.png"
+                            style="cursor: pointer" (click)="logOut()" />
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </mat-toolbar-row>
 </mat-toolbar>

@@ -5,15 +5,15 @@
                 <img class="userAvatar"
                     src="../../assets/images/avatars/{{questionData?.avataridOfWhoAskedThisQuestion}}.png" />
             </mat-icon>
-            <div>
-                <div style="font-size:30px"><b>{{questionData?.usernameOfWhoAskedThisQuestion}}</b></div>
+            <div style="margin-left: 10px">
+                <div style="font-size:20px"><b>{{questionData?.usernameOfWhoAskedThisQuestion}}</b></div>
                 <div style="font-size:14px;margin:3px">{{questionData?.doq | date: 'MM/dd/yyyy'}}
                 </div>
 
             </div>
         </mat-card-title>
         <mat-card-content>
-            <div [innerHTML]="questionData?.question" style="margin:10px 0px 0px 0px"></div>
+            <div [innerHTML]="questionData?.question" style="margin:15px 0px 0px 0px"></div>
             <br />
             <div class="ans">
                 <button mat-raised-button (click)="openQuestion()" color="warn"
@@ -103,8 +103,8 @@
                 <mat-icon style="font-size: 50px;height: 50px;width:50px">
                     <img class="userAvatar" src="../../assets/images/avatars/{{data.answeredByUsernameAvatarid}}.png" />
                 </mat-icon>
-                <div>
-                    <div style="font-size:30px"><b>{{data?.answeredByUsername}}</b></div>
+                <div style="margin-left: 10px">
+                    <div style="font-size:20px"><b>{{data?.answeredByUsername}}</b></div>
                     <div style="font-size:14px;margin:3px">{{data?.doa | date: 'MM/dd/yyyy'}}</div>
                 </div>
 

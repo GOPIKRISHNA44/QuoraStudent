@@ -31,3 +31,8 @@
     height: 35px;
     cursor: pointer;
 }
+
+.notifImg
+{
+    height: 25px; width: 27px;border-radius: 10px;
+}

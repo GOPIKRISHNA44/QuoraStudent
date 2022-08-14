@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -50,12 +51,20 @@ public class QuestionsService {
 	@Autowired
 	private PageableService pageableService;
 
+	@Autowired
+	private GenericNotifService genericNotifService;
+	
+
+
 	public QuestionDTO askAquestion(AskAquestionDTO askAquestionDTO) throws Exception {
 		try {
 			if (!ObjectUtils.isEmpty(askAquestionDTO) && !ObjectUtils.isEmpty(askAquestionDTO.getText())
 					&& !ObjectUtils.isEmpty(askAquestionDTO.getUserid())) {
 				QuestionDTO qDto = getQuestionDTOonAskAQuestion(askAquestionDTO);
 				qDto = questionRepository.save(qDto);
+				genericNotifService.noifForQuestionOrEventHasBeenPosted(askAquestionDTO.getUserid(),
+						askAquestionDTO.getText(), askAquestionDTO.getCtype(),qDto.getEqid());
+
 				return qDto;
 			} else {
 				throw new Exception(ErrorMsgs.DATAMISSING);
@@ -234,7 +243,7 @@ public class QuestionsService {
 
 	public Page<List<Map<String, Object>>> getQuestionsFeed(FeedRequestDTO feedRequestDTO) {
 		try {
-			
+
 			Pageable pageRef = pageableService.getPageableRef(feedRequestDTO.getPageNumber(),
 					feedRequestDTO.getNumberOfPostsRequired());
 			Page<List<Map<String, Object>>> pageTuts;
