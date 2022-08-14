@@ -42,17 +42,17 @@ export class HeaderComponent implements OnInit {
 
     this.authenticationService.getUniversityList()
       .subscribe((data) => {
+
         if (data && data.success) {
           this.unvTitle = data["data"]["univ"][this.userdetails["universitycode"]]["unvname"]
         }
+
       })
 
 
 
     this.doNotifApiCall();
-    // this.authenticationService.subject$.subscribe(()=>{
-    //   this.doNotifApiCall();
-    // })
+    
 
   }
   itemHeightFn(item, index) {return 182;}
