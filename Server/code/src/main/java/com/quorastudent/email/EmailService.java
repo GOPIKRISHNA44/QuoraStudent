@@ -99,7 +99,7 @@ public class EmailService {
 
 	public void sendActivationEmail(Long userId, String emailId) throws Exception {
 		String randomString = generateRandomString();
-		String activationURL = String.format("http://localhost:4200/account/activateEmail?q=%s",randomString);
+		String activationURL = String.format("http://localhost:8080/quoraStudent/account/activateEmail?q=%s",randomString);
 		String subject = "Activate your account";
 		String text = activateEmailBody + activationURL;
 		EmailactivatorDTO emailactivatorDTO = new EmailactivatorDTO();

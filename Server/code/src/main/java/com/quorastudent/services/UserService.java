@@ -40,10 +40,10 @@ public class UserService {
 
 	@Autowired
 	private SessionDetailsRepository sessionDetailsRepository;
-	
+
 	@Autowired
 	private EmailService emailService;
-	
+
 	@Value("${chechkEmailActivated}")
 	private boolean chechkEmailActivated;
 
@@ -104,7 +104,8 @@ public class UserService {
 					finalData.put("sessionkey", sessionKey);
 					userDetailsDTOList.get(0).setPassword(null);
 					finalData.put("userdetails", userDetailsDTOList.get(0));
-					emailService.sendSimpleMessage("bhargav.gandham44@gmail.com", "Test", "test mail");
+					// emailService.sendSimpleMessage("bhargav.gandham44@gmail.com", "Test", "test
+					// mail");
 					return finalData;
 
 				} else {
@@ -173,7 +174,8 @@ public class UserService {
 
 	private String getUserInterestsStr(UpdateInterestsDTO updateInterestsDTO) {
 
-		String finalString =  AppConstants.INTERESTSEPERATOR;;
+		String finalString = AppConstants.INTERESTSEPERATOR;
+		;
 		if (!ObjectUtils.isEmpty(updateInterestsDTO) && !ObjectUtils.isEmpty(updateInterestsDTO.getInterests())) {
 			for (InterestsDTO interestsDTO : updateInterestsDTO.getInterests()) {
 				finalString += interestsDTO.getId() + AppConstants.INTERESTSEPERATOR;
@@ -182,6 +184,18 @@ public class UserService {
 		}
 		return null;
 
+	}
+
+	public int getInterestpopupStatus(Long userid) {
+		try {
+			List<UserDetailsDTO> ls = userRepository.findByUserid(userid);
+			if (!ObjectUtils.isEmpty(ls) && ls.size() > 0) {
+				return ls.get(0).getInterestspopup();
+			}
+		} catch (Exception e) {
+			throw e;
+		}
+		return 0;
 	}
 
 }

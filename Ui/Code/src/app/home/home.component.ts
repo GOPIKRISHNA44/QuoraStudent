@@ -24,17 +24,30 @@ export class HomeComponent implements OnInit {
     private router: Router, private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
-    if(this.userdetails && this.userdetails["interestspopup"]==0){
-    const dialogRef = this.dialog.open(InterestsDialogComponent, {
-      width: '600px',
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        console.log(result)
-      }
-    });
-  }
+    let userdetails  = this.authenticationService.GetUserDetails();
+    if(userdetails)
+    {
+      userdetails = JSON.parse(userdetails);
+      this.authenticationService.getInterestPopupStatus(userdetails["userid"]).subscribe((data)=>{
+        if(data)
+        {
+          if(data["data"]["status"]==0){
+            const dialogRef = this.dialog.open(InterestsDialogComponent, {
+              width: '600px',
+            });
+        
+            dialogRef.afterClosed().subscribe(result => {
+              if (result) {
+                console.log(result)
+              }
+            });
+          }
+        }
+      })
+    }
+    
+    
+    
   }
   ngAfterViewInit() {
     this.observer

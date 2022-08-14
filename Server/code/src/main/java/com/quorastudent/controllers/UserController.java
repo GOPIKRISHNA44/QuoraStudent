@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -106,6 +107,23 @@ public class UserController {
 			boolean status = userService.updateInterests(updateInterestsDTO);
 			Map<String, Boolean> finalMsg = new HashMap<String, Boolean>();
 			finalMsg.put("updated", status);
+			responseDto = responseDtoGeneral.getSuccessResponse(finalMsg);
+
+		} catch (Exception e) {
+			responseDto = responseDtoGeneral.getFailureResponse(e.getMessage());
+
+		}
+		return responseDto;
+	}
+
+	@RequestMapping(value = "getInterestpopupStatus", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseDTO getInterestpopupStatus(@RequestParam Long userid) {
+		ResponseDTO responseDto = null;
+		try {
+			int status = userService.getInterestpopupStatus(userid);
+			Map<String, Integer> finalMsg = new HashMap<String, Integer>();
+			finalMsg.put("status", status);
 			responseDto = responseDtoGeneral.getSuccessResponse(finalMsg);
 
 		} catch (Exception e) {
