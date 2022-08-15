@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserDetails } from '../models/auth.model';
 import { AuthenticationService } from '../services/authentication.service';
@@ -10,28 +10,52 @@ import { QuestionService } from '../services/question.service';
   styleUrls: ['./newsfeed.component.css']
 })
 export class NewsfeedComponent implements OnInit {
+  @HostListener("window:scroll", ["$event"])
+onWindowScroll() {
+//In chrome and some browser scroll is given to body tag
+let pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
+let max = document.documentElement.scrollHeight;
+// pos/max will give you the distance between scroll bottom and and bottom of screen in percentage.
+ if(pos == max )   {
+ //Do your action here
+ }
+ console.log('hi')
+}
   userdetails: UserDetails;
   data: any;
   commentsData: any;
   showComments: boolean=false;
-  comment:string=''
+  comment:string='';
+  pageNumber=1
+  noOfposts=6
+  searchText=""
+  toggleValue="Q"
+  tempdata: any;
   constructor(private router: Router,private questionService: QuestionService, private authenticationService: AuthenticationService) { }
 
-  ngOnInit(): void {
-    this.userdetails = JSON.parse(this.authenticationService.GetUserDetails())
 
-    this.questionService.getNewsFeed(this.userdetails.universitycode).subscribe(res => {
+  ngOnInit(): void {
+    this.getQuestions()
+
+  }
+  getQuestions(){
+    this.userdetails = JSON.parse(this.authenticationService.GetUserDetails())
+    let details={
+        "ctype":this.toggleValue,
+        "userid":this.userdetails.userid,
+        "pageNumber":this.pageNumber,
+        "numberOfPostsRequired":this.noOfposts,
+        "filterCondition":this.searchText
+    }
+    this.questionService.getQuestionOrEventFeed(details).subscribe(res => {
       if (res.success) {
-        this.data = res.data.map(item=>{
+        this.data = res.data.data.map(item=>{
           return {...item, showComments:false}
       })
       }
     })
-
   }
-  likeButton(){
-    this.data.upvotes++
-  }
+ 
   openQuestion(data){
     let questionDetails={
       "eqid":data?.eqid,
@@ -82,4 +106,80 @@ export class NewsfeedComponent implements OnInit {
       }
     })
   }
+  likeButton(data) {
+    if (!data?.likedByTheRequestedUser) {
+      if (data?.disLikedByTheRequestedUser) {
+        data.disLikedByTheRequestedUser = false
+        data.totalNumberOfDislikes--;
+      }
+      data.likedByTheRequestedUser = true
+      data.totalNumberOfLikes++
+    }
+    else {
+      data.likedByTheRequestedUser = false
+      data.totalNumberOfLikes--
+    }
+    this.updateLikeButton({ "type": 1 }, data?.ctype,data.eqid)
+  }
+  dislikeButton(data) {
+    if (!data?.disLikedByTheRequestedUser) {
+      if (data?.likedByTheRequestedUser) {
+        data.likedByTheRequestedUser = false
+        data.totalNumberOfLikes--;
+      }
+      data.disLikedByTheRequestedUser = true
+      data.totalNumberOfDislikes++
+    }
+    else {
+      data.disLikedByTheRequestedUser = false
+      data.totalNumberOfDislikes--
+    }
+    this.updateLikeButton({ "type": 0 }, data.ctype,data.eqid)
+  }
+  updateLikeButton(type, ctype,eqid) {
+    let details = {
+      "userid": this.userdetails.userid,
+      "parentid": eqid,
+      "updwnvt": type.type,
+      "ctype": ctype
+    }
+    this.questionService.updateLikeButton(details).subscribe(response => {
+      if (response) {
+      }
+    })
+  }
+
+  onValChange(value){
+    this.toggleValue=value
+    this.getQuestions();
+  }
+
+  checkthis(event){
+    console.log('hi')
+  }
+  
+  onScroll(): void {
+    
+      this.pageNumber++;
+      let details={
+        "ctype":this.toggleValue,
+        "userid":this.userdetails.userid,
+        "pageNumber":this.pageNumber,
+        "numberOfPostsRequired":this.noOfposts,
+        "filterCondition":this.searchText
+    }
+    this.questionService.getQuestionOrEventFeed(details).subscribe(res => {
+      if (res.success) {
+        this.tempdata = res.data.data.map(item=>{
+          return {...item, showComments:false}
+      })
+      this.data=[...this.data,...this.tempdata]
+      }
+    })
+    
+  }
+
+  // bottomReached(): boolean {
+  //   return (window.innerHeight + window.scrollY) >= document.body.offsetHeight;
+  // }
 }

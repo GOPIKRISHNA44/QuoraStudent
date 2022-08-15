@@ -77,9 +77,11 @@ export class AskQuestionDialogComponent implements OnInit {
       this.questionService.postEvent(payLoad).subscribe(res => {
         if (res.success) {
           console.log(res)
+          
         }
       })
     }
+    window.location.reload()
     this.dialogRef.close();
   }
   onNoClick() {
