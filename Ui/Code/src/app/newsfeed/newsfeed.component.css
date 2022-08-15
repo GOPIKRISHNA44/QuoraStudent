@@ -1,43 +1,68 @@
-.topbox{
+.topbox {
     width: 65%;
     height: 22%;
-    border-radius: 15px;    
+    border-radius: 15px;
     margin: 15px 30px;
 }
-.title,.titl{
+
+.searchTop {
+    width: 65%;
+    border-radius: 15px;
+    margin: 15px 30px;
+    display: flex;
+    align-items: center;
+    height:15%;
+}
+.sixty-width{
+width:74%;
+margin-top: 33px!important;
+margin-right: 5px;
+}
+.toggle{
+    width:26%;
+    font-size: 24px;
+}
+
+.title,
+.titl {
     display: flex;
     align-items: center;
 }
-.title div{
+
+.title div {
     margin-left: 10px;
 }
-.white-color{
-    color:black
+
+.white-color {
+    color: black
 }
 
-.mat-card
-{
+.mat-card {
     border-radius: 0 !important;
 }
+
 .material-symbols-outlined {
     font-variation-settings:
-    'FILL' 0,
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 48
-  }
-  .filled{
-      font-variation-settings:
-    'FILL' 1,
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 48
-  }
-  .icon{
-      font-size: 28px;
-      margin: 0px 10px;
-  }
-  .iconlist {
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+}
+
+.filled {
+    font-variation-settings:
+        'FILL' 1,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+}
+
+.icon {
+    font-size: 28px;
+    margin: 0px 10px;
+}
+
+.iconlist {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -47,39 +72,55 @@
 .ans {
     display: flex;
     align-items: center;
-    margin-top:-10px
+    margin-top: -10px
 }
-.userAvatar
-{
+
+.userAvatar {
     display: block;
     margin-left: auto;
     margin-right: auto;
     /* width: 50%; */
     width: 100%;
 }
-.commentbox{
+
+.commentbox {
     margin-top: 20px;
-    
- }
- .relative{
-     position: relative !important;   
- }
- .doc{
+
+}
+
+.relative {
+    position: relative !important;
+}
+
+.doc {
     font-size: 10px;
-    margin:0px 5px
+    margin: 0px 5px
 }
-.comment{
+
+.comment {
     font-size: 24px;
-    margin-left:5px
+    margin-left: 5px
 }
-.space{
+
+.space {
     justify-content: space-between;
 }
-.coloricon{
-    color:red;
+
+.coloricon {
+    color: red;
     cursor: pointer;
 }
+
 .full-width {
     width: 100%;
-    height:90px;
+    height: 90px;
+}
+.more{
+    width:65%;
+    margin:10px;
+    
+}
+.more >a{
+    font-size: 24px;
+    margin:10px
 }

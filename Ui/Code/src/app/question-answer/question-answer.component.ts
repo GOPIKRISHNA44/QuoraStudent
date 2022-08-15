@@ -289,7 +289,7 @@ export class QuestionAnswerComponent implements OnInit {
   }
   copyUrl() {
     
-        this.clipboard.copy('http://localhost:4200/'+this.router.url);
+        this.clipboard.copy(window.location.href);
       
   }
 

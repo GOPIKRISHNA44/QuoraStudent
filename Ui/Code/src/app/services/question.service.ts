@@ -27,9 +27,9 @@ export class QuestionService {
   postBlog(_blogText): Observable<any> {
     return this.http.post(this.apiEndPoint + "/blog/saveBlog", _blogText)
   }
-  getNewsFeed(_unvcode): Observable<any> {
+  getQuestionOrEventFeed(_details): Observable<any> {
 
-    return this.http.post(this.apiEndPoint + "/feed/getQuestionsFeed", { unvcode: _unvcode })
+    return this.http.post(this.apiEndPoint + "/feed/getQuestionsOrEventFeed", _details)
   }
   getQuestionDetails(_questionDetails): Observable<any> {
 
