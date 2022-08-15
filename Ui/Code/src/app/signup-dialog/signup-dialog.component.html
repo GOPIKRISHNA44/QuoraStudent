@@ -79,6 +79,20 @@
                 <mat-error *ngIf="f.confirmPassword?.errors?.mustMatch">Password and confirm password does not match
                 </mat-error>
             </mat-form-field>
+            <mat-form-field class="xs-full-width" appearance="outline" >
+                <mat-label>Avatar</mat-label>
+                <!-- <input matInput formControlName="universitycode" name="universitycode" required>
+                <mat-error *ngIf="f.universitycode.errors?.required">
+                    University is required
+                </mat-error> -->
+                <mat-select   formControlName="avatarid">
+                    <mat-option *ngFor="let i of numberOfAvatars"  [value]="i">
+                     <span>
+                        <img src="../../assets/images/avatars/{{i}}.png" style="height: 30px;width: 30px;border-radius: 15px;"/>
+                     </span>   
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
         </form>
 
     </div>

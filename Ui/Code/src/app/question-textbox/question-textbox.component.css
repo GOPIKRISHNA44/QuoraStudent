@@ -30,6 +30,6 @@
     border-radius: 0 !important;
 }
 
-.mat-card-content span{
+.mat-card-content > span{
     font-size: 5px;
 }

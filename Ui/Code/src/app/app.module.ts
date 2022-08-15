@@ -23,6 +23,7 @@ import { QuestionAnswerComponent } from './question-answer/question-answer.compo
 import { HeaderComponent } from './header/header.component';
 import { BlogComponent } from './blog/blog.component';
 import { AnswerDialogComponent } from './answer-dialog/answer-dialog.component';
+import { TextdisplayComponent } from './textdisplay/textdisplay.component';
 
 
 
@@ -40,7 +41,8 @@ import { AnswerDialogComponent } from './answer-dialog/answer-dialog.component';
     QuestionAnswerComponent,
     HeaderComponent,
     BlogComponent,
-    AnswerDialogComponent
+    AnswerDialogComponent,
+    TextdisplayComponent
   ],
   imports: [
     BrowserModule,

@@ -38,7 +38,8 @@
 
             </mat-card-title>
             <mat-card-content>
-                <a [innerHTML]="data?.question" (click)="openQuestion(data)"></a>
+                <!-- <a [innerHTML]="data?.question" (click)="openQuestion(data)"></a> -->
+                <app-textdisplay [text]="data?.question "  (click)="openQuestion(data)" style="cursor: pointer"></app-textdisplay>
             </mat-card-content>
             <div class="ans">
                 <div class="iconlist">

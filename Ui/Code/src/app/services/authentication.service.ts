@@ -4,12 +4,13 @@ import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { LoginDetails, SignUpDetails } from '../models/auth.model';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { SpinnerService } from './spinner.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  
+
 
   private registrationURL: string = environment.apiEndPoint + environment.user.endPoint + environment.user.register;
   private loginURL: string = environment.apiEndPoint + environment.user.endPoint + environment.user.login;
@@ -20,7 +21,7 @@ export class AuthenticationService {
   private delNotifApi: any = environment.apiEndPoint + environment.deleteNotifsApi;
   private unvlistApi: any = environment.apiEndPoint + environment.unvlist;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private spinnerService: SpinnerService) { }
 
   private _loading = new BehaviorSubject<boolean>(false);
   public readonly loading$ = this._loading.asObservable();
@@ -50,7 +51,10 @@ export class AuthenticationService {
   }
 
   show() {
-    this._loading.next(true);
+    if (this.spinnerService.getLoaderStatus()){
+      this._loading.next(true);
+    }
+ 
   }
 
   hide() {
@@ -78,7 +82,7 @@ export class AuthenticationService {
     return this.http.get(this.getNotifApi, { params: queryParams });
   }
 
-  deleteNotifications(userid,ids): Observable<any> {
-    return this.http.post(this.delNotifApi, { ids: ids, userid:userid })
+  deleteNotifications(userid, ids): Observable<any> {
+    return this.http.post(this.delNotifApi, { ids: ids, userid: userid })
   }
 }
