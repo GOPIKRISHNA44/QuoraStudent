@@ -14,6 +14,7 @@ import { SpinnerService } from '../services/spinner.service';
   templateUrl: './question-answer.component.html',
   styleUrls: ['./question-answer.component.css'],
   // encapsulation: ViewEncapsulation.None
+  //encapsulation: ViewEncapsulation.None
   
 })
 export class QuestionAnswerComponent implements OnInit {
@@ -114,12 +115,14 @@ export class QuestionAnswerComponent implements OnInit {
       "ctype": this.questionData.ctype,
       "comment": this.comment
     }
+    this.spinnerService.disableLoader();
     this.questionService.sendComments(sendCommentDetails).subscribe(response => {
       if (response) {
         this.comment = ''
         this.openComments()
       }
     })
+    this.spinnerService.enableLoader();
   }
   likeButton(isliked, ctype) {
     if (!isliked) {
@@ -264,34 +267,40 @@ export class QuestionAnswerComponent implements OnInit {
     })
   }
   deleteComment(cid, aid) {
-
+    this.spinnerService.disableLoader();
     this.questionService.deleteComment({ "cid": cid }).subscribe(response => {
       if (response) {
         this.openAnswerComments(aid)
       }
     })
+    this.spinnerService.enableLoader();
   }
   deleteQuestion(eqid, ctype) {
+    this.spinnerService.disableLoader();
     this.questionService.deleteQuestion({ "eqid": eqid, "ctype": ctype }).subscribe(response => {
       if (response) {
         this.router.navigate(['/home'])
       }
     })
+    this.spinnerService.enableLoader();
   }
   deleteAnswer(aid) {
+    this.spinnerService.disableLoader();
     this.questionService.deleteAnswer({ "aid": aid }).subscribe(response => {
       if (response) {
         this.getAnswers()
       }
     })
+    this.spinnerService.enableLoader();
   }
   deleteQuestionComment(cid) {
-
+    this.spinnerService.disableLoader();
     this.questionService.deleteComment({ "cid": cid }).subscribe(response => {
       if (response) {
         this.openComments()
       }
     })
+    this.spinnerService.enableLoader();
   }
   onChange(event) {
     if (event.value == "1") {

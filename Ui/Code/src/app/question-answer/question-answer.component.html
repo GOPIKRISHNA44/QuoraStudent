@@ -11,12 +11,12 @@
                 </div>
             </div>
         </mat-card-title>
-        <mat-card-content>
-            <div class="questionDisplay"  [innerHTML]="questionData?.question | safeHtml" style=""></div>
+        <mat-card-content style="margin-top: 20px">
+            <!-- <div class="questionDisplay" [innerHTML]="questionData?.question " style=""></div> -->
+            <app-textdisplay [text]="questionData?.question "></app-textdisplay>
             <br />
             <div class="ans">
-                <button mat-raised-button (click)="openQuestion()" color="warn"
-                    style="font-size:15px; padding:5px 30px 5px 15px;
+                <button mat-raised-button (click)="openQuestion()" color="warn" style="font-size:15px; padding:5px 30px 5px 15px;
                     border-radius: 25px;
                 ">
                     <mat-icon>edit</mat-icon><span>Answer</span>
@@ -84,7 +84,7 @@
             </mat-card>
         </mat-card-content>
     </mat-card>
-    <div class="sort" *ngIf="answerData && answerData?.length!=0" >
+    <div class="sort" *ngIf="answerData && answerData?.length!=0">
         <p style="margin-right: 5px;">Sort By:</p>
         <div>
             <mat-form-field appearance="fill">
@@ -112,10 +112,13 @@
             </mat-card-title>
             <mat-card-content>
                 <br />
-                <div [innerHTML]="data?.content">
-                </div>
+                <!-- <div [innerHTML]="data?.content">
+                    
+                </div> -->
+                <app-textdisplay [text]="data?.content "></app-textdisplay>
                 <div class="iconlist">
-                    <mat-icon (click)="openAnswerComments(data?.aid)" class="icon pointer commentIcon">comment</mat-icon>
+                    <mat-icon (click)="openAnswerComments(data?.aid)" class="icon pointer commentIcon">comment
+                    </mat-icon>
                     <span class="row-center">
                         <span class="material-symbols-outlined icon pointer"
                             [ngClass]="{'filled': data?.likedByTheRequestedUser}"
@@ -127,10 +130,10 @@
                         [ngClass]="{'filled': data?.disLikedByTheRequestedUser}"
                         (click)="answerDislikeButton(data)">thumb_down</span>
                     <span *ngIf="data?.answerOwnedByTheRequestedUser" class="material-symbols-outlined filled coloricon"
-                        (click)="deleteAnswer(data?.aid)" >
+                        (click)="deleteAnswer(data?.aid)">
                         delete
                     </span>
-                    
+
                 </div>
                 <mat-card *ngIf="data?.showAnswerComments" style="margin-top:10px;">
                     <div class="title">

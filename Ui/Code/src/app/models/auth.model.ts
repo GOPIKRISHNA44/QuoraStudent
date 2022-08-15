@@ -10,6 +10,7 @@ export interface SignUpDetails {
     dob: string;
     universitycode: string;
     password: string;
+    avatarid:String;
 }
 
 export interface UserDetails {

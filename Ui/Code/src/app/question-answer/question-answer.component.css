@@ -114,7 +114,7 @@
 }
 .mat-card
 {
-    background-color: #cdcdcd !important;
+    /* background-color: #cdcdcd !important; */
 }
 .imgMatIcon
 {
@@ -141,8 +141,7 @@ font-size: 20px!important;
     
     margin:15px 0px 0px 0px;
 }
-.questionDisplay p span
-{font-size: 15px !important;}
+
 .nameAndDate
 {
     

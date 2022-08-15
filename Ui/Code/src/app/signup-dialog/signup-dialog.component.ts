@@ -25,12 +25,13 @@ export class SignupDialogComponent implements OnInit {
     password: ['', [Validators.required]],
     dob: ['', [Validators.required]],
     universitycode: ['', [Validators.required]],
-    confirmPassword: ['', [Validators.required]]
+    confirmPassword: ['', [Validators.required]],
+    avatarid: ['', [Validators.required]]
   }, {
     validator: CustomValidators.mustMatch('password', 'confirmPassword')
   })
   unvList : any = [];
-  numberOfAvatars :any = [...Array(quoraConstants.numberOfAvatars).keys()]
+  numberOfAvatars :any = Array.from({length: quoraConstants.numberOfAvatars}, (_, index) => index + 1);
   constructor(public datepipe: DatePipe, public dialogRef: MatDialogRef<SignupDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder, private authenticationService: AuthenticationService,) { }
 
@@ -49,13 +50,15 @@ export class SignupDialogComponent implements OnInit {
       emailid: this.signUpDetails?.emailid,
       password: this.signUpDetails?.password,
       dob: this.signUpDetails?.dob,
-      universitycode: this.signUpDetails?.universitycode
+      universitycode: this.signUpDetails?.universitycode,
+      avatarid: this.signUpDetails?.avatarid
     }
     signUpDetails.username = this.signUpForm.value.username;
     signUpDetails.emailid = this.signUpForm.value.emailid;
     signUpDetails.password = this.signUpForm.value.password;
     signUpDetails.dob = formatDate(this.signUpForm.value.dob, 'yyyy-MM-dd', 'en-US');
     signUpDetails.universitycode = this.signUpForm.value.universitycode;
+    signUpDetails.avatarid=this.signUpForm.value.avatarid
     console.log("signUpForm", this.signUpForm.value)
     this.authenticationService.signUp(signUpDetails).subscribe(res => {
       if (res.data) {
