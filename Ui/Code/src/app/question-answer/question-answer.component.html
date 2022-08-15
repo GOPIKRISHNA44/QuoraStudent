@@ -9,7 +9,6 @@
                 <div style="font-size:20px"><b>{{questionData?.usernameOfWhoAskedThisQuestion}}</b></div>
                 <div style="font-size:14px;margin:3px">{{questionData?.doq | date: 'MM/dd/yyyy'}}
                 </div>
-
             </div>
         </mat-card-title>
         <mat-card-content>
@@ -85,7 +84,7 @@
             </mat-card>
         </mat-card-content>
     </mat-card>
-    <div class="sort">
+    <div class="sort" *ngIf="answerData && answerData?.length!=0" >
         <p style="margin-right: 5px;">Sort By:</p>
         <div>
             <mat-form-field appearance="fill">

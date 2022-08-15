@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AskQuestionDialogComponent } from '../ask-question-dialog/ask-question-dialog.component';
 import { Title } from '../constants/title.constants';
+import { UserDetails } from '../models/auth.model';
+import { AuthenticationService } from '../services/authentication.service';
 @Component({
   selector: 'app-question-textbox',
   templateUrl: './question-textbox.component.html',
@@ -11,8 +13,10 @@ import { Title } from '../constants/title.constants';
 })
 export class QuestionTextboxComponent implements OnInit {
   title = Title.questionBox
-  constructor(public dialog: MatDialog,private router:Router) { }
+  userdetails: UserDetails;
+  constructor(public dialog: MatDialog,private router:Router,private authenticationService: AuthenticationService) { }
   ngOnInit(): void {
+    this.userdetails = JSON.parse(this.authenticationService.GetUserDetails())
   }
   openAskQuestion() {
     const dialogRef = this.dialog.open(AskQuestionDialogComponent, {
@@ -27,6 +31,7 @@ export class QuestionTextboxComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+       
       }
     });
   }

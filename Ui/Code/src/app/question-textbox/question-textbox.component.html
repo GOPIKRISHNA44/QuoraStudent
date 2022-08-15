@@ -1,6 +1,9 @@
 <mat-card class="topbox">
     <div class="row-center">
-        <mat-icon>account_circle</mat-icon>
+        <mat-icon style="font-size: 50px;height: 50px;width:50px">
+            <img class="userAvatar"
+                src="../../assets/images/avatars/{{userdetails.avatarid}}.png" />
+        </mat-icon>
         <div class="mainbox" (click)="openAskQuestion()">
             <span>
                 <p class="title">{{title}}</p>
