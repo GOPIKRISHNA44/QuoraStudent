@@ -16,7 +16,8 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding: 10px
+    padding: 10px;
+    color: #cdcdcd;
 }
 
 .menu-button mat-icon {
@@ -27,6 +28,7 @@ mat-sidenav {
     width: 250px;
     border-right: none;
     text-align: center;
+    background-color: #262626;
 }
 
 .itemIcon {
@@ -37,4 +39,8 @@ mat-sidenav {
     text-align: center; 
     font-size: 30px;
     color:white
+}
+.centerContent
+{
+    /* background-color: black;  */
 }

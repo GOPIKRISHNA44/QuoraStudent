@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AnswerDialogComponent } from '../answer-dialog/answer-dialog.component';
@@ -7,11 +7,14 @@ import { AuthenticationService } from '../services/authentication.service';
 import { QuestionService } from '../services/question.service';
 import { sortedValues } from '../constants/title.constants';
 import { Clipboard } from '@angular/cdk/clipboard';
+import { SpinnerService } from '../services/spinner.service';
 
 @Component({
   selector: 'app-question-answer',
   templateUrl: './question-answer.component.html',
-  styleUrls: ['./question-answer.component.css']
+  styleUrls: ['./question-answer.component.css'],
+  // encapsulation: ViewEncapsulation.None
+  
 })
 export class QuestionAnswerComponent implements OnInit {
   questionData: any
@@ -31,9 +34,12 @@ export class QuestionAnswerComponent implements OnInit {
   dislikeCount: number;
 
   sortedValues = sortedValues;
+  
 
 
-  constructor(private clipboard: Clipboard,public dialog: MatDialog, private router: Router, private questionService: QuestionService, private authenticationService: AuthenticationService, private route: ActivatedRoute) { }
+  constructor(private clipboard: Clipboard,public dialog: MatDialog, 
+    private router: Router, private questionService: QuestionService, private authenticationService: AuthenticationService, 
+    private route: ActivatedRoute,private spinnerService:SpinnerService) { }
 
   ngOnInit(): void {
     this.userdetails = JSON.parse(this.authenticationService.GetUserDetails())
@@ -128,7 +134,9 @@ export class QuestionAnswerComponent implements OnInit {
       this.isliked = false
       this.likeCount--
     }
-    this.updateLikeButton({ "type": 1 }, ctype)
+    this.spinnerService.disableLoader();
+    this.updateLikeButton({ "type": 1 }, ctype);
+    this.spinnerService.enableLoader();
   }
   dislikeButton(disliked, ctype) {
     if (!disliked) {
@@ -143,7 +151,9 @@ export class QuestionAnswerComponent implements OnInit {
       this.disliked = false
       this.dislikeCount--
     }
+    this.spinnerService.disableLoader();
     this.updateLikeButton({ "type": 0 }, ctype)
+    this.spinnerService.enableLoader();
   }
   updateLikeButton(type, ctype) {
     let details = {
@@ -170,7 +180,9 @@ export class QuestionAnswerComponent implements OnInit {
       likeQuestionData.likedByTheRequestedUser = false
       likeQuestionData.totalNumberOfLikes--
     }
+    this.spinnerService.disableLoader();
     this.updateAnswerLikeButton({ "type": 1, "aid": likeQuestionData.aid })
+    this.spinnerService.enableLoader();
   }
   answerDislikeButton(dislikeQuestionData) {
     if (!dislikeQuestionData.disLikedByTheRequestedUser) {
@@ -185,7 +197,9 @@ export class QuestionAnswerComponent implements OnInit {
       dislikeQuestionData.likedByTheRequestedUser = false
       dislikeQuestionData.totalNumberOfLikes--
     }
+    this.spinnerService.disableLoader();
     this.updateAnswerLikeButton({ "type": 0, "aid": dislikeQuestionData.aid })
+    this.spinnerService.enableLoader();
   }
   updateAnswerLikeButton(data) {
     let details = {
@@ -292,5 +306,7 @@ export class QuestionAnswerComponent implements OnInit {
         this.clipboard.copy('http://localhost:4200/'+this.router.url);
       
   }
+
+  
 
 }

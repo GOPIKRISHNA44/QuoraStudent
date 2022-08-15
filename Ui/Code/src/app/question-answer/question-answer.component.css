@@ -32,6 +32,7 @@
 }
 
 .material-symbols-outlined {
+    /* color: #cdcdcd !important; */
   font-variation-settings:
   'FILL' 0,
   'wght' 400,
@@ -53,6 +54,7 @@
 .count{
     font-size: 24px;
     margin-left: -5px;
+    /* color: #cdcdcd !important; */
 }
 
 .userAvatar
@@ -84,6 +86,7 @@
 .coloricon{
     color:red;
     cursor: pointer;
+    color:rgb(185, 43, 39);
 }
 
 .answerUserAvatar
@@ -99,4 +102,50 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+}
+.icon
+{
+    /* color: #cdcdcd !important; */
+}
+.nameAndDate
+{
+    /* margin-left: 10px; */
+    /* color: #cdcdcd !important; */
+}
+.mat-card
+{
+    background-color: #cdcdcd !important;
+}
+.imgMatIcon
+{
+    font-size: 50px;height: 50px;width:50px
+}
+.mat-icon{
+font-size: 20px!important;
+}
+.iconlist span{
+    font-size: 20px!important;
+}
+.commentIcon
+{
+    padding-top: 5px;
+}
+.nameAndDate div{
+    font-size: 15px  !important;
+}
+.nameAndDate div:nth-child(2){
+    font-size: 14px  !important;
+}
+.questionDisplay 
+{
+    
+    margin:15px 0px 0px 0px;
+}
+.questionDisplay p span
+{font-size: 15px !important;}
+.nameAndDate
+{
+    
+    margin-left: 10px;
+
 }

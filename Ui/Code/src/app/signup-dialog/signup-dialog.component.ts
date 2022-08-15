@@ -6,6 +6,7 @@ import { AuthenticationService } from '../services/authentication.service';
 import { formatDate, DatePipe } from '@angular/common';
 import { CustomValidators } from '../providers/customvalidators';
 import { Title } from '../constants/title.constants';
+import { quoraConstants } from '../constants/app.constants';
 
 
 @Component({
@@ -29,6 +30,7 @@ export class SignupDialogComponent implements OnInit {
     validator: CustomValidators.mustMatch('password', 'confirmPassword')
   })
   unvList : any = [];
+  numberOfAvatars :any = [...Array(quoraConstants.numberOfAvatars).keys()]
   constructor(public datepipe: DatePipe, public dialogRef: MatDialogRef<SignupDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder, private authenticationService: AuthenticationService,) { }
 
