@@ -85,4 +85,60 @@ public class FeedController {
 		}
 		return responseDto;
 	}
+
+	@RequestMapping(value = "getBlogFeed", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseDTO getBlogFeed(@RequestBody FeedRequestDTO feedRequestDTO) {
+
+		ResponseDTO responseDto = null;
+		try {
+			Page<List<Map<String, Object>>> pageableResponse = feedService.getBlogFeed(feedRequestDTO);
+			pageableResponse.getContent();
+			Map<String, Object> finalResp = new HashMap<String, Object>();
+			finalResp.put("data", pageableResponse.getContent());
+			finalResp.put("totalPages", pageableResponse.getTotalPages());
+			responseDto = responseDtoGeneral.getSuccessResponse(finalResp);
+
+		} catch (Exception e) {
+			responseDto = responseDtoGeneral.getFailureResponse(e.getMessage());
+		}
+		return responseDto;
+	}
+
+	@RequestMapping(value = "getTagRelatedQuesOrEvents", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseDTO getTagRelatedQuesOrEvents(@RequestBody Map<String, Object> dataMap) {
+
+		ResponseDTO responseDto = null;
+		try {
+			Long userid = Long.parseLong(dataMap.get("userid").toString());
+			List<Integer> tags = null;
+			if (dataMap.containsKey("tags")) {
+				tags = (List<Integer>) dataMap.get("tags");
+			}
+			String ctype = dataMap.get("ctype").toString();
+			List<Map<String, Object>> finalResp = feedService.getTagRelatedQuesOrEvents(userid, ctype, tags);
+			responseDto = responseDtoGeneral.getSuccessResponse(finalResp);
+
+		} catch (Exception e) {
+			responseDto = responseDtoGeneral.getFailureResponse(e.getMessage());
+		}
+		return responseDto;
+	}
+
+	@RequestMapping(value = "getTopLikedBlogs", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseDTO getTopLikedBlogs(@RequestBody Map<String, Object> dataMap) {
+
+		ResponseDTO responseDto = null;
+		try {
+			Long userid = Long.parseLong(dataMap.get("userid").toString());
+			List<Map<String, Object>> finalResp = feedService.getTopLikedBlogs(userid);
+			responseDto = responseDtoGeneral.getSuccessResponse(finalResp);
+
+		} catch (Exception e) {
+			responseDto = responseDtoGeneral.getFailureResponse(e.getMessage());
+		}
+		return responseDto;
+	}
 }

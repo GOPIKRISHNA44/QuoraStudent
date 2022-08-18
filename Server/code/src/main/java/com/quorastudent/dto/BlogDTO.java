@@ -17,15 +17,17 @@ public class BlogDTO {
 	private Long bid;
 
 	private String title;
-	
+
 	private String content;
-	
+
 	private Date doblog;
-	
+
+	private String tags;
+
 	private Date updatedat;
-	
+
 	private int active;
-	
+
 	private Long userid;
 
 	public Long getBid() {
@@ -82,6 +84,14 @@ public class BlogDTO {
 
 	public void setUserid(Long userid) {
 		this.userid = userid;
+	}
+
+	public String getTags() {
+		return tags;
+	}
+
+	public void setTags(String tags) {
+		this.tags = tags;
 	}
 
 }

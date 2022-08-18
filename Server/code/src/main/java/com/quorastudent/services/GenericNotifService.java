@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
-import com.quorastudent.dto.CommentsDTO;
 import com.quorastudent.dto.QuestionDTO;
 import com.quorastudent.dto.UserDetailsDTO;
 import com.quorastudent.notif.NotifService;

@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.quorastudent.dto.CommentsDTO;
-import com.quorastudent.dto.QuestionDTO;
 
 public interface CommentsRepository extends JpaRepository<CommentsDTO, Long> {
 
