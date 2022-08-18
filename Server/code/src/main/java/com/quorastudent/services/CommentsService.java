@@ -8,7 +8,6 @@ import org.springframework.util.ObjectUtils;
 
 import com.quorastudent.constants.AppConstants;
 import com.quorastudent.constants.ErrorMsgs;
-import com.quorastudent.dto.AnswerResponseListViewDTO;
 import com.quorastudent.dto.CommentsDTO;
 import com.quorastudent.dto.CommentsRequestingDTO;
 import com.quorastudent.dto.CommentsResponseListViewDTO;

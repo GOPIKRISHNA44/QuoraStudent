@@ -14,26 +14,43 @@ export class BlogComponent implements OnInit {
   quillConfiguration = QuillConfiguration
   placeholder = Title.blogPlaceholder
   editorText: string;
-  userdetails:UserDetails ;
+  userdetails: UserDetails;
   interests = []
   tags = new FormControl('');
-  textTitle:string;
-  constructor( private questionService: QuestionService, private authenticationService: AuthenticationService,) { }
+  textTitle: string;
+  tagsList: any = []
+  constructor(private questionService: QuestionService, private authenticationService: AuthenticationService,) { }
 
   ngOnInit(): void {
-    this.userdetails=JSON.parse(this.authenticationService.GetUserDetails())
+    this.userdetails = JSON.parse(this.authenticationService.GetUserDetails())
     this.questionService.getInterests().subscribe(res => {
       if (res.success) {
         this.interests = res.data.interests
       }
     })
   }
+
+  getValues(event: {
+    isUserInput: any;
+    source: { value: any; selected: any };
+  }) {
+    if (event.isUserInput) {
+      if (event.source.selected === true) {
+        this.tagsList.push(event.source.value);
+      } else {
+        console.log(event.source.value)
+        this.tagsList = this.tagsList.filter(data => data != event.source.value);
+      }
+    }
+  }
+
   submit() {
-    let sentText={
-      "userid":this.userdetails?.userid,
-      "content":this.editorText,
-      "title":this.textTitle
-    } 
+    let sentText = {
+      "userid": this.userdetails?.userid,
+      "content": this.editorText,
+      "title": this.textTitle,
+      "tags": ";" + this.tagsList.join(";") + ";"
+    }
     this.questionService.postBlog(sentText).subscribe(res => {
       if (res.success) {
         console.log(res)
@@ -41,5 +58,5 @@ export class BlogComponent implements OnInit {
     })
 
   }
-  
+
 }

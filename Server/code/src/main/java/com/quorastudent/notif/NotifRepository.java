@@ -7,8 +7,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.quorastudent.notif.NotifDTO;
-
 public interface NotifRepository extends JpaRepository<NotifDTO, Long> {
 
 	@Transactional
