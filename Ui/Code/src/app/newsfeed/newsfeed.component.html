@@ -37,12 +37,18 @@
                 </div>
 
             </mat-card-title>
-            <mat-card-content>
+            <mat-card-content class="ques">
                 <a [innerHTML]="data?.question" (click)="openQuestion(data)"></a>
+                <div *ngIf="data.showAnswer" [innerHTML]="answer" style="margin:30px 0px"></div>
             </mat-card-content>
             <div class="ans">
+                <button mat-raised-button (click)="openAnswers(data);hideAnswer(data)" color="warn"
+                    style="font-size:18px; padding:5px 40px 5px 15px">
+                    <mat-icon class="eye">remove_red_eye</mat-icon><span *ngIf="!data.showAnswer;else elseBlock">Show Best Answer</span>
+                        <ng-template #elseBlock>Hide Answer</ng-template>
+                </button>
                 <div class="iconlist">
-                    <mat-icon (click)="openComments(data?.eqid,data?.ctype)" class="icon pointer">comment</mat-icon>
+                    <mat-icon (click)="openComments(data);hideComments(data)" class="icon pointer">comment</mat-icon>
                     <span class="row-center">
                         <span class="material-symbols-outlined icon pointer"
                             [ngClass]="{'filled': data?.likedByTheRequestedUser}"
@@ -96,7 +102,7 @@
             </mat-card>
         </mat-card>
     </div>
-    <div class="row-center more">
+    <div class="row-center more" *ngIf="data && data?.length!=0">
         <a (click)="onScroll()">show more</a>
     </div>
 </div>

@@ -30,6 +30,7 @@ export class BlogComponent implements OnInit {
   }
   submit() {
     let sentText={
+      "id":null,
       "userid":this.userdetails?.userid,
       "content":this.editorText,
       "title":this.textTitle

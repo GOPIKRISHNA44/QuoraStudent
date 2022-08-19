@@ -39,3 +39,8 @@ mat-card {
 {
     height: 40px;
 }
+a {
+    color:blue;
+    background-color: transparent;
+    text-decoration: underline;
+  }
