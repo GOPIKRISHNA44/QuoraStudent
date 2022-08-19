@@ -55,7 +55,7 @@ public final class Queries {
 			+ "  LEFT JOIN `events` e ON e.eid = q.eqid     "
 			+ "left JOIN likedislike ld ON ld.ctype = :ctype AND ld.parentid = q.eqid   "
 			+ "LEFT JOIN comments c ON c.parentid = q.eqid AND q.ctype = :ctype   "
-			+ "WHERE q.active=1 AND q.ctype = :ctype and q.question LIKE CONCAT('%',:filterCondition,'%') and e.todate"
+			+ "WHERE q.active=1 AND q.ctype = :ctype and q.question LIKE CONCAT('%',:filterCondition,'%') "
 			+ "  GROUP BY q.eqid order by 	 e.todate ASC , q.doq desc, totalNumberOfLikes desc, questionOwnedByTheRequestedUser asc, disLikedByTheRequestedUser asc   ";
 
 	public static final String GET_QUESTION_UNV_BASED_QUERY_COUNT_QUERY = "SELECT A.* FROM ( "
