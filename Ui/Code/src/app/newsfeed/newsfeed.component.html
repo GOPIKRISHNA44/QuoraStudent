@@ -38,7 +38,8 @@
 
             </mat-card-title>
             <mat-card-content class="ques">
-                <a [innerHTML]="data?.question" (click)="openQuestion(data)"></a>
+                <!-- <a [innerHTML]="data?.question" (click)="openQuestion(data)"></a> -->
+                <app-textdisplay [text]="data?.question "  (click)="openQuestion(data)" style="cursor: pointer"></app-textdisplay>
                 <div *ngIf="data.showAnswer" [innerHTML]="answer" style="margin:30px 0px"></div>
             </mat-card-content>
             <div class="ans">

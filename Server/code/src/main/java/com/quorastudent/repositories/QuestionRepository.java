@@ -72,4 +72,5 @@ public interface QuestionRepository extends JpaRepository<QuestionDTO, Long> {
 
 	QuestionDTO findByEqidAndCtype(Long eqid, String ctype);
 
+
 }

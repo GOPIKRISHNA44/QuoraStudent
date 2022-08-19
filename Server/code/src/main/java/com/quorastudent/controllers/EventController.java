@@ -1,7 +1,6 @@
 package com.quorastudent.controllers;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.quorastudent.constants.AppConstants;
-import com.quorastudent.dto.AnswerDTO;
-import com.quorastudent.dto.AnswerRequestingDTO;
-import com.quorastudent.dto.AnswerResponseListViewDTO;
 import com.quorastudent.dto.AskAnEventDTO;
 import com.quorastudent.dto.ResponseDTO;
 import com.quorastudent.services.AnswerService;

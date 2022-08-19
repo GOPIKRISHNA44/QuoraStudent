@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.quorastudent.dto.ResponseDTO;
-import com.quorastudent.services.InfoService;
 
 @RestController
 @RequestMapping(value = "account")

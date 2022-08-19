@@ -41,6 +41,14 @@ LEFT JOIN likedislike ld ON c.cid = ld.parentid AND  ld.ctype='c'
 WHERE c.parentid =2 AND c.ctype = 'q' 
 GROUP BY c.cid ORDER BY totalNumberOfLikes desc ;
 
+DELETE FROM questions;
+DELETE FROM comments;
+DELETE FROM likedislike;
+DELETE FROM sessiondetails;
+delete FROM notifications;
+DELETE FROM passwordreset;
+
+
 
 
 

@@ -7,7 +7,6 @@ import org.springframework.util.ObjectUtils;
 import com.quorastudent.constants.AppConstants;
 import com.quorastudent.constants.ErrorMsgs;
 import com.quorastudent.dto.AskAnEventDTO;
-import com.quorastudent.dto.AskAquestionDTO;
 import com.quorastudent.dto.QuestionDTO;
 import com.quorastudent.repositories.EventRepository;
 

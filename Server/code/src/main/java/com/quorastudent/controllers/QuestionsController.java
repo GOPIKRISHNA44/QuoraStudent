@@ -1,11 +1,9 @@
 package com.quorastudent.controllers;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.quorastudent.constants.AppConstants;
 import com.quorastudent.dto.AskAquestionDTO;
-import com.quorastudent.dto.FeedRequestDTO;
 import com.quorastudent.dto.LikedislikeDTO;
 import com.quorastudent.dto.QuestionDTO;
 import com.quorastudent.dto.QuestionOrEventViewDTO;

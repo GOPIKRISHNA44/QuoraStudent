@@ -37,13 +37,14 @@ public class JdbcQueryService {
 		parameters.put("eqid", eqid);
 		parameters.put("ctype", ctype);
 		parameters.put("userid", userid);
-		return (QuestionOrEventViewDTO) namedParameterJdbcTemplate.queryForObject(Queries.GET_QUESTION_QUERY, parameters,
-				new BeanPropertyRowMapper<>(QuestionOrEventViewDTO.class));
+		return (QuestionOrEventViewDTO) namedParameterJdbcTemplate.queryForObject(Queries.GET_QUESTION_QUERY,
+				parameters, new BeanPropertyRowMapper<>(QuestionOrEventViewDTO.class));
 
 //		return jdbcTemplate.query(Queries.GET_QUESTION_QUERY, new BeanPropertyRowMapper<>(QuestionViewDTO.class), eqid,ctype);
 	}
 
-	public List<AnswerResponseListViewDTO> getAnswersForQuestionOrEntity(Long requestingUserId, String ctype, Long eqid) {
+	public List<AnswerResponseListViewDTO> getAnswersForQuestionOrEntity(Long requestingUserId, String ctype,
+			Long eqid) {
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("eqid", eqid);
 		parameters.put("ctype", ctype);
@@ -59,6 +60,13 @@ public class JdbcQueryService {
 		parameters.put("userid", requestingUserId);
 		return namedParameterJdbcTemplate.query(Queries.GET_COMMENTS_LIST, parameters,
 				new BeanPropertyRowMapper<>(CommentsResponseListViewDTO.class));
+	}
+
+	public List<Map<String, Object>> getTagRelatedQuesOrEvents(String finalQuery, Long userid, String ctype) {
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("userid", userid);
+		parameters.put("ctype", ctype);
+		return namedParameterJdbcTemplate.queryForList(finalQuery, parameters);
 	}
 
 }

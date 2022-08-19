@@ -482,7 +482,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"eqid\":3,\r\n    \"ctype\":\"Q\",\r\n    \"userid\":6\r\n}",
+					"raw": "{\r\n    \"eqid\":3,\r\n    \"ctype\":\"Q\",\r\n    \"userid\":\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -692,7 +692,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"ctype\":\"E\",\r\n    \"userid\":6,\r\n    \"pageNumber\":1,\r\n    \"numberOfPostsRequired\":3\r\n}",
+					"raw": "{\r\n    \"ctype\":\"Q\",\r\n    \"userid\":21,\r\n    \"pageNumber\":1,\r\n    \"numberOfPostsRequired\":3,\r\n    \"filterCondition\":\"campus\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -885,6 +885,66 @@
 							"key": "userid",
 							"value": "6"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BlogFeed",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ctype\":\"B\",\r\n    \"userid\":21,\r\n    \"pageNumber\":1,\r\n    \"numberOfPostsRequired\":3,\r\n    \"filterCondition\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/feed/getBlogFeed",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"feed",
+						"getBlogFeed"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTagRelatedQuesOrEvents",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userid\":21,\r\n    \"tags\":[1,2],\r\n    \"ctype\":\"Q\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/feed/getTagRelatedQuesOrEvents",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"feed",
+						"getTagRelatedQuesOrEvents"
 					]
 				}
 			},
