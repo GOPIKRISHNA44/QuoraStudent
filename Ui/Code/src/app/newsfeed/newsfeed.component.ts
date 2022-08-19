@@ -31,6 +31,7 @@ let max = document.documentElement.scrollHeight;
   searchText=""
   toggleValue="Q"
   tempdata: any;
+  answer=''
   constructor(private router: Router,private questionService: QuestionService, private authenticationService: AuthenticationService) { }
 
 
@@ -50,7 +51,7 @@ let max = document.documentElement.scrollHeight;
     this.questionService.getQuestionOrEventFeed(details).subscribe(res => {
       if (res.success) {
         this.data = res.data.data.map(item=>{
-          return {...item, showComments:false}
+          return {...item, showComments:false,showAnswer:false}
       })
       }
     })
@@ -65,25 +66,31 @@ let max = document.documentElement.scrollHeight;
     this.router.navigate(['home/question/'],{queryParams:{'eqid':data?.eqid,'ctype':data?.ctype}})
       
   }
-  openComments(eqid,ctype){
-    let commentDetails = {
-      "requestingUserId": this.userdetails.userid,
-      "ctype": ctype,
-      "eqabcid":eqid
-    }
-    this.questionService.getComments(commentDetails).subscribe(response => {
-      if (response) {
-        this.commentsData = response
-        this.data.map(item=>{
-          if(item.eqid==eqid){
-            item.showComments=true
-          }
-          else{
-            item.showComments=false
-          }
+  openComments(data){
+    if(!data.showComments){
+      let commentDetails = {
+        "requestingUserId": this.userdetails.userid,
+        "ctype": data?.ctype,
+        "eqabcid":data?.eqid
+      }
+      this.questionService.getComments(commentDetails).subscribe(response => {
+        if (response) {
+          this.commentsData = response
+          this.data.map(item=>{
+            if(item.eqid==data?.eqid){
+              item.showComments=true
+            }
+            else{
+              item.showComments=false
+            }
+        })
+        }  
       })
-      }  
-    })
+    }
+   
+  }
+  hideComments(data){
+    data.showComments=!data.showComments
   }
   sendComment(questionData){
     let sendCommentDetails = {
@@ -95,14 +102,14 @@ let max = document.documentElement.scrollHeight;
     this.questionService.sendComments(sendCommentDetails).subscribe(response => {
       if (response) {
         this.comment = ''
-        this.openComments(questionData.eqid,questionData.ctype)
+        this.openComments(questionData)
       }
     })
   }
   deleteQuestionComment(questionData){
     this.questionService.deleteComment({"cid":questionData?.cid}).subscribe(response => {
       if (response) {
-        this.openComments(questionData.parentid,questionData.ctype)
+        this.openComments(questionData)
       }
     })
   }
@@ -178,7 +185,37 @@ let max = document.documentElement.scrollHeight;
     })
     
   }
-
+ 
+  openAnswers(data) {
+    if(!data.showAnswer){
+      let details = {
+        "eqid": data.eqid,
+        "ctype": data.ctype,
+        "userid": this.userdetails.userid
+      }
+      this.questionService.getAnswers(details).subscribe(response => {
+        if (response?.data && response.data.length!=0 ) {
+          this.answer = response.data[0].content
+          
+        } 
+        else{
+          this.answer='<p>No best answer yet</p>'
+        }
+        this.data.map(item => {
+          if (item.eqid == data.eqid) {
+            item.showAnswer = true
+          }
+          else {
+            item.showAnswer = false
+          }
+        })
+      })
+    }
+    
+  }
+  hideAnswer(data){
+    data.showAnswer=!data.showAnswer
+  }
   // bottomReached(): boolean {
   //   return (window.innerHeight + window.scrollY) >= document.body.offsetHeight;
   // }

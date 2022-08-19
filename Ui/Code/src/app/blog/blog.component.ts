@@ -45,6 +45,7 @@ export class BlogComponent implements OnInit {
   }
 
   submit() {
+
     let sentText = {
       "userid": this.userdetails?.userid,
       "content": this.editorText,
