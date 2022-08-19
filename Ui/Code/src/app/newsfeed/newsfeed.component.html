@@ -24,86 +24,92 @@
         </div>
 
     </mat-card>
-    <div *ngFor="let data of data">
-        <mat-card class="topbox">
-            <mat-card-title class="title">
-                <mat-icon style="font-size: 50px;height: 50px;width:50px">
-                    <img class="userAvatar"
-                        src="../../assets/images/avatars/{{data?.avataridOfWhoAskedThisQuestion}}.png" />
-                </mat-icon>
-                <div style="margin-left: 10px">
-                    <div style="font-size:20px"><b>{{data?.usernameOfWhoAskedThisQuestion}}</b></div>
-                    <div style="font-size:14px;margin:3px">{{data?.doq| date: 'MM/dd/yyyy'}}</div>
-                </div>
+    <app-show-blog *ngIf="toggleValue=='B';else nextBlock" [searchText]=searchText></app-show-blog>
+    <ng-template #nextBlock>
+        <div *ngFor="let data of data">
+            <mat-card class="topbox">
+                <mat-card-title class="title">
+                    <mat-icon style="font-size: 50px;height: 50px;width:50px">
+                        <img class="userAvatar"
+                            src="../../assets/images/avatars/{{data?.avataridOfWhoAskedThisQuestion}}.png" />
+                    </mat-icon>
+                    <div style="margin-left: 10px">
+                        <div style="font-size:20px"><b>{{data?.usernameOfWhoAskedThisQuestion}}</b></div>
+                        <div style="font-size:14px;margin:3px">{{data?.doq| date: 'MM/dd/yyyy'}}</div>
+                    </div>
 
-            </mat-card-title>
-            <mat-card-content class="ques">
-                <!-- <a [innerHTML]="data?.question" (click)="openQuestion(data)"></a> -->
-                <app-textdisplay [text]="data?.question "  (click)="openQuestion(data)" style="cursor: pointer"></app-textdisplay>
-                <div *ngIf="data.showAnswer" [innerHTML]="answer" style="margin:30px 0px"></div>
-            </mat-card-content>
-            <div class="ans">
-                <button mat-raised-button (click)="openAnswers(data);hideAnswer(data)" color="warn"
-                    style="font-size:18px; padding:5px 40px 5px 15px">
-                    <mat-icon class="eye">remove_red_eye</mat-icon><span *ngIf="!data.showAnswer;else elseBlock">Show Best Answer</span>
+                </mat-card-title>
+                <mat-card-content class="ques">
+                    <!-- <a [innerHTML]="data?.question" (click)="openQuestion(data)"></a> -->
+                    <app-textdisplay [text]="data?.question " (click)="openQuestion(data)"
+                        style="cursor: pointer;color:#337ab7;text-decoration: underline;"></app-textdisplay>
+                    <app-textdisplay *ngIf="data.showAnswer" [text]="answer" style="margin:30px 0px"></app-textdisplay>
+                </mat-card-content>
+                <div class="ans">
+                    <button mat-raised-button (click)="openAnswers(data);hideAnswer(data)" color="warn"
+                        style="font-size:18px; padding:5px 40px 5px 15px">
+                        <mat-icon class="eye">remove_red_eye</mat-icon><span
+                            *ngIf="!data.showAnswer;else elseBlock">Show Best Answer</span>
                         <ng-template #elseBlock>Hide Answer</ng-template>
-                </button>
-                <div class="iconlist">
-                    <mat-icon (click)="openComments(data);hideComments(data)" class="icon pointer">comment</mat-icon>
-                    <span class="row-center">
+                    </button>
+                    <div class="iconlist">
+                        <mat-icon (click)="openComments(data);hideComments(data)" class="icon pointer">comment
+                        </mat-icon>
+                        <span class="row-center">
+                            <span class="material-symbols-outlined icon pointer"
+                                [ngClass]="{'filled': data?.likedByTheRequestedUser}"
+                                (click)="likeButton(data)">thumb_up</span>
+                            <span class="count">{{data?.totalNumberOfLikes}}</span>
+                        </span>
+
                         <span class="material-symbols-outlined icon pointer"
-                            [ngClass]="{'filled': data?.likedByTheRequestedUser}"
-                            (click)="likeButton(data)">thumb_up</span>
-                        <span class="count">{{data?.totalNumberOfLikes}}</span>
-                    </span>
-
-                    <span class="material-symbols-outlined icon pointer"
-                        [ngClass]="{'filled': data?.disLikedByTheRequestedUser}"
-                        (click)="dislikeButton(data)">thumb_down</span>
-                    <span class="material-symbols-outlined icon pointer">share</span>
-                </div>
-            </div>
-            <mat-card *ngIf="data?.showComments" style="margin-top:10px;">
-                <div class="title">
-                    <mat-form-field class="full-width" appearance="outline">
-                        <input matInput placeholder="Add a comment..." type=text [(ngModel)]="comment" />
-                        <button mat-icon-button matSuffix type="button" (click)="sendComment(data)">
-                            <mat-icon>send
-                            </mat-icon>
-                        </button>
-                    </mat-form-field>
-                </div>
-                <div style="max-height:300px;overflow: auto;">
-                    <div *ngFor="let commentData of commentsData?.data let i = index; let first = first ;let last = last;"
-                        class="commentbox">
-                        <div class="titl">
-                            <mat-icon style="font-size: 50px;height: 50px;width:50px">
-                                <img class="userAvatar"
-                                    src="../../assets/images/avatars/{{commentData?.commentedByUsernameAvatarid}}.png" />
-                            </mat-icon>
-                            <div class="comment"><b>{{commentData?.commentedByUsername}}</b></div>
-                            <span class="doc">{{commentData?.doc| date: 'MM/dd/yyyy'}}</span>
-                        </div>
-                        <div class="titl space">
-                            <div style="margin:10px 30px;">
-                                {{commentData?.comment}}
-                            </div>
-                            <div>
-                                <span *ngIf="commentData?.commentOwnedByTheRequestedUser"
-                                    class="material-symbols-outlined filled coloricon"
-                                    (click)="deleteQuestionComment(commentData)">
-                                    delete
-                                </span>
-
-                            </div>
-                        </div>
-                        <mat-divider *ngIf="!last" class="relative"></mat-divider>
+                            [ngClass]="{'filled': data?.disLikedByTheRequestedUser}"
+                            (click)="dislikeButton(data)">thumb_down</span>
+                        <span class="material-symbols-outlined icon pointer">share</span>
                     </div>
                 </div>
+                <mat-card *ngIf="data?.showComments" style="margin-top:10px;">
+                    <div class="title">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <input matInput placeholder="Add a comment..." type=text [(ngModel)]="comment" />
+                            <button mat-icon-button matSuffix type="button" (click)="sendComment(data)">
+                                <mat-icon>send
+                                </mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                    <div style="max-height:300px;overflow: auto;">
+                        <div *ngFor="let commentData of commentsData?.data let i = index; let first = first ;let last = last;"
+                            class="commentbox">
+                            <div class="titl">
+                                <mat-icon style="font-size: 50px;height: 50px;width:50px">
+                                    <img class="userAvatar"
+                                        src="../../assets/images/avatars/{{commentData?.commentedByUsernameAvatarid}}.png" />
+                                </mat-icon>
+                                <div class="comment"><b>{{commentData?.commentedByUsername}}</b></div>
+                                <span class="doc">{{commentData?.doc| date: 'MM/dd/yyyy'}}</span>
+                            </div>
+                            <div class="titl space">
+                                <div style="margin:10px 30px;">
+                                    {{commentData?.comment}}
+                                </div>
+                                <div>
+                                    <span *ngIf="commentData?.commentOwnedByTheRequestedUser"
+                                        class="material-symbols-outlined filled coloricon"
+                                        (click)="deleteQuestionComment(commentData)">
+                                        delete
+                                    </span>
+
+                                </div>
+                            </div>
+                            <mat-divider *ngIf="!last" class="relative"></mat-divider>
+                        </div>
+                    </div>
+                </mat-card>
             </mat-card>
-        </mat-card>
-    </div>
-    <div class="row-center more" *ngIf="data && data?.length!=0">
-        <a (click)="onScroll()">show more</a>
-    </div>
+        </div>
+        <div class="row-center more" *ngIf="data && data?.length!=0">
+            <a (click)="onScroll()">show more</a>
+        </div>
+    </ng-template>
 </div>
