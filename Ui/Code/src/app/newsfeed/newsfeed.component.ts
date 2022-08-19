@@ -158,7 +158,14 @@ let max = document.documentElement.scrollHeight;
 
   onValChange(value){
     this.toggleValue=value
-    this.getQuestions();
+    this.pageNumber=1
+    if(this.toggleValue=='B'){
+      //this.getBlog()
+    }
+    else{
+      this.getQuestions();
+    }
+    
   }
 
   checkthis(event){

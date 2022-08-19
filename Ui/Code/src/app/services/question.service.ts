@@ -37,11 +37,11 @@ export class QuestionService {
   }
 
 
-  postEvent(_editorText):Observable<any> {
-    return this.http.post(this.apiEndPoint+"/event/addAnEvent",_editorText)
+  postEvent(_editorText): Observable<any> {
+    return this.http.post(this.apiEndPoint + "/event/addAnEvent", _editorText)
   }
 
-  getAnswers(_details):Observable<any>{
+  getAnswers(_details): Observable<any> {
     return this.http.post(this.apiEndPoint + "/answer/getAnswersForQuestionOrEntity", _details)
   }
 
@@ -57,20 +57,24 @@ export class QuestionService {
 
     return this.http.post(this.apiEndPoint + "/comments/addComment", _commentDetails)
   }
-  postAnswer(_details): Observable<any>{
+  postAnswer(_details): Observable<any> {
     return this.http.post(this.apiEndPoint + "/answer/addAnswer", _details)
   }
-  updateLikeButton(_details): Observable<any>{
+  updateLikeButton(_details): Observable<any> {
 
     return this.http.post(this.apiEndPoint + "/questions/updwnvt", _details)
   }
   deleteComment(_commentDetails): Observable<any> {
     return this.http.post(this.apiEndPoint + "/comments/deleteComment", _commentDetails)
   }
-  deleteAnswer(_details): Observable<any>{
+  deleteAnswer(_details): Observable<any> {
     return this.http.post(this.apiEndPoint + "/answer/deleteAnswer", _details)
   }
-  deleteQuestion(_details): Observable<any>{
-  return this.http.post(this.apiEndPoint + "questions/deleteQuestion", _details)
-}
+  deleteQuestion(_details): Observable<any> {
+    return this.http.post(this.apiEndPoint + "/questions/deleteQuestion", _details)
+  }
+  getBlogFeed(_details): Observable<any> {
+
+    return this.http.post(this.apiEndPoint + "/feed/getBlogFeed", _details)
+  }
 }
