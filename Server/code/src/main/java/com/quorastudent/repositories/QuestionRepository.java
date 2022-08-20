@@ -68,9 +68,12 @@ public interface QuestionRepository extends JpaRepository<QuestionDTO, Long> {
 	List<Map<String, Object>> getQuestionsFeedTest(Long userid, String ctype);
 
 	@Query(value = Queries.GET_QUESTION_OR_ENTITY_UNV_BASED_QUERY, countQuery = Queries.GET_QUESTION_UNV_BASED_QUERY_COUNT_QUERY, nativeQuery = true)
-	Page<List<Map<String, Object>>> getQuestionsOrEventFeed(Long userid, String ctype,String filterCondition, Pageable pageRef);
+	Page<List<Map<String, Object>>> getQuestionsOrEventFeed(Long userid, String ctype, String filterCondition,
+			Pageable pageRef);
 
 	QuestionDTO findByEqidAndCtype(Long eqid, String ctype);
 
+	@Query(value = Queries.GET_QUESTION_OR_ENTITY_UNV_BASED_QUERY_USER_BASED, nativeQuery = true)
+	List<Map<String, Object>> getQuestionsOrEventsOfAUser(Long userid, String ctype,String filterCondition);
 
 }

@@ -46,25 +46,6 @@ public class FeedController {
 		return responseDto;
 	}
 
-	@RequestMapping(value = "getQuestionOrEventFeedTest", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public ResponseDTO getQuestionOrEventFeedTest(@RequestBody Map<String, Integer> questionsFeed) {
-
-		ResponseDTO responseDto = null;
-		try {
-
-			int unvcode = questionsFeed.get("unvcode");
-			List<QuestionsFeedDto> ls = feedService.getQuestionsFeed(unvcode);
-			responseDto = responseDtoGeneral.getSuccessResponse(ls);
-
-		} catch (Exception e) {
-
-			responseDto = responseDtoGeneral.getFailureResponse(e.getMessage());
-
-		}
-		return responseDto;
-	}
-
 	@RequestMapping(value = "getQuestionsOrEventFeed", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseDTO getQuestionsOrEventFeed(@RequestBody FeedRequestDTO feedRequestDTO) {
@@ -138,6 +119,39 @@ public class FeedController {
 
 		} catch (Exception e) {
 			responseDto = responseDtoGeneral.getFailureResponse(e.getMessage());
+		}
+		return responseDto;
+	}
+
+	@RequestMapping(value = "getMyQuestionsOrEvents", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseDTO getMyQuestionsOrEvents(@RequestBody FeedRequestDTO feedRequestDTO) {
+		ResponseDTO responseDto = null;
+		try {
+			List<Map<String, Object>> pageableResponse = feedService
+					.getQuestionsOrEventsOfAUser(feedRequestDTO.getUserid(), feedRequestDTO.getCtype());
+
+			responseDto = responseDtoGeneral.getSuccessResponse(pageableResponse);
+
+		} catch (Exception e) {
+
+			responseDto = responseDtoGeneral.getFailureResponse(e.getMessage());
+
+		}
+		return responseDto;
+	}
+
+	@RequestMapping(value = "getMyBlogs", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseDTO getMyBlogs(@RequestBody FeedRequestDTO feedRequestDTO) {
+		ResponseDTO responseDto = null;
+		try {
+			List<Map<String, Object>> pageableResponse = feedService.getBlogsForUser(feedRequestDTO.getUserid());
+			responseDto = responseDtoGeneral.getSuccessResponse(pageableResponse);
+		} catch (Exception e) {
+
+			responseDto = responseDtoGeneral.getFailureResponse(e.getMessage());
+
 		}
 		return responseDto;
 	}

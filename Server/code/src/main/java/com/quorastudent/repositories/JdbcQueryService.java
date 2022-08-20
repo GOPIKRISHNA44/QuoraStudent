@@ -30,7 +30,6 @@ public class JdbcQueryService {
 
 	}
 
-	@SuppressWarnings("unchecked")
 	public QuestionOrEventViewDTO findByEqidAndCtype(Long eqid, String ctype, Long userid) {
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
@@ -66,6 +65,14 @@ public class JdbcQueryService {
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("userid", userid);
 		parameters.put("ctype", ctype);
+		return namedParameterJdbcTemplate.queryForList(finalQuery, parameters);
+	}
+
+	public List<Map<String, Object>> getQuestionsOrEventsOfAUser(String finalQuery, Long userid, String ctype) {
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("userid", userid);
+		parameters.put("ctype", ctype);
+		parameters.put("filterCondition", "");
 		return namedParameterJdbcTemplate.queryForList(finalQuery, parameters);
 	}
 

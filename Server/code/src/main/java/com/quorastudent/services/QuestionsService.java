@@ -197,7 +197,7 @@ public class QuestionsService {
 		} catch (
 
 		Exception e) {
-
+			e.printStackTrace();
 			throw e;
 		}
 		return null;

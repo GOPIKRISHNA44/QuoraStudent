@@ -116,4 +116,22 @@ public class FeedService {
 		}
 	}
 
+	public List<Map<String, Object>> getQuestionsOrEventsOfAUser(Long userid, String ctype) {
+		try {
+			return questionRepository.getQuestionsOrEventsOfAUser(userid, ctype, "");
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw e;
+		}
+	}
+
+	public List<Map<String, Object>> getBlogsForUser(Long userid) {
+		try {
+			return blogRepository.getMyBlogs(userid, "");
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw e;
+		}
+	}
+
 }
