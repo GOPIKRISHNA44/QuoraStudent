@@ -30,4 +30,7 @@ public interface BlogRepository extends JpaRepository<BlogDTO, Long> {
 
 	@Query(value = Queries.GET_TOP_LIKED_BLOGS, nativeQuery = true)
 	List<Map<String, Object>> getTopLikedBlogs(Long userid);
+
+	@Query(value = Queries.GET_BLOG_UNV_BASED_QUERY_FOR_USER, nativeQuery = true)
+	List<Map<String, Object>> getMyBlogs(Long userid, String filterCondition);
 }
