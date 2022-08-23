@@ -45,7 +45,7 @@ export class ShowBlogComponent implements OnInit {
     let sendCommentDetails = {
       "userid": this.userdetails.userid,
       "parentid": data.bid,
-      "ctype": data.ctype,
+      "ctype": "B",
       "comment": this.comment
     }
     this.questionService.sendComments(sendCommentDetails).subscribe(response => {
@@ -57,13 +57,13 @@ export class ShowBlogComponent implements OnInit {
   }
   onScroll() {
     this.pageNumber++;
-    let details = {
-      "ctype": 'b',
-      "userid": this.userdetails.userid,
-      "pageNumber": this.pageNumber,
-      "numberOfPostsRequired": this.noOfposts,
-      "filterCondition": this.searchText
-    }
+    let details={
+      "ctype":"B",
+      "userid":this.userdetails.userid,
+      "pageNumber":this.pageNumber,
+      "numberOfPostsRequired":this.noOfposts,
+     "filterCondition":this.searchText
+  }
     this.questionService.getQuestionOrEventFeed(details).subscribe(res => {
       if (res.success && res.data?.data.length != 0) {
         this.tempdata = res.data.data.map(item => {
@@ -90,7 +90,8 @@ export class ShowBlogComponent implements OnInit {
       data.likedByTheRequestedUser = false
       data.totalNumberOfLikes--
     }
-    this.updateLikeButton({ "type": 1 }, data?.ctype, data.bid)
+
+    this.updateLikeButton({ "type": 1 }, "B",data.bid)
   }
   dislikeButton(data) {
     if (!data?.disLikedByTheRequestedUser) {
@@ -124,8 +125,8 @@ export class ShowBlogComponent implements OnInit {
     if (!data.showComments) {
       let commentDetails = {
         "requestingUserId": this.userdetails.userid,
-        "ctype": data?.ctype,
-        "eqabcid": data?.bid
+        "ctype": 'B',
+        "eqabcid":data?.bid
       }
       this.questionService.getComments(commentDetails).subscribe(response => {
         if (response) {
