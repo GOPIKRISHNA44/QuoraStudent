@@ -10,6 +10,7 @@ import { QuestionService } from '../services/question.service';
   styleUrls: ['./newsfeed.component.css']
 })
 export class NewsfeedComponent implements OnInit {
+  scroll: boolean=true;
   @HostListener("window:scroll", ["$event"])
 onWindowScroll() {
 //In chrome and some browser scroll is given to body tag
@@ -49,10 +50,14 @@ let max = document.documentElement.scrollHeight;
         "filterCondition":this.searchText
     }
     this.questionService.getQuestionOrEventFeed(details).subscribe(res => {
-      if (res.success) {
+      if (res.success && res.data?.data.length!=0) {
         this.data = res.data.data.map(item=>{
           return {...item, showComments:false,showAnswer:false}
       })
+      this.scroll = true
+      }
+      else {
+        this.scroll = false
       }
     })
   }
