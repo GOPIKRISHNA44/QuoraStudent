@@ -151,4 +151,7 @@ export class HeaderComponent implements OnInit {
   gotoHome() {
     this.router.navigate(['/home'])
   }
+  myQuestions(){
+    
+  }
 }

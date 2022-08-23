@@ -2,8 +2,7 @@
     <mat-card class="topbox">
         <mat-card-title class="title">
             <mat-icon style="font-size: 50px;height: 50px;width:50px">
-                <img class="userAvatar"
-                    src="../../assets/images/avatars/{{data?.avataridOfWhoAskedThisBlog}}.png" />
+                <img class="userAvatar" src="../../assets/images/avatars/{{data?.avataridOfWhoAskedThisBlog}}.png" />
             </mat-icon>
             <div style="margin-left: 10px">
                 <div style="font-size:20px"><b>{{data?.usernameOfWhoAskedThisBlog}}</b></div>
@@ -13,20 +12,23 @@
         </mat-card-title>
         <mat-card-content class="ques">
             <!-- <a [innerHTML]="data?.question" (click)="openQuestion(data)"></a> -->
-            <app-textdisplay [text]="data?.title " 
-                style="cursor: pointer;color:#337ab7;text-decoration: underline;"></app-textdisplay>
-            <app-textdisplay [text]="data?.content" 
-                style="cursor: pointer;color:#337ab7;text-decoration: underline;" style="margin:30px 0px"></app-textdisplay>
+            <div>
+                <app-textdisplay [text]="data?.title" style="font-size: 36px;"></app-textdisplay>
+            </div>
+
+            <div style="margin:30px 0px">
+                <app-textdisplay [text]="data?.content" ></app-textdisplay>
+            </div>
+
 
         </mat-card-content>
         <div class="ans">
             <div class="iconlist">
-                <mat-icon  (click)="openComments(data);hideComments(data)" class="icon pointer">comment
+                <mat-icon (click)="openComments(data);hideComments(data)" class="icon pointer">comment
                 </mat-icon>
                 <span class="row-center">
                     <span class="material-symbols-outlined icon pointer"
-                        [ngClass]="{'filled': data?.likedByTheRequestedUser}"
-                        (click)="likeButton(data)">thumb_up</span>
+                        [ngClass]="{'filled': data?.likedByTheRequestedUser}" (click)="likeButton(data)">thumb_up</span>
                     <span class="count">{{data?.totalNumberOfLikes}}</span>
                 </span>
 
@@ -76,6 +78,6 @@
         </mat-card>
     </mat-card>
 </div>
-<div class="row-center more" *ngIf="data && data?.length!=0">
+<div class="row-center more" *ngIf="scroll && data && data?.length!=0">
     <a (click)="onScroll()">show more</a>
 </div>

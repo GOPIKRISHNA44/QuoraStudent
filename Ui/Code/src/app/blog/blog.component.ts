@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { QuillConfiguration, Title } from '../constants/title.constants';
 import { UserDetails } from '../models/auth.model';
 import { AuthenticationService } from '../services/authentication.service';
@@ -19,7 +20,7 @@ export class BlogComponent implements OnInit {
   tags = new FormControl('');
   textTitle: string;
   tagsList: any = []
-  constructor(private questionService: QuestionService, private authenticationService: AuthenticationService,) { }
+  constructor(private router: Router,private questionService: QuestionService, private authenticationService: AuthenticationService,) { }
 
   ngOnInit(): void {
     this.userdetails = JSON.parse(this.authenticationService.GetUserDetails())
@@ -54,7 +55,7 @@ export class BlogComponent implements OnInit {
     }
     this.questionService.postBlog(sentText).subscribe(res => {
       if (res.success) {
-        console.log(res)
+        this.router.navigate(['home/blog'])
       }
     })
 

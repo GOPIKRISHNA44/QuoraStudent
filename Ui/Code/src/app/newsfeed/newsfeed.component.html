@@ -108,7 +108,7 @@
                 </mat-card>
             </mat-card>
         </div>
-        <div class="row-center more" *ngIf="data && data?.length!=0">
+        <div class="row-center more" *ngIf="scroll && data && data?.length!=0">
             <a (click)="onScroll()">show more</a>
         </div>
     </ng-template>
