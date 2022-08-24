@@ -151,7 +151,7 @@ export class HeaderComponent implements OnInit {
   gotoHome() {
     this.router.navigate(['/home'])
   }
-  myQuestions(){
-    
+  myQuestionsOrEvents(ctype){
+    this.router.navigate(['/myQuestionOrEvents'])
   }
 }

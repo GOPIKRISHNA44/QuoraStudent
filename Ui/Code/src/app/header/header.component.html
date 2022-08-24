@@ -66,8 +66,8 @@
                         <mat-menu #menu="matMenu">
                             <button mat-menu-item (click)="logout()">Log Out</button>
                             <button mat-menu-item>Change Avatar</button>
-                            <button mat-menu-item (click)="myQuestions()">My Questions</button>
-                            <button mat-menu-item>My Events</button>
+                            <button mat-menu-item (click)="myQuestionsOrEvents('Q')">My Questions</button>
+                            <button mat-menu-item  (click)="myQuestionsOrEvents('E')">My Events</button>
                             <button mat-menu-item>My Blogs</button>
                         </mat-menu>
                     </div>

@@ -25,6 +25,7 @@ import { BlogComponent } from './blog/blog.component';
 import { AnswerDialogComponent } from './answer-dialog/answer-dialog.component';
 import { TextdisplayComponent } from './textdisplay/textdisplay.component';
 import { ShowBlogComponent } from './show-blog/show-blog.component';
+import { MyquestionsoreventsComponent } from './myquestionsorevents/myquestionsorevents.component';
 
 
 
@@ -44,7 +45,8 @@ import { ShowBlogComponent } from './show-blog/show-blog.component';
     BlogComponent,
     AnswerDialogComponent,
     TextdisplayComponent,
-    ShowBlogComponent
+    ShowBlogComponent,
+    MyquestionsoreventsComponent
   ],
   imports: [
     BrowserModule,
