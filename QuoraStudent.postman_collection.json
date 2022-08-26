@@ -392,7 +392,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\":null,\r\n    \"userid\":2,\r\n    \"title\":\"How to crabs crawl\",\r\n    \"content\":\"e were making a sand castle on the Wonderopolis beach the other day when we saw a group of crabs gathering nearby. The group appeared to consist of an adult crab and several younger crabs. Our curiosity got the best of us, so we decided to eavesdrop to try to hear what they were talking about. Kid Crab: Mrs. Crab? What are we going to learn about in class today?Mrs. Crab: Well, Patty, I'm so glad you asked. Today, we're going to learn why human beings walk frontways.Kid Crab: That's awesome, Mrs. Crab! I've always WONDERed about that. They look so funny when they walk down the beach like that!Apparently, we stumbled upon a class of crabs with their teacher about to learn more about human beings and the way we move. From their perspective, we must look as funny to crabs as they do to us. Let's take a closer look at why crabs move the way they do.If you've ever seen crabs moving along the shoreline, you've probably noticed that they move differently than human beings. Instead of walking forward on two legs, they move quickly sideways in a flurry with their multiple legs.Crabs move sideways for the same reason humans move forward: that's how their bodies were built to move. Human beings have knees that bend forward. Therefore, it's only natural that we would move forward with each step we take.Crabs, on the other hand, have multiple legs and they're located on the sides of their bodies. In addition, their leg joints bend outward. Given this particular design of their bodies, it's most efficient and natural for crabs to move sideways.Not all crabs move sideways, however. There are a few species of crabs that can move forward, because their bodies are shaped in a way that makes them longer than they are wide. Examples of these crabs include raninids, Libinia emarginata, and Mictyris platycheles.In addition, most crabs have a front pair of legs that are mainly used for defense and grasping food. These front legs can be used to move forward, but doing so is not very efficient and doesn't allow the crab to move quickly. Thus, most crabs move sideways since they can move quickly and most efficiently that way.\"\r\n}",
+					"raw": "{\r\n    \"bid\":null,\r\n    \"userid\":2,\r\n    \"title\":\"How to crabs crawl\",\r\n    \"content\":\"new blog\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -945,6 +945,156 @@
 						"quoraStudent",
 						"feed",
 						"getTagRelatedQuesOrEvents"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTopLikedBlogs",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userid\":21\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/feed/getTopLikedBlogs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"feed",
+						"getTopLikedBlogs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getMyQuestionsOrEvents",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userid\":22,\r\n    \"ctype\":\"E\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/feed/getMyQuestionsOrEvents",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"feed",
+						"getMyQuestionsOrEvents"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getMyBlogs",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userid\":22\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/feed/getMyBlogs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"feed",
+						"getMyBlogs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateBlog",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"bid\":8,\r\n    \"title\":\"Checkiljng update\",\r\n    \"content\":\"ud one\",\r\n    \"tags\":\";1;\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/blog/updateBlog",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"blog",
+						"updateBlog"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteBlog",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"bid\":8\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/blog/deleteBlog",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"blog",
+						"deleteBlog"
 					]
 				}
 			},
