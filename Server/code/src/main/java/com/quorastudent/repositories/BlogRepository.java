@@ -17,8 +17,8 @@ public interface BlogRepository extends JpaRepository<BlogDTO, Long> {
 
 	@Transactional
 	@Modifying
-	@Query("update BlogDTO b  SET b.content= :content, b.updatedat = NOW() WHERE b.bid= :bid ")
-	void updateBlog(Long bid, String content);
+	@Query("update BlogDTO b  SET b.content= :content, b.title = :title, b.tags = :tags, b.updatedat = NOW() WHERE b.bid= :bid ")
+	void updateBlog(Long bid, String title, String content, String tags);
 
 	@Transactional
 	@Modifying
