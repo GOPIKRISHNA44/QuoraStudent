@@ -47,10 +47,26 @@ public class BlogService {
 		try {
 
 			if (!ObjectUtils.isEmpty(blogDTO)) {
-				Date currentDateTime = dateUtility.getCurrentDateAndTime();
-				blogDTO.setDoblog(currentDateTime);
-				blogDTO.setUpdatedat(currentDateTime);
-				blogRepository.save(blogDTO);
+				blogRepository.updateBlog(blogDTO.getBid(), blogDTO.getTitle(), blogDTO.getContent(),
+						blogDTO.getTags());
+
+			} else {
+				throw new Exception(ErrorMsgs.DATAMISSING);
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw e;
+		}
+		return true;
+
+	}
+	
+	public boolean deleteBlog(BlogDTO blogDTO) throws Exception {
+		try {
+
+			if (!ObjectUtils.isEmpty(blogDTO)) {
+				blogRepository.deleteBlog(blogDTO.getBid());
 
 			} else {
 				throw new Exception(ErrorMsgs.DATAMISSING);

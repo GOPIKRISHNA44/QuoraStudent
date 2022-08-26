@@ -56,7 +56,11 @@ public class BlogController {
 		ResponseDTO responseDto = null;
 		try {
 			
-			// save the blog 
+			boolean status = blogService.updateBlog(blogDTO);
+			Map<String, Boolean> finalMsg = new HashMap<String, Boolean>();
+			finalMsg.put("updated", status);
+			responseDto = responseDtoGeneral.getSuccessResponse(finalMsg);
+
 
 		} catch (Exception e) {
 
@@ -73,7 +77,10 @@ public class BlogController {
 		ResponseDTO responseDto = null;
 		try {
 			
-			// save the blog 
+			boolean status = blogService.deleteBlog(blogDTO);
+			Map<String, Boolean> finalMsg = new HashMap<String, Boolean>();
+			finalMsg.put("updated", status);
+			responseDto = responseDtoGeneral.getSuccessResponse(finalMsg);
 
 		} catch (Exception e) {
 
