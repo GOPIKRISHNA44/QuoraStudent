@@ -1,12 +1,13 @@
 .topbox {
-    width: 65%;
+   
     height: 22%;
     border-radius: 15px;
     margin: 15px 30px;
 }
 
+
 .searchTop {
-    width: 65%;
+  
     border-radius: 15px;
     margin: 15px 30px;
     display: flex;
@@ -119,7 +120,7 @@
 }
 
 .more {
-    width: 65%;
+
     margin: 10px;
 
 }
@@ -136,4 +137,9 @@
 .eye{
     margin-right: 4px;
     margin-bottom: 2px;
+}
+.eve{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

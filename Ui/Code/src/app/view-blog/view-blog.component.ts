@@ -1,48 +1,40 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { HomeComponent } from '../home/home.component';
+import { Component, OnInit } from '@angular/core';
 import { UserDetails } from '../models/auth.model';
 import { AuthenticationService } from '../services/authentication.service';
 import { QuestionService } from '../services/question.service';
+import { SpinnerService } from '../services/spinner.service';
 
 @Component({
-  selector: 'app-show-blog',
-  templateUrl: './show-blog.component.html',
-  styleUrls: ['./show-blog.component.css']
+  selector: 'app-view-blog',
+  templateUrl: './view-blog.component.html',
+  styleUrls: ['./view-blog.component.css']
 })
-export class ShowBlogComponent implements OnInit {
+export class ViewBlogComponent implements OnInit {
   noOfposts = 6
   userdetails: UserDetails;
   data: any;
   comment = ''
   pageNumber = 1;
   tempdata: any;
-  @Input() searchText = ''
   commentsData: any;
   scroll = true;
-  constructor(private homeComponent:HomeComponent,private authenticationService: AuthenticationService, private questionService: QuestionService) { }
+  constructor(private spinnerService:SpinnerService,private authenticationService: AuthenticationService, private questionService: QuestionService) { }
 
   ngOnInit(): void {
     this.userdetails = JSON.parse(this.authenticationService.GetUserDetails())
-    this.getBlog()
+    this.getMyBlog()
   }
-
-  getBlog() {
-    let details = {
-      "ctype": 'B',
-      "userid": this.userdetails.userid,
-      "pageNumber": 1,
-      "numberOfPostsRequired": this.noOfposts,
-      "filterCondition": ""
+  getMyBlog(){
+    let details={
+      "userid":this.userdetails.userid
     }
-    this.questionService.getBlogFeed(details).subscribe(res => {
+    this.questionService.getMyBlogs(details).subscribe(res => {
       if (res.success) {
-        this.data = res.data.data.map(item => {
+        this.data = res.data.map(item => {
           return { ...item, showComments: false, showAnswer: false }
         })
       }
     })
-    this.questionService.setCtype('B');
-    this.homeComponent.rightSideView()
   }
   sendComment(data) {
     let sendCommentDetails = {
@@ -58,28 +50,7 @@ export class ShowBlogComponent implements OnInit {
       }
     })
   }
-  onScroll() {
-    this.pageNumber++;
-    let details={
-      "ctype":"B",
-      "userid":this.userdetails.userid,
-      "pageNumber":this.pageNumber,
-      "numberOfPostsRequired":this.noOfposts,
-     "filterCondition":this.searchText
-  }
-    this.questionService.getQuestionOrEventFeed(details).subscribe(res => {
-      if (res.success && res.data?.data.length != 0) {
-        this.tempdata = res.data.data.map(item => {
-          return { ...item, showComments: false }
-        })
-        this.data = [...this.data, ...this.tempdata]
-      }
-      else {
-        this.scroll = false
-      }
-    })
-    
-  }
+
   likeButton(data) {
     if (!data?.likedByTheRequestedUser) {
       if (data?.disLikedByTheRequestedUser) {
@@ -157,8 +128,19 @@ export class ShowBlogComponent implements OnInit {
       }
     })
   }
-  openBlog(data){
-   this.questionService.setBlogDetails(data)
-   this.homeComponent.openBlog(data)
+  editBlog(data){
+
+  }
+  copyUrl(){
+
+  }
+  deleteBlog(bid){
+    this.spinnerService.disableLoader();
+    this.questionService.deleteQuestion({ "bid": bid}).subscribe(response => {
+      if (response) {
+        this.getMyBlog()
+      }
+    })
+    this.spinnerService.enableLoader();
   }
 }

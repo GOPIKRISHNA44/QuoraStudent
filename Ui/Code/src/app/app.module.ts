@@ -26,6 +26,11 @@ import { AnswerDialogComponent } from './answer-dialog/answer-dialog.component';
 import { TextdisplayComponent } from './textdisplay/textdisplay.component';
 import { ShowBlogComponent } from './show-blog/show-blog.component';
 import { MyquestionsoreventsComponent } from './myquestionsorevents/myquestionsorevents.component';
+import { MyblogsComponent } from './myblogs/myblogs.component';
+import { ViewBlogComponent } from './view-blog/view-blog.component';
+import { IndividualBlogComponent } from './individual-blog/individual-blog.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 
 
@@ -46,7 +51,12 @@ import { MyquestionsoreventsComponent } from './myquestionsorevents/myquestionso
     AnswerDialogComponent,
     TextdisplayComponent,
     ShowBlogComponent,
-    MyquestionsoreventsComponent
+    MyquestionsoreventsComponent,
+    MyblogsComponent,
+    ViewBlogComponent,
+    IndividualBlogComponent,
+    ChangePasswordComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,

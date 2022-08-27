@@ -1,1 +1,62 @@
-<p>myquestionsorevents works!</p>
+<h1 class="row-center tit">{{myQuestionOrEventTitle}}</h1>
+<div class="topbox" *ngFor="let data of myData">
+    <mat-card style="margin: 5px 0px 20px 0px;">
+        <mat-card-title class="title">
+            <mat-icon class="imgMatIcon">
+                <img class="userAvatar"
+                    src="../../assets/images/avatars/{{data?.avataridOfWhoAskedThisQuestion}}.png" />
+            </mat-icon>
+            <div  class="nameAndDate">
+                <div style="font-size:20px"><b>{{data?.usernameOfWhoAskedThisQuestion}}</b></div>
+                <div style="font-size:14px;margin:3px">{{data?.doq | date: 'MM/dd/yyyy'}}
+                </div>
+            </div>
+        </mat-card-title>
+        <mat-card-content style="margin-top: 20px">
+            <!-- <div class="questionDisplay" [innerHTML]="data?.question " style=""></div> -->
+            <div class="eve">
+                <a (click)="openQuestion(data)">
+                    <app-textdisplay [text]="data?.question "></app-textdisplay>
+                </a>
+                <div style="font-size:14px;" *ngIf="data?.ctype=='E'"><b>{{data?.fromdate| date:
+                        'MM/dd/yyyy'}}-{{data?.todate| date: 'MM/dd/yyyy'}}</b></div>
+            </div>
+            <br />
+            <div class="ans">
+                <!-- <button mat-raised-button (click)="openQuestion()" color="warn" style="font-size:15px; padding:5px 30px 5px 15px;
+                    border-radius: 25px;
+                ">
+                    <mat-icon>edit</mat-icon><span>Answer</span>
+                </button> -->
+                <div class="iconlist">
+                    <!-- <mat-icon (click)="openComments()" class="icon pointer commentIcon">comment</mat-icon> -->
+                    <span class="row-center">
+                        <span class="material-symbols-outlined icon pointer"
+                            [ngClass]="{'filled': data?.likedByTheRequestedUser==1}"
+                            (click)="likeButton(data)">thumb_up</span>
+                        <span class="count">{{data?.totalNumberOfLikes}}</span>
+                    </span>
+
+                    <span class="material-symbols-outlined icon pointer"
+                        [ngClass]="{'filled': data?.disLikedByTheRequestedUser==1}"
+                        (click)="dislikeButton(data)">thumb_down</span>
+                    <span class="material-symbols-outlined icon pointer" [matMenuTriggerFor]="menu">share</span>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item>Facebook</button>
+                        <button mat-menu-item>Twitter</button>
+                        <button mat-menu-item (click)="copyUrl()">Copy Link</button>
+                    </mat-menu>
+                    <span *ngIf="data?.questionOwnedByTheRequestedUser==1 && data?.isEditable==1"
+                        class="material-symbols-outlined filled icon pointer" (click)="editQuestion(data)">
+                        edit
+                    </span>
+                    <span *ngIf="data?.questionOwnedByTheRequestedUser==1"
+                        class="material-symbols-outlined filled coloricon"
+                        (click)="deleteQuestion(data?.eqid,data?.ctype)">
+                        delete
+                    </span>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

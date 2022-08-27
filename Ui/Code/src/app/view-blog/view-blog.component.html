@@ -12,12 +12,12 @@
         </mat-card-title>
         <mat-card-content class="ques">
             <!-- <a [innerHTML]="data?.question" (click)="openQuestion(data)"></a> -->
-            <a (click)="openBlog(data)">
+            <div>
                 <app-textdisplay [text]="data?.title" style="font-size: 36px;"></app-textdisplay>
-            </a>
+            </div>
 
-            <div style="margin:30px 0px" class="textflow">
-                <app-textdisplay [text]="data?.content" ></app-textdisplay>
+            <div style="margin:30px 0px">
+                <app-textdisplay [text]="data?.content"></app-textdisplay>
             </div>
 
 
@@ -35,7 +35,21 @@
                 <span class="material-symbols-outlined icon pointer"
                     [ngClass]="{'filled': data?.disLikedByTheRequestedUser}"
                     (click)="dislikeButton(data)">thumb_down</span>
-                <span class="material-symbols-outlined icon pointer">share</span>
+                    <span class="material-symbols-outlined icon pointer" [matMenuTriggerFor]="menu">share</span>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item>Facebook</button>
+                        <button mat-menu-item>Twitter</button>
+                        <button mat-menu-item (click)="copyUrl()">Copy Link</button>
+                    </mat-menu>
+                    <span *ngIf="data?.questionOwnedByTheRequestedUser==1 && data?.isEditable==1"
+                        class="material-symbols-outlined filled icon pointer" (click)="editBlog(data)">
+                        edit
+                    </span>
+                    <span *ngIf="data?.questionOwnedByTheRequestedUser==1"
+                        class="material-symbols-outlined filled coloricon"
+                        (click)="deleteQuestion(data?.bid)">
+                        delete
+                    </span>
             </div>
         </div>
         <mat-card *ngIf="data?.showComments" style="margin-top:10px;">
@@ -77,7 +91,4 @@
             </div>
         </mat-card>
     </mat-card>
-</div>
-<div class="row-center more" *ngIf="scroll && data && data?.length!=0">
-    <a (click)="onScroll()">show more</a>
 </div>

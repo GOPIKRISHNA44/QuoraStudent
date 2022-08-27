@@ -1,5 +1,5 @@
 .topbox {
-    width: 65%;
+   
     border-radius: 15px;
     margin: 15px 30px;
 }
@@ -147,4 +147,9 @@ font-size: 20px!important;
     
     margin-left: 10px;
 
+}
+.eve{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

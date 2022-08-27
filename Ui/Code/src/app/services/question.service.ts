@@ -15,6 +15,12 @@ export class QuestionService {
   private questiondetails = new BehaviorSubject([]);
   public readonly questiondetails$ = this.questiondetails.asObservable();
 
+  private blogDetails = new BehaviorSubject<any>([]);
+  public readonly blogDetails$ = this.blogDetails.asObservable();
+
+  private ctype$ = new BehaviorSubject<any>('');
+  requiredCtype$ = this.ctype$.asObservable();
+
   getInterests(): Observable<any> {
     return this.http.get(this.apiEndPoint + "/info/getInterests")
   }
@@ -23,6 +29,9 @@ export class QuestionService {
   }
   postQuestion(_editorText): Observable<any> {
     return this.http.post(this.apiEndPoint + "/questions/askAquestion", _editorText)
+  }
+  editUpdateQuestion(_editorText): Observable<any> {
+    return this.http.post(this.apiEndPoint + "/questions/updateAQuestion", _editorText)
   }
   postBlog(_blogText): Observable<any> {
     return this.http.post(this.apiEndPoint + "/blog/saveBlog", _blogText)
@@ -40,7 +49,10 @@ export class QuestionService {
   postEvent(_editorText): Observable<any> {
     return this.http.post(this.apiEndPoint + "/event/addAnEvent", _editorText)
   }
-
+  updateAnEvent(_editorText): Observable<any> {
+    return this.http.post(this.apiEndPoint + "/event/updateAnEvent", _editorText)
+  }
+  
   getAnswers(_details): Observable<any> {
     return this.http.post(this.apiEndPoint + "/answer/getAnswersForQuestionOrEntity", _details)
   }
@@ -76,5 +88,27 @@ export class QuestionService {
   getBlogFeed(_details): Observable<any> {
 
     return this.http.post(this.apiEndPoint + "/feed/getBlogFeed", _details)
+  }
+  getMyQuestions(_details): Observable<any> {
+
+    return this.http.post(this.apiEndPoint + "/feed/getMyQuestionsOrEvents", _details)
+  }
+  getMyBlogs(_details): Observable<any> {
+
+    return this.http.post(this.apiEndPoint + "/feed/getMyBlogs", _details)
+  }
+  getTagRelatedQuesOrEvents(_details): Observable<any> {
+
+    return this.http.post(this.apiEndPoint + "/feed/getTagRelatedQuesOrEvents", _details)
+  }
+  getTopLikedBlogs(_details): Observable<any> {
+
+    return this.http.post(this.apiEndPoint + "/feed/getTopLikedBlogs", _details)
+  }
+  setCtype(ctype) {
+    this.ctype$.next(ctype);
+  }
+  setBlogDetails(data){
+    this.blogDetails.next(data)
   }
 }
