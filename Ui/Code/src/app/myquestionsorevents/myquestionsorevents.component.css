@@ -1,5 +1,5 @@
 .topbox {
-   
+
     border-radius: 15px;
     margin: 15px 30px;
 }
@@ -48,7 +48,7 @@
 }
 .icon{
     font-size: 28px;
-    margin: 0px 10px;
+    margin: 0px 5px;
 }
 
 .count{
@@ -147,6 +147,10 @@ font-size: 20px!important;
     
     margin-left: 10px;
 
+}
+.tit{
+ background-color: white;
+ margin: 15px 30px;
 }
 .eve{
     display: flex;

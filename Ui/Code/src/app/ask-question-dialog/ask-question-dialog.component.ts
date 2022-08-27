@@ -35,6 +35,7 @@ export class AskQuestionDialogComponent implements OnInit {
     console.log("hi " + this.data.isQuestion);
     this.isQuestion = this.data.isQuestion;
     this.isEvent = this.data.isEvent;
+
     this.loadPlaceHolder();
   }
 

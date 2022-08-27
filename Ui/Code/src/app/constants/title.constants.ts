@@ -7,8 +7,10 @@ export const Title = {
     questionBox: "What do you want to ask?",
     blogPlaceholder: "Write a blog post",
     answerPlaceholder: "Write your answer",
-    eventPlaceholder: "Create an event"
-
+    eventPlaceholder: "Create an event",
+    changePassword:"Change Password",
+    forgotPassword:"Forgot Password"
+    
 }
 
 export const sideNavItems = [

@@ -1,5 +1,5 @@
 <!-- <mat-toolbar style="background-color:#f52936;"> -->
-<mat-toolbar style=" ">
+<mat-toolbar >
     <mat-toolbar-row>
         <div class="row-center" style="width:100%">
             <div style="width:100%" class="space">
@@ -64,11 +64,12 @@
                         <img class="userAvatar" src="../../assets/images/avatars/{{userdetails.avatarid}}.png"
                             style="cursor: pointer" [matMenuTriggerFor]="menu"  />
                         <mat-menu #menu="matMenu">
-                            <button mat-menu-item (click)="logout()">Log Out</button>
+                            <button mat-menu-item (click)="logOut()">Log Out</button>
                             <button mat-menu-item>Change Avatar</button>
-                            <button mat-menu-item (click)="myQuestions()">My Questions</button>
-                            <button mat-menu-item>My Events</button>
-                            <button mat-menu-item>My Blogs</button>
+                            <button mat-menu-item (click)="changePassword()">Change Password</button>
+                            <button mat-menu-item (click)="callMyQuestionsOrEvents('Q')">My Questions</button>
+                            <button mat-menu-item  (click)="callMyQuestionsOrEvents('E')">My Events</button>
+                            <button mat-menu-item (click)="callMyBlogs('B')">My Blogs</button>
                         </mat-menu>
                     </div>
                 </div>

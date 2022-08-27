@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../services/authentication.service';
 import { LoginDetails } from '../models/auth.model';
 import { Title } from '../constants/title.constants';
+import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -79,5 +80,16 @@ export class LoginComponent implements OnInit {
     if(e.keyCode === 13){
        this.login();
     }
+ }
+ forgot(){
+  const dialogRef = this.dialog.open(ForgotPasswordComponent, {
+    width: '600px',
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result) {
+      console.log(result)
+    }
+  });
  }
 }

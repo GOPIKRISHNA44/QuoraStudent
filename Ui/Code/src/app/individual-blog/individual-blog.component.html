@@ -1,27 +1,25 @@
-<div *ngFor="let data of data">
-    <mat-card class="topbox">
-        <mat-card-title class="title">
-            <mat-icon style="font-size: 50px;height: 50px;width:50px">
-                <img class="userAvatar" src="../../assets/images/avatars/{{data?.avataridOfWhoAskedThisBlog}}.png" />
-            </mat-icon>
-            <div style="margin-left: 10px">
-                <div style="font-size:20px"><b>{{data?.usernameOfWhoAskedThisBlog}}</b></div>
-                <div style="font-size:14px;margin:3px">{{data?.doblog| date: 'MM/dd/yyyy'}}</div>
-            </div>
+<mat-card class="top">
+    <mat-card-title class="title">
+        <mat-icon style="font-size: 50px;height: 50px;width:50px">
+            <img class="userAvatar" src="../../assets/images/avatars/{{data?.avataridOfWhoAskedThisBlog}}.png" />
+        </mat-icon>
+        <div style="margin-left: 10px">
+            <div style="font-size:20px"><b>{{data?.usernameOfWhoAskedThisBlog}}</b></div>
+            <div style="font-size:14px;margin:3px">{{data?.doblog| date: 'MM/dd/yyyy'}}</div>
+        </div>
 
-        </mat-card-title>
-        <mat-card-content class="ques">
-            <!-- <a [innerHTML]="data?.question" (click)="openQuestion(data)"></a> -->
-            <a (click)="openBlog(data)">
-                <app-textdisplay [text]="data?.title" style="font-size: 36px;"></app-textdisplay>
-            </a>
+    </mat-card-title>
+    <mat-card-content class="ques">
+        <!-- <a [innerHTML]="data?.question" (click)="openQuestion(data)"></a> -->
 
-            <div style="margin:30px 0px" class="textflow">
-                <app-textdisplay [text]="data?.content" ></app-textdisplay>
-            </div>
+        <app-textdisplay [text]="data?.title" style="font-size: 36px;"></app-textdisplay>
+
+        <div style="margin:30px 0px">
+            <app-textdisplay [text]="data?.content"></app-textdisplay>
+        </div>
 
 
-        </mat-card-content>
+
         <div class="ans">
             <div class="iconlist">
                 <mat-icon (click)="openComments(data);hideComments(data)" class="icon pointer">comment
@@ -75,9 +73,7 @@
                     <mat-divider *ngIf="!last" class="relative"></mat-divider>
                 </div>
             </div>
+
         </mat-card>
-    </mat-card>
-</div>
-<div class="row-center more" *ngIf="scroll && data && data?.length!=0">
-    <a (click)="onScroll()">show more</a>
-</div>
+    </mat-card-content>
+</mat-card>

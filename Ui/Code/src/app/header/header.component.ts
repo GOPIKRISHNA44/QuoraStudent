@@ -12,6 +12,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/observable/interval';
 import { ThrowStmt } from '@angular/compiler';
+import { HomeComponent } from '../home/home.component';
+import { QuestionService } from '../services/question.service';
 
 @Component({
   selector: 'app-header',
@@ -35,7 +37,7 @@ export class HeaderComponent implements OnInit {
   timer: any = null;
   sub: any;
 
-  constructor(private observer: BreakpointObserver,
+  constructor(private questionService: QuestionService, private observer: BreakpointObserver, private homeComponent: HomeComponent,
     private router: Router, private authenticationService: AuthenticationService, private alertServc: AlertService) { }
 
   ngOnInit(): void {
@@ -52,12 +54,12 @@ export class HeaderComponent implements OnInit {
 
 
     this.doNotifApiCall();
-    
+
 
   }
-  itemHeightFn(item, index) {return 182;}
+  itemHeightFn(item, index) { return 182; }
 
- 
+
 
   doNotifApiCall() {
     this.authenticationService.getNotifications(this.userdetails["userid"])
@@ -80,7 +82,7 @@ export class HeaderComponent implements OnInit {
         }
       })
     //  this.wait(3000);
-  //   this.doNotifApiCall();
+    //   this.doNotifApiCall();
   }
 
   notificationsSeen() {
@@ -91,9 +93,9 @@ export class HeaderComponent implements OnInit {
         if (!(this.deletedNotifIds.includes(element["id"]))) {
           deleteableIds.push(element["id"]);
         }
-        
+
       });
-      this.authenticationService.deleteNotifications(this.userdetails["userid"],deleteableIds).subscribe((data) => {
+      this.authenticationService.deleteNotifications(this.userdetails["userid"], deleteableIds).subscribe((data) => {
         console.log(data);
       })
 
@@ -151,7 +153,15 @@ export class HeaderComponent implements OnInit {
   gotoHome() {
     this.router.navigate(['/home'])
   }
-  myQuestions(){
-    
+  callMyQuestionsOrEvents(ctype) {
+    this.questionService.setCtype(ctype);
+    this.homeComponent.myQuestionsOrEvents()
+  }
+  callMyBlogs(ctype) {
+    this.questionService.setCtype(ctype);
+    this.homeComponent.myBlogs()
+  }
+  changePassword(){
+    this.router.navigate(['/changePassword'])
   }
 }

@@ -1,12 +1,12 @@
 .topbox {
-
+     
     height: 22%;
     border-radius: 15px;
     margin: 15px 30px;
 }
 
 .searchTop {
-
+     
     border-radius: 15px;
     margin: 15px 30px;
     display: flex;
@@ -119,6 +119,7 @@
 }
 
 .more {
+     
     margin: 10px;
 
 }
@@ -129,18 +130,10 @@
 }
 
 .ques {
-    margin: 12px;
+    margin:12px;
     margin-bottom: 30px;
 }
-
-.eye {
+.eye{
     margin-right: 4px;
     margin-bottom: 2px;
-}
-
-.textflow {
-    overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
 }

@@ -1,11 +1,11 @@
 <div class="topbox">
     <mat-card style="margin: 5px 0px 20px 0px;">
         <mat-card-title class="title">
-            <mat-icon style="" class="imgMatIcon">
+            <mat-icon  class="imgMatIcon">
                 <img class="userAvatar"
                     src="../../assets/images/avatars/{{questionData?.avataridOfWhoAskedThisQuestion}}.png" />
             </mat-icon>
-            <div style="" class="nameAndDate">
+            <div  class="nameAndDate">
                 <div style="font-size:20px"><b>{{questionData?.usernameOfWhoAskedThisQuestion}}</b></div>
                 <div style="font-size:14px;margin:3px">{{questionData?.doq | date: 'MM/dd/yyyy'}}
                 </div>
@@ -13,7 +13,11 @@
         </mat-card-title>
         <mat-card-content style="margin-top: 20px">
             <!-- <div class="questionDisplay" [innerHTML]="questionData?.question " style=""></div> -->
-            <app-textdisplay [text]="questionData?.question "></app-textdisplay>
+            <div class="eve">
+                <app-textdisplay [text]="questionData?.question "></app-textdisplay>
+                <div style="font-size:14px;" *ngIf="questionData?.ctype=='E'"><b>{{questionData?.fromdate| date:
+                        'MM/dd/yyyy'}}-{{questionData?.todate| date: 'MM/dd/yyyy'}}</b></div>
+            </div>
             <br />
             <div class="ans">
                 <button mat-raised-button (click)="openQuestion()" color="warn" style="font-size:15px; padding:5px 30px 5px 15px;

@@ -1,4 +1,3 @@
-
 <div>
     <app-header [sidenav]=sidenav></app-header>
     <div>
@@ -12,7 +11,32 @@
                 </mat-nav-list>
             </mat-sidenav>
             <mat-sidenav-content class="centerContent">
-                <router-outlet></router-outlet>
+                <div style="display:flex">
+                    <div style="width:100%">
+                        <router-outlet></router-outlet>
+                    </div>
+                    <div class="sidebox">
+                        <mat-card>
+                            <mat-card-title style="text-align: center;">{{rightSideTitle}}</mat-card-title>
+                            <br />
+                            <div *ngFor="let data of rightSideData">
+                                <div *ngIf="ctype=='B';else nextBlock" >
+                                    <a style="margin:2px" (click)="openBlog(data)">
+                                        <app-textdisplay [text]="data?.title" style="font-size:20px ;" ></app-textdisplay>
+                                    </a>
+                                </div>
+                                <ng-template #nextBlock>
+                                    <a (click)="openQuestion(data)" style="margin:2px">
+                                        <app-textdisplay [text]="data?.question "></app-textdisplay>
+                                    </a>
+                                </ng-template>
+                            </div>
+
+                        </mat-card>
+                    </div>
+
+                </div>
             </mat-sidenav-content>
-        </mat-sidenav-container>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
+        </mat-sidenav-container>
+    </div>
 </div>

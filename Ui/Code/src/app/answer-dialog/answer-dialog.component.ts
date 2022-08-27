@@ -22,6 +22,7 @@ export class AnswerDialogComponent implements OnInit {
   ngOnInit(): void {
     this.question=this.data.question
     this.details=this.data.details
+    
   }
   onNoClick() {
     this.dialogRef.close();

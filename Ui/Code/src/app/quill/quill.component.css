@@ -1,0 +1,25 @@
+.btn{
+    margin-top: 15px;
+    padding: 5px 28px;
+    line-height: 40px;
+    font-size:20px;
+  }
+
+  .header{
+    width:100%;
+    text-align: center;
+  }
+  .title{
+    width:100%
+  }
+  .dialog{
+    min-height:'82vh';
+  }
+  .close{
+    height:15px;
+    float:right;
+    bottom:47px;
+  }
+  .mat-dialog-content{
+    margin-top: 27px;
+  }

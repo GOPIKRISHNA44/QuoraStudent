@@ -3,6 +3,10 @@ export interface LoginDetails {
     password: string;
     emailid: string;
 }
+export interface ChangeDetails {
+    oldPassword: string;
+    newPassword: string;
+}
 
 export interface SignUpDetails {
     username: string;

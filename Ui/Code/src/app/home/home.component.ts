@@ -9,6 +9,8 @@ import { Title, sideNavItems, toolbarIcons } from '../constants/title.constants'
 import { InterestsDialogComponent } from '../interests-dialog/interests-dialog.component';
 import { AskQuestionDialogComponent } from '../ask-question-dialog/ask-question-dialog.component';
 import { UserDetails } from '../models/auth.model';
+import { QuestionService } from '../services/question.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -20,22 +22,25 @@ export class HomeComponent implements OnInit {
   toolbarIconsItems = toolbarIcons;
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
   userdetails: UserDetails;
-  constructor(public dialog: MatDialog, private observer: BreakpointObserver,
+  ctype: string = "Q"
+  rightSideData: any;
+  tags = []
+  rightSideTitle = "TOP RATED QUESTIONS"
+  constructor(private questionService: QuestionService, public dialog: MatDialog, private observer: BreakpointObserver,
     private router: Router, private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
-    let userdetails  = this.authenticationService.GetUserDetails();
-    if(userdetails)
-    {
+    let userdetails = this.authenticationService.GetUserDetails();
+    this.userdetails = JSON.parse(this.authenticationService.GetUserDetails())
+    if (userdetails) {
       userdetails = JSON.parse(userdetails);
-      this.authenticationService.getInterestPopupStatus(userdetails["userid"]).subscribe((data)=>{
-        if(data)
-        {
-          if(data["data"]["status"]==0){
+      this.authenticationService.getInterestPopupStatus(userdetails["userid"]).subscribe((data) => {
+        if (data) {
+          if (data["data"]["status"] == 0) {
             const dialogRef = this.dialog.open(InterestsDialogComponent, {
               width: '600px',
             });
-        
+
             dialogRef.afterClosed().subscribe(result => {
               if (result) {
                 console.log(result)
@@ -45,9 +50,9 @@ export class HomeComponent implements OnInit {
         }
       })
     }
-    
-    
-    
+    this.tags = []
+    this.rightSideView()
+
   }
   ngAfterViewInit() {
     this.observer
@@ -128,17 +133,82 @@ export class HomeComponent implements OnInit {
         return
     }
   }
-  openEvents(){
+  openEvents() {
     const dialogRef = this.dialog.open(AskQuestionDialogComponent, {
       width: '60%',
       data: {
         isQuestion: false,
         isEvent: true
-      }     
+      }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
       }
     });
+  }
+  myQuestionsOrEvents() {
+    this.rightSideView()
+    this.router.navigate(['/home/myQuestionOrEvents/'])
+
+  }
+  myBlogs() {
+    this.rightSideView()
+    this.router.navigate(['/home/myBlogs/'])
+  }
+  rightSideView() {
+    this.questionService.requiredCtype$.subscribe((value) => {
+      if (value && value != {}) {
+        this.ctype = value;
+      }
+      else {
+        this.ctype = 'Q'
+        this.rightSideTitle = "TOP RATED QUESTIONS"
+      }
+    });
+    if (this.ctype == 'B') {
+      this.rightSideTitle = "TOP BLOGS"
+      let details = {
+        "userid": this.userdetails.userid
+      }
+      this.questionService.getTopLikedBlogs(details).subscribe(res => {
+        if (res.success) {
+          this.rightSideData = res.data
+        }
+      })
+    }
+    else {
+      let details = {
+        "userid": this.userdetails.userid,
+        "tags": this.tags,
+        "ctype": this.ctype
+      }
+      if (this.ctype == 'Q') {
+        this.rightSideTitle = "TOP RATED QUESTIONS"
+      }
+      else {
+        this.rightSideTitle = "TOP RATED EVENTS"
+      }
+      this.questionService.getTagRelatedQuesOrEvents(details).subscribe(res => {
+        if (res.success) {
+          this.rightSideData = res.data
+        }
+      })
+    }
+
+
+  }
+  openQuestion(data) {
+    this.router.navigate(['home/question/',], { queryParams: { 'eqid': data?.eqid, 'ctype': data?.ctype } })
+  }
+  openBlog(data) {
+    this.questionService.setBlogDetails(data)
+    this.router.navigate(['home/viewBlog/'], { queryParams: { 'bid': data?.bid, 'ctype': 'B' } })
+  }
+
+  tagsRelatedSide(tags) {
+
+    this.tags = [tags.split(';').join(',')][0] != ',,' ? [tags.split(';').join(',')][0] : []
+    this.rightSideView()
+
   }
 }

@@ -1,17 +1,18 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { QuillConfiguration, Title } from '../constants/title.constants';
 import { UserDetails } from '../models/auth.model';
 import { AuthenticationService } from '../services/authentication.service';
 import { QuestionService } from '../services/question.service';
+import { SpinnerService } from '../services/spinner.service';
 
 @Component({
-  selector: 'app-blog',
-  templateUrl: './blog.component.html',
-  styleUrls: ['./blog.component.css']
+  selector: 'app-myblogs',
+  templateUrl: './myblogs.component.html',
+  styleUrls: ['./myblogs.component.css']
 })
-export class BlogComponent implements OnInit {
+export class MyblogsComponent implements OnInit {
   quillConfiguration = QuillConfiguration
   placeholder = Title.blogPlaceholder
   editorText: string;
@@ -20,7 +21,8 @@ export class BlogComponent implements OnInit {
   tags = new FormControl('');
   textTitle: string;
   tagsList: any = []
-  constructor(private router: Router,private questionService: QuestionService, private authenticationService: AuthenticationService,) { }
+  myData: any
+  constructor(private router: Router,private spinnerService:SpinnerService,private route: ActivatedRoute, private questionService: QuestionService, private authenticationService: AuthenticationService,) { }
 
   ngOnInit(): void {
     this.userdetails = JSON.parse(this.authenticationService.GetUserDetails())
@@ -29,8 +31,20 @@ export class BlogComponent implements OnInit {
         this.interests = res.data.interests
       }
     })
+  this.myBlogs()
   }
+  myBlogs(){
+    let details = {
+      "userid": this.userdetails.userid,
+      
+    }
+    this.questionService.getMyQuestions(details).subscribe(res => {
+      if (res.success) {
+        this.myData = res.data
+      }
+    })
 
+  }
   getValues(event: {
     isUserInput: any;
     source: { value: any; selected: any };
@@ -44,9 +58,7 @@ export class BlogComponent implements OnInit {
       }
     }
   }
-
-  submit() {
-
+  submit(){
     let sentText = {
       "userid": this.userdetails?.userid,
       "content": this.editorText,
@@ -55,10 +67,8 @@ export class BlogComponent implements OnInit {
     }
     this.questionService.postBlog(sentText).subscribe(res => {
       if (res.success) {
-        this.router.navigate(['home'])
+        this.router.navigate(['home/blog'])
       }
     })
-
   }
-
 }
