@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { NewsfeedComponent } from './newsfeed/newsfeed.component';
 import { QuestionAnswerComponent } from './question-answer/question-answer.component';
+import { ValidatepasswordComponent } from './validatepassword/validatepassword.component';
 
 const routes: Routes = [
 
@@ -25,6 +26,7 @@ const routes: Routes = [
     ]
   },
   { path: 'question/:eqid/:ctype', component: QuestionAnswerComponent },
+  { path: 'account/resetPassword', component: ValidatepasswordComponent, data: { "path": "/account/resetPassword" } },
   { path: '**', redirectTo: 'home' },
 ];
 

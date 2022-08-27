@@ -25,6 +25,8 @@ import { BlogComponent } from './blog/blog.component';
 import { AnswerDialogComponent } from './answer-dialog/answer-dialog.component';
 import { TextdisplayComponent } from './textdisplay/textdisplay.component';
 import { ShowBlogComponent } from './show-blog/show-blog.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { ValidatepasswordComponent } from './validatepassword/validatepassword.component';
 
 
 
@@ -44,7 +46,9 @@ import { ShowBlogComponent } from './show-blog/show-blog.component';
     BlogComponent,
     AnswerDialogComponent,
     TextdisplayComponent,
-    ShowBlogComponent
+    ShowBlogComponent,
+    ResetpasswordComponent,
+    ValidatepasswordComponent
   ],
   imports: [
     BrowserModule,
