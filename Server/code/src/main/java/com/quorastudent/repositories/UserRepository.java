@@ -41,4 +41,14 @@ public interface UserRepository extends JpaRepository<UserDetailsDTO, Integer> {
 	@Modifying
 	@Query("update UserDetailsDTO u set u.password = :password where u.emailid = :emailid ")
 	void updatePassworOnEmailid(String emailid, String password);
+	
+	@Transactional
+	@Modifying
+	@Query("update UserDetailsDTO u set u.avatarid = :avatarid where u.userid = :userid ")
+	void updateAvatar(Long userid, int avatarid);
+
+	@Transactional
+	@Modifying
+	@Query("update UserDetailsDTO u set u.password = :password where u.userid = :userid ")
+	void updatePassword(Long userid, String password);
 }

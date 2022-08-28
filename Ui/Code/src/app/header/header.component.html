@@ -1,5 +1,5 @@
 <!-- <mat-toolbar style="background-color:#f52936;"> -->
-<mat-toolbar style=" ">
+<mat-toolbar >
     <mat-toolbar-row>
         <div class="row-center" style="width:100%">
             <div style="width:100%" class="space">
@@ -13,7 +13,7 @@
                             style="margin-right: 10px" class="titlebg"></span>
                     <span>
                         <img src="../../assets/images/title.png" class="titlebg">
-                       
+
                     </span>
                     <span>
                         <span style="
@@ -36,28 +36,41 @@
                 <div class="itemIcon" *ngFor="let toolbarIconsItem of toolbarIconsItems">
                     <button mat-mini-fab class="row-center" (click)="toolbarIcons(toolbarIconsItem)" color="warn"
                         *ngIf="!toolbarIconsItem.useManualImg">
-                        <mat-icon matBadge="{{notifViewCount}}" *ngIf="notificationsList.length>0" [matMenuTriggerFor]="belowMenu" (click)="notificationsSeen()" approxItemHeight="152px" [itemHeight]="itemHeightFn">
+                        <mat-icon matBadge="{{notifViewCount}}" *ngIf="notificationsList.length>0"
+                            [matMenuTriggerFor]="belowMenu" (click)="notificationsSeen()" approxItemHeight="152px"
+                            [itemHeight]="itemHeightFn">
 
                             {{toolbarIconsItem.icon}}
 
                             <mat-menu #belowMenu="matMenu" yPosition="below">
-                              <div mat-menu-item *ngFor="let obj of notificationsList"><div class="notifImgDiv" [innerHTML]="obj.notifHTMLText"></div></div>
-                              
+                                <div mat-menu-item *ngFor="let obj of notificationsList">
+                                    <div class="notifImgDiv" [innerHTML]="obj.notifHTMLText"></div>
+                                </div>
+
                             </mat-menu>
-                            
+
                         </mat-icon>
-                        <mat-icon matBadge="{{notifViewCount}}" *ngIf="notificationsList.length==0" approxItemHeight="152px" [itemHeight]="itemHeightFn">
+                        <mat-icon matBadge="{{notifViewCount}}" *ngIf="notificationsList.length==0"
+                            approxItemHeight="152px" [itemHeight]="itemHeightFn">
 
                             {{toolbarIconsItem.icon}}
 
-        
+
                         </mat-icon>
-                        
-                        
+
+
                     </button>
                     <div *ngIf="toolbarIconsItem.useManualImg">
                         <img class="userAvatar" src="../../assets/images/avatars/{{userdetails.avatarid}}.png"
-                            style="cursor: pointer" (click)="logOut()" />
+                            style="cursor: pointer" [matMenuTriggerFor]="menu"  />
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item (click)="logOut()">Log Out</button>
+                            <button mat-menu-item>Change Avatar</button>
+                            <button mat-menu-item (click)="changePassword()">Change Password</button>
+                            <button mat-menu-item (click)="callMyQuestionsOrEvents('Q')">My Questions</button>
+                            <button mat-menu-item  (click)="callMyQuestionsOrEvents('E')">My Events</button>
+                            <button mat-menu-item (click)="callMyBlogs('B')">My Blogs</button>
+                        </mat-menu>
                     </div>
                 </div>
             </div>

@@ -132,5 +132,43 @@ public class UserController {
 		}
 		return responseDto;
 	}
+	
+	@RequestMapping(value = "updateAvatar", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseDTO updateAvatar(@RequestBody Map<String, Object> info) {
+		ResponseDTO responseDto = null;
+		try {
+			Long userid = Long.parseLong(info.get("userid").toString());
+			int avatarid = Integer.parseInt(info.get("avatarid").toString());
+			boolean status = userService.updateAvatar(userid, avatarid);
+			Map<String, Boolean> finalMsg = new HashMap<String, Boolean>();
+			finalMsg.put("updated", status);
+			responseDto = responseDtoGeneral.getSuccessResponse(finalMsg);
+
+		} catch (Exception e) {
+			responseDto = responseDtoGeneral.getFailureResponse(e.getMessage());
+
+		}
+		return responseDto;
+	}
+
+	@RequestMapping(value = "updatePassword", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseDTO updatePassword(@RequestBody Map<String, Object> info) {
+		ResponseDTO responseDto = null;
+		try {
+			Long userid = Long.parseLong(info.get("userid").toString());
+			String password = info.get("password").toString();
+			boolean status = userService.updatePassword(userid, password);
+			Map<String, Boolean> finalMsg = new HashMap<String, Boolean>();
+			finalMsg.put("updated", status);
+			responseDto = responseDtoGeneral.getSuccessResponse(finalMsg);
+
+		} catch (Exception e) {
+			responseDto = responseDtoGeneral.getFailureResponse(e.getMessage());
+
+		}
+		return responseDto;
+	}
 
 }

@@ -1,0 +1,13 @@
+.blogsize{
+    margin: 15px 30px;
+
+}
+.appear{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.titletext{
+    width:100%;
+    font-size: 24px;
+}

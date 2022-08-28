@@ -40,7 +40,14 @@ mat-sidenav {
     font-size: 30px;
     color:white
 }
-.centerContent
-{
-    /* background-color: black;  */
+
+.sidebox{
+    width: 25%;
+    height: 22%;
+    border-radius: 15px;
+    margin: 15px 15px 15px 0px;
+}
+.side{
+font-size: 24px;
+margin: 5px;
 }

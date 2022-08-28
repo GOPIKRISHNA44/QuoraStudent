@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HomeComponent } from '../home/home.component';
 import { UserDetails } from '../models/auth.model';
 import { AuthenticationService } from '../services/authentication.service';
 import { QuestionService } from '../services/question.service';
@@ -10,6 +11,7 @@ import { QuestionService } from '../services/question.service';
   styleUrls: ['./newsfeed.component.css']
 })
 export class NewsfeedComponent implements OnInit {
+  scroll: boolean=true;
   @HostListener("window:scroll", ["$event"])
 onWindowScroll() {
 //In chrome and some browser scroll is given to body tag
@@ -32,7 +34,7 @@ let max = document.documentElement.scrollHeight;
   toggleValue="Q"
   tempdata: any;
   answer=''
-  constructor(private router: Router,private questionService: QuestionService, private authenticationService: AuthenticationService) { }
+  constructor(private homeComponent:HomeComponent,private router: Router,private questionService: QuestionService, private authenticationService: AuthenticationService) { }
 
 
   ngOnInit(): void {
@@ -49,12 +51,18 @@ let max = document.documentElement.scrollHeight;
         "filterCondition":this.searchText
     }
     this.questionService.getQuestionOrEventFeed(details).subscribe(res => {
-      if (res.success) {
+      if (res.success && res.data?.data.length!=0) {
         this.data = res.data.data.map(item=>{
           return {...item, showComments:false,showAnswer:false}
       })
+      this.scroll = true
+      }
+      else {
+        this.scroll = false
       }
     })
+    this.questionService.setCtype(this.toggleValue);
+    this.homeComponent.rightSideView()
   }
  
   openQuestion(data){
@@ -64,7 +72,8 @@ let max = document.documentElement.scrollHeight;
       "userid":data?.userid,
     }
     this.router.navigate(['home/question/'],{queryParams:{'eqid':data?.eqid,'ctype':data?.ctype}})
-      
+    this.homeComponent.tagsRelatedSide(data?.tags)
+    
   }
   openComments(data){
     if(!data.showComments){
@@ -159,6 +168,7 @@ let max = document.documentElement.scrollHeight;
   onValChange(value){
     this.toggleValue=value
     this.pageNumber=1
+
     if(this.toggleValue=='B'){
       //this.getBlog()
     }
@@ -226,4 +236,5 @@ let max = document.documentElement.scrollHeight;
   // bottomReached(): boolean {
   //   return (window.innerHeight + window.scrollY) >= document.body.offsetHeight;
   // }
+  
 }

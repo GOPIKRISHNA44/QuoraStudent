@@ -7,6 +7,7 @@ import { AuthenticationService } from '../services/authentication.service';
 import { LoginDetails } from '../models/auth.model';
 import { Title } from '../constants/title.constants';
 import { ResetpasswordComponent } from '../resetpassword/resetpassword.component';
+import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -83,6 +84,7 @@ export class LoginComponent implements OnInit {
  }
 
 
+
  resetPassword()
   {
     const dialogRef = this.dialog.open(ResetpasswordComponent, {
@@ -94,4 +96,5 @@ export class LoginComponent implements OnInit {
       // this.animal = result;
     });
   }
+
 }

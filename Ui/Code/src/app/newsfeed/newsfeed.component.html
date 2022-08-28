@@ -17,9 +17,9 @@
         <div class="toggle">
             <mat-button-toggle-group name="searchToggle" (change)="onValChange($event.value)" [(ngModel)]="toggleValue"
                 aria-label="Font Style" style="width:100%">
-                <mat-button-toggle value="Q">Question</mat-button-toggle>
-                <mat-button-toggle value="E">Event</mat-button-toggle>
-                <mat-button-toggle value="B">Blog</mat-button-toggle>
+                <mat-button-toggle value="Q" style="width:40%">Question</mat-button-toggle>
+                <mat-button-toggle value="E" style="width:30%">Event</mat-button-toggle>
+                <mat-button-toggle value="B" style="width:30%">Blog</mat-button-toggle>
             </mat-button-toggle-group>
         </div>
 
@@ -41,8 +41,12 @@
                 </mat-card-title>
                 <mat-card-content class="ques">
                     <!-- <a [innerHTML]="data?.question" (click)="openQuestion(data)"></a> -->
-                    <app-textdisplay [text]="data?.question " (click)="openQuestion(data)"
-                        style="cursor: pointer;color:#337ab7;text-decoration: underline;"></app-textdisplay>
+                    <div class="eve">
+                        <app-textdisplay [text]="data?.question " (click)="openQuestion(data)"
+                            style="cursor: pointer;color:#337ab7;text-decoration: underline;"></app-textdisplay>
+                        <div style="font-size:14px;" *ngIf="data?.ctype=='E'"><b>{{data?.fromdate| date:
+                                'MM/dd/yyyy'}}-{{data?.todate| date: 'MM/dd/yyyy'}}</b></div>
+                    </div>
                     <app-textdisplay *ngIf="data.showAnswer" [text]="answer" style="margin:30px 0px"></app-textdisplay>
                 </mat-card-content>
                 <div class="ans">
@@ -107,9 +111,13 @@
                     </div>
                 </mat-card>
             </mat-card>
+
         </div>
-        <div class="row-center more" *ngIf="data && data?.length!=0">
+       
+
+        <div class="row-center more" *ngIf="scroll && data && data?.length!=0">
             <a (click)="onScroll()">show more</a>
         </div>
     </ng-template>
+    
 </div>
