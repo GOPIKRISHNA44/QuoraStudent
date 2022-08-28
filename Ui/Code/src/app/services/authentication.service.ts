@@ -20,6 +20,9 @@ export class AuthenticationService {
   private getNotifApi: any = environment.apiEndPoint + environment.getNotifApi;
   private delNotifApi: any = environment.apiEndPoint + environment.deleteNotifsApi;
   private unvlistApi: any = environment.apiEndPoint + environment.unvlist;
+  private resetPasswordApi: any = environment.apiEndPoint + environment.resetPassword;
+  private validateResetPasswordApi: any = environment.apiEndPoint + environment.validateResetPassword;
+  private updatePasswordApi: any = environment.apiEndPoint + environment.updatePassword;
 
   constructor(private http: HttpClient, private spinnerService: SpinnerService) { }
 
@@ -84,5 +87,20 @@ export class AuthenticationService {
 
   deleteNotifications(userid, ids): Observable<any> {
     return this.http.post(this.delNotifApi, { ids: ids, userid: userid })
+  }
+
+  resetPassword(emailid): Observable<any> {
+    return this.http.post(this.resetPasswordApi, { emailid: emailid })
+  }
+
+  validateResetPassword(e,q): Observable<any> {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("e", e);
+    queryParams = queryParams.append("q", q);
+    return this.http.get(this.validateResetPasswordApi, { params: queryParams })
+  }
+
+  updatePassword(e,p, pl): Observable<any> {
+    return this.http.post(this.updatePasswordApi, { emailid : e, password: p , passwordlink: pl  })
   }
 }

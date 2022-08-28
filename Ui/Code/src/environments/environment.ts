@@ -16,7 +16,10 @@ export const environment = {
   },
   unvlist:"/info/getUnvList",
   getNotifApi:"/notif/getNotifs",
-  deleteNotifsApi:"/notif/deleteNotifs"
+  deleteNotifsApi:"/notif/deleteNotifs",
+  resetPassword :"/account/resetPassword",
+  validateResetPassword :"/account/validateResetPassword",
+  updatePassword:"/account/updatePassword"
   
 };
 
