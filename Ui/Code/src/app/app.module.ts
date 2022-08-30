@@ -31,6 +31,7 @@ import { ViewBlogComponent } from './view-blog/view-blog.component';
 import { IndividualBlogComponent } from './individual-blog/individual-blog.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ChangeAvatarComponent } from './change-avatar/change-avatar.component';
 
 
 
@@ -56,7 +57,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     ViewBlogComponent,
     IndividualBlogComponent,
     ChangePasswordComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    ChangeAvatarComponent
   ],
   imports: [
     BrowserModule,

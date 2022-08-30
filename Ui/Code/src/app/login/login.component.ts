@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   loginDetails:LoginDetails
   loginForm: FormGroup = this.fb.group({
     username: ['', [Validators.required]],
-    password: ['', [Validators.required]]
+    password: ['', [Validators.required,Validators.minLength(6)],]
   })
   constructor(
     public dialog: MatDialog,
@@ -30,6 +30,10 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+  }
+
+  get f() {
+    return this.loginForm.controls;
   }
 
   login() {
