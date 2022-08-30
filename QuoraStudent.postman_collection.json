@@ -1099,6 +1099,93 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "updateAvatar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userid\":18,\r\n    \"avatarid\":2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/user/updateAvatar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"user",
+						"updateAvatar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updatePassword",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userid\":8,\r\n    \"password\":\"1234!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/user/updatePassword",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"user",
+						"updatePassword"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getLeaderboard?unvcode=21",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/quoraStudent/info/getLeaderboard?unvcode=21",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quoraStudent",
+						"info",
+						"getLeaderboard"
+					],
+					"query": [
+						{
+							"key": "unvcode",
+							"value": "21"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
