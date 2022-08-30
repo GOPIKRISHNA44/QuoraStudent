@@ -198,9 +198,16 @@ export class HomeComponent implements OnInit {
 
   }
   openQuestion(data) {
+    if (this.ctype == 'Q') {
+      this.rightSideTitle = "RELATED QUESTIONS"
+    }
+    else {
+      this.rightSideTitle = "RELATED EVENTS"
+    }
     this.router.navigate(['home/question/',], { queryParams: { 'eqid': data?.eqid, 'ctype': data?.ctype } })
   }
   openBlog(data) {
+    this.rightSideTitle = "RELATED BLOGS"
     this.questionService.setBlogDetails(data)
     this.router.navigate(['home/viewBlog/'], { queryParams: { 'bid': data?.bid, 'ctype': 'B' } })
   }

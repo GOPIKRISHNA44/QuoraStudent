@@ -1,0 +1,9 @@
+.xs-full-width {
+    width: 100%;
+  }
+  .btn{
+    margin-top: 15px;
+    padding: 5px 28px;
+    line-height: 40px;
+    font-size:20px;
+  }

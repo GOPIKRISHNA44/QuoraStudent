@@ -41,11 +41,11 @@
                         <button mat-menu-item>Twitter</button>
                         <button mat-menu-item (click)="copyUrl()">Copy Link</button>
                     </mat-menu>
-                    <span *ngIf="data?.questionOwnedByTheRequestedUser==1 && data?.isEditable==1"
+                    <span *ngIf="data?.blogOwnedByTheRequestedUser==1"
                         class="material-symbols-outlined filled icon pointer" (click)="editBlog(data)">
                         edit
                     </span>
-                    <span *ngIf="data?.questionOwnedByTheRequestedUser==1"
+                    <span *ngIf="data?.blogOwnedByTheRequestedUser==1"
                         class="material-symbols-outlined filled coloricon"
                         (click)="deleteQuestion(data?.bid)">
                         delete
