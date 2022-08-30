@@ -20,15 +20,18 @@
                 <div>
                     <mat-form-field class=" full-width" appearance="outline">
                         <mat-label>Password</mat-label>
-                        <input formControlName="password" matInput [type]=" hide ? 'password' : 'text'" required />
+                        <input formControlName="password" matInput [type]=" hide ? 'password' : 'text'" minlength="6" required />
                         <button mat-icon-button matSuffix type="button" (click)="hide=!hide" [attr.aria-label]="'Hide Password'">
                             <mat-icon>
                                 {{hide ? 'visibility_off' : 'visibility'}}
                             </mat-icon>
                         </button>
-                        <mat-error *ngIf=hide>
+                        <mat-error *ngIf="f.password.errors?.valid">
                             Password is required
                         </mat-error>
+                        <mat-error *ngIf="f.password.errors?.minlength">
+                           Password must be at least 6 characters long.
+                       </mat-error> 
                     </mat-form-field>
                 </div>
                 <div class="row-center">

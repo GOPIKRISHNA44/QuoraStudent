@@ -65,7 +65,7 @@
                             style="cursor: pointer" [matMenuTriggerFor]="menu"  />
                         <mat-menu #menu="matMenu">
                             <button mat-menu-item (click)="logOut()">Log Out</button>
-                            <button mat-menu-item>Change Avatar</button>
+                            <button mat-menu-item (click)="changeAvatar()">Change Avatar</button>
                             <button mat-menu-item (click)="changePassword()">Change Password</button>
                             <button mat-menu-item (click)="callMyQuestionsOrEvents('Q')">My Questions</button>
                             <button mat-menu-item  (click)="callMyQuestionsOrEvents('E')">My Events</button>

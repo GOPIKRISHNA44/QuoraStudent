@@ -14,6 +14,8 @@ import 'rxjs/add/observable/interval';
 import { ThrowStmt } from '@angular/compiler';
 import { HomeComponent } from '../home/home.component';
 import { QuestionService } from '../services/question.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ChangeAvatarComponent } from '../change-avatar/change-avatar.component';
 
 @Component({
   selector: 'app-header',
@@ -37,7 +39,7 @@ export class HeaderComponent implements OnInit {
   timer: any = null;
   sub: any;
 
-  constructor(private questionService: QuestionService, private observer: BreakpointObserver, private homeComponent: HomeComponent,
+  constructor(private dialog:MatDialog,private questionService: QuestionService, private observer: BreakpointObserver, private homeComponent: HomeComponent,
     private router: Router, private authenticationService: AuthenticationService, private alertServc: AlertService) { }
 
   ngOnInit(): void {
@@ -163,5 +165,16 @@ export class HeaderComponent implements OnInit {
   }
   changePassword(){
     this.router.navigate(['/changePassword'])
+  }
+  changeAvatar(){
+    const dialogRef = this.dialog.open(ChangeAvatarComponent, {
+      width: '450px',
+      
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        
+      }
+    });
   }
 }

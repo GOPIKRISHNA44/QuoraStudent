@@ -1,0 +1,25 @@
+
+<div mat-dialog-title style="text-align: center;margin: 20px;font-size:36px">
+   <b>CHANGE AVATAR</b> 
+</div>
+<mat-card-content>
+    <mat-form-field class="xs-full-width" appearance="outline" style="height:60px" >
+        <mat-label>Avatar</mat-label>
+        <!-- <input matInput formControlName="universitycode" name="universitycode" required>
+        <mat-error *ngIf="f.universitycode.errors?.required">
+            University is required
+        </mat-error> -->
+        <mat-select   formControlName="avatarid">
+            <mat-option *ngFor="let i of numberOfAvatars"  [value]="i">
+             <span>
+                <img src="../../assets/images/avatars/{{i}}.png" style="height: 30px;width: 30px;border-radius: 15px;"/>
+             </span>   
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</mat-card-content>
+<div mat-dialog-actions align="center" style="margin-bottom: 20px;">
+    <button mat-raised-button class="btn" (click)="onNoClick()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="changeAvatar()" 
+        cdkFocusInitial>Confirm</button>
+</div>

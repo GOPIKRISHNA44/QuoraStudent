@@ -10,4 +10,12 @@
 .titletext{
     width:100%;
     font-size: 24px;
+   
+}
+.content-editor{
+    background-color: white;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline{
+    background-color: white;
 }

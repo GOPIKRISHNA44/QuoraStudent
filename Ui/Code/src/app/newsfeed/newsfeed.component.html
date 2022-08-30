@@ -53,7 +53,7 @@
                     <button mat-raised-button (click)="openAnswers(data);hideAnswer(data)" color="warn"
                         style="font-size:18px; padding:5px 40px 5px 15px">
                         <mat-icon class="eye">remove_red_eye</mat-icon><span
-                            *ngIf="!data.showAnswer;else elseBlock">Show Best Answer</span>
+                           style="padding-right:5px" *ngIf="!data.showAnswer;else elseBlock">Show Best Answer</span>
                         <ng-template #elseBlock>Hide Answer</ng-template>
                     </button>
                     <div class="iconlist">

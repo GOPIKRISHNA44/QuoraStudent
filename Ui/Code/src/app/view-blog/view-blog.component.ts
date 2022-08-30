@@ -80,7 +80,7 @@ export class ViewBlogComponent implements OnInit {
       data.disLikedByTheRequestedUser = false
       data.totalNumberOfDislikes--
     }
-    this.updateLikeButton({ "type": 0 }, data.ctype, data.bid)
+    this.updateLikeButton({ "type": 0 },"B", data.bid)
   }
   updateLikeButton(type, ctype, bid) {
     let details = {

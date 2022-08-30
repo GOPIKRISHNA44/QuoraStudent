@@ -111,6 +111,7 @@ let max = document.documentElement.scrollHeight;
     this.questionService.sendComments(sendCommentDetails).subscribe(response => {
       if (response) {
         this.comment = ''
+        questionData.showComments=false
         this.openComments(questionData)
       }
     })
