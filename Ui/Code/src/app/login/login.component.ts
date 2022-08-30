@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../services/authentication.service';
 import { LoginDetails } from '../models/auth.model';
 import { Title } from '../constants/title.constants';
+import { ResetpasswordComponent } from '../resetpassword/resetpassword.component';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 @Component({
   selector: 'app-login',
@@ -85,15 +86,19 @@ export class LoginComponent implements OnInit {
        this.login();
     }
  }
- forgot(){
-  const dialogRef = this.dialog.open(ForgotPasswordComponent, {
-    width: '600px',
-  });
 
-  dialogRef.afterClosed().subscribe(result => {
-    if (result) {
-      console.log(result)
-    }
-  });
- }
+
+
+ resetPassword()
+  {
+    const dialogRef = this.dialog.open(ResetpasswordComponent, {
+      width: '800px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // this.animal = result;
+    });
+  }
+
 }

@@ -197,5 +197,28 @@ public class UserService {
 		}
 		return 0;
 	}
+	
+	public boolean updateAvatar(Long userid, int avatarid) {
+		try {
+			userRepository.updateAvatar(userid, avatarid);
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw e;
+		}
+		return true;
+	}
+
+	public boolean updatePassword(Long userid, String password) {
+		try {
+			String encodedPswd = utilityService.generateEncodedPassword(password);
+			userRepository.updatePassword(userid, encodedPswd);
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw e;
+		}
+		return true;
+	}
+	
+	
 
 }

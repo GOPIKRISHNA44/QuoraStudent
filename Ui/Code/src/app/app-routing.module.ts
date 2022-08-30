@@ -10,6 +10,7 @@ import { MyblogsComponent } from './myblogs/myblogs.component';
 import { MyquestionsoreventsComponent } from './myquestionsorevents/myquestionsorevents.component';
 import { NewsfeedComponent } from './newsfeed/newsfeed.component';
 import { QuestionAnswerComponent } from './question-answer/question-answer.component';
+import { ValidatepasswordComponent } from './validatepassword/validatepassword.component';
 import { ViewBlogComponent } from './view-blog/view-blog.component';
 
 const routes: Routes = [
@@ -40,6 +41,7 @@ const routes: Routes = [
   },
 
   { path: 'question/:eqid/:ctype', component: QuestionAnswerComponent },
+  { path: 'account/resetPassword', component: ValidatepasswordComponent, data: { "path": "/account/resetPassword" } },
   { path: 'viewBlog/:bid/:ctype', component: IndividualBlogComponent },
   { path: 'changePassword', component: ChangePasswordComponent, canActivate: [AuthGuard], data: { "path": "/changePassword" } },
   { path: '**', redirectTo: 'home' },
