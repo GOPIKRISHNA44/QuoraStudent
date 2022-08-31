@@ -5,6 +5,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { AuthGuard } from './guards/auth.guards';
 import { HomeComponent } from './home/home.component';
 import { IndividualBlogComponent } from './individual-blog/individual-blog.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { LoginComponent } from './login/login.component';
 import { MyblogsComponent } from './myblogs/myblogs.component';
 import { MyquestionsoreventsComponent } from './myquestionsorevents/myquestionsorevents.component';
@@ -39,6 +40,9 @@ const routes: Routes = [
       },
       {
         path: 'editBlogs', component: MyblogsComponent, data: { "path": "/home/editBlogs" }
+      },
+      {
+        path: 'leaderboard', component: LeaderboardComponent, data: { "path": "/home/leaderboard" }
       },
       
     ]
