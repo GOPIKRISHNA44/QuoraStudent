@@ -22,6 +22,7 @@ export class MyblogsComponent implements OnInit {
   textTitle: string;
   tagsList: any = []
   myData: any
+  data:any
   constructor(private router: Router,private spinnerService:SpinnerService,private route: ActivatedRoute, private questionService: QuestionService, private authenticationService: AuthenticationService,) { }
 
   ngOnInit(): void {
@@ -32,6 +33,11 @@ export class MyblogsComponent implements OnInit {
       }
     })
   this.myBlogs()
+  this.questionService.editBlogDetails$.subscribe((value) => {
+    this.data=value
+    this.editorText = value.content?value.content:''
+    this.textTitle=value.title?value.title:''
+  })
   }
   myBlogs(){
     let details = {
@@ -60,14 +66,14 @@ export class MyblogsComponent implements OnInit {
   }
   submit(){
     let sentText = {
-      "userid": this.userdetails?.userid,
+      "bid": this.data?.bid,
       "content": this.editorText,
       "title": this.textTitle,
       "tags": ";" + this.tagsList.join(";") + ";"
     }
-    this.questionService.postBlog(sentText).subscribe(res => {
+    this.questionService.updateBlog(sentText).subscribe(res => {
       if (res.success) {
-        this.router.navigate(['home/blog'])
+        this.router.navigate(['/home/myBlogs'])
       }
     })
   }

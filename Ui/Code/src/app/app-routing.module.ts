@@ -37,6 +37,10 @@ const routes: Routes = [
       {
         path: 'myBlogs', component: ViewBlogComponent, data: { "path": "/home/myBlogs" }
       },
+      {
+        path: 'editBlogs', component: MyblogsComponent, data: { "path": "/home/editBlogs" }
+      },
+      
     ]
   },
 

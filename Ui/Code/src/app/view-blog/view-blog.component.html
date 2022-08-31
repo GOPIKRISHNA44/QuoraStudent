@@ -12,9 +12,9 @@
         </mat-card-title>
         <mat-card-content class="ques">
             <!-- <a [innerHTML]="data?.question" (click)="openQuestion(data)"></a> -->
-            <div>
-                <app-textdisplay [text]="data?.title" style="font-size: 36px;"></app-textdisplay>
-            </div>
+            <a>
+                <app-textdisplay (click)="openBlog(data)" [text]="data?.title" style="font-size: 36px;"></app-textdisplay>
+            </a>
 
             <div style="margin:30px 0px">
                 <app-textdisplay [text]="data?.content"></app-textdisplay>
@@ -35,19 +35,19 @@
                 <span class="material-symbols-outlined icon pointer"
                     [ngClass]="{'filled': data?.disLikedByTheRequestedUser}"
                     (click)="dislikeButton(data)">thumb_down</span>
-                    <span class="material-symbols-outlined icon pointer" [matMenuTriggerFor]="menu">share</span>
+                    <!-- <span class="material-symbols-outlined icon pointer" [matMenuTriggerFor]="menu">share</span>
                     <mat-menu #menu="matMenu">
                         <button mat-menu-item>Facebook</button>
                         <button mat-menu-item>Twitter</button>
                         <button mat-menu-item (click)="copyUrl()">Copy Link</button>
-                    </mat-menu>
+                    </mat-menu> -->
                     <span *ngIf="data?.blogOwnedByTheRequestedUser==1"
                         class="material-symbols-outlined filled icon pointer" (click)="editBlog(data)">
                         edit
                     </span>
                     <span *ngIf="data?.blogOwnedByTheRequestedUser==1"
                         class="material-symbols-outlined filled coloricon"
-                        (click)="deleteQuestion(data?.bid)">
+                        (click)="deleteBlog(data?.bid)">
                         delete
                     </span>
             </div>

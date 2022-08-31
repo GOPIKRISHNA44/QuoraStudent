@@ -71,8 +71,10 @@ let max = document.documentElement.scrollHeight;
       "ctype":data?.ctype,
       "userid":data?.userid,
     }
-    this.router.navigate(['home/question/'],{queryParams:{'eqid':data?.eqid,'ctype':data?.ctype}})
+    // this.router.navigate(['home/question/'],{queryParams:{'eqid':data?.eqid,'ctype':data?.ctype}})
+    
     this.homeComponent.tagsRelatedSide(data?.tags)
+    this.homeComponent.openQuestion(data)
     
   }
   openComments(data){
