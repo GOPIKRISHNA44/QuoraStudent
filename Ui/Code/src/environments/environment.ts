@@ -19,7 +19,7 @@ export const environment = {
   deleteNotifsApi:"/notif/deleteNotifs",
   resetPassword :"/account/resetPassword",
   validateResetPassword :"/account/validateResetPassword",
-  updatePassword:"/account/updatePassword"
+  updatePassword:"/user/updatePassword"
   
 };
 

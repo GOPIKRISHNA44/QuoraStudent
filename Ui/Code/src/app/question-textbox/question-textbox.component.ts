@@ -14,7 +14,9 @@ import { AuthenticationService } from '../services/authentication.service';
 export class QuestionTextboxComponent implements OnInit {
   title = Title.questionBox
   userdetails: UserDetails;
-  constructor(public dialog: MatDialog,private router:Router,private authenticationService: AuthenticationService) { }
+
+
+  constructor(public dialog: MatDialog, private router: Router, private authenticationService: AuthenticationService) { }
   ngOnInit(): void {
     this.userdetails = JSON.parse(this.authenticationService.GetUserDetails())
   }
@@ -27,11 +29,11 @@ export class QuestionTextboxComponent implements OnInit {
         isEvent: false
 
       }
-      
+
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-       
+
       }
     });
   }
@@ -45,14 +47,14 @@ export class QuestionTextboxComponent implements OnInit {
         isEvent: true
 
       }
-      
+
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
       }
     });
   }
-  openBlog(){
+  openBlog() {
     this.router.navigate(['home/blog'])
   }
 }

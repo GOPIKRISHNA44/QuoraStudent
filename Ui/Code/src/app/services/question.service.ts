@@ -21,6 +21,9 @@ export class QuestionService {
   private ctype$ = new BehaviorSubject<any>('');
   requiredCtype$ = this.ctype$.asObservable();
 
+  private editBlogDetails = new BehaviorSubject<any>([]);
+  public readonly editBlogDetails$ = this.editBlogDetails.asObservable();
+
   getInterests(): Observable<any> {
     return this.http.get(this.apiEndPoint + "/info/getInterests")
   }
@@ -36,6 +39,11 @@ export class QuestionService {
   postBlog(_blogText): Observable<any> {
     return this.http.post(this.apiEndPoint + "/blog/saveBlog", _blogText)
   }
+  updateBlog(_blogText): Observable<any> {
+    return this.http.post(this.apiEndPoint + "/blog/updateBlog", _blogText)
+  }
+
+
   getQuestionOrEventFeed(_details): Observable<any> {
 
     return this.http.post(this.apiEndPoint + "/feed/getQuestionsOrEventFeed", _details)
@@ -85,6 +93,9 @@ export class QuestionService {
   deleteQuestion(_details): Observable<any> {
     return this.http.post(this.apiEndPoint + "/questions/deleteQuestion", _details)
   }
+  deleteBlog(_details): Observable<any> {
+    return this.http.post(this.apiEndPoint + "/blog/deleteBlog", _details)
+  }
   getBlogFeed(_details): Observable<any> {
 
     return this.http.post(this.apiEndPoint + "/feed/getBlogFeed", _details)
@@ -105,10 +116,18 @@ export class QuestionService {
 
     return this.http.post(this.apiEndPoint + "/feed/getTopLikedBlogs", _details)
   }
+  changeAvatar(_details): Observable<any> {
+
+    return this.http.post(this.apiEndPoint + "user/updateAvatar", _details)
+  }
+
   setCtype(ctype) {
     this.ctype$.next(ctype);
   }
   setBlogDetails(data){
     this.blogDetails.next(data)
+  }
+  setEditBlogDetails(data){
+    this.editBlogDetails.next(data)
   }
 }
