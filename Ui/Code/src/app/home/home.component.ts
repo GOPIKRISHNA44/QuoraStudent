@@ -95,12 +95,16 @@ export class HomeComponent implements OnInit {
     switch (sideNavItemsName) {
       case 'Question':
         this.openAskQuestion();
+        break
       case 'Blog':
         this.router.navigate(['home/blog'])
+        break
       case 'Leaderboard':
-        return
+        this.router.navigate(['home/leaderboard'])
+        break
       case 'Events':
         this.openEvents()
+        break
       default:
         return
     }

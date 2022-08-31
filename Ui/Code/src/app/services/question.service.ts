@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { environment } from 'src/environments/environment';
@@ -120,7 +120,14 @@ export class QuestionService {
 
     return this.http.post(this.apiEndPoint + "user/updateAvatar", _details)
   }
-
+  deleteEvent(_details): Observable<any> {
+    return this.http.post(this.apiEndPoint + "/event/deleteAnEvent", _details)
+  }
+  leaderboard(unvcode): Observable<any> {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("unvcode", unvcode);
+    return this.http.get(this.apiEndPoint + "/info/getLeaderboard", { params: queryParams })
+  }
   setCtype(ctype) {
     this.ctype$.next(ctype);
   }
@@ -128,9 +135,7 @@ export class QuestionService {
     this.blogDetails.next(data)
   }
 
-  deleteEvent(_details): Observable<any> {
-    return this.http.post(this.apiEndPoint + "/event/deleteAnEvent", _details)
-  }
+  
   setEditBlogDetails(data){
     this.editBlogDetails.next(data)
   }
