@@ -63,7 +63,7 @@ get oldPwd(){
 
 updatePassword() {
   const np = this.form1.get('newPwd').value;
-  this.authSer.updatePassword(this.e, np  ,this.q)
+  this.authSer.updatePassword(this.e, np  )
   .subscribe((data)=>{
     if(data&&data.success)
     {

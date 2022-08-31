@@ -9,7 +9,7 @@
         <mat-error *ngIf="f.universitycode.errors?.required">
             University is required
         </mat-error> -->
-        <mat-select   formControlName="avatarid">
+        <mat-select  [(ngModel)]="selectedValue" formControlName="avatarid">
             <mat-option *ngFor="let i of numberOfAvatars"  [value]="i">
              <span>
                 <img src="../../assets/images/avatars/{{i}}.png" style="height: 30px;width: 30px;border-radius: 15px;"/>

@@ -100,7 +100,7 @@ export class AuthenticationService {
     return this.http.get(this.validateResetPasswordApi, { params: queryParams })
   }
 
-  updatePassword(e,p, pl): Observable<any> {
-    return this.http.post(this.updatePasswordApi, { emailid : e, password: p , passwordlink: pl  })
+  updatePassword(u,p): Observable<any> {
+    return this.http.post(this.updatePasswordApi, { "userid" : u, "password": p  })
   }
 }

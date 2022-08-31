@@ -8,6 +8,7 @@ import { QuestionService } from '../services/question.service';
 import { sortedValues } from '../constants/title.constants';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { SpinnerService } from '../services/spinner.service';
+import { socialMediaShareURLS } from '../constants/path.contants';
 
 @Component({
   selector: 'app-question-answer',
@@ -15,7 +16,7 @@ import { SpinnerService } from '../services/spinner.service';
   styleUrls: ['./question-answer.component.css'],
   // encapsulation: ViewEncapsulation.None
   //encapsulation: ViewEncapsulation.None
-  
+
 })
 export class QuestionAnswerComponent implements OnInit {
   questionData: any
@@ -35,12 +36,12 @@ export class QuestionAnswerComponent implements OnInit {
   dislikeCount: number;
 
   sortedValues = sortedValues;
-  
 
+  ShareURLS = socialMediaShareURLS
 
-  constructor(private clipboard: Clipboard,public dialog: MatDialog, 
-    private router: Router, private questionService: QuestionService, private authenticationService: AuthenticationService, 
-    private route: ActivatedRoute,private spinnerService:SpinnerService) { }
+  constructor(private clipboard: Clipboard, public dialog: MatDialog,
+    private router: Router, private questionService: QuestionService, private authenticationService: AuthenticationService,
+    private route: ActivatedRoute, private spinnerService: SpinnerService) { }
 
   ngOnInit(): void {
     this.userdetails = JSON.parse(this.authenticationService.GetUserDetails())
@@ -311,11 +312,21 @@ export class QuestionAnswerComponent implements OnInit {
     }
   }
   copyUrl() {
-    
-        this.clipboard.copy(window.location.href);
-      
+
+    this.clipboard.copy(window.location.href);
+
+  }
+  shareFacebook() {
+    const facebookUrl = this.ShareURLS.facebook
+    const navUrl = facebookUrl + window.location.href
+    window.open(navUrl, '_blank');
   }
 
-  
+  shareTwitter() {
+  const twitterUrl= this.ShareURLS.twitter
+  const navUrl = twitterUrl + window.location.href
+  window.open(navUrl, '_blank');
+  }
+
 
 }

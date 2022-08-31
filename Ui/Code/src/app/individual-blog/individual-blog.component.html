@@ -33,7 +33,22 @@
                 <span class="material-symbols-outlined icon pointer"
                     [ngClass]="{'filled': data?.disLikedByTheRequestedUser}"
                     (click)="dislikeButton(data)">thumb_down</span>
-                <span class="material-symbols-outlined icon pointer">share</span>
+                 <span class="material-symbols-outlined icon pointer" [matMenuTriggerFor]="menu">share</span>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item>Facebook</button>
+                        <button mat-menu-item>Twitter</button>
+                        <button mat-menu-item (click)="copyUrl()">Copy Link</button>
+                    </mat-menu>
+
+                <span *ngIf="data?.blogOwnedByTheRequestedUser==1"
+                class="material-symbols-outlined filled icon pointer" (click)="editBlog(data)">
+                edit
+            </span>
+            <span *ngIf="data?.blogOwnedByTheRequestedUser==1"
+                class="material-symbols-outlined filled coloricon"
+                (click)="deleteBlog(data?.bid)">
+                delete
+            </span>
             </div>
         </div>
         <mat-card *ngIf="data?.showComments" style="margin-top:10px;">

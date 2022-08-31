@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { HomeComponent } from '../home/home.component';
 import { UserDetails } from '../models/auth.model';
 import { AuthenticationService } from '../services/authentication.service';
 import { QuestionService } from '../services/question.service';
@@ -18,7 +20,7 @@ export class ViewBlogComponent implements OnInit {
   tempdata: any;
   commentsData: any;
   scroll = true;
-  constructor(private spinnerService:SpinnerService,private authenticationService: AuthenticationService, private questionService: QuestionService) { }
+  constructor(private router: Router,private homeComponent:HomeComponent,private spinnerService:SpinnerService,private authenticationService: AuthenticationService, private questionService: QuestionService) { }
 
   ngOnInit(): void {
     this.userdetails = JSON.parse(this.authenticationService.GetUserDetails())
@@ -129,18 +131,23 @@ export class ViewBlogComponent implements OnInit {
     })
   }
   editBlog(data){
-
+    this.questionService.setEditBlogDetails(data)
+    this.router.navigate(['home/editBlogs'])
   }
   copyUrl(){
 
   }
   deleteBlog(bid){
     this.spinnerService.disableLoader();
-    this.questionService.deleteQuestion({ "bid": bid}).subscribe(response => {
+    this.questionService.deleteBlog({ "bid": bid}).subscribe(response => {
       if (response) {
         this.getMyBlog()
       }
     })
     this.spinnerService.enableLoader();
   }
+  openBlog(data){
+    this.questionService.setBlogDetails(data)
+    this.homeComponent.openBlog(data)
+   }
 }

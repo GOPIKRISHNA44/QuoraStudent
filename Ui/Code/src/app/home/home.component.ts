@@ -198,7 +198,7 @@ export class HomeComponent implements OnInit {
 
   }
   openQuestion(data) {
-    if (this.ctype == 'Q') {
+    if (data?.ctype == 'Q') {
       this.rightSideTitle = "RELATED QUESTIONS"
     }
     else {
@@ -218,4 +218,5 @@ export class HomeComponent implements OnInit {
     this.rightSideView()
 
   }
+  
 }
