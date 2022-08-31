@@ -75,9 +75,9 @@ public class EventService {
 		return true;
 	}
 
-	public boolean deleteAnEvent(AskAnEventDTO askAnEventDTO) throws Exception {
+	public boolean deleteAnEvent(Long eqid) throws Exception {
 		try {
-			Long eqid = askAnEventDTO.getAskAquestionDTO().getEqid();
+			
 			String ctype = AppConstants.EVENTSTR;
 			questionsService.deleteQuestionOrEvent(eqid, ctype);
 			eventRepository.deleteEvent(eqid);

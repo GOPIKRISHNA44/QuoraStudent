@@ -71,11 +71,13 @@ public class EventController {
 
 	@RequestMapping(value = "deleteAnEvent", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseDTO deleteComment(@RequestBody AskAnEventDTO askAnEventDTO) {
+	public ResponseDTO deleteComment(@RequestBody Map<String, Object> askAnEventDTO) {
 
 		ResponseDTO responseDto = null;
 		try {
-			boolean status = eventService.deleteAnEvent(askAnEventDTO);
+			String ctype = askAnEventDTO.get("ctype").toString();
+			Long eqid = Long.parseLong(askAnEventDTO.get("eqid").toString());
+			boolean status = eventService.deleteAnEvent(eqid);
 			Map<String, Boolean> finalMsg = new HashMap<String, Boolean>();
 			finalMsg.put("updated", status);
 			responseDto = responseDtoGeneral.getSuccessResponse(finalMsg);
@@ -88,5 +90,4 @@ public class EventController {
 		return responseDto;
 	}
 
-	
 }

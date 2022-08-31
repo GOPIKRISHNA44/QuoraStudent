@@ -111,4 +111,8 @@ export class QuestionService {
   setBlogDetails(data){
     this.blogDetails.next(data)
   }
+
+  deleteEvent(_details): Observable<any> {
+    return this.http.post(this.apiEndPoint + "/event/deleteAnEvent", _details)
+  }
 }
