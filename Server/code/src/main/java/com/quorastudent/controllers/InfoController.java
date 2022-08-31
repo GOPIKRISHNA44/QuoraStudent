@@ -1,13 +1,16 @@
 package com.quorastudent.controllers;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.quorastudent.dto.LeaderboardDTO;
 import com.quorastudent.dto.ResponseDTO;
 import com.quorastudent.services.InfoService;
 
@@ -37,7 +40,7 @@ public class InfoController {
 		}
 		return responseDto;
 	}
-	
+
 	@RequestMapping(value = "getInterests", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseDTO getInterests() {
@@ -46,6 +49,24 @@ public class InfoController {
 		try {
 
 			Map<String, Object> finalData = infoService.getInterests();
+			responseDto = responseDtoGeneral.getSuccessResponse(finalData);
+
+		} catch (Exception e) {
+
+			responseDto = responseDtoGeneral.getFailureResponse(e.getMessage());
+
+		}
+		return responseDto;
+	}
+
+	@RequestMapping(value = "getLeaderboard", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseDTO getLeaderboard(@RequestParam String unvcode) {
+
+		ResponseDTO responseDto = null;
+		try {
+
+			List<LeaderboardDTO> finalData = infoService.getLeaderboard(unvcode);
 			responseDto = responseDtoGeneral.getSuccessResponse(finalData);
 
 		} catch (Exception e) {

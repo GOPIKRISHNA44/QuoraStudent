@@ -49,11 +49,27 @@ export class MyquestionsoreventsComponent implements OnInit {
 
   deleteQuestion(eqid,ctype){
     this.spinnerService.disableLoader();
-    this.questionService.deleteQuestion({ "eqid": eqid, "ctype": ctype }).subscribe(response => {
-      if (response) {
-        this.myQuestions()
-      }
-    })
+
+    if(ctype=="E")
+    {
+      this.questionService.deleteEvent({ "eqid": eqid, "ctype": ctype }).subscribe(response => {
+        if (response) {
+          this.myQuestions()
+        }
+      })
+    }
+    else
+    {
+      this.questionService.deleteQuestion({ "eqid": eqid, "ctype": ctype }).subscribe(response => {
+        if (response) {
+          this.myQuestions()
+        }
+      })
+    }
+
+    
+
+
     this.spinnerService.enableLoader();
   }
  
