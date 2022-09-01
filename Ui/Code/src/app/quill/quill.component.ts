@@ -22,6 +22,8 @@ export class QuillComponent implements OnInit {
   tagsList: any = []
   isQuestion: boolean = false;
   isEvent: boolean = false;
+  tagsId = []
+  selected=[]
   constructor(public dialogRef: MatDialogRef<QuillComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private questionService: QuestionService, private authenticationService: AuthenticationService,) { }
 
@@ -33,8 +35,17 @@ export class QuillComponent implements OnInit {
     this.questionService.getInterests().subscribe(res => {
       if (res.success) {
         this.interests = res.data.interests
+        this.tagsId = this.data?.data?.tags?.split(';').filter((a) => a)
+        this.tagsId?.filter((id) => {
+         this.interests?.map(item => {
+             if(parseInt(id) == item.id){
+              this.selected.push(item.id)
+             }
+          })
+        })
       }
     })
+    this.tagsList=this.selected
     this.isQuestion = this.data?.isQuestion;
     this.isEvent = this.data?.isEvent;
   //  this.tagsList=this.data?.data.tags

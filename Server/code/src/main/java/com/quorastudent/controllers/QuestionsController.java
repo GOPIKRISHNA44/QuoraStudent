@@ -1,6 +1,7 @@
 package com.quorastudent.controllers;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -114,6 +116,22 @@ public class QuestionsController {
 			Map<String, Boolean> finalMsg = new HashMap<String, Boolean>();
 			finalMsg.put("updated", status);
 			responseDto = responseDtoGeneral.getSuccessResponse(finalMsg);
+
+		} catch (Exception e) {
+
+			responseDto = responseDtoGeneral.getFailureResponse(e.getMessage());
+
+		}
+		return responseDto;
+	}
+	
+	@RequestMapping(value = "getQuestionsCount", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseDTO getLeaderboard(@RequestParam String unvcode) {
+
+		ResponseDTO responseDto = null;
+		try {
+
 
 		} catch (Exception e) {
 
