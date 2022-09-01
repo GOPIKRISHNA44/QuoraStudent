@@ -18,39 +18,39 @@ export class MyblogsComponent implements OnInit {
   editorText: string;
   userdetails: UserDetails;
   interests = []
-  tags = new FormControl('');
+  tags:FormControl
   textTitle: string;
   tagsList: any = []
+  tagsId = []
   myData: any
-  data:any
-  constructor(private router: Router,private spinnerService:SpinnerService,private route: ActivatedRoute, private questionService: QuestionService, private authenticationService: AuthenticationService,) { }
+  data: any
+  selected=[]
+  constructor(private router: Router, private spinnerService: SpinnerService, private route: ActivatedRoute, private questionService: QuestionService, private authenticationService: AuthenticationService,) { }
 
   ngOnInit(): void {
     this.userdetails = JSON.parse(this.authenticationService.GetUserDetails())
     this.questionService.getInterests().subscribe(res => {
       if (res.success) {
         this.interests = res.data.interests
-      }
-    })
-  this.myBlogs()
-  this.questionService.editBlogDetails$.subscribe((value) => {
-    this.data=value
-    this.editorText = value.content?value.content:''
-    this.textTitle=value.title?value.title:''
-  })
-  }
-  myBlogs(){
-    let details = {
-      "userid": this.userdetails.userid,
-      
-    }
-    this.questionService.getMyQuestions(details).subscribe(res => {
-      if (res.success) {
-        this.myData = res.data
+        this.questionService.editBlogDetails$.subscribe((value) => {
+          this.data = value
+          this.editorText = value.content ? value.content : ''
+          this.textTitle = value.title ? value.title : ''
+          this.tagsId = value?.tags?.split(';').filter((a) => a)
+          this.tagsId?.filter((id) => {
+           this.interests?.map(item => {
+               if(parseInt(id) == item.id){
+                this.selected.push(item.id)
+               }
+            })
+          })
+          this.tagsList=this.selected
+        })
       }
     })
 
   }
+
   getValues(event: {
     isUserInput: any;
     source: { value: any; selected: any };
@@ -64,7 +64,7 @@ export class MyblogsComponent implements OnInit {
       }
     }
   }
-  submit(){
+  submit() {
     let sentText = {
       "bid": this.data?.bid,
       "content": this.editorText,
