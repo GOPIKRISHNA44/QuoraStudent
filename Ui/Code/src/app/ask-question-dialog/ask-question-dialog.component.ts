@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Title, QuillConfiguration } from '../constants/title.constants';
@@ -13,6 +13,7 @@ import { QuestionService } from '../services/question.service';
 export class AskQuestionDialogComponent implements OnInit {
   quillConfiguration = QuillConfiguration
   placeholder = Title.questionPlaceholder
+  @ViewChild('quill') quill: ElementRef;
   editorText: string;
   userdetails: UserDetails;
   eventDTO = { "from": new Date(), "to": null }
@@ -88,4 +89,5 @@ export class AskQuestionDialogComponent implements OnInit {
   onNoClick() {
     this.dialogRef.close();
   }
+
 }
