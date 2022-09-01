@@ -38,6 +38,7 @@ export class QuestionAnswerComponent implements OnInit {
   sortedValues = sortedValues;
 
   ShareURLS = socialMediaShareURLS
+  tagsId: any;
 
   constructor(private clipboard: Clipboard, public dialog: MatDialog,
     private router: Router, private questionService: QuestionService, private authenticationService: AuthenticationService,
@@ -55,8 +56,8 @@ export class QuestionAnswerComponent implements OnInit {
     }
     this.questionService.getQuestionDetails(details).subscribe(res => {
       if (res.success) {
-        this.questionData = res.data
-
+        this.tagsId = res.data?.tags?.split(';').filter((a) => a)
+        this.questionData = {...res.data,tagsId:this.tagsId}
         this.disliked = this.questionData.disLikedByTheRequestedUser
         this.isliked = this.questionData.likedByTheRequestedUser
         this.likeCount = this.questionData.totalNumberOfLikes

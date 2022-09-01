@@ -10,18 +10,20 @@ import { QuestionService } from '../services/question.service';
 })
 export class LeaderboardComponent implements OnInit {
   userdetails: UserDetails;
-  dataSource:any
-  constructor(private authenticationService:AuthenticationService,private questionService:QuestionService) { }
+  dataSource: any
+  displayedColumns: string[] = ['position', 'username', 'likes'];
+  constructor(private authenticationService: AuthenticationService, private questionService: QuestionService) { }
 
   ngOnInit(): void {
     this.userdetails = JSON.parse(this.authenticationService.GetUserDetails())
     this.myLeaderBoard()
   }
-  myLeaderBoard(){
-    let unvcode=this.userdetails.universitycode.toString();
-   this.questionService.leaderboard(unvcode).subscribe(res => {
-    if (res.success) {
-      this.dataSource=res
-    }})
+  myLeaderBoard() {
+    let unvcode = this.userdetails.universitycode.toString();
+    this.questionService.leaderboard(unvcode).subscribe(res => {
+      if (res.success) {
+        this.dataSource = res?.data
+      }
+    })
   }
 }

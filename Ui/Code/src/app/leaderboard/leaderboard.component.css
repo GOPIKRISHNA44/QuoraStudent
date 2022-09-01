@@ -1,0 +1,35 @@
+table {
+    width: 100%;
+}
+.leader{
+    margin: 35px;
+    background-color: white;
+    height: 100vh;
+}
+.ti{
+    font-weight: bold;
+    font-size: 36px;
+    padding: 50px;
+}
+.demo-table {
+    width: 100%;
+  }
+  
+  .mat-column-position {
+    width: 32px;
+    border-right: 1px solid currentColor;
+    padding-right: 24px;
+    text-align: center;
+  }
+  
+  .mat-column-username {
+    padding-left: 16px;
+    font-size: 20px;
+    border-right: 1px solid currentColor;
+  }
+  
+  .mat-column-likes {
+    width: 432px;
+    text-align: center;
+    font-weight: bold;
+  }

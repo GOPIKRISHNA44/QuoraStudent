@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
   rightSideData: any;
   tags = []
   rightSideTitle = "TOP RATED QUESTIONS"
+  totalQuestions: number
   constructor(private questionService: QuestionService, public dialog: MatDialog, private observer: BreakpointObserver,
     private router: Router, private authenticationService: AuthenticationService) { }
 
@@ -52,7 +53,7 @@ export class HomeComponent implements OnInit {
     }
     this.tags = []
     this.rightSideView()
-
+    this.totalNumberOfQuestions()
   }
   ngAfterViewInit() {
     this.observer
@@ -222,5 +223,13 @@ export class HomeComponent implements OnInit {
     this.rightSideView()
 
   }
-  
+  totalNumberOfQuestions() {
+    let unvcode = this.userdetails.universitycode.toString();
+    this.questionService.getTotalNumberOfQuestions(unvcode).subscribe(res => {
+      if (res.success) {
+        this.totalQuestions = res?.data.count
+      }
+    })
+  }
+
 }

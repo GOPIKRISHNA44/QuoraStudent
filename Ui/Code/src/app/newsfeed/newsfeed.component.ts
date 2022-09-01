@@ -12,6 +12,7 @@ import { QuestionService } from '../services/question.service';
 })
 export class NewsfeedComponent implements OnInit {
   scroll: boolean=true;
+  tagsId: any;
   @HostListener("window:scroll", ["$event"])
 onWindowScroll() {
 //In chrome and some browser scroll is given to body tag
@@ -53,14 +54,20 @@ let max = document.documentElement.scrollHeight;
     this.questionService.getQuestionOrEventFeed(details).subscribe(res => {
       if (res.success && res.data?.data.length!=0) {
         this.data = res.data.data.map(item=>{
-          return {...item, showComments:false,showAnswer:false}
+          this.tagsId = item?.tags?.split(';').filter((a) => a)
+          return {...item, showComments:false,showAnswer:false,tagsId:this.tagsId}
       })
       this.scroll = true
       }
       else {
         this.scroll = false
+        if(this.data.length==0){
+          this.data=[]
+        }
       }
+      
     })
+    
     this.questionService.setCtype(this.toggleValue);
     this.homeComponent.rightSideView()
   }
@@ -182,7 +189,7 @@ let max = document.documentElement.scrollHeight;
   }
 
   checkthis(event){
-    console.log('hi')
+    
   }
   
   onScroll(): void {
@@ -196,13 +203,22 @@ let max = document.documentElement.scrollHeight;
         "filterCondition":this.searchText
     }
     this.questionService.getQuestionOrEventFeed(details).subscribe(res => {
-      if (res.success) {
+      if (res.success && res.data?.data.length!=0) {
         this.tempdata = res.data.data.map(item=>{
-          return {...item, showComments:false}
+          this.tagsId = item.tags?.split(';').filter((a) => a)
+          return {...item, showComments:false,showAnswer:false,tagsId:this.tagsId}
       })
       this.data=[...this.data,...this.tempdata]
+      this.scroll=true
+      }
+      else{
+        this.scroll = false
+        if(this.data.length==0){
+          this.data=[]
+        }
       }
     })
+    
     
   }
  

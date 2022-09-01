@@ -112,6 +112,11 @@ export class QuestionService {
 
     return this.http.post(this.apiEndPoint + "/feed/getTagRelatedQuesOrEvents", _details)
   }
+  getTotalNumberOfQuestions(unvcode): Observable<any> {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("unvcode", unvcode);
+    return this.http.get(this.apiEndPoint + "/questions/getQuestionsCount", { params: queryParams })
+  }
   getTopLikedBlogs(_details): Observable<any> {
 
     return this.http.post(this.apiEndPoint + "/feed/getTopLikedBlogs", _details)

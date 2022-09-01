@@ -24,6 +24,7 @@ export class IndividualBlogComponent implements OnInit {
   ShareURLS = socialMediaShareURLS
   bid: string
   ctype: string
+  tagsId: any;
   constructor(private route: ActivatedRoute, private clipboard: Clipboard, private router: Router, private spinnerService: SpinnerService, private homeComponent: HomeComponent, private authenticationService: AuthenticationService, private questionService: QuestionService) { }
 
   ngOnInit(): void {
@@ -43,6 +44,8 @@ export class IndividualBlogComponent implements OnInit {
             return item.bid == this.bid
           })[0]
         }
+        this.tagsId = this.data?.tags?.split(';').filter((a) => a)
+        this.data={...this.data,tagsId:this.tagsId}
       })
     }
 

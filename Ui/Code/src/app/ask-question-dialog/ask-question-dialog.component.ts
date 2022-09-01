@@ -44,7 +44,7 @@ export class AskQuestionDialogComponent implements OnInit {
         this.interests = res.data.interests
       }
     })
-    console.log("hi " + this.data.isQuestion);
+
     this.isQuestion = this.data.isQuestion;
     this.isEvent = this.data.isEvent;
 
