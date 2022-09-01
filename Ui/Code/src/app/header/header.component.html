@@ -42,7 +42,7 @@
 
                             {{toolbarIconsItem.icon}}
 
-                            <mat-menu #belowMenu="matMenu" yPosition="below">
+                            <mat-menu #belowMenu="matMenu" yPosition="below" style="width: 50px">
                                 <div mat-menu-item *ngFor="let obj of notificationsList">
                                     <div class="notifImgDiv" [innerHTML]="obj.notifHTMLText"></div>
                                 </div>

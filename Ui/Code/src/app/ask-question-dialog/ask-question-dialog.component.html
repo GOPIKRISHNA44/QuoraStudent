@@ -43,7 +43,7 @@
 
                 <mat-form-field class="xs-full-width" appearance="outline">
                     <mat-label>End date</mat-label>
-                    <input matInput [matDatepicker]="pickerTo" [(ngModel)]="eventDTO.to" required>
+                    <input matInput [matDatepicker]="pickerTo" [(ngModel)]="eventDTO.to" [min]="now" required>
                     <mat-hint>MM/DD/YYYY</mat-hint>
                     <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
                     <mat-datepicker #pickerTo></mat-datepicker>

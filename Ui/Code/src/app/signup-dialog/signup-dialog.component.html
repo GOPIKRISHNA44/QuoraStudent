@@ -28,7 +28,7 @@
             </mat-form-field><br />
             <mat-form-field class="xs-full-width" appearance="outline">
                 <mat-label>Date of birth</mat-label>
-                <input formControlName="dob" matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY" name="dob"
+                <input formControlName="dob" matInput [matDatepicker]="picker"  [max]="maxDob" placeholder="MM/DD/YYYY" name="dob"
                     required>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>

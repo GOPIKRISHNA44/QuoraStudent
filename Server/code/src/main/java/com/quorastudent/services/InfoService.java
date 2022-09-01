@@ -69,10 +69,10 @@ public class InfoService {
 
 	}
 
-	public List<LeaderboardDTO> getLeaderboard(String unvcode) throws Exception {
+	public List<Map<String, Object>> getLeaderboard(String unvcode) throws Exception {
 
 		try {
-			return leaderboardRepository.findByUnvcode(unvcode);
+			return leaderboardRepository.getLeaderBoard(unvcode);
 
 		} catch (Exception e) {
 			// TODO: handle exception

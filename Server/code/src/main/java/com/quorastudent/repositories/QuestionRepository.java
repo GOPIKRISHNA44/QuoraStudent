@@ -74,6 +74,13 @@ public interface QuestionRepository extends JpaRepository<QuestionDTO, Long> {
 	QuestionDTO findByEqidAndCtype(Long eqid, String ctype);
 
 	@Query(value = Queries.GET_QUESTION_OR_ENTITY_UNV_BASED_QUERY_USER_BASED, nativeQuery = true)
-	List<Map<String, Object>> getQuestionsOrEventsOfAUser(Long userid, String ctype,String filterCondition);
+	List<Map<String, Object>> getQuestionsOrEventsOfAUser(Long userid, String ctype, String filterCondition);
+
+	@Query(value = "SELECT COUNT(*) AS totalQuestions FROM (            " + "		SELECT q.*    "
+			+ "		FROM questions q     INNER JOIN userdetails u ON q.userid=u.userid AND u.universitycode = :unvcode            "
+			+ "		 WHERE q.active=1 AND q.ctype = 'Q'    "
+			+ "			             GROUP BY q.eqid                      								                      				    "
+			+ "			    " + "							 ) q", nativeQuery = true)
+	List<Map<String, Object>> getQuestionsCount(String unvcode);
 
 }

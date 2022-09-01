@@ -1,9 +1,13 @@
 package com.quorastudent.controllers;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -66,8 +70,17 @@ public class InfoController {
 		ResponseDTO responseDto = null;
 		try {
 
-			List<LeaderboardDTO> finalData = infoService.getLeaderboard(unvcode);
-			responseDto = responseDtoGeneral.getSuccessResponse(finalData);
+			List<Map<String, Object>> finalData = infoService.getLeaderboard(unvcode);
+			List<Map<String, Object>> finalDatRes = new ArrayList<Map<String,Object>>();
+			if (!ObjectUtils.isEmpty(finalData)) {
+				int position = 1;
+				for (Map<String, Object> map : finalData) {
+					Map<String, Object> mapRes = new HashMap<String, Object>(map);
+					mapRes.put("position", position++);
+					finalDatRes.add(mapRes);
+				}
+			}
+			responseDto = responseDtoGeneral.getSuccessResponse(finalDatRes);
 
 		} catch (Exception e) {
 

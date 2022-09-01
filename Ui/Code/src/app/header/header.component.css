@@ -34,5 +34,14 @@
 
 .notifImg
 {
-    height: 25px; width: 27px;border-radius: 10px;
+    height: 35px;
+    width: 35px;
+    border-radius: 27px;
+}
+
+
+.mat-menu-panel {
+     min-width: unset !important; 
+     max-width: unset !important;
+
 }

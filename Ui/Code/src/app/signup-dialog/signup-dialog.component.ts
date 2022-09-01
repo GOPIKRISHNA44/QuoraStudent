@@ -30,10 +30,19 @@ export class SignupDialogComponent implements OnInit {
   }, {
     validator: CustomValidators.mustMatch('password', 'confirmPassword')
   })
+  maxDob: Date;
   unvList : any = [];
   numberOfAvatars :any = Array.from({length: quoraConstants.numberOfAvatars}, (_, index) => index + 1);
   constructor(public datepipe: DatePipe, public dialogRef: MatDialogRef<SignupDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder, private authenticationService: AuthenticationService,) { }
+    @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder, private authenticationService: AuthenticationService,) {
+
+      const today = new Date();
+      this.maxDob = new Date(
+        today.getFullYear() - 18,
+        today.getMonth(),
+        today.getDate()
+      );
+     }
 
   ngOnInit(): void {
     this.getUnvList();
