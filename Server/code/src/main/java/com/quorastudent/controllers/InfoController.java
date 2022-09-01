@@ -66,7 +66,7 @@ public class InfoController {
 		ResponseDTO responseDto = null;
 		try {
 
-			List<LeaderboardDTO> finalData = infoService.getLeaderboard(unvcode);
+			List<Map<String, Object>> finalData = infoService.getLeaderboard(unvcode);
 			responseDto = responseDtoGeneral.getSuccessResponse(finalData);
 
 		} catch (Exception e) {

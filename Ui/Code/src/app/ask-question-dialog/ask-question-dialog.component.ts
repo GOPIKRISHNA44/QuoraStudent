@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -19,9 +20,16 @@ export class AskQuestionDialogComponent implements OnInit {
   interests = []
   tags = new FormControl('');
   tagsList: any = []
+   now = new Date();
 
   constructor(public dialogRef: MatDialogRef<AskQuestionDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, private questionService: QuestionService, private authenticationService: AuthenticationService,) { }
+    @Inject(MAT_DIALOG_DATA) public data: any, private questionService: QuestionService, private authenticationService: AuthenticationService,) { 
+
+      // const datePipe = new DatePipe('');
+      // this.now = datePipe.transform(new Date(), 'yyyy-MM-dd');
+      this.now.setDate(this.now.getDate() + 1);
+
+    }
 
   isQuestion: boolean = false;
   isEvent: boolean = false;
