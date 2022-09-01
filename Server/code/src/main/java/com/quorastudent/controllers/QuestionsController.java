@@ -124,14 +124,16 @@ public class QuestionsController {
 		}
 		return responseDto;
 	}
-	
+
 	@RequestMapping(value = "getQuestionsCount", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseDTO getLeaderboard(@RequestParam String unvcode) {
-
 		ResponseDTO responseDto = null;
 		try {
-
+			Long count = questionsService.getQuesCount(unvcode);
+			Map<String, Long> finalMsg = new HashMap<String, Long>();
+			finalMsg.put("count", count);
+			responseDto = responseDtoGeneral.getSuccessResponse(finalMsg);
 
 		} catch (Exception e) {
 
@@ -140,7 +142,5 @@ public class QuestionsController {
 		}
 		return responseDto;
 	}
-
-	
 
 }

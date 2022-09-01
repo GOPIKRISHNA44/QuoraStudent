@@ -52,8 +52,6 @@ public class QuestionsService {
 
 	@Autowired
 	private GenericNotifService genericNotifService;
-	
-
 
 	public QuestionDTO askAquestion(AskAquestionDTO askAquestionDTO) throws Exception {
 		try {
@@ -62,7 +60,7 @@ public class QuestionsService {
 				QuestionDTO qDto = getQuestionDTOonAskAQuestion(askAquestionDTO);
 				qDto = questionRepository.save(qDto);
 				genericNotifService.noifForQuestionOrEventHasBeenPosted(askAquestionDTO.getUserid(),
-						askAquestionDTO.getText(), askAquestionDTO.getCtype(),qDto.getEqid());
+						askAquestionDTO.getText(), askAquestionDTO.getCtype(), qDto.getEqid());
 
 				return qDto;
 			} else {
@@ -255,5 +253,18 @@ public class QuestionsService {
 			// TODO: handle exception
 			throw e;
 		}
+	}
+
+	public Long getQuesCount(String unvcode) {
+		try {
+			List<Map<String, Object>> res = questionRepository.getQuestionsCount(unvcode);
+			if (!ObjectUtils.isEmpty(res) && res.size() > 0) {
+				return Long.parseLong(res.get(0).get("totalQuestions").toString());
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw e;
+		}
+		return (long) 0;
 	}
 }
