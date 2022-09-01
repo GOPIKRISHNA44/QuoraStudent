@@ -45,15 +45,19 @@
                         <app-textdisplay [text]="data?.question " (click)="openQuestion(data)"
                             style="cursor: pointer;color:#337ab7;text-decoration: underline;"></app-textdisplay>
                         <div style="font-size:14px;" *ngIf="data?.ctype=='E'"><b>{{data?.fromdate| date:
-                                'MM/dd/yyyy'}}-{{data?.todate| date: 'MM/dd/yyyy'}}</b></div>
+                                'MM/dd/yyyy'}} - {{data?.todate| date: 'MM/dd/yyyy'}}</b></div>
                     </div>
                     <app-textdisplay *ngIf="data.showAnswer" [text]="answer" style="margin:30px 0px"></app-textdisplay>
+                    <span *ngFor="let i of data?.tagsId">
+                        <img src="../../assets/images/interesticons/{{i}}.png"
+                            style="height: 30px;width: 30px;border-radius: 15px;border: 1px solid;margin:2px;" />
+                    </span>
                 </mat-card-content>
                 <div class="ans">
                     <button mat-raised-button (click)="openAnswers(data);hideAnswer(data)" color="warn"
                         style="font-size:18px; padding:5px 40px 5px 15px">
-                        <mat-icon class="eye">remove_red_eye</mat-icon><span
-                           style="padding-right:5px" *ngIf="!data.showAnswer;else elseBlock">Show Best Answer</span>
+                        <mat-icon class="eye">remove_red_eye</mat-icon><span style="padding-right:5px"
+                            *ngIf="!data.showAnswer;else elseBlock">Show Best Answer</span>
                         <ng-template #elseBlock>Hide Answer</ng-template>
                     </button>
                     <div class="iconlist">
@@ -113,11 +117,11 @@
             </mat-card>
 
         </div>
-       
+
 
         <div class="row-center more" *ngIf="scroll && data && data?.length!=0">
             <a (click)="onScroll()">show more</a>
         </div>
     </ng-template>
-    
+
 </div>

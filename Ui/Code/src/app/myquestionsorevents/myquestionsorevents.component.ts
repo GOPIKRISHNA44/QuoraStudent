@@ -17,6 +17,7 @@ export class MyquestionsoreventsComponent implements OnInit {
   userdetails: UserDetails;
   myQuestionOrEventTitle=''
   myData: any
+  tagsId: any;
   constructor(public dialog: MatDialog,private router: Router,private spinnerService:SpinnerService,private route: ActivatedRoute, private questionService: QuestionService, private authenticationService: AuthenticationService,) { }
 
   ngOnInit(): void {
@@ -42,7 +43,10 @@ export class MyquestionsoreventsComponent implements OnInit {
     }
     this.questionService.getMyQuestions(details).subscribe(res => {
       if (res.success) {
-        this.myData = res.data
+        this.myData = res.data.map(item=>{
+          this.tagsId = item?.tags?.split(';').filter((a) => a)
+          return {...item,tagsId:this.tagsId}
+      })
       }
     })
   }

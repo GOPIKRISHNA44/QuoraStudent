@@ -18,7 +18,12 @@
                 <div style="font-size:14px;" *ngIf="questionData?.ctype=='E'"><b>{{questionData?.fromdate| date:
                         'MM/dd/yyyy'}}-{{questionData?.todate| date: 'MM/dd/yyyy'}}</b></div>
             </div>
-            <br />
+            <span *ngFor="let i of questionData?.tagsId">
+                <img src="../../assets/images/interesticons/{{i}}.png"
+                    style="height: 30px;width: 30px;border-radius: 15px;border: 1px solid;margin:2px;" />
+            </span>
+            <br/>
+            <br/>
             <div class="ans">
                 <button mat-raised-button (click)="openQuestion()" color="warn" style="font-size:15px; padding:5px 30px 5px 15px;
                     border-radius: 25px;

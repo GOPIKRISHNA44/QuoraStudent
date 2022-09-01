@@ -20,6 +20,7 @@ export class ViewBlogComponent implements OnInit {
   tempdata: any;
   commentsData: any;
   scroll = true;
+  tagsId: any;
   constructor(private router: Router,private homeComponent:HomeComponent,private spinnerService:SpinnerService,private authenticationService: AuthenticationService, private questionService: QuestionService) { }
 
   ngOnInit(): void {
@@ -33,7 +34,8 @@ export class ViewBlogComponent implements OnInit {
     this.questionService.getMyBlogs(details).subscribe(res => {
       if (res.success) {
         this.data = res.data.map(item => {
-          return { ...item, showComments: false, showAnswer: false }
+          this.tagsId = item.tags?.split(';').filter((a) => a)
+          return { ...item, showComments: false, showAnswer: false,tagsId:this.tagsId  }
         })
       }
     })
