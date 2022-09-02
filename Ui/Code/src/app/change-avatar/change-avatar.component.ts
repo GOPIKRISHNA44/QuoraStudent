@@ -30,6 +30,7 @@ export class ChangeAvatarComponent implements OnInit {
       }
       this.questionService.changeAvatar(details).subscribe(res => {
         if (res.success) {
+          
           window.location.reload()
         }
       })

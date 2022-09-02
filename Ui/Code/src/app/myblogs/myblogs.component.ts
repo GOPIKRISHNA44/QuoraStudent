@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { appConstants } from '../constants/alert.constants';
 import { QuillConfiguration, Title } from '../constants/title.constants';
 import { UserDetails } from '../models/auth.model';
+import { AlertService } from '../services/alert.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { QuestionService } from '../services/question.service';
 import { SpinnerService } from '../services/spinner.service';
@@ -25,7 +27,7 @@ export class MyblogsComponent implements OnInit {
   myData: any
   data: any
   selected=[]
-  constructor(private router: Router, private spinnerService: SpinnerService, private route: ActivatedRoute, private questionService: QuestionService, private authenticationService: AuthenticationService,) { }
+  constructor(private router: Router, private alertServc: AlertService,private spinnerService: SpinnerService, private route: ActivatedRoute, private questionService: QuestionService, private authenticationService: AuthenticationService,) { }
 
   ngOnInit(): void {
     this.userdetails = JSON.parse(this.authenticationService.GetUserDetails())
@@ -73,6 +75,8 @@ export class MyblogsComponent implements OnInit {
     }
     this.questionService.updateBlog(sentText).subscribe(res => {
       if (res.success) {
+        this.alertServc.successAlert(appConstants.updateBlog);
+          
         this.router.navigate(['/home/myBlogs'])
       }
     })

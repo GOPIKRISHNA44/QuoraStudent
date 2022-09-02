@@ -48,7 +48,7 @@
                     </mat-menu>
                     <span *ngIf="questionData?.questionOwnedByTheRequestedUser"
                         class="material-symbols-outlined filled coloricon"
-                        (click)="deleteQuestion(questionData?.eqid,questionData?.ctype)">
+                        (click)="deleteQuestionOrEvent(questionData?.eqid,questionData?.ctype)">
                         delete
                     </span>
                 </div>
