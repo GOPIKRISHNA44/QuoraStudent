@@ -18,7 +18,9 @@
             name="selectedValues"  multiple [(ngModel)]="selected">
 
                 <mat-option *ngFor="let interest of interests" [value]="interest?.id"
-                    (onSelectionChange)="getValues($event)">{{interest.name}}</mat-option>
+                    (onSelectionChange)="getValues($event)">
+                    <img src="../../assets/images/interesticons/{{interest.id}}.png"
+                        style="height: 30px;width: 30px;border-radius: 15px;border: 1px solid;margin:2px;" />{{interest.name}}</mat-option>
             </mat-select>
         </mat-form-field>
         <button mat-raised-button color="primary" (click)="submit()" style="margin-top:0px!important">Update</button>

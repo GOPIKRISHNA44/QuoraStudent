@@ -165,12 +165,11 @@ export class HeaderComponent implements OnInit {
   }
   changeAvatar(){
     const dialogRef = this.dialog.open(ChangeAvatarComponent, {
-      width: '450px',
+      width: '515px',
       
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        
       }
     });
   }

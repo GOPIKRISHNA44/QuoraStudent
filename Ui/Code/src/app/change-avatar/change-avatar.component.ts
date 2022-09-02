@@ -22,19 +22,25 @@ export class ChangeAvatarComponent implements OnInit {
     this.userdetails = JSON.parse(this.authenticationService.GetUserDetails())
     this.numberOfAvatars = Array.from({ length: quoraConstants.numberOfAvatars }, (_, index) => index + 1);
   }
-  changeAvatar() {
-    let details = {
-      "userid": this.userdetails.userid,
-      "avatarid": this.selectedValue
-    }
-    this.questionService.changeAvatar(details).subscribe(res => {
-      if (res.success) {
-        window.location.reload()
+  changeAvatar(){
+    if( this.selectedValue){
+      let details = {
+        "userid": this.userdetails.userid,
+        "avatarid": this.selectedValue
       }
-    })
-    this.dialogRef.close();
+      this.questionService.changeAvatar(details).subscribe(res => {
+        if (res.success) {
+          window.location.reload()
+        }
+      })
+      this.dialogRef.close();
+    }
+   
   }
   onNoClick() {
     this.dialogRef.close();
+  }
+  selectedAvatars(i){
+    this.selectedValue=i
   }
 }

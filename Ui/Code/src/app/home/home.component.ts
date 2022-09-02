@@ -171,7 +171,7 @@ export class HomeComponent implements OnInit {
       }
     });
     if (this.ctype == 'B') {
-      this.rightSideTitle = "TOP BLOGS"
+      this.rightSideTitle = "TOP RATED BLOGS"
       let details = {
         "userid": this.userdetails.userid
       }
