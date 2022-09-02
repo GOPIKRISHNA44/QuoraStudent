@@ -123,7 +123,7 @@ export class QuestionService {
   }
   changeAvatar(_details): Observable<any> {
 
-    return this.http.post(this.apiEndPoint + "user/updateAvatar", _details)
+    return this.http.post(this.apiEndPoint + "/user/updateAvatar", _details)
   }
   deleteEvent(_details): Observable<any> {
     return this.http.post(this.apiEndPoint + "/event/deleteAnEvent", _details)
