@@ -71,6 +71,12 @@ export class AskQuestionDialogComponent implements OnInit {
     this.placeholder = this.isQuestion ? Title.questionPlaceholder : (this.isEvent ? Title.eventPlaceholder : null)
   }
   submit(isQ, isEv) {
+    if(this.editorText==null ||this.editorText.trim().length==0)
+    {
+      this.alertServc.successAlert("Can't be empty ");
+      return ;
+    }
+
     let sentText = {
       "userid": this.userdetails?.userid,
       "text": this.editorText,

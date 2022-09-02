@@ -21,9 +21,13 @@ public class BeanReg {
 		return registration;
 	}
 
+	
+	
 	public Filter someFilter() {
 		return new RequestAuthenticationFilter();
 
 	}
+	
+	
 
 }

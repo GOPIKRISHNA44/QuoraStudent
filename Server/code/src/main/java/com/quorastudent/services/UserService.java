@@ -124,7 +124,7 @@ public class UserService {
 		try {
 			List<SessionDetailsDTO> sessionRecords = sessionDetailsRepository.findBySessionkeyAndActive(sessionKey, 1);
 			if (ObjectUtils.isEmpty(sessionRecords))
-				return false;
+				{return false;}
 		} catch (Exception e) {
 			// TODO: handle exception
 			throw e;

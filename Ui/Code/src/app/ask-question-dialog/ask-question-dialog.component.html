@@ -57,6 +57,7 @@
     </div>
     <div mat-dialog-actions align="end">
         <button mat-raised-button class="btn" (click)="onNoClick()">Cancel</button>
-        <button mat-raised-button color="primary" (click)="submit(isQuestion,isEvent)" cdkFocusInitial>Ask</button>
+        <button mat-raised-button color="primary" (click)="submit(isQuestion,isEvent)" cdkFocusInitial *ngIf="isEvent">Create</button>
+        <button mat-raised-button color="primary" (click)="submit(isQuestion,isEvent)" cdkFocusInitial *ngIf="!isEvent">Ask</button>
     </div>
 </div>
