@@ -293,7 +293,7 @@ export class QuestionAnswerComponent implements OnInit {
       let payLoad = {
         "askAquestionDTO": { "eqid": eqid },
       }
-      this.questionService.deleteEvent( payLoad ).subscribe(response => {
+      this.questionService.deleteEvent( { "eqid": eqid, "ctype": ctype } ).subscribe(response => {
         if (response) {
           this.alertServc.successAlert(appConstants.delete);
           this.router.navigate(['/home'])
