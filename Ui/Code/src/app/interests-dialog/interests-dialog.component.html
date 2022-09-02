@@ -14,9 +14,11 @@
     </mat-selection-list> -->
     <mat-selection-list #list [(ngModel)]="selectedOptions" (ngModelChange)="onAreaListControlChanged($event)">
       <mat-list-option *ngFor="let interest of interests" [value]="interest">
+        <div>
         <img src="../../assets/images/interesticons/{{interest.id}}.png"
                         style="height: 30px;width: 30px;border-radius: 15px;border: 1px solid;margin:2px;" />
         {{interest.name}}
+      </div>
       </mat-list-option>
   </mat-selection-list>
   </div>

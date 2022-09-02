@@ -22,7 +22,8 @@ export class SignupDialogComponent implements OnInit {
   signUpForm: FormGroup = this.fb.group({
     username: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9]*$")]],
     emailid: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required,Validators.minLength(6)]],
+    password: ['', [Validators.required,Validators.minLength(6),Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{6,}')
+  ]],
     dob: ['', [Validators.required]],
     universitycode: ['', [Validators.required]],
     confirmPassword: ['', [Validators.required]],

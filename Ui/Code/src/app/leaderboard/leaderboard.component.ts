@@ -23,6 +23,14 @@ export class LeaderboardComponent implements OnInit {
     this.questionService.leaderboard(unvcode).subscribe(res => {
       if (res.success) {
         this.dataSource = res?.data
+        let a= [];
+        this.dataSource.forEach(element => {
+          if(element["numberoflikes"]>0)
+          {
+            a.push(element);
+          }
+        });
+        this.dataSource = a;
       }
     })
   }

@@ -22,7 +22,6 @@ export class ChangePasswordComponent implements OnInit {
   changeDetails: ChangeDetails
   changeForm: FormGroup = this.fb.group({
     newpassword: ['', [Validators.required,Validators.minLength(6)]],
-    oldpassword: ['', [Validators.required]],
     cpassword: ['', [Validators.required]]
   }, {
     validator: CustomValidators.mustMatch('newpassword', 'cpassword')
