@@ -9,6 +9,8 @@ import { sortedValues } from '../constants/title.constants';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { SpinnerService } from '../services/spinner.service';
 import { socialMediaShareURLS } from '../constants/path.contants';
+import { appConstants } from '../constants/alert.constants';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-question-answer',
@@ -40,7 +42,7 @@ export class QuestionAnswerComponent implements OnInit {
   ShareURLS = socialMediaShareURLS
   tagsId: any;
 
-  constructor(private clipboard: Clipboard, public dialog: MatDialog,
+  constructor(private clipboard: Clipboard, public dialog: MatDialog, private alertServc: AlertService,
     private router: Router, private questionService: QuestionService, private authenticationService: AuthenticationService,
     private route: ActivatedRoute, private spinnerService: SpinnerService) { }
 
@@ -57,7 +59,7 @@ export class QuestionAnswerComponent implements OnInit {
     this.questionService.getQuestionDetails(details).subscribe(res => {
       if (res.success) {
         this.tagsId = res.data?.tags?.split(';').filter((a) => a)
-        this.questionData = {...res.data,tagsId:this.tagsId}
+        this.questionData = { ...res.data, tagsId: this.tagsId }
         this.disliked = this.questionData.disLikedByTheRequestedUser
         this.isliked = this.questionData.likedByTheRequestedUser
         this.likeCount = this.questionData.totalNumberOfLikes
@@ -277,13 +279,29 @@ export class QuestionAnswerComponent implements OnInit {
     })
     this.spinnerService.enableLoader();
   }
-  deleteQuestion(eqid, ctype) {
+  deleteQuestionOrEvent(eqid, ctype) {
     this.spinnerService.disableLoader();
-    this.questionService.deleteQuestion({ "eqid": eqid, "ctype": ctype }).subscribe(response => {
-      if (response) {
-        this.router.navigate(['/home'])
+    if (ctype == "Q") {
+      this.questionService.deleteQuestion({ "eqid": eqid, "ctype": ctype }).subscribe(response => {
+        if (response) {
+          this.alertServc.successAlert(appConstants.delete);
+          this.router.navigate(['/home'])
+        }
+      })
+    }
+    else {
+      let payLoad = {
+        "askAquestionDTO": { "eqid": eqid },
       }
-    })
+      this.questionService.deleteEvent( payLoad ).subscribe(response => {
+        if (response) {
+          this.alertServc.successAlert(appConstants.delete);
+          this.router.navigate(['/home'])
+        }
+      })
+    }
+
+
     this.spinnerService.enableLoader();
   }
   deleteAnswer(aid) {
@@ -324,9 +342,9 @@ export class QuestionAnswerComponent implements OnInit {
   }
 
   shareTwitter() {
-  const twitterUrl= this.ShareURLS.twitter
-  const navUrl = twitterUrl + window.location.href
-  window.open(navUrl, '_blank');
+    const twitterUrl = this.ShareURLS.twitter
+    const navUrl = twitterUrl + window.location.href
+    window.open(navUrl, '_blank');
   }
 
 

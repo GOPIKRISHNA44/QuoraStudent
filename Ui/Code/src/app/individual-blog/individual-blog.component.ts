@@ -7,6 +7,8 @@ import { AuthenticationService } from '../services/authentication.service';
 import { QuestionService } from '../services/question.service';
 import { SpinnerService } from '../services/spinner.service';
 import { Clipboard } from '@angular/cdk/clipboard';
+import { appConstants } from '../constants/alert.constants';
+import { AlertService } from '../services/alert.service';
 @Component({
   selector: 'app-individual-blog',
   templateUrl: './individual-blog.component.html',
@@ -25,7 +27,7 @@ export class IndividualBlogComponent implements OnInit {
   bid: string
   ctype: string
   tagsId: any;
-  constructor(private route: ActivatedRoute, private clipboard: Clipboard, private router: Router, private spinnerService: SpinnerService, private homeComponent: HomeComponent, private authenticationService: AuthenticationService, private questionService: QuestionService) { }
+  constructor(private alertServc: AlertService,private route: ActivatedRoute, private clipboard: Clipboard, private router: Router, private spinnerService: SpinnerService, private homeComponent: HomeComponent, private authenticationService: AuthenticationService, private questionService: QuestionService) { }
 
   ngOnInit(): void {
     this.questionService.blogDetails$.subscribe((value) => {
@@ -170,6 +172,7 @@ export class IndividualBlogComponent implements OnInit {
     this.spinnerService.disableLoader();
     this.questionService.deleteBlog({ "bid": bid }).subscribe(response => {
       if (response) {
+        this.alertServc.successAlert(appConstants.delete);
         this.questionService.setCtype("B");
         this.homeComponent.myBlogs()
       }

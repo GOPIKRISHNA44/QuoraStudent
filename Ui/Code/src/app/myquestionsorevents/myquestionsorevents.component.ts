@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { appConstants } from '../constants/alert.constants';
+import { HomeComponent } from '../home/home.component';
 import { UserDetails } from '../models/auth.model';
 import { QuillComponent } from '../quill/quill.component';
+import { AlertService } from '../services/alert.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { QuestionService } from '../services/question.service';
 import { SpinnerService } from '../services/spinner.service';
@@ -18,7 +21,7 @@ export class MyquestionsoreventsComponent implements OnInit {
   myQuestionOrEventTitle=''
   myData: any
   tagsId: any;
-  constructor(public dialog: MatDialog,private router: Router,private spinnerService:SpinnerService,private route: ActivatedRoute, private questionService: QuestionService, private authenticationService: AuthenticationService,) { }
+  constructor(public dialog: MatDialog,private homeComponent:HomeComponent,private alertServc: AlertService,private router: Router,private spinnerService:SpinnerService,private route: ActivatedRoute, private questionService: QuestionService, private authenticationService: AuthenticationService,) { }
 
   ngOnInit(): void {
     // this.ctype = this.route.snapshot.queryParams['ctype']
@@ -59,6 +62,7 @@ export class MyquestionsoreventsComponent implements OnInit {
       this.questionService.deleteEvent({ "eqid": eqid, "ctype": ctype }).subscribe(response => {
         if (response) {
           this.myQuestions()
+          this.alertServc.successAlert(appConstants.delete);
         }
       })
     }
@@ -67,6 +71,7 @@ export class MyquestionsoreventsComponent implements OnInit {
       this.questionService.deleteQuestion({ "eqid": eqid, "ctype": ctype }).subscribe(response => {
         if (response) {
           this.myQuestions()
+          this.alertServc.successAlert(appConstants.delete);
         }
       })
     }
@@ -127,7 +132,8 @@ export class MyquestionsoreventsComponent implements OnInit {
 
   }
   openQuestion(data){
-    this.router.navigate(['home/question/'],{queryParams:{'eqid':data?.eqid,'ctype':data?.ctype}})
+    this.homeComponent.openQuestion(data)
+    //this.router.navigate(['home/question/'],{queryParams:{'eqid':data?.eqid,'ctype':data?.ctype}})
       
   }
   editQuestion(data) {

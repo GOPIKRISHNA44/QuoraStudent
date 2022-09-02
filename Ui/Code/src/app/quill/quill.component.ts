@@ -2,8 +2,10 @@ import { Component, Input, OnInit,Output, EventEmitter, Inject  } from '@angular
 import { FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EditorChangeContent, EditorChangeSelection } from 'ngx-quill';
+import { appConstants } from '../constants/alert.constants';
 import { QuillConfiguration, Title } from '../constants/title.constants';
 import { UserDetails } from '../models/auth.model';
+import { AlertService } from '../services/alert.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { QuestionService } from '../services/question.service';
 @Component({
@@ -24,7 +26,7 @@ export class QuillComponent implements OnInit {
   isEvent: boolean = false;
   tagsId = []
   selected=[]
-  constructor(public dialogRef: MatDialogRef<QuillComponent>,
+  constructor(public dialogRef: MatDialogRef<QuillComponent>,private alertServc: AlertService,
     @Inject(MAT_DIALOG_DATA) public data: any, private questionService: QuestionService, private authenticationService: AuthenticationService,) { }
 
   ngOnInit(): void {
@@ -105,7 +107,8 @@ export class QuillComponent implements OnInit {
     if (isQ) {
       this.questionService.editUpdateQuestion(sentText).subscribe(res => {
         if (res.success) {
-          console.log(res)
+          this.alertServc.successAlert(appConstants.updateQuestion);
+          
         }
       })
     }
@@ -116,7 +119,7 @@ export class QuillComponent implements OnInit {
       }
       this.questionService.updateAnEvent(payLoad).subscribe(res => {
         if (res.success) {
-          console.log(res)
+          this.alertServc.successAlert(appConstants.updateEvent);
           
         }
       })

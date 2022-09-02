@@ -52,18 +52,18 @@ let max = document.documentElement.scrollHeight;
         "filterCondition":this.searchText
     }
     this.questionService.getQuestionOrEventFeed(details).subscribe(res => {
-      if (res.success && res.data?.data.length!=0) {
-        this.data = res.data.data.map(item=>{
-          this.tagsId = item?.tags?.split(';').filter((a) => a)
-          return {...item, showComments:false,showAnswer:false,tagsId:this.tagsId}
-      })
-      this.scroll = true
-      }
-      else {
-        this.scroll = false
-        if(this.data.length==0){
-          this.data=[]
+      if (res.success ) {
+        if( res.data?.data.length!=0){
+          this.data = res.data.data.map(item=>{
+            this.tagsId = item?.tags?.split(';').filter((a) => a)
+            return {...item, showComments:false,showAnswer:false,tagsId:this.tagsId}
+        })
+        this.scroll = true
         }
+        else{
+          this.scroll = false 
+        }
+       
       }
       
     })
@@ -178,6 +178,7 @@ let max = document.documentElement.scrollHeight;
   onValChange(value){
     this.toggleValue=value
     this.pageNumber=1
+    this.data=[]
 
     if(this.toggleValue=='B'){
       //this.getBlog()

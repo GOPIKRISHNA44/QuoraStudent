@@ -5,8 +5,10 @@ import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core'
 
 import { FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { appConstants } from '../constants/alert.constants';
 import { Title, QuillConfiguration } from '../constants/title.constants';
 import { UserDetails } from '../models/auth.model';
+import { AlertService } from '../services/alert.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { QuestionService } from '../services/question.service';
 @Component({
@@ -26,7 +28,7 @@ export class AskQuestionDialogComponent implements OnInit {
   tagsList: any = []
    now = new Date();
 
-  constructor(public dialogRef: MatDialogRef<AskQuestionDialogComponent>,
+  constructor(public dialogRef: MatDialogRef<AskQuestionDialogComponent>,private alertServc: AlertService,
     @Inject(MAT_DIALOG_DATA) public data: any, private questionService: QuestionService, private authenticationService: AuthenticationService,) { 
 
       // const datePipe = new DatePipe('');
@@ -78,7 +80,7 @@ export class AskQuestionDialogComponent implements OnInit {
     if (isQ) {
       this.questionService.postQuestion(sentText).subscribe(res => {
         if (res.success) {
-          console.log(res)
+          this.alertServc.successAlert(appConstants.postQuestion);
         }
       })
     }
@@ -89,7 +91,7 @@ export class AskQuestionDialogComponent implements OnInit {
       }
       this.questionService.postEvent(payLoad).subscribe(res => {
         if (res.success) {
-          console.log(res)
+          this.alertServc.successAlert(appConstants.postEvent);
           
         }
       })

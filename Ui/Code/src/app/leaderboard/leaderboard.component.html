@@ -1,6 +1,6 @@
 <div class="leader">
     <p class="row-center ti"><img class="avat" src="../../assets/images/prize.jpg" /><span class="lead">LEADERBOARD</span> </p>
-    <div class="row-center">
+    <div class="row-center" *ngIf="dataSource.length!=0;else nextBlock">
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 ">
 
 
@@ -25,5 +25,8 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
     </div>
+    <ng-template #nextBlock>
+        <div class="row-center">No leaderboard yet</div>
+    </ng-template>
 
 </div>
