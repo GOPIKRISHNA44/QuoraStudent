@@ -16,6 +16,10 @@ export class NetworkInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     this.authenticationService.show();
+
+    request = request.clone({
+      setHeaders: { sessionkey: this.authenticationService.GetToken() }
+  });
     return next.handle(request).pipe(finalize(() => {
         this.authenticationService.hide();
       })

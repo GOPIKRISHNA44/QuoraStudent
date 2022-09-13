@@ -66,9 +66,13 @@
                     Password is required
                 </mat-error>
                 <mat-error *ngIf="f.password.errors?.minlength">
-                    Password must be at least 6 characters long.
+                    Password must be at least 6 characters long and contain
+                    Lowercase letters
+                    Uppercase letters
+                    Numbers
+                    Special characters
                 </mat-error>
-            </mat-form-field><br />
+            </mat-form-field><br /><br />
             <mat-form-field class="xs-full-width" appearance="outline">
                 <mat-label>Confirm password</mat-label>
                 <input matInput formControlName="confirmPassword" [type]=" chide ? 'password' : 'text'"
