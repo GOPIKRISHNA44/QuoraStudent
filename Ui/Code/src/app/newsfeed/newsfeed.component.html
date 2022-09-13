@@ -7,7 +7,7 @@
             <mat-form-field class="full-width" appearance="outline">
                 <mat-label>Search</mat-label>
                 <input type="text" matInput placeholder="" [(ngModel)]="searchText">
-                <button mat-icon-button matSuffix type="button" (click)="getQuestions()">
+                <button mat-icon-button matSuffix type="button" (click)="getQuestionOrEvent()">
                     <mat-icon>
                         search
                     </mat-icon>
@@ -24,7 +24,7 @@
         </div>
 
     </mat-card>
-    <app-show-blog *ngIf="toggleValue=='B';else nextBlock" [searchText]=searchText></app-show-blog>
+    <app-show-blog *ngIf="toggleValue=='B';else nextBlock" [searchText]=searchText ></app-show-blog>
     <ng-template #nextBlock>
         <div *ngFor="let data of data">
             <mat-card class="topbox">

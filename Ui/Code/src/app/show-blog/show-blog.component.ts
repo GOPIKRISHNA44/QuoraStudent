@@ -33,7 +33,7 @@ export class ShowBlogComponent implements OnInit {
       "userid": this.userdetails.userid,
       "pageNumber": 1,
       "numberOfPostsRequired": this.noOfposts,
-      "filterCondition": ""
+      "filterCondition": this.searchText
     }
     this.questionService.getBlogFeed(details).subscribe(res => {
       if (res.success) {
